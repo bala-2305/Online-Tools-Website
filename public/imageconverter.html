@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="images/letter-d.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daedalus - Image Format Converter | Free Online Image Tools</title>
+    <meta name="description"
+        content="Convert images between formats (PNG, JPEG, WebP, AVIF) instantly in your browser. No uploads, no watermarks, completely free. Perfect for web optimization.">
+    <meta name="keywords"
+        content="image converter, format converter, PNG to JPEG, WebP converter, AVIF converter, free online tools, privacy, Daedalus">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta property="og:title" content="Daedalus - Free Image Format Converter">
+    <meta property="og:description"
+        content="Convert images between formats instantly in your browser. No uploads, no watermarks, completely free.">
+    <meta property="og:type" content="website">
+    <meta name="google-adsense-account" content="ca-pub-3135787759848459">
+    <meta property="og:url" content="https://infinityforge.tech/imageconverter.html">
+    <meta property="og:image" content="https://infinityforge.tech/assets/letter-d.png">
+    <link rel="canonical" href="https://infinityforge.tech/imageconverter.html">
+    <link rel="alternate" hreflang="en" href="https://infinityforge.tech/imageconverter.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Daedalus - Free Image Format Converter">
+    <meta name="twitter:description" content="Convert images between formats instantly in your browser. No uploads, no watermarks, completely free.">
+    <meta name="twitter:image" content="https://infinityforge.tech/assets/letter-d.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js" defer></script>
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FQ082B7887"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FQ082B7887');
+</script>
+<body class="bg-gray-50 font-poppins">
+    <nav class="bg-white/80 backdrop-blur-lg shadow-sm w-full fixed top-0 left-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="index.html" class="text-2xl font-bold text-blue-600" aria-label="Daedalus Home">Daedalus</a>
+                <div class="hidden sm:flex items-center space-x-6">
+                    <a href="index.html" class="text-blue-600 font-medium">Home</a>
+                    <a href="features.html" class="text-gray-700 hover:text-blue-600 font-medium">Features</a>
+                    <a href="about.html" class="text-gray-700 hover:text-blue-600 font-medium">About</a>
+                </div>
+                <div class="sm:hidden">
+                    <button id="mobile-menu-button" class="text-gray-700 hover:text-blue-600 focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden sm:hidden">
+            <a href="index.html" class="block py-2 px-4 text-sm text-blue-600 font-medium hover:bg-blue-50">Home</a>
+            <a href="features.html" class="block py-2 px-4 text-sm text-gray-700 hover:bg-blue-50">Features</a>
+            <a href="about.html" class="block py-2 px-4 text-sm text-gray-700 hover:bg-blue-50">About</a>
+        </div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto pt-24 pb-12 px-4">
+        <h1 class="text-4xl font-bold text-gray-800 mb-4 text-center">Image Format Converter</h1>
+        <p class="text-gray-600 text-center mb-8">Convert images between PNG, JPEG, WebP, and AVIF formats instantly in
+            your browser</p>
+
+        <!-- Main Tool Container -->
+        <div class="bg-white rounded-xl shadow-md p-6">
+            <!-- File Input Section -->
+            <div class="mb-8 text-center">
+                <div class="max-w-xl mx-auto">
+                    <label for="imageInput"
+                        class="block w-full p-8 border-2 border-dashed border-gray-300 rounded-lg hover:border-blue-500 transition-colors cursor-pointer">
+                        <div class="text-gray-600">
+                            <svg class="mx-auto h-12 w-12 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                            <p class="mb-2">Drop your image here or click to browse</p>
+                            <p class="text-sm text-gray-500">Supports PNG, JPEG, WebP, and AVIF</p>
+                        </div>
+                        <input type="file" id="imageInput" accept="image/*" class="hidden">
+                    </label>
+                </div>
+            </div>
+
+            <!-- Convert Options -->
+            <div id="convertOptions" class="hidden">
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <!-- Format Selection -->
+                    <div>
+                        <label for="formatSelect" class="block text-sm font-medium text-gray-700 mb-2">Convert
+                            to:</label>
+                        <select id="formatSelect"
+                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
+                            <option value="image/png">PNG</option>
+                            <option value="image/jpeg">JPEG</option>
+                            <option value="image/webp">WebP</option>
+                            <option value="image/avif">AVIF</option>
+                        </select>
+                    </div>
+                    <!-- Quality Setting -->
+                    <div>
+                        <label for="qualityRange" class="block text-sm font-medium text-gray-700 mb-2">Quality: <span
+                                id="qualityValue">90</span>%</label>
+                        <input type="range" id="qualityRange" min="1" max="100" value="90" class="w-full">
+                    </div>
+                </div>
+
+                <!-- Advanced Options -->
+                <div class="mb-6">
+                    <button onclick="toggleAdvancedOptions()"
+                        class="text-blue-600 hover:text-blue-700 text-sm font-medium flex items-center">
+                        <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path id="advancedArrow" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M19 9l-7 7-7-7" />
+                        </svg>
+                        Advanced Options
+                    </button>
+
+                    <div id="advancedOptions" class="hidden mt-4 p-4 bg-gray-50 rounded-lg">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <!-- Resize Options -->
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Resize while
+                                    converting</label>
+                                <div class="flex space-x-4">
+                                    <input type="number" id="resizeWidth" placeholder="Width"
+                                        class="w-24 px-3 py-2 border border-gray-300 rounded-md">
+                                    <span class="text-gray-500 self-center">×</span>
+                                    <input type="number" id="resizeHeight" placeholder="Height"
+                                        class="w-24 px-3 py-2 border border-gray-300 rounded-md">
+                                </div>
+                                <div class="mt-2">
+                                    <label class="inline-flex items-center">
+                                        <input type="checkbox" id="maintainAspectRatio"
+                                            class="rounded border-gray-300 text-blue-600" checked>
+                                        <span class="ml-2 text-sm text-gray-600">Maintain aspect ratio</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Optimization Options -->
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Optimization</label>
+                                <div class="space-y-2">
+                                    <label class="inline-flex items-center block">
+                                        <input type="checkbox" id="stripMetadata"
+                                            class="rounded border-gray-300 text-blue-600">
+                                        <span class="ml-2 text-sm text-gray-600">Strip metadata</span>
+                                    </label>
+                                    <label class="inline-flex items-center block">
+                                        <input type="checkbox" id="optimizeCompression"
+                                            class="rounded border-gray-300 text-blue-600">
+                                        <span class="ml-2 text-sm text-gray-600">Optimize compression</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Batch Processing -->
+                        <div class="mt-4">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Batch Processing</label>
+                            <div class="space-y-2">
+                                <label class="inline-flex items-center block">
+                                    <input type="checkbox" id="enableBatch"
+                                        class="rounded border-gray-300 text-blue-600">
+                                    <span class="ml-2 text-sm text-gray-600">Enable batch processing</span>
+                                </label>
+                                <div id="batchOptions" class="hidden mt-2">
+                                    <input type="file" id="batchInput" multiple accept="image/*" class="hidden">
+                                    <button onclick="document.getElementById('batchInput').click()"
+                                        class="text-sm bg-gray-100 hover:bg-gray-200 text-gray-700 px-3 py-2 rounded">
+                                        Add more images
+                                    </button>
+                                    <div id="batchList" class="mt-2 space-y-2 max-h-40 overflow-y-auto"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Preview -->
+                <div class="mb-6">
+                    <h3 class="text-lg font-medium text-gray-900 mb-4">Preview</h3>
+                    <div class="relative border rounded-lg overflow-hidden">
+                        <img id="previewImage" class="max-w-full h-auto mx-auto" alt="Preview">
+                        <div id="imageInfo"
+                            class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white text-sm p-2">
+                            Size: <span id="imageSize">-</span> | Dimensions: <span id="imageDimensions">-</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Convert Button -->
+                <div class="text-center">
+                    <button id="convertBtn"
+                        class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors">
+                        Convert Image
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Browser Support Notice -->
+        <div class="mt-8 p-4 bg-yellow-50 rounded-lg" id="browserNotice">
+            <p class="text-yellow-800 text-sm text-center">Checking browser compatibility...</p>
+        </div>
+    </main>
+
+    <!-- About Image Format Conversion Section -->
+    <section class="max-w-4xl mx-auto px-4 py-12">
+        <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">About Image Format Conversion</h2>
+            <div class="prose max-w-none">
+                <p class="mb-4 text-gray-700">
+                    Image format conversion is essential for optimizing images for different platforms and use cases.
+                    Our free online converter supports all major image formats and processes everything directly in your browser,
+                    ensuring complete privacy and security for your creative work.
+                </p>
+
+                <h3 class="text-2xl font-semibold mb-3 text-gray-800">Supported Image Formats</h3>
+                <p class="mb-4 text-gray-700">
+                    Our converter handles the most popular image formats used across the web and digital media:
+                </p>
+                <ul class="list-disc pl-6 mb-4 text-gray-700">
+                    <li><strong>JPEG/JPG:</strong> Best for photographs and complex images with millions of colors</li>
+                    <li><strong>PNG:</strong> Ideal for images with transparency, logos, and graphics with fewer colors</li>
+                    <li><strong>WebP:</strong> Modern format offering superior compression with excellent quality</li>
+                    <li><strong>AVIF:</strong> Next-generation format with the best compression ratios available</li>
+                    <li><strong>BMP:</strong> Uncompressed format maintaining maximum quality</li>
+                    <li><strong>GIF:</strong> Suitable for simple animations and graphics with limited colors</li>
+                </ul>
+
+                <h3 class="text-2xl font-semibold mb-3 text-gray-800">When to Use Different Formats</h3>
+                <p class="mb-4 text-gray-700">
+                    Choosing the right image format can significantly impact file size, quality, and compatibility:
+                </p>
+                <ul class="list-disc pl-6 mb-4 text-gray-700">
+                    <li><strong>WebP for Web:</strong> Use WebP for websites to reduce loading times while maintaining quality</li>
+                    <li><strong>PNG for Graphics:</strong> Perfect for logos, icons, and images needing transparency</li>
+                    <li><strong>JPEG for Photos:</strong> Best choice for photographs and complex images</li>
+                    <li><strong>AVIF for Modern Browsers:</strong> Offers the smallest file sizes with excellent quality</li>
+                </ul>
+
+                <h3 class="text-2xl font-semibold mb-3 text-gray-800">Quality and Compression Control</h3>
+                <p class="mb-4 text-gray-700">
+                    Our converter gives you full control over output quality and compression settings. Higher quality
+                    settings preserve more image detail but result in larger files, while lower quality settings achieve
+                    better compression but may lose some fine details. The optimal balance depends on your specific needs
+                    and the intended use of the converted images.
+                </p>
+
+                <h3 class="text-2xl font-semibold mb-3 text-gray-800">Batch Processing Capabilities</h3>
+                <p class="mb-4 text-gray-700">
+                    Convert multiple images simultaneously with our batch processing feature. This is perfect for:
+                </p>
+                <ul class="list-disc pl-6 mb-4 text-gray-700">
+                    <li>Preparing image assets for a website redesign</li>
+                    <li>Converting a collection of photos for social media</li>
+                    <li>Optimizing images for better web performance</li>
+                    <li>Standardizing image formats across a project</li>
+                </ul>
+
+                <h3 class="text-2xl font-semibold mb-3 text-gray-800">Privacy and Security First</h3>
+                <p class="mb-4 text-gray-700">
+                    Your images never leave your device. All conversion processing happens locally in your web browser,
+                    ensuring that sensitive business images, personal photos, and creative projects remain completely private.
+                    No uploads to external servers, no temporary storage, and no traces left behind.
+                </p>
+
+                <h3 class="text-2xl font-semibold mb-3 text-gray-800">Browser Compatibility</h3>
+                <p class="mb-4 text-gray-700">
+                    Our converter works with all modern web browsers that support the HTML5 Canvas API and modern image
+                    formats. The tool automatically detects your browser's capabilities and provides appropriate format
+                    options. For the best experience, we recommend using the latest versions of Chrome, Firefox, Safari, or Edge.
+                </p>
+
+                <h3 class="text-2xl font-semibold mb-3 text-gray-800">Use Cases and Applications</h3>
+                <p class="mb-4 text-gray-700">
+                    Image format conversion serves countless professional and creative needs:
+                </p>
+                <ul class="list-disc pl-6 mb-4 text-gray-700">
+                    <li><strong>Web Developers:</strong> Convert images to WebP for faster website loading</li>
+                    <li><strong>Content Creators:</strong> Prepare images for different social media platforms</li>
+                    <li><strong>E-commerce:</strong> Optimize product images for online stores</li>
+                    <li><strong>Photographers:</strong> Convert RAW files to web-friendly formats</li>
+                    <li><strong>Designers:</strong> Export designs in multiple formats for different uses</li>
+                </ul>
+
+                <p class="text-sm text-gray-600">
+                    By using our image converter, you agree to our <a href="privacy.html" class="text-blue-600 hover:underline">Privacy Policy</a>
+                    and <a href="terms.html" class="text-blue-600 hover:underline">Terms of Service</a>.
+                </p>
+            </div>
+        </div>
+
+        <!-- Social Media Section -->
+        <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Follow Us on Social Media</h2>
+            <p class="text-gray-700 text-center mb-8 max-w-2xl mx-auto">
+                Stay updated with the latest image conversion tips, new format support, and digital media insights
+                from Daedalus. Join our community of creators and professionals.
+            </p>
+            <div class="flex justify-center space-x-8">
+                <a href="https://www.youtube.com/@daedalustools" target="_blank" rel="noopener noreferrer" class="text-red-600 hover:text-red-800 transition-colors">
+                    <i data-feather="youtube" class="w-10 h-10" aria-label="YouTube"></i>
+                </a>
+                <a href="https://www.twitter.com/daedalustools" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-600 transition-colors">
+                    <i data-feather="twitter" class="w-10 h-10" aria-label="Twitter"></i>
+                </a>
+                <a href="https://www.linkedin.com/company/daedalustools" target="_blank" rel="noopener noreferrer" class="text-blue-700 hover:text-blue-900 transition-colors">
+                    <i data-feather="linkedin" class="w-10 h-10" aria-label="LinkedIn"></i>
+                </a>
+                <a href="https://www.instagram.com/daedalustools" target="_blank" rel="noopener noreferrer" class="text-pink-600 hover:text-pink-800 transition-colors">
+                    <i data-feather="instagram" class="w-10 h-10" aria-label="Instagram"></i>
+                </a>
+                <a href="https://www.facebook.com/daedalustools" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800 transition-colors">
+                    <i data-feather="facebook" class="w-10 h-10" aria-label="Facebook"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        window.addEventListener('load', function() {
+            // Image Converter Logic
+            (function () {
+            const imageInput = document.getElementById('imageInput');
+            const convertOptions = document.getElementById('convertOptions');
+            const formatSelect = document.getElementById('formatSelect');
+            const qualityRange = document.getElementById('qualityRange');
+            const qualityValue = document.getElementById('qualityValue');
+            const previewImage = document.getElementById('previewImage');
+            const convertBtn = document.getElementById('convertBtn');
+            const imageSize = document.getElementById('imageSize');
+            const imageDimensions = document.getElementById('imageDimensions');
+            const browserNotice = document.getElementById('browserNotice');
+
+            let currentFile = null;
+
+            // Check browser support
+            function checkBrowserSupport() {
+                const supportedFormats = {
+                    'image/webp': 'WebP',
+                    'image/avif': 'AVIF'
+                };
+
+                const testImage = new Image();
+                let support = {};
+
+                for (let format in supportedFormats) {
+                    testImage.src = `data:${format};base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=`;
+                    support[format] = testImage.complete && testImage.width === 1;
+                }
+
+                const notice = Object.entries(support)
+                    .filter(([_, supported]) => !supported)
+                    .map(([format]) => supportedFormats[format])
+                    .join(', ');
+
+                browserNotice.innerHTML = notice ?
+                    `<p class="text-yellow-800 text-sm text-center">Note: Your browser might not support ${notice}. The converter will still work but with limited format options.</p>` :
+                    `<p class="text-green-800 text-sm text-center">Your browser supports all image formats!</p>`;
+            }
+
+            // Handle file selection
+            imageInput.addEventListener('change', function (e) {
+                const file = e.target.files[0];
+                if (file && file.type.startsWith('image/')) {
+                    currentFile = file;
+                    displayImagePreview(file);
+                    convertOptions.classList.remove('hidden');
+                }
+            });
+
+            // Handle drag and drop
+            const dropZone = imageInput.parentElement;
+
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                dropZone.addEventListener(eventName, preventDefaults, false);
+            });
+
+            function preventDefaults(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+
+            ['dragenter', 'dragover'].forEach(eventName => {
+                dropZone.addEventListener(eventName, highlight, false);
+            });
+
+            ['dragleave', 'drop'].forEach(eventName => {
+                dropZone.addEventListener(eventName, unhighlight, false);
+            });
+
+            function highlight() {
+                dropZone.classList.add('border-blue-500');
+            }
+
+            function unhighlight() {
+                dropZone.classList.remove('border-blue-500');
+            }
+
+            dropZone.addEventListener('drop', handleDrop, false);
+
+            function handleDrop(e) {
+                const file = e.dataTransfer.files[0];
+                if (file && file.type.startsWith('image/')) {
+                    imageInput.files = e.dataTransfer.files;
+                    currentFile = file;
+                    displayImagePreview(file);
+                    convertOptions.classList.remove('hidden');
+                }
+            }
+
+            // Display image preview and info
+            function displayImagePreview(file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    previewImage.src = e.target.result;
+                    previewImage.onload = function () {
+                        imageDimensions.textContent = `${this.width} × ${this.height}`;
+                    };
+                    imageSize.textContent = formatFileSize(file.size);
+                };
+                reader.readAsDataURL(file);
+            }
+
+            // Format file size
+            function formatFileSize(bytes) {
+                if (bytes === 0) return '0 Bytes';
+                const k = 1024;
+                const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+                const i = Math.floor(Math.log(bytes) / Math.log(k));
+                return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+            }
+
+            // Handle quality range input
+            qualityRange.addEventListener('input', function () {
+                qualityValue.textContent = this.value;
+            });
+
+            // Handle image conversion
+            convertBtn.addEventListener('click', async function () {
+                if (!currentFile) return;
+
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                const img = new Image();
+
+                img.onload = function () {
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    ctx.drawImage(img, 0, 0);
+
+                    const format = formatSelect.value;
+                    const quality = parseInt(qualityRange.value) / 100;
+
+                    canvas.toBlob(function (blob) {
+                        const url = URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = `converted.${format.split('/')[1]}`;
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                        URL.revokeObjectURL(url);
+                    }, format, quality);
+                };
+
+                img.src = URL.createObjectURL(currentFile);
+            });
+
+            // Advanced options toggle
+            window.toggleAdvancedOptions = function () {
+                const advancedOptions = document.getElementById('advancedOptions');
+                const arrow = document.getElementById('advancedArrow');
+                const isHidden = advancedOptions.classList.contains('hidden');
+
+                advancedOptions.classList.toggle('hidden');
+                arrow.style.transform = isHidden ? 'rotate(180deg)' : '';
+            };
+
+            // Batch processing
+            const batchInput = document.getElementById('batchInput');
+            const batchList = document.getElementById('batchList');
+            const enableBatch = document.getElementById('enableBatch');
+            const batchOptions = document.getElementById('batchOptions');
+            let batchFiles = [];
+
+            enableBatch.addEventListener('change', function () {
+                batchOptions.classList.toggle('hidden', !this.checked);
+                if (!this.checked) {
+                    batchFiles = [];
+                    batchList.innerHTML = '';
+                }
+            });
+
+            batchInput.addEventListener('change', function (e) {
+                for (let file of e.target.files) {
+                    if (file.type.startsWith('image/')) {
+                        batchFiles.push(file);
+                        addToBatchList(file);
+                    }
+                }
+            });
+
+            function addToBatchList(file) {
+                const div = document.createElement('div');
+                div.className = 'flex items-center justify-between bg-white p-2 rounded border';
+                div.innerHTML = `
+                    <span class="text-sm text-gray-600">${file.name}</span>
+                    <button onclick="removeFromBatch(this)" class="text-red-500 hover:text-red-700">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                `;
+                batchList.appendChild(div);
+            }
+
+            window.removeFromBatch = function (button) {
+                const div = button.parentElement;
+                const index = Array.from(batchList.children).indexOf(div);
+                batchFiles.splice(index, 1);
+                div.remove();
+            };
+
+            // Maintain aspect ratio
+            const resizeWidth = document.getElementById('resizeWidth');
+            const resizeHeight = document.getElementById('resizeHeight');
+            const maintainAspectRatio = document.getElementById('maintainAspectRatio');
+            let originalAspectRatio = 1;
+
+            previewImage.addEventListener('load', function () {
+                originalAspectRatio = this.width / this.height;
+            });
+
+            resizeWidth.addEventListener('input', function () {
+                if (maintainAspectRatio.checked && this.value) {
+                    resizeHeight.value = Math.round(this.value / originalAspectRatio);
+                }
+            });
+
+            resizeHeight.addEventListener('input', function () {
+                if (maintainAspectRatio.checked && this.value) {
+                    resizeWidth.value = Math.round(this.value * originalAspectRatio);
+                }
+            });
+
+            // Enhanced convert function
+            convertBtn.addEventListener('click', async function () {
+                const files = enableBatch.checked ? batchFiles : [currentFile];
+                if (files.length === 0) return;
+
+                const format = formatSelect.value;
+                const quality = parseInt(qualityRange.value) / 100;
+                const stripMeta = document.getElementById('stripMetadata').checked;
+                const optimize = document.getElementById('optimizeCompression').checked;
+                const resize = resizeWidth.value && resizeHeight.value;
+
+                // If batch processing, create a zip file
+                if (files.length > 1) {
+                    const zip = new JSZip();
+
+                    for (let file of files) {
+                        const convertedBlob = await convertImage(file, {
+                            format,
+                            quality,
+                            stripMeta,
+                            optimize,
+                            width: resize ? parseInt(resizeWidth.value) : null,
+                            height: resize ? parseInt(resizeHeight.value) : null
+                        });
+
+                        const fileName = file.name.split('.')[0] + '.' + format.split('/')[1];
+                        zip.file(fileName, convertedBlob);
+                    }
+
+                    const zipBlob = await zip.generateAsync({ type: 'blob' });
+                    const url = URL.createObjectURL(zipBlob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'converted_images.zip';
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                } else {
+                    // Single file conversion
+                    const blob = await convertImage(currentFile, {
+                        format,
+                        quality,
+                        stripMeta,
+                        optimize,
+                        width: resize ? parseInt(resizeWidth.value) : null,
+                        height: resize ? parseInt(resizeHeight.value) : null
+                    });
+
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `converted.${format.split('/')[1]}`;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                }
+            });
+
+            async function convertImage(file, options) {
+                return new Promise((resolve) => {
+                    const img = new Image();
+                    img.onload = function () {
+                        const canvas = document.createElement('canvas');
+                        let width = img.width;
+                        let height = img.height;
+
+                        // Handle resize if specified
+                        if (options.width && options.height) {
+                            width = options.width;
+                            height = options.height;
+                        }
+
+                        canvas.width = width;
+                        canvas.height = height;
+                        const ctx = canvas.getContext('2d');
+
+                        // Apply optimization if enabled
+                        if (options.optimize) {
+                            ctx.imageSmoothingEnabled = true;
+                            ctx.imageSmoothingQuality = 'high';
+                        }
+
+                        ctx.drawImage(img, 0, 0, width, height);
+
+                        // Convert to the desired format
+                        canvas.toBlob((blob) => {
+                            resolve(blob);
+                        }, options.format, options.quality);
+                    };
+                    img.src = URL.createObjectURL(file);
+                });
+            }
+
+            // Initialize
+            checkBrowserSupport();
+        })();
+        });
+    </script>
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js" defer></script>
+    <script>
+        window.addEventListener('load', function() {
+            // Initialize Feather Icons
+            feather.replace();
+
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        });
+    </script>
+</body>
+
+</html>

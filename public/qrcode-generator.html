@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="images/letter-d.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free QR Code Generator - Create Custom QR Codes Online</title>
+    <meta name="description" content="Generate high-quality, custom QR codes for URLs, text, Wi-Fi, and more for free. Our online tool is fast, easy to use, and works directly in your browser.">
+    <meta name="keywords" content="qr code generator, free qr code, create qr code, online qr code generator, custom qr code, Daedalus tools">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta property="og:title" content="Daedalus - Free QR Code Generator">
+    <meta property="og:description" content="Generate high-quality, custom QR codes for URLs, text, Wi-Fi, and more for free. Our online tool is fast, easy to use, and works directly in your browser.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://infinityforge.tech/qrcode-generator.html">
+    <meta property="og:image" content="https://infinityforge.tech/assets/daedalus-og.png">
+    <link rel="canonical" href="https://infinityforge.tech/qrcode-generator.html">
+    <meta name="google-adsense-account" content="ca-pub-3135787759848459">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+
+    <style>
+        body {
+            background-color: #EFF6FF; /* blue-50 */
+        }
+        #qrcode-display {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 256px;
+            background-color: white;
+            border: 1px solid #E5E7EB; /* gray-200 */
+        }
+        #qrcode-display img {
+            max-width: 100%;
+            height: auto;
+        }
+        .tab-active {
+            color: #2563EB; /* blue-600 */
+            border-color: #2563EB;
+            background-color: #DBEAFE; /* blue-100 */
+        }
+        .tab-button {
+            transition: all 0.3s ease-in-out;
+            border-bottom: 3px solid transparent;
+        }
+        .tab-button:hover {
+            background-color: #EFF6FF; /* blue-50 */
+        }
+        .tab-panel {
+            animation: fadeIn 0.5s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FQ082B7887"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FQ082B7887');
+</script>
+<body class="font-poppins">
+
+    <!-- Navigation -->
+    <nav class="bg-white/80 backdrop-blur-lg shadow-sm w-full fixed top-0 left-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="index.html" class="text-2xl font-bold text-blue-600" aria-label="Daedalus Home">Daedalus</a>
+                <div class="hidden sm:flex items-center space-x-6">
+                    <a href="index.html" class="text-blue-600 font-medium">Home</a>
+                    <a href="features.html" class="text-gray-700 hover:text-blue-600 font-medium">Features</a>
+                    <a href="about.html" class="text-gray-700 hover:text-blue-600 font-medium">About</a>
+                </div>
+                <button id="mobile-menu-button" class="sm:hidden text-gray-700 hover:text-blue-600 focus:outline-none">
+                    <i data-feather="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="sm:hidden hidden bg-white border-t shadow-lg">
+            <div class="px-4 py-4 space-y-2">
+                <a href="index.html" class="block text-blue-600 font-medium">Home</a>
+                <a href="features.html" class="block text-gray-700 hover:text-blue-600 font-medium">Features</a>
+                <a href="about.html" class="block text-gray-700 hover:text-blue-600 font-medium">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="w-full max-w-5xl mx-auto pt-24 px-4">
+        <div class="text-center mb-12">
+            <h1 class="text-3xl sm:text-5xl font-bold text-gray-800 mb-4">QR Code Tools</h1>
+            <p class="text-md sm:text-lg text-gray-600 max-w-3xl mx-auto">Create, customize, and scan QR codes for free. All in one place.</p>
+        </div>
+
+        <div class="bg-white/60 backdrop-blur-lg rounded-xl shadow-lg overflow-hidden">
+            <!-- Tab Buttons -->
+            <div class="border-b border-gray-200/80">
+                <div class="flex" role="tablist">
+                    <button role="tab" class="tab-button tab-active flex-1 flex items-center justify-center py-4 px-6 font-semibold text-gray-700 focus:outline-none" data-target="generate-panel">
+                        <i data-feather="cpu" class="mr-2"></i><span class="truncate">Generate QR Code</span>
+                    </button>
+                    <button role="tab" class="tab-button flex-1 flex items-center justify-center py-4 px-6 font-semibold text-gray-500 hover:text-gray-700 focus:outline-none" data-target="scan-panel">
+                        <i data-feather="camera" class="mr-2"></i><span class="truncate">Scan QR Code</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tab Panels -->
+            <div class="p-6 sm:p-8">
+                <!-- Generate Panel -->
+                <div id="generate-panel" role="tabpanel" class="tab-panel">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <!-- Options Panel -->
+                        <div class="p-0">
+                            <h3 class="text-xl font-bold text-gray-800 mb-4">1. Enter Your Content</h3>
+                            <textarea id="qr-text" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" rows="4" placeholder="Enter a URL or any text..."></textarea>
+
+                            <h3 class="text-xl font-bold text-gray-800 mt-6 mb-4">2. Customize Your QR Code</h3>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label for="qr-color" class="block text-sm font-medium text-gray-700">Color</label>
+                                    <input type="color" id="qr-color" value="#000000" class="mt-1 block w-full h-12 p-1 border border-gray-300 rounded-lg">
+                                </div>
+                                <div>
+                                    <label for="qr-bg-color" class="block text-sm font-medium text-gray-700">Background</label>
+                                    <input type="color" id="qr-bg-color" value="#ffffff" class="mt-1 block w-full h-12 p-1 border border-gray-300 rounded-lg">
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <label for="qr-size" class="block text-sm font-medium text-gray-700">Size (pixels)</label>
+                                <select id="qr-size" class="mt-1 block w-full p-3 border border-gray-300 rounded-lg bg-white focus:ring-2 focus:ring-blue-500">
+                                    <option value="128">128 x 128</option>
+                                    <option value="256" selected>256 x 256</option>
+                                    <option value="512">512 x 512</option>
+                                    <option value="1024">1024 x 1024</option>
+                                </select>
+                            </div>
+                            <button id="generate-btn" class="mt-6 w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-transform transform hover:scale-105">
+                                <i data-feather="cpu" class="inline-block mr-2"></i>Generate QR Code
+                            </button>
+                        </div>
+
+                        <!-- Preview and Download Panel -->
+                        <div class="p-0">
+                            <h3 class="text-xl font-bold text-gray-800 mb-4">3. Your QR Code</h3>
+                            <div id="qrcode-display" class="rounded-lg overflow-hidden">
+                                <!-- QR Code will be generated here -->
+                            </div>
+                            <button id="download-btn" class="mt-6 w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 disabled:bg-gray-400 transition-transform transform hover:scale-105" disabled>
+                                <i data-feather="download" class="inline-block mr-2"></i>Download PNG
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Scan Panel -->
+                <div id="scan-panel" role="tabpanel" class="tab-panel hidden">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Scan QR Code</h3>
+                    <div class="flex items-center justify-center space-x-4 mb-4">
+                        <button id="scan-from-camera-btn" class="scan-mode-btn bg-blue-100 text-blue-700 font-semibold py-2 px-4 rounded-lg">From Camera</button>
+                        <button id="scan-from-file-btn" class="scan-mode-btn bg-gray-100 text-gray-700 font-semibold py-2 px-4 rounded-lg">From File</button>
+                    </div>
+                    <div id="camera-scanner-section">
+                        <div id="qr-reader" class="w-full max-w-md mx-auto border-2 border-dashed border-gray-300 rounded-lg overflow-hidden"></div>
+                    </div>
+                    <div id="file-scanner-section" class="hidden text-center">
+                        <input type="file" id="qr-file-input" accept="image/*" class="hidden"/>
+                        <button id="upload-qr-btn" class="bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700">
+                            <i data-feather="upload" class="inline-block mr-2"></i>Upload QR Code Image
+                        </button>
+                    </div>
+                    <div id="qr-reader-results" class="mt-4 text-center text-lg font-medium text-gray-700"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- AdSense Friendly Content -->
+        <div class="bg-white/60 backdrop-blur-lg rounded-xl shadow-lg p-6 sm:p-8 mt-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">What is a QR Code?</h2>
+            <p class="text-gray-700 leading-relaxed">A QR (Quick Response) code is a type of two-dimensional barcode that can be read using a smartphone camera. It can store various types of information, such as a website URL, plain text, contact information, or Wi-Fi network details. When you scan a QR code, your device will automatically interpret the data, making it a fast and easy way to access digital information in the physical world.</p>
+            <h3 class="text-xl font-bold text-gray-800 mt-6 mb-4">How to Use Our QR Code Generator</h3>
+            <ol class="list-decimal list-inside text-gray-700 space-y-2">
+                <li><strong>Enter Content:</strong> Type or paste the URL, text, or other information you want to encode into the text box.</li>
+                <li><strong>Customize:</strong> Choose the color and size for your QR code to match your brand or preference.</li>
+                <li><strong>Generate & Download:</strong> Your QR code will be generated instantly. Click the "Download PNG" button to save it as a high-quality image file.</li>
+            </ol>
+        </div>
+    </main>
+
+    <footer class="bg-white/80 backdrop-blur-lg mt-12 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-600">
+            <p class="font-semibold">&copy; 2025 Daedalus Tools. All Rights Reserved.</p>
+            <p class="text-sm mt-2">Your privacy is our priority. All tools run directly in your browser, meaning your files are never uploaded to our servers.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            feather.replace();
+
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Tab functionality
+            const tabs = document.querySelectorAll('.tab-button');
+            const panels = document.querySelectorAll('.tab-panel');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    tabs.forEach(t => {
+                        t.classList.remove('tab-active');
+                        t.classList.add('text-gray-500', 'hover:text-gray-700');
+                    });
+                    panels.forEach(p => p.classList.add('hidden'));
+
+                    tab.classList.add('tab-active');
+                    tab.classList.remove('text-gray-500', 'hover:text-gray-700');
+                    
+                    const target = tab.getAttribute('data-target');
+                    const targetPanel = document.getElementById(target);
+                    if (targetPanel) {
+                        targetPanel.classList.remove('hidden');
+                    }
+
+                    if (target === 'scan-panel') {
+                        // Default to camera view when scan tab is opened
+                        scanFromCameraBtn.click();
+                    } else {
+                        stopScanner();
+                    }
+                });
+            });
+
+            const qrTextInput = document.getElementById('qr-text');
+            const qrColorInput = document.getElementById('qr-color');
+            const qrBgColorInput = document.getElementById('qr-bg-color');
+            const qrSizeInput = document.getElementById('qr-size');
+            const generateBtn = document.getElementById('generate-btn');
+            const downloadBtn = document.getElementById('download-btn');
+            const qrcodeDisplay = document.getElementById('qrcode-display');
+            
+            let qrcode = null;
+            const html5QrCode = new Html5Qrcode("qr-reader");
+
+            const generateQrCode = () => {
+                const text = qrTextInput.value.trim();
+                if (!text) {
+                    alert('Please enter text or a URL to generate a QR code.');
+                    return;
+                }
+
+                qrcodeDisplay.innerHTML = '';
+                const size = parseInt(qrSizeInput.value, 10);
+
+                qrcode = new QRCode(qrcodeDisplay, {
+                    text: text,
+                    width: size,
+                    height: size,
+                    colorDark: qrColorInput.value,
+                    colorLight: qrBgColorInput.value,
+                    correctLevel: QRCode.CorrectLevel.H
+                });
+
+                downloadBtn.disabled = false;
+            };
+
+            generateBtn.addEventListener('click', generateQrCode);
+
+            downloadBtn.addEventListener('click', () => {
+                const img = qrcodeDisplay.querySelector('img');
+                if (img) {
+                    const link = document.createElement('a');
+                    link.href = img.src;
+                    link.download = 'qrcode.png';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                } else {
+                    alert('Please generate a QR code first.');
+                }
+            });
+
+            // --- QR Code Scanner ---
+            const qrReader = document.getElementById('qr-reader');
+            const qrReaderResults = document.getElementById('qr-reader-results');
+            const scanFromCameraBtn = document.getElementById('scan-from-camera-btn');
+            const scanFromFileBtn = document.getElementById('scan-from-file-btn');
+            const cameraScannerSection = document.getElementById('camera-scanner-section');
+            const fileScannerSection = document.getElementById('file-scanner-section');
+            const qrFileInput = document.getElementById('qr-file-input');
+            const uploadQrBtn = document.getElementById('upload-qr-btn');
+
+            const setActiveScanMode = (isCamera) => {
+                if (isCamera) {
+                    scanFromCameraBtn.classList.replace('bg-gray-100', 'bg-blue-100');
+                    scanFromCameraBtn.classList.replace('text-gray-700', 'text-blue-700');
+                    scanFromFileBtn.classList.replace('bg-blue-100', 'bg-gray-100');
+                    scanFromFileBtn.classList.replace('text-blue-700', 'text-gray-700');
+                    cameraScannerSection.classList.remove('hidden');
+                    fileScannerSection.classList.add('hidden');
+                } else {
+                    scanFromFileBtn.classList.replace('bg-gray-100', 'bg-blue-100');
+                    scanFromFileBtn.classList.replace('text-gray-700', 'text-blue-700');
+                    scanFromCameraBtn.classList.replace('bg-blue-100', 'bg-gray-100');
+                    scanFromCameraBtn.classList.replace('text-blue-700', 'text-gray-700');
+                    cameraScannerSection.classList.add('hidden');
+                    fileScannerSection.classList.remove('hidden');
+                }
+            };
+
+            scanFromCameraBtn.addEventListener('click', () => {
+                setActiveScanMode(true);
+                startScanner();
+            });
+
+            scanFromFileBtn.addEventListener('click', () => {
+                setActiveScanMode(false);
+                stopScanner();
+            });
+
+            uploadQrBtn.addEventListener('click', () => qrFileInput.click());
+
+            qrFileInput.addEventListener('change', e => {
+                const file = e.target.files[0];
+                if (!file) {
+                    return;
+                }
+                qrReaderResults.textContent = 'Scanning file...';
+                html5QrCode.scanFile(file, true)
+                    .then(decodedText => onScanSuccess(decodedText, null))
+                    .catch(err => {
+                        onScanFailure(`Error scanning file: ${err}`);
+                    });
+            });
+
+            const onScanSuccess = (decodedText, decodedResult) => {
+                console.log(`Code matched = ${decodedText}`, decodedResult);
+                qrReaderResults.textContent = `Scanned Result: ${decodedText}`;
+                stopScanner();
+                // Optional: make the result a clickable link if it's a URL
+                if (decodedText.startsWith('http')) {
+                    qrReaderResults.innerHTML = `Scanned Result: <a href="${decodedText}" target="_blank" class="text-blue-600 hover:underline">${decodedText}</a>`;
+                }
+            };
+
+            const onScanFailure = (error) => {
+                // Don't show error for continuous scanning failure
+                if (html5QrCode.isScanning) return;
+                console.warn(`Code scan error = ${error}`);
+                qrReaderResults.textContent = error;
+            };
+
+            function startScanner() {
+                // Don't start if it's already scanning
+                if (html5QrCode.isScanning) return;
+                
+                qrReaderResults.textContent = 'Starting camera...';
+
+                html5QrCode.start(
+                    { facingMode: "environment" },
+                    {
+                        fps: 10,
+                        qrbox: { width: 250, height: 250 }
+                    },
+                    onScanSuccess,
+                    (errorMessage) => { /* ignore continuous scan failure */ }
+                ).then(() => {
+                    qrReaderResults.textContent = 'Place a QR code in the box';
+                }).catch(err => {
+                    console.error("Unable to start scanning.", err);
+                    qrReaderResults.textContent = `Camera Error: ${err}`;
+                });
+            }
+
+            function stopScanner() {
+                if (html5QrCode && html5QrCode.isScanning) {
+                    html5QrCode.stop().then(() => {
+                        console.log("QR Code scanning stopped.");
+                        // Don't clear results on stop
+                    }).catch(err => {
+                        console.error("Failed to stop scanning.", err);
+                    });
+                }
+            }
+        });
+    </script>
+</body>
+</html>

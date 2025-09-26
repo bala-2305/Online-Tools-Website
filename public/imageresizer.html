@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="images/letter-d.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daedalus - Image Resizer | Free Online Image Tools</title>
+    <meta name="description" content="Resize your images instantly in your browser with Daedalus. No uploads, no watermarks, completely free. Perfect for creators and designers.">
+    <meta name="keywords" content="image resizer, free online tools, privacy, Daedalus, browser-based, no watermark, fast image editing">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta property="og:title" content="Daedalus - Free Online Image Resizer">
+    <meta property="og:description" content="Resize images instantly in your browser. No uploads, no watermarks, completely free.">
+    <meta property="og:type" content="website">
+    <meta name="google-adsense-account" content="ca-pub-3135787759848459">
+    <meta property="og:url" content="https://infinityforge.tech/imageresizer.html">
+    <meta property="og:image" content="https://infinityforge.tech/assets/daedalus-og.png">
+    <link rel="canonical" href="https://infinityforge.tech/imageresizer.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Daedalus - Free Online Image Resizer">
+    <meta name="twitter:description" content="Resize images instantly in your browser. No uploads, no watermarks, completely free.">
+    <meta name="twitter:image" content="https://infinityforge.tech/assets/daedalus-og.png">
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <!-- AOS Animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+        .file-upload {
+            border: 2px dashed #cbd5e0;
+            transition: all 0.3s ease;
+        }
+        .file-upload:hover {
+            border-color: #3b82f6;
+            transform: translateY(-2px);
+        }
+        .file-upload.dragover {
+            border-color: #3b82f6;
+            background-color: rgba(59, 130, 246, 0.05);
+        }
+        .tooltip {
+            position: relative;
+        }
+        .tooltip-text {
+            visibility: hidden;
+            width: 200px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+        .dimension-input:focus {
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+        }
+    </style>
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FQ082B7887"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FQ082B7887');
+</script>
+<body class="flex items-center justify-center p-4 sm:p-6">
+    <!-- Navbar -->
+    <nav class="bg-white/80 backdrop-blur-md shadow-lg w-full fixed top-0 left-0 z-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <a href="index.html" class="text-2xl font-bold text-blue-600">Daedalus</a>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-blue-600 font-medium">Home</a>
+                    <a href="features.html" class="text-gray-700 hover:text-blue-600 font-medium">Features</a>
+                    <a href="about.html" class="text-gray-700 hover:text-blue-600 font-medium">About</a>
+                </div>
+                <button id="mobile-menu-button" class="md:hidden text-gray-700 hover:text-blue-600">
+                    <i data-feather="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+            <div id="mobile-menu" class="md:hidden hidden bg-white border-t shadow-lg">
+                <div class="px-4 py-4 space-y-2">
+                    <a href="index.html" class="block text-blue-600 font-medium">Home</a>
+                    <a href="features.html" class="block text-gray-700 hover:text-blue-600 font-medium">Features</a>
+                    <a href="about.html" class="block text-gray-700 hover:text-blue-600 font-medium">About</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="w-full max-w-4xl mx-auto pt-20" itemscope itemtype="https://schema.org/WebPage">
+        <!-- Header -->
+        <div class="text-center mb-10" data-aos="fade-down">
+            <h1 class="text-4xl sm:text-5xl font-bold text-gray-800 mb-3" itemprop="headline">
+                <span class="text-blue-600">Daedalus</span>
+            </h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto" itemprop="description">
+                Resize your images instantly in your browser. No uploads, no watermarks, completely free. Perfect for creators and designers.
+            </p>
+        </div>
+
+        <!-- Main Card -->
+        <div class="bg-white rounded-2xl shadow-xl overflow-hidden" data-aos="fade-up">
+            <div class="grid md:grid-cols-2">
+                <!-- Upload Section -->
+                <div class="p-8 border-b md:border-b-0 md:border-r border-gray-100">
+                    <div 
+                        id="dropZone" 
+                        class="file-upload rounded-xl p-8 text-center cursor-pointer transition-all duration-300"
+                        data-aos="zoom-in"
+                    >
+                        <div class="mx-auto w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mb-4">
+                            <i data-feather="upload" class="text-blue-500 w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Drag & Drop Image</h3>
+                        <p class="text-gray-500 mb-4">or click to browse files</p>
+                        <label for="fileInput" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-6 rounded-lg transition-colors duration-300 shadow-md">
+                            Select Image
+                        </label>
+                        <input type="file" id="fileInput" class="hidden" accept="image/*">
+                        <p id="fileName" class="mt-4 text-sm text-gray-500 truncate max-w-full">No file selected</p>
+                    </div>
+
+                    <!-- Settings Panel -->
+                    <div id="settingsPanel" class="mt-8 hidden" data-aos="fade-up" data-aos-delay="100">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+                            <i data-feather="settings" class="w-5 h-5 mr-2 text-blue-500"></i>
+                            Resize Settings
+                        </h3>
+                        
+                        <div class="space-y-4">
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label for="widthInput" class="block text-sm font-medium text-gray-700 mb-1 flex items-center">
+                                        Width (px)
+                                        <span class="tooltip ml-1">
+                                            <i data-feather="info" class="w-4 h-4 text-gray-400"></i>
+                                            <span class="tooltip-text">Set the desired width in pixels</span>
+                                        </span>
+                                    </label>
+                                    <input 
+                                        type="number" 
+                                        id="widthInput" 
+                                        placeholder="Width" 
+                                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none dimension-input"
+                                        min="1"
+                                    >
+                                </div>
+                                <div>
+                                    <label for="heightInput" class="block text-sm font-medium text-gray-700 mb-1 flex items-center">
+                                        Height (px)
+                                        <span class="tooltip ml-1">
+                                            <i data-feather="info" class="w-4 h-4 text-gray-400"></i>
+                                            <span class="tooltip-text">Set the desired height in pixels</span>
+                                        </span>
+                                    </label>
+                                    <input 
+                                        type="number" 
+                                        id="heightInput" 
+                                        placeholder="Height" 
+                                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none dimension-input"
+                                        min="1"
+                                    >
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <input 
+                                    type="checkbox" 
+                                    id="keepAspect" 
+                                    checked 
+                                    class="form-checkbox h-5 w-5 text-blue-500 rounded focus:ring-blue-500 border-gray-300"
+                                >
+                                <label for="keepAspect" class="ml-2 text-sm text-gray-700">Maintain Aspect Ratio</label>
+                            </div>
+                            
+                            <div class="pt-2">
+                                <button 
+                                    id="resizeButton" 
+                                    class="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-300 shadow-md flex items-center justify-center"
+                                >
+                                    <i data-feather="refresh-cw" class="w-5 h-5 mr-2"></i>
+                                    Resize Image
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Preview Section -->
+                <div class="p-8 bg-gray-50">
+                    <div id="previewPlaceholder" class="text-center py-12" data-aos="zoom-in">
+                        <div class="mx-auto w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center mb-4">
+                            <i data-feather="image" class="text-gray-400 w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-500 mb-2">Image Preview</h3>
+                        <p class="text-gray-400">Your resized image will appear here</p>
+                    </div>
+                    
+                    <div id="previewContainer" class="hidden">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-lg font-semibold text-gray-800 flex items-center">
+                                <i data-feather="check-circle" class="w-5 h-5 mr-2 text-green-500"></i>
+                                Resized Image
+                            </h3>
+                            <span id="dimensionsDisplay" class="text-sm text-gray-500"></span>
+                        </div>
+                        
+                        <div class="relative bg-white p-4 rounded-lg shadow-inner border border-gray-200 mb-4">
+                            <canvas id="canvas" class="w-full h-auto rounded-lg"></canvas>
+                        </div>
+                        
+                        <div class="flex flex-col sm:flex-row gap-3">
+                            <a 
+                                id="downloadButton" 
+                                href="#" 
+                                download="resized-image.png" 
+                                class="flex-1 bg-green-500 hover:bg-green-600 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-300 shadow-md flex items-center justify-center"
+                            >
+                                <i data-feather="download" class="w-5 h-5 mr-2"></i>
+                                Download
+                            </a>
+                            <button 
+                                id="resetButton" 
+                                class="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-700 font-medium py-3 px-6 rounded-lg transition-colors duration-300 shadow-md flex items-center justify-center"
+                            >
+                                <i data-feather="trash-2" class="w-5 h-5 mr-2"></i>
+                                Reset
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features Grid -->
+        <div class="grid sm:grid-cols-3 gap-6 mt-10">
+            <div class="bg-white p-6 rounded-xl shadow-md" data-aos="fade-up" data-aos-delay="100">
+                <div class="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center mb-4">
+                    <i data-feather="shield" class="text-blue-500 w-6 h-6"></i>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-800 mb-2">Privacy First</h3>
+                <p class="text-gray-500">All processing happens in your browser. Your images never leave your device.</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-md" data-aos="fade-up" data-aos-delay="200">
+                <div class="w-12 h-12 bg-purple-50 rounded-full flex items-center justify-center mb-4">
+                    <i data-feather="zap" class="text-purple-500 w-6 h-6"></i>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-800 mb-2">Lightning Fast</h3>
+                <p class="text-gray-500">Resize images instantly with our optimized browser-based processing.</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-md" data-aos="fade-up" data-aos-delay="300">
+                <div class="w-12 h-12 bg-green-50 rounded-full flex items-center justify-center mb-4">
+                    <i data-feather="award" class="text-green-500 w-6 h-6"></i>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-800 mb-2">Premium Quality</h3>
+                <p class="text-gray-500">Get high-quality resized images with our advanced resizing algorithm.</p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="text-center mt-12 text-gray-500 text-sm" data-aos="fade-up">
+        <p>Made with <i data-feather="heart" class="w-4 h-4 inline text-red-400"></i> for creators worldwide</p>
+    </main>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white px-6 py-3 rounded-lg shadow-lg flex items-center hidden">
+        <span id="toastMessage"></span>
+        <button id="toastClose" class="ml-4">
+            <i data-feather="x" class="w-5 h-5"></i>
+        </button>
+    </div>
+
+    <script>
+        // Initialize AOS animations
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Initialize Feather Icons
+        feather.replace();
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // DOM Elements
+        const fileInput = document.getElementById('fileInput');
+        const fileNameSpan = document.getElementById('fileName');
+        const dropZone = document.getElementById('dropZone');
+        const settingsPanel = document.getElementById('settingsPanel');
+        const widthInput = document.getElementById('widthInput');
+        const heightInput = document.getElementById('heightInput');
+        const keepAspectCheckbox = document.getElementById('keepAspect');
+        const resizeButton = document.getElementById('resizeButton');
+        const previewPlaceholder = document.getElementById('previewPlaceholder');
+        const previewContainer = document.getElementById('previewContainer');
+        const canvas = document.getElementById('canvas');
+        const downloadButton = document.getElementById('downloadButton');
+        const resetButton = document.getElementById('resetButton');
+        const dimensionsDisplay = document.getElementById('dimensionsDisplay');
+        const toast = document.getElementById('toast');
+        const toastMessage = document.getElementById('toastMessage');
+        const toastClose = document.getElementById('toastClose');
+        
+        const ctx = canvas.getContext('2d');
+        let originalImage = null;
+        let fileType = 'png';
+        let originalWidth = 0;
+        let originalHeight = 0;
+
+        // Handle file selection
+        fileInput.addEventListener('change', handleFileSelect);
+        
+        // Drag and drop functionality
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, preventDefaults, false);
+        });
+
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropZone.addEventListener(eventName, highlight, false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, unhighlight, false);
+        });
+
+        function highlight() {
+            dropZone.classList.add('dragover');
+        }
+
+        function unhighlight() {
+            dropZone.classList.remove('dragover');
+        }
+
+        dropZone.addEventListener('drop', handleDrop, false);
+
+        function handleDrop(e) {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+            if (files.length) {
+                fileInput.files = files;
+                handleFileSelect({ target: fileInput });
+            }
+        }
+
+        function handleFileSelect(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            
+            if (!file.type.match('image.*')) {
+                showToast('Please select an image file (JPEG, PNG, etc.)');
+                return;
+            }
+            
+            fileNameSpan.textContent = file.name;
+            fileType = file.type.split('/')[1] || 'png';
+            
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                const img = new Image();
+                img.onload = () => {
+                    originalImage = img;
+                    originalWidth = img.naturalWidth;
+                    originalHeight = img.naturalHeight;
+                    
+                    widthInput.value = originalWidth;
+                    heightInput.value = originalHeight;
+                    
+                    settingsPanel.classList.remove('hidden');
+                    previewPlaceholder.classList.add('hidden');
+                    previewContainer.classList.remove('hidden');
+                    
+                    // Show original image first
+                    canvas.width = originalWidth;
+                    canvas.height = originalHeight;
+                    ctx.drawImage(img, 0, 0, originalWidth, originalHeight);
+                    
+                    dimensionsDisplay.textContent = `${originalWidth} × ${originalHeight} px`;
+                    
+                    // Enable download button for original
+                    updateDownloadButton();
+                };
+                img.src = event.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // Aspect ratio handling
+        widthInput.addEventListener('input', () => {
+            if (keepAspectCheckbox.checked && originalImage) {
+                const ratio = originalHeight / originalWidth;
+                heightInput.value = Math.round(widthInput.value * ratio);
+            }
+        });
+
+        heightInput.addEventListener('input', () => {
+            if (keepAspectCheckbox.checked && originalImage) {
+                const ratio = originalWidth / originalHeight;
+                widthInput.value = Math.round(heightInput.value * ratio);
+            }
+        });
+
+        // Resize button handler
+        resizeButton.addEventListener('click', () => {
+            if (!originalImage) {
+                showToast('Please select an image first');
+                return;
+            }
+
+            const newWidth = parseInt(widthInput.value, 10);
+            const newHeight = parseInt(heightInput.value, 10);
+
+            if (isNaN(newWidth) || isNaN(newHeight) || newWidth <= 0 || newHeight <= 0) {
+                showToast('Please enter valid dimensions');
+                return;
+            }
+            
+            // Resize the image
+            canvas.width = newWidth;
+            canvas.height = newHeight;
+            ctx.drawImage(originalImage, 0, 0, newWidth, newHeight);
+            
+            dimensionsDisplay.textContent = `${newWidth} × ${newHeight} px`;
+            
+            // Update download button
+            updateDownloadButton();
+            
+            showToast('Image resized successfully!');
+        });
+
+        // Reset button handler
+        resetButton.addEventListener('click', () => {
+            fileInput.value = '';
+            fileNameSpan.textContent = 'No file selected';
+            settingsPanel.classList.add('hidden');
+            previewPlaceholder.classList.remove('hidden');
+            previewContainer.classList.add('hidden');
+            originalImage = null;
+        });
+
+        // Update download button with current canvas content
+        function updateDownloadButton() {
+            const dataURL = canvas.toDataURL(`image/${fileType}`);
+            downloadButton.href = dataURL;
+            downloadButton.download = `resized-image.${fileType}`;
+        }
+
+        // Toast notification system
+        function showToast(message) {
+            toastMessage.textContent = message;
+            toast.classList.remove('hidden');
+            
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3000);
+        }
+
+        toastClose.addEventListener('click', () => {
+            toast.classList.add('hidden');
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.key === 'z' && originalImage) {
+                resetButton.click();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="images/letter-d.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daedalus - Image Enhancement Tools | Free Online Image Tools</title>
+    <meta name="description" content="Enhance your images with free online tools. Reduce noise, sharpen images, auto-enhance, and remove red-eye effects instantly in your browser.">
+    <meta name="keywords" content="image enhancement, noise reduction, image sharpening, auto enhance, red eye removal, free online tools">
+    <meta name="author" content="Your Name">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta property="og:title" content="Daedalus - Image Enhancement Tools">
+    <meta property="og:description" content="Professional image enhancement tools in your browser. Reduce noise, sharpen, auto-enhance, and fix red-eye effects.">
+    <meta property="og:type" content="website">
+    <meta name="google-adsense-account" content="ca-pub-3135787759848459">
+    <meta property="og:url" content="https://infinityforge.tech/imageenhancement.html">
+    <meta property="og:image" content="https://infinityforge.tech/assets/letter-d.png">
+    <link rel="canonical" href="https://infinityforge.tech/imageenhancement.html">
+    <link rel="alternate" hreflang="en" href="https://infinityforge.tech/imageenhancement.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Daedalus - Image Enhancement Tools">
+    <meta name="twitter:description" content="Professional image enhancement tools in your browser. Reduce noise, sharpen, auto-enhance, and fix red-eye effects.">
+    <meta name="twitter:image" content="https://infinityforge.tech/assets/letter-d.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js" defer></script>
+    <style>
+        .enhancement-preview {
+            transition: all 0.3s ease;
+        }
+        .enhancement-controls {
+            transition: opacity 0.3s ease;
+        }
+        .slider-tooltip {
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+        .slider-container:hover .slider-tooltip {
+            opacity: 1;
+        }
+    </style>
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FQ082B7887"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FQ082B7887');
+</script>
+<body class="bg-gray-50 font-[Poppins] min-h-screen">
+    <nav class="bg-white/80 backdrop-blur-lg shadow-sm w-full fixed top-0 left-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="index.html" class="text-2xl font-bold text-blue-600" aria-label="Daedalus Home">Daedalus</a>
+                <div class="hidden sm:flex items-center space-x-6">
+                    <a href="index.html" class="text-blue-600 font-medium">Home</a>
+                    <a href="features.html" class="text-gray-700 hover:text-blue-600 font-medium">Features</a>
+                    <a href="about.html" class="text-gray-700 hover:text-blue-600 font-medium">About</a>
+                </div>
+                <div class="sm:hidden">
+                    <button id="mobile-menu-button" class="text-gray-700 hover:text-blue-600 focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden sm:hidden">
+            <a href="index.html" class="block py-2 px-4 text-sm text-blue-600 font-medium hover:bg-blue-50">Home</a>
+            <a href="features.html" class="block py-2 px-4 text-sm text-gray-700 hover:bg-blue-50">Features</a>
+            <a href="about.html" class="block py-2 px-4 text-sm text-gray-700 hover:bg-blue-50">About</a>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 pt-20 pb-12">
+        <h1 class="text-3xl sm:text-4xl font-bold text-center text-gray-800 mb-6">Image Enhancement Tools</h1>
+        <p class="text-gray-600 text-center mb-8 max-w-2xl mx-auto">Enhance your images with professional-grade tools. Remove noise, sharpen details, auto-enhance colors, and fix red-eye effects - all in your browser.</p>
+
+        <!-- Image Upload Area -->
+        <div class="bg-white rounded-xl shadow-lg p-4 sm:p-6 mb-8 max-w-3xl mx-auto">
+            <div id="dropZone" class="border-2 border-dashed border-gray-300 rounded-lg p-6 sm:p-8 text-center cursor-pointer hover:border-blue-500 transition-colors">
+                <input type="file" id="fileInput" accept="image/*" class="hidden">
+                <svg class="mx-auto h-10 w-10 sm:h-12 sm:w-12 text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                </svg>
+                <p class="text-gray-600 mb-2 text-base sm:text-lg">Click to upload or drag and drop</p>
+                <p class="text-sm text-gray-500">JPG, PNG, or WebP</p>
+            </div>
+        </div>
+
+        <!-- Image Preview and Controls -->
+        <div id="imageContainer" class="hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Image Preview -->
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <h2 class="text-lg font-semibold text-gray-800 mb-4">Preview</h2>
+                    <div class="relative">
+                        <canvas id="previewCanvas" class="w-full rounded-lg shadow-sm"></canvas>
+                        <div id="redEyeOverlay" class="absolute inset-0 hidden cursor-crosshair"></div>
+                    </div>
+                    <div class="flex justify-between mt-4">
+                        <button id="resetButton" class="px-4 py-2 text-gray-600 hover:text-gray-800">
+                            Reset Changes
+                        </button>
+                        <button id="downloadButton" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">
+                            Download
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Enhancement Controls -->
+                <div class="space-y-6">
+                    <!-- Noise Reduction -->
+                    <div class="bg-white rounded-xl shadow-lg p-6">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">Noise Reduction</h3>
+                        <div class="space-y-4">
+                            <div class="slider-container relative">
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Strength</label>
+                                <input type="range" id="noiseReduction" class="w-full" min="0" max="100" value="0">
+                                <span class="slider-tooltip absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white px-2 py-1 rounded text-xs">
+                                    0%
+                                </span>
+                            </div>
+                            <div class="flex justify-between text-sm text-gray-500">
+                                <span>None</span>
+                                <span>Maximum</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Image Sharpening -->
+                    <div class="bg-white rounded-xl shadow-lg p-6">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">Sharpening</h3>
+                        <div class="space-y-4">
+                            <div class="slider-container relative">
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Amount</label>
+                                <input type="range" id="sharpening" class="w-full" min="0" max="100" value="0">
+                                <span class="slider-tooltip absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white px-2 py-1 rounded text-xs">
+                                    0%
+                                </span>
+                            </div>
+                            <div class="flex justify-between text-sm text-gray-500">
+                                <span>None</span>
+                                <span>Maximum</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Auto Enhancement -->
+                    <div class="bg-white rounded-xl shadow-lg p-6">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">Auto Enhancement</h3>
+                        <div class="space-y-4">
+                            <div class="grid grid-cols-2 gap-4">
+                                <button id="autoEnhance" class="w-full px-4 py-2 bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200">
+                                    Auto Enhance
+                                </button>
+                                <button id="autoBalance" class="w-full px-4 py-2 bg-purple-100 text-purple-700 rounded-lg hover:bg-purple-200">
+                                    Auto White Balance
+                                </button>
+                            </div>
+                            <div class="slider-container relative">
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Enhancement Intensity</label>
+                                <input type="range" id="autoEnhanceStrength" class="w-full" min="0" max="100" value="50">
+                                <span class="slider-tooltip absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white px-2 py-1 rounded text-xs">
+                                    50%
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Red Eye Removal -->
+                    <div class="bg-white rounded-xl shadow-lg p-6">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">Red Eye Removal</h3>
+                        <div class="space-y-4">
+                            <button id="startRedEye" class="w-full px-4 py-2 bg-red-100 text-red-700 rounded-lg hover:bg-red-200">
+                                Start Red Eye Removal
+                            </button>
+                            <p class="text-sm text-gray-500">Click on red eyes in the image to remove the effect</p>
+                            <div class="slider-container relative">
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Detection Sensitivity</label>
+                                <input type="range" id="redEyeSensitivity" class="w-full" min="0" max="100" value="50">
+                                <span class="slider-tooltip absolute -top-8 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white px-2 py-1 rounded text-xs">
+                                    50%
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- About Image Enhancement Section -->
+    <section class="max-w-4xl mx-auto px-4 py-12">
+        <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">About Image Enhancement Tools</h2>
+            <div class="prose max-w-none">
+                <p class="mb-4 text-gray-700">
+                    Image enhancement is the process of improving the visual quality of digital images through various
+                    techniques and algorithms. Our comprehensive suite of free online enhancement tools processes everything
+                    directly in your browser, ensuring complete privacy and security for your creative work.
+                </p>
+
+                <h3 class="text-2xl font-semibold mb-3 text-gray-800">Available Enhancement Features</h3>
+                <p class="mb-4 text-gray-700">
+                    Our enhancement toolkit provides professional-grade tools for improving image quality:
+                </p>
+                <ul class="list-disc pl-6 mb-4 text-gray-700">
+                    <li><strong>Noise Reduction:</strong> Remove digital noise and grain from low-light or high-ISO photographs</li>
+                    <li><strong>Image Sharpening:</strong> Enhance edge definition and detail clarity</li>
+                    <li><strong>Auto Enhancement:</strong> Intelligent algorithms that automatically optimize brightness, contrast, and colors</li>
+                    <li><strong>Red-Eye Removal:</strong> Automatically detect and correct red-eye effects from flash photography</li>
+                    <li><strong>Color Correction:</strong> Adjust white balance and color temperature for more natural tones</li>
+                    <li><strong>Contrast Enhancement:</strong> Improve image contrast for better visual impact</li>
+                </ul>
+
+                <h3 class="text-2xl font-semibold mb-3 text-gray-800">How Image Enhancement Works</h3>
+                <p class="mb-4 text-gray-700">
+                    Image enhancement uses sophisticated algorithms to analyze and improve various aspects of your images:
+                </p>
+                <ul class="list-disc pl-6 mb-4 text-gray-700">
+                    <li><strong>Pixel Analysis:</strong> Algorithms examine individual pixels and their relationships</li>
+                    <li><strong>Frequency Processing:</strong> High-frequency details are enhanced while noise is reduced</li>
+                    <li><strong>Color Space Conversion:</strong> Images are processed in optimal color spaces for better results</li>
+                    <li><strong>Adaptive Filtering:</strong> Smart filters that adjust based on image content and characteristics</li>
+                </ul>
+
+                <h3 class="text-2xl font-semibold mb-3 text-gray-800">When to Use Enhancement Tools</h3>
+                <p class="mb-4 text-gray-700">
+                    Different enhancement techniques are ideal for specific situations:
+                </p>
+                <ul class="list-disc pl-6 mb-4 text-gray-700">
+                    <li><strong>Low-Light Photos:</strong> Use noise reduction to clean up grainy images</li>
+                    <li><strong>Out-of-Focus Images:</strong> Apply sharpening to restore lost detail</li>
+                    <li><strong>Underexposed Photos:</strong> Auto enhancement can brighten and improve contrast</li>
+                    <li><strong>Flash Photography:</strong> Red-eye removal fixes common flash artifacts</li>
+                    <li><strong>Scanned Images:</strong> Enhancement can improve quality of scanned documents and photos</li>
+                </ul>
+
+                <h3 class="text-2xl font-semibold mb-3 text-gray-800">Quality Preservation</h3>
+                <p class="mb-4 text-gray-700">
+                    Our enhancement tools are designed to improve image quality while preserving important details.
+                    Advanced algorithms ensure that enhancement doesn't introduce unwanted artifacts or degrade the
+                    original image quality. You can adjust intensity levels to achieve the perfect balance between
+                    enhancement and natural appearance.
+                </p>
+
+                <h3 class="text-2xl font-semibold mb-3 text-gray-800">Privacy and Security</h3>
+                <p class="mb-4 text-gray-700">
+                    Your images remain completely private. All processing happens locally in your web browser,
+                    meaning sensitive photos, business images, and personal memories never leave your device.
+                    No uploads, no server storage, and no external processing ensures your privacy is protected.
+                </p>
+
+                <h3 class="text-2xl font-semibold mb-3 text-gray-800">Browser Compatibility</h3>
+                <p class="mb-4 text-gray-700">
+                    Our enhancement tools work with modern web browsers that support HTML5 Canvas and WebGL.
+                    The tools automatically detect your browser's capabilities and provide the best available
+                    enhancement options. For optimal performance, we recommend using the latest versions of
+                    Chrome, Firefox, Safari, or Edge.
+                </p>
+
+                <h3 class="text-2xl font-semibold mb-3 text-gray-800">Professional Applications</h3>
+                <p class="mb-4 text-gray-700">
+                    Image enhancement serves critical roles in various professional fields:
+                </p>
+                <ul class="list-disc pl-6 mb-4 text-gray-700">
+                    <li><strong>Photography:</strong> Improve photo quality for portfolios and client work</li>
+                    <li><strong>E-commerce:</strong> Enhance product images for better online presentation</li>
+                    <li><strong>Medical Imaging:</strong> Improve clarity of diagnostic images</li>
+                    <li><strong>Forensic Analysis:</strong> Enhance details in investigative imagery</li>
+                    <li><strong>Document Processing:</strong> Improve scanned document readability</li>
+                </ul>
+
+                <p class="text-sm text-gray-600">
+                    By using our image enhancement tools, you agree to our <a href="privacy.html" class="text-blue-600 hover:underline">Privacy Policy</a>
+                    and <a href="terms.html" class="text-blue-600 hover:underline">Terms of Service</a>.
+                </p>
+            </div>
+        </div>
+
+        <!-- Social Media Section -->
+        <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Follow Us on Social Media</h2>
+            <p class="text-gray-700 text-center mb-8 max-w-2xl mx-auto">
+                Stay updated with the latest image enhancement techniques, tool updates, and digital media insights
+                from Daedalus. Join our community of photographers and creative professionals.
+            </p>
+            <div class="flex justify-center space-x-8">
+                <a href="https://www.youtube.com/@daedalustools" target="_blank" rel="noopener noreferrer" class="text-red-600 hover:text-red-800 transition-colors">
+                    <i data-feather="youtube" class="w-10 h-10" aria-label="YouTube"></i>
+                </a>
+                <a href="https://www.twitter.com/daedalustools" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-600 transition-colors">
+                    <i data-feather="twitter" class="w-10 h-10" aria-label="Twitter"></i>
+                </a>
+                <a href="https://www.linkedin.com/company/daedalustools" target="_blank" rel="noopener noreferrer" class="text-blue-700 hover:text-blue-900 transition-colors">
+                    <i data-feather="linkedin" class="w-10 h-10" aria-label="LinkedIn"></i>
+                </a>
+                <a href="https://www.instagram.com/daedalustools" target="_blank" rel="noopener noreferrer" class="text-pink-600 hover:text-pink-800 transition-colors">
+                    <i data-feather="instagram" class="w-10 h-10" aria-label="Instagram"></i>
+                </a>
+                <a href="https://www.facebook.com/daedalustools" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800 transition-colors">
+                    <i data-feather="facebook" class="w-10 h-10" aria-label="Facebook"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        window.addEventListener('load', function() {
+            // Initialize Feather Icons
+            feather.replace();
+
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+        (function() {
+            // Get DOM elements
+            const dropZone = document.getElementById('dropZone');
+            const fileInput = document.getElementById('fileInput');
+            const imageContainer = document.getElementById('imageContainer');
+            const canvas = document.getElementById('previewCanvas');
+            const ctx = canvas.getContext('2d');
+            const redEyeOverlay = document.getElementById('redEyeOverlay');
+            
+            // Enhancement controls
+            const noiseReduction = document.getElementById('noiseReduction');
+            const sharpening = document.getElementById('sharpening');
+            const autoEnhanceBtn = document.getElementById('autoEnhance');
+            const autoBalanceBtn = document.getElementById('autoBalance');
+            const autoEnhanceStrength = document.getElementById('autoEnhanceStrength');
+            const startRedEyeBtn = document.getElementById('startRedEye');
+            const redEyeSensitivity = document.getElementById('redEyeSensitivity');
+            const resetButton = document.getElementById('resetButton');
+            const downloadButton = document.getElementById('downloadButton');
+
+            // State
+            let originalImage = null;
+            let currentImage = null;
+            let isRedEyeMode = false;
+
+            // File Upload Handling
+            dropZone.addEventListener('click', () => fileInput.click());
+            
+            dropZone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                dropZone.classList.add('border-blue-500');
+            });
+
+            dropZone.addEventListener('dragleave', () => {
+                dropZone.classList.remove('border-blue-500');
+            });
+
+            dropZone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                dropZone.classList.remove('border-blue-500');
+                handleFile(e.dataTransfer.files[0]);
+            });
+
+            fileInput.addEventListener('change', (e) => {
+                handleFile(e.target.files[0]);
+            });
+
+            function handleFile(file) {
+                if (!file || !file.type.startsWith('image/')) {
+                    showError('Please select a valid image file');
+                    return;
+                }
+
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        originalImage = img;
+                        setupCanvas(img);
+                        imageContainer.classList.remove('hidden');
+                        resetEnhancements();
+                    };
+                    img.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+
+            function setupCanvas(img) {
+                // Set canvas size while maintaining aspect ratio
+                const maxWidth = 800;
+                const maxHeight = 600;
+                let width = img.width;
+                let height = img.height;
+
+                if (width > maxWidth) {
+                    height = (maxWidth / width) * height;
+                    width = maxWidth;
+                }
+                if (height > maxHeight) {
+                    width = (maxHeight / height) * width;
+                    height = maxHeight;
+                }
+
+                canvas.width = width;
+                canvas.height = height;
+                ctx.drawImage(img, 0, 0, width, height);
+                currentImage = ctx.getImageData(0, 0, width, height);
+            }
+
+            // Enhancement Functions
+            function applyNoiseReduction(strength) {
+                const pixels = currentImage.data;
+                const width = currentImage.width;
+                const height = currentImage.height;
+                const output = new Uint8ClampedArray(pixels.length);
+                
+                const radius = Math.ceil(strength / 25); // Convert 0-100 to radius 0-4
+                
+                for (let y = 0; y < height; y++) {
+                    for (let x = 0; x < width; x++) {
+                        let r = 0, g = 0, b = 0;
+                        let count = 0;
+
+                        // Sample neighboring pixels
+                        for (let dy = -radius; dy <= radius; dy++) {
+                            for (let dx = -radius; dx <= radius; dx++) {
+                                const nx = Math.min(Math.max(x + dx, 0), width - 1);
+                                const ny = Math.min(Math.max(y + dy, 0), height - 1);
+                                const i = (ny * width + nx) * 4;
+
+                                r += pixels[i];
+                                g += pixels[i + 1];
+                                b += pixels[i + 2];
+                                count++;
+                            }
+                        }
+
+                        // Calculate average color
+                        const i = (y * width + x) * 4;
+                        output[i] = r / count;
+                        output[i + 1] = g / count;
+                        output[i + 2] = b / count;
+                        output[i + 3] = pixels[i + 3];
+                    }
+                }
+
+                const blurred = new ImageData(output, width, height);
+                // Blend original and blurred based on strength
+                const blend = strength / 100;
+                for (let i = 0; i < pixels.length; i += 4) {
+                    pixels[i] = pixels[i] * (1 - blend) + output[i] * blend;
+                    pixels[i + 1] = pixels[i + 1] * (1 - blend) + output[i + 1] * blend;
+                    pixels[i + 2] = pixels[i + 2] * (1 - blend) + output[i + 2] * blend;
+                }
+
+                ctx.putImageData(currentImage, 0, 0);
+            }
+
+            function applySharpening(amount) {
+                const pixels = currentImage.data;
+                const width = currentImage.width;
+                const height = currentImage.height;
+                const factor = amount / 50; // Convert 0-100 to 0-2 range
+
+                // Create sharpening kernel
+                const kernel = [
+                    0, -1 * factor, 0,
+                    -1 * factor, 4 * factor + 1, -1 * factor,
+                    0, -1 * factor, 0
+                ];
+
+                const output = new Uint8ClampedArray(pixels.length);
+                
+                for (let y = 1; y < height - 1; y++) {
+                    for (let x = 1; x < width - 1; x++) {
+                        const idx = (y * width + x) * 4;
+                        let r = 0, g = 0, b = 0;
+
+                        // Apply kernel
+                        for (let ky = -1; ky <= 1; ky++) {
+                            for (let kx = -1; kx <= 1; kx++) {
+                                const kernelIdx = (ky + 1) * 3 + (kx + 1);
+                                const pixelIdx = ((y + ky) * width + (x + kx)) * 4;
+                                r += pixels[pixelIdx] * kernel[kernelIdx];
+                                g += pixels[pixelIdx + 1] * kernel[kernelIdx];
+                                b += pixels[pixelIdx + 2] * kernel[kernelIdx];
+                            }
+                        }
+
+                        output[idx] = Math.min(255, Math.max(0, r));
+                        output[idx + 1] = Math.min(255, Math.max(0, g));
+                        output[idx + 2] = Math.min(255, Math.max(0, b));
+                        output[idx + 3] = pixels[idx + 3];
+                    }
+                }
+
+                const sharpened = new ImageData(output, width, height);
+                ctx.putImageData(sharpened, 0, 0);
+                currentImage = sharpened;
+            }
+
+            function autoEnhanceImage() {
+                const pixels = currentImage.data;
+                const strength = autoEnhanceStrength.value / 100;
+
+                // Calculate histogram
+                const histogram = new Array(256).fill(0);
+                for (let i = 0; i < pixels.length; i += 4) {
+                    const brightness = Math.round((pixels[i] + pixels[i + 1] + pixels[i + 2]) / 3);
+                    histogram[brightness]++;
+                }
+
+                // Find black and white points
+                let blackPoint = 0;
+                let whitePoint = 255;
+                const totalPixels = (pixels.length / 4) * 0.01; // 1% threshold
+                
+                let count = 0;
+                for (let i = 0; i < 256; i++) {
+                    count += histogram[i];
+                    if (count > totalPixels) {
+                        blackPoint = i;
+                        break;
+                    }
+                }
+
+                count = 0;
+                for (let i = 255; i >= 0; i--) {
+                    count += histogram[i];
+                    if (count > totalPixels) {
+                        whitePoint = i;
+                        break;
+                    }
+                }
+
+                // Apply auto enhancement
+                for (let i = 0; i < pixels.length; i += 4) {
+                    for (let j = 0; j < 3; j++) {
+                        const value = pixels[i + j];
+                        // Normalize
+                        let normalized = (value - blackPoint) / (whitePoint - blackPoint) * 255;
+                        normalized = Math.min(255, Math.max(0, normalized));
+                        // Apply strength
+                        pixels[i + j] = value * (1 - strength) + normalized * strength;
+                    }
+                }
+
+                ctx.putImageData(currentImage, 0, 0);
+            }
+
+            function autoWhiteBalance() {
+                const pixels = currentImage.data;
+                const strength = autoEnhanceStrength.value / 100;
+
+                // Calculate average RGB values
+                let totalR = 0, totalG = 0, totalB = 0;
+                const numPixels = pixels.length / 4;
+
+                for (let i = 0; i < pixels.length; i += 4) {
+                    totalR += pixels[i];
+                    totalG += pixels[i + 1];
+                    totalB += pixels[i + 2];
+                }
+
+                const avgR = totalR / numPixels;
+                const avgG = totalG / numPixels;
+                const avgB = totalB / numPixels;
+                const avgGray = (avgR + avgG + avgB) / 3;
+
+                // Calculate scaling factors
+                const scaleR = avgGray / avgR;
+                const scaleG = avgGray / avgG;
+                const scaleB = avgGray / avgB;
+
+                // Apply white balance
+                for (let i = 0; i < pixels.length; i += 4) {
+                    pixels[i] = Math.min(255, pixels[i] * (1 - strength + scaleR * strength));
+                    pixels[i + 1] = Math.min(255, pixels[i + 1] * (1 - strength + scaleG * strength));
+                    pixels[i + 2] = Math.min(255, pixels[i + 2] * (1 - strength + scaleB * strength));
+                }
+
+                ctx.putImageData(currentImage, 0, 0);
+            }
+
+            // Red Eye Removal
+            let redEyeMode = false;
+
+            function startRedEyeRemoval() {
+                redEyeMode = !redEyeMode;
+                redEyeOverlay.classList.toggle('hidden', !redEyeMode);
+                startRedEyeBtn.textContent = redEyeMode ? 'Finish Red Eye Removal' : 'Start Red Eye Removal';
+                canvas.style.cursor = redEyeMode ? 'crosshair' : 'default';
+            }
+
+            function removeRedEye(x, y) {
+                const pixels = currentImage.data;
+                const width = currentImage.width;
+                const height = currentImage.height;
+                const sensitivity = redEyeSensitivity.value / 100;
+                const radius = Math.max(3, Math.min(width, height) * 0.02); // Dynamic radius based on image size
+
+                for (let dy = -radius; dy <= radius; dy++) {
+                    for (let dx = -radius; dx <= radius; dx++) {
+                        if (dx * dx + dy * dy <= radius * radius) {
+                            const px = Math.round(x + dx);
+                            const py = Math.round(y + dy);
+                            
+                            if (px >= 0 && px < width && py >= 0 && py < height) {
+                                const i = (py * width + px) * 4;
+                                
+                                // Check if pixel is reddish
+                                const r = pixels[i];
+                                const g = pixels[i + 1];
+                                const b = pixels[i + 2];
+                                
+                                if (r > g * (1.5 - sensitivity * 0.5) && r > b * (1.5 - sensitivity * 0.5)) {
+                                    // Convert to grayscale
+                                    const gray = (r + g + b) / 3;
+                                    pixels[i] = gray * 0.9; // Slightly darker
+                                    pixels[i + 1] = pixels[i + 1];
+                                    pixels[i + 2] = pixels[i + 2];
+                                }
+                            }
+                        }
+                    }
+                }
+
+                ctx.putImageData(currentImage, 0, 0);
+            }
+
+            canvas.addEventListener('click', (e) => {
+                if (!redEyeMode) return;
+
+                const rect = canvas.getBoundingClientRect();
+                const x = (e.clientX - rect.left) * (canvas.width / rect.width);
+                const y = (e.clientY - rect.top) * (canvas.height / rect.height);
+                
+                removeRedEye(x, y);
+            });
+
+            // Event Listeners
+            noiseReduction.addEventListener('input', (e) => {
+                applyNoiseReduction(parseInt(e.target.value));
+                updateSliderTooltip(e.target);
+            });
+
+            sharpening.addEventListener('input', (e) => {
+                applySharpening(parseInt(e.target.value));
+                updateSliderTooltip(e.target);
+            });
+
+            autoEnhanceBtn.addEventListener('click', autoEnhanceImage);
+            autoBalanceBtn.addEventListener('click', autoWhiteBalance);
+            startRedEyeBtn.addEventListener('click', startRedEyeRemoval);
+
+            autoEnhanceStrength.addEventListener('input', (e) => {
+                updateSliderTooltip(e.target);
+            });
+
+            redEyeSensitivity.addEventListener('input', (e) => {
+                updateSliderTooltip(e.target);
+            });
+
+            function updateSliderTooltip(slider) {
+                const tooltip = slider.parentElement.querySelector('.slider-tooltip');
+                if (tooltip) {
+                    tooltip.textContent = `${slider.value}%`;
+                }
+            }
+
+            resetButton.addEventListener('click', () => {
+                if (originalImage) {
+                    setupCanvas(originalImage);
+                    // Reset all controls
+                    noiseReduction.value = 0;
+                    sharpening.value = 0;
+                    autoEnhanceStrength.value = 50;
+                    redEyeSensitivity.value = 50;
+                    // Reset tooltips
+                    document.querySelectorAll('.slider-tooltip').forEach(tooltip => {
+                        tooltip.textContent = `${tooltip.parentElement.querySelector('input').value}%`;
+                    });
+                    redEyeMode = false;
+                    redEyeOverlay.classList.add('hidden');
+                    startRedEyeBtn.textContent = 'Start Red Eye Removal';
+                }
+            });
+
+            downloadButton.addEventListener('click', () => {
+                if (!currentImage) return;
+
+                const link = document.createElement('a');
+                link.download = 'enhanced-image.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            });
+
+            // Helper function for error messages
+            function showError(message) {
+                const alert = document.createElement('div');
+                alert.className = 'fixed bottom-4 right-4 bg-red-500 text-white px-6 py-3 rounded-lg shadow-lg transition-opacity duration-500';
+                alert.textContent = message;
+                document.body.appendChild(alert);
+                setTimeout(() => {
+                    alert.style.opacity = '0';
+                    setTimeout(() => alert.remove(), 500);
+                }, 3000);
+            }
+        })();
+        });
+    </script>
+</body>
+</html>

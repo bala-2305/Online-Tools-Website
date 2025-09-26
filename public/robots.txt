@@ -1,0 +1,11 @@
+# robots.txt for infinityforge.tech
+# This file tells search engine crawlers which pages they can and cannot access
+
+User-agent: *
+Allow: /
+
+# Allow all crawlers to access all content
+# No restrictions for this public tools website
+
+# Sitemap location
+Sitemap: https://infinityforge.tech/sitemap.xml

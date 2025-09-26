@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="images/letter-d.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Translator - Free Online Document Translation</title>
+    <meta name="description" content="Translate PDF documents online for free. Fast, secure, and easy to use right in your browser.">
+    <meta name="keywords" content="pdf translator, translate pdf, document translation, free translator, online tools, Daedalus">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="google-adsense-account" content="ca-pub-3135787759848459">
+    <meta property="og:title" content="Daedalus - PDF Translator">
+    <meta property="og:description" content="Translate PDF documents online for free. Fast, secure, and easy to use right in your browser.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://infinityforge.tech/pdf-translator.html">
+    <meta property="og:image" content="https://infinityforge.tech/assets/daedalus-og.png">
+    <link rel="canonical" href="https://infinityforge.tech/pdf-translator.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Daedalus - PDF Translator">
+    <meta name="twitter:description" content="Translate PDF documents online for free. Fast, secure, and easy to use right in your browser.">
+    <meta name="twitter:image" content="https://infinityforge.tech/assets/daedalus-og.png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.14.305/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/argos-translate/dist/argos-translate.min.js"></script>
+
+    <style>
+        .loader {
+            border: 4px solid #f3f4f6;
+            border-top: 4px solid #3b82f6;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FQ082B7887"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FQ082B7887');
+</script>
+<body class="bg-blue-50 font-poppins">
+
+    <!-- Navigation -->
+    <nav class="bg-white/80 backdrop-blur-lg shadow-sm w-full fixed top-0 left-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="index.html" class="text-2xl font-bold text-blue-600" aria-label="Daedalus Home">Daedalus</a>
+                <div class="hidden sm:flex items-center space-x-6">
+                    <a href="index.html" class="text-blue-600 font-medium">Home</a>
+                    <a href="features.html" class="text-gray-700 hover:text-blue-600 font-medium">Features</a>
+                    <a href="about.html" class="text-gray-700 hover:text-blue-600 font-medium">About</a>
+                </div>
+                <button id="mobile-menu-button" class="sm:hidden text-gray-700 hover:text-blue-600 focus:outline-none">
+                    <i data-feather="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="sm:hidden hidden bg-white border-t shadow-lg">
+            <div class="px-4 py-4 space-y-2">
+                <a href="index.html" class="block text-blue-600 font-medium">Home</a>
+                <a href="features.html" class="block text-gray-700 hover:text-blue-600 font-medium">Features</a>
+                <a href="about.html" class="block text-gray-700 hover:text-blue-600 font-medium">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="w-full max-w-4xl mx-auto pt-24 px-4">
+        <div class="text-center mb-12">
+            <h1 class="text-3xl sm:text-5xl font-bold text-gray-800 mb-4">PDF Translator</h1>
+            <p class="text-md sm:text-lg text-gray-600 max-w-3xl mx-auto">Extract and translate text from your PDF documents.</p>
+        </div>
+
+        <div class="bg-white/60 backdrop-blur-lg rounded-xl shadow-lg overflow-hidden p-4 sm:p-8">
+            <!-- File Upload -->
+            <div class="mb-6">
+                <h3 class="text-xl sm:text-2xl font-bold text-gray-800 mb-2">1. Upload your PDF</h3>
+                <input type="file" id="pdf-file" accept=".pdf" class="block w-full text-sm text-gray-500 file:mr-4 file:py-3 file:px-5 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-100 file:text-blue-700 hover:file:bg-blue-200 cursor-pointer"/>
+            </div>
+
+            <!-- Language Selection -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                <div>
+                    <label for="source-lang" class="block text-lg font-semibold text-gray-800 mb-2">2. From</label>
+                    <select id="source-lang" class="w-full p-3 border rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-500">
+                        <option value="auto">Auto-Detect</option>
+                        <option value="en">English</option>
+                        <option value="es">Spanish</option>
+                        <option value="fr">French</option>
+                        <option value="de">German</option>
+                        <option value="zh">Chinese</option>
+                        <option value="ta">Tamil</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="target-lang" class="block text-lg font-semibold text-gray-800 mb-2">3. To</label>
+                    <select id="target-lang" class="w-full p-3 border rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-500">
+                        <option value="en">English</option>
+                        <option value="es">Spanish</option>
+                        <option value="fr">French</option>
+                        <option value="de">German</option>
+                        <option value="zh">Chinese</option>
+                        <option value="ta">Tamil</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="flex justify-center mt-6">
+                <button id="extract-btn" disabled class="bg-blue-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-transform transform hover:scale-105 disabled:bg-gray-400 disabled:cursor-not-allowed disabled:transform-none">
+                    <i data-feather="file-text" class="inline-block mr-2"></i> Extract Text
+                </button>
+            </div>
+
+            <!-- Loading Overlay -->
+            <div id="loading-overlay" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+                <div class="text-center">
+                    <svg class="animate-spin h-10 w-10 text-white mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    <p id="loading-message" class="text-white text-lg mt-4">Processing...</p>
+                </div>
+            </div>
+
+            <!-- Extracted & Translation Output -->
+            <div id="output-section" class="hidden mt-12 bg-gray-800 p-8 rounded-2xl shadow-2xl w-full max-w-4xl mx-auto">
+                <!-- Extracted Text -->
+                <div id="source-text-section">
+                    <h3 class="text-2xl font-bold text-white mb-4">Extracted Text</h3>
+                    <div class="relative">
+                        <textarea id="source-text-area" readonly class="w-full h-64 p-4 bg-gray-900 text-gray-300 rounded-lg border-2 border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                    </div>
+                </div>
+
+                <div class="flex justify-center my-6">
+                    <button id="translate-btn" class="bg-green-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 transition-transform transform hover:scale-105">
+                        <i data-feather="refresh-cw" class="inline-block mr-2"></i> Translate
+                    </button>
+                </div>
+
+                <!-- Translated Text -->
+                <div id="translation-output-section" class="hidden">
+                    <h3 class="text-2xl font-bold text-white mb-4 mt-8">Translated Text</h3>
+                    <div class="relative">
+                        <textarea id="translated-text-area" readonly class="w-full h-64 p-4 bg-gray-900 text-gray-300 rounded-lg border-2 border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                        <button id="copy-btn" class="absolute top-3 right-3 text-gray-400 hover:text-white focus:outline-none" title="Copy to Clipboard">
+                            <i data-feather="copy"></i>
+                        </button>
+                    </div>
+                    <div class="mt-6 text-center">
+                        <button id="download-btn" class="bg-purple-600 text-white font-bold py-2 px-5 rounded-lg shadow-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50 transition-transform transform hover:scale-105">
+                            <i data-feather="download" class="inline-block mr-2"></i> Download as .txt
+                        </button>
+                    </div>
+                </div>
+                 <div class="mt-6 text-sm text-gray-400">
+                    <p><i data-feather="info" class="inline-block w-4 h-4 mr-1"></i> Translation is performed using a free public API(under development). There are rate limits and it can't handle very large documents.</p>
+                </div>
+            </div>
+        </div>
+        
+    </main>
+
+    <footer class="bg-white/80 backdrop-blur-lg mt-12 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-600">
+            <p class="font-semibold">&copy; 2025 Daedalus Tools. All Rights Reserved.</p>
+            <p class="text-sm mt-2">Your privacy is our priority. All tools run directly in your browser, meaning your files are never uploaded to our servers.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.14.305/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            feather.replace();
+
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            const pdfFileInput = document.getElementById('pdf-file');
+            const extractBtn = document.getElementById('extract-btn');
+            const translateBtn = document.getElementById('translate-btn');
+            const outputSection = document.getElementById('output-section');
+            const sourceTextArea = document.getElementById('source-text-area');
+            const translatedTextArea = document.getElementById('translated-text-area');
+            const translationOutputSection = document.getElementById('translation-output-section');
+            const downloadBtn = document.getElementById('download-btn');
+            const copyBtn = document.getElementById('copy-btn');
+            const loadingOverlay = document.getElementById('loading-overlay');
+            const loadingMessage = document.getElementById('loading-message');
+            const sourceLangSelect = document.getElementById('source-lang');
+            const targetLangSelect = document.getElementById('target-lang');
+
+            pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.14.305/pdf.worker.min.js`;
+
+            let translatedText = '';
+            let sourceText = '';
+
+            pdfFileInput.addEventListener('change', (e) => {
+                extractBtn.disabled = !e.target.files[0];
+                outputSection.classList.add('hidden');
+                translationOutputSection.classList.add('hidden');
+            });
+
+            function showLoading(message) {
+                loadingMessage.textContent = message;
+                loadingOverlay.classList.remove('hidden');
+            }
+
+            function hideLoading() {
+                loadingOverlay.classList.add('hidden');
+            }
+
+            // Function to split text into chunks without breaking words
+            function chunkText(text, maxLength = 4500) {
+                const chunks = [];
+                let currentChunk = "";
+                const sentences = text.split(/(?<=[.?!])\s+/); // Split by sentences
+                
+                for (const sentence of sentences) {
+                    if (currentChunk.length + sentence.length > maxLength) {
+                        chunks.push(currentChunk);
+                        currentChunk = "";
+                    }
+                    currentChunk += sentence + " ";
+                }
+                if (currentChunk) {
+                    chunks.push(currentChunk);
+                }
+                return chunks;
+            }
+
+            extractBtn.addEventListener('click', async () => {
+                const file = pdfFileInput.files[0];
+                if (!file) return;
+
+                showLoading('Extracting text from PDF...');
+                try {
+                    const reader = new FileReader();
+                    reader.onload = async function(e) {
+                        const pdf = await pdfjsLib.getDocument({ data: e.target.result }).promise;
+                        let fullText = '';
+
+                        for (let i = 1; i <= pdf.numPages; i++) {
+                            const page = await pdf.getPage(i);
+                            const textContent = await page.getTextContent();
+                            const pageText = textContent.items.map(item => item.str).join(' ');
+                            fullText += pageText + '\n\n';
+                        }
+                        
+                        sourceText = fullText;
+                        sourceTextArea.value = sourceText;
+                        outputSection.classList.remove('hidden');
+                        translationOutputSection.classList.add('hidden');
+                        hideLoading();
+                        feather.replace();
+                    };
+                    reader.readAsArrayBuffer(file);
+                } catch (err) {
+                    console.error('Error during text extraction:', err);
+                    alert('An error occurred during text extraction. The PDF might be corrupted or unreadable.');
+                    hideLoading();
+                }
+            });
+
+            translateBtn.addEventListener('click', async () => {
+                if (!sourceText) return;
+
+                showLoading('Translating text...');
+                try {
+                    const sourceLang = sourceLangSelect.value;
+                    const targetLang = targetLangSelect.value;
+
+                    const textChunks = chunkText(sourceText);
+                    let translatedChunks = [];
+
+                    showLoading(`Translating 0/${textChunks.length} chunks... (This may take a while for large files)`);
+
+                    for (let i = 0; i < textChunks.length; i++) {
+                        showLoading(`Translating chunk ${i + 1}/${textChunks.length}...`);
+                        const res = await fetch("https://libretranslate.de/translate", {
+                            method: "POST",
+                            body: JSON.stringify({
+                                q: textChunks[i],
+                                source: sourceLang,
+                                target: targetLang,
+                                format: "text"
+                            }),
+                            headers: { "Content-Type": "application/json" }
+                        });
+
+                        if (!res.ok) {
+                            throw new Error(`Translation API failed for chunk ${i + 1} with status: ${res.status}`);
+                        }
+                        const data = await res.json();
+                        translatedChunks.push(data.translatedText);
+                    }
+
+                    translatedText = translatedChunks.join(' ');
+                    translatedTextArea.textContent = translatedText;
+                    translationOutputSection.classList.remove('hidden');
+                    hideLoading();
+                    feather.replace();
+                } catch (err) {
+                    console.error('Error during translation:', err);
+                    alert('An error occurred during translation. The service may be busy or the file may be too large. Please try again.');
+                    hideLoading();
+                }
+            });
+
+            downloadBtn.addEventListener('click', () => {
+                if (translatedText) {
+                    const blob = new Blob([translatedText], { type: 'text/plain;charset=utf-8' });
+                    saveAs(blob, 'translated-text.txt');
+                }
+            });
+
+            copyBtn.addEventListener('click', () => {
+                if (translatedText) {
+                    navigator.clipboard.writeText(translatedText).then(() => {
+                        alert('Translated text copied to clipboard!');
+                    }, (err) => {
+                        console.error('Could not copy text: ', err);
+                        alert('Failed to copy text.');
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

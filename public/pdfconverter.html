@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="images/letter-d.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daedalus - PDF to Image Converter | Free Online PDF Tools</title>
+    <meta name="description"
+        content="Convert PDF pages to high-quality images (JPG/PNG) instantly in your browser. Preview, download individually or as a zip file. No uploads, completely free.">
+    <meta name="keywords"
+        content="pdf to image, pdf to jpg, pdf to png, pdf converter, free online tools, privacy, Daedalus">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="google-adsense-account" content="ca-pub-3135787759848459">
+    <meta property="og:title" content="Daedalus - Free PDF to Image Converter">
+    <meta property="og:description"
+        content="Convert PDF pages to images instantly in your browser. No uploads, no watermarks, completely free.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://infinityforge.tech/pdfconverter.html">
+    <meta property="og:image" content="https://infinityforge.tech/assets/daedalus-og.png">
+    <link rel="canonical" href="https://infinityforge.tech/pdfconverter.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Daedalus - Free PDF to Image Converter">
+    <meta name="twitter:description" content="Convert PDF pages to images instantly in your browser. No uploads, no watermarks, completely free.">
+    <meta name="twitter:image" content="https://infinityforge.tech/assets/daedalus-og.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <style>
+        .loader {
+            border: 2px solid #f3f4f6;
+            border-top: 2px solid #3b82f6;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .page-preview {
+            transition: transform 0.2s ease;
+        }
+        .page-preview:hover {
+            transform: scale(1.02);
+        }
+    </style>
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FQ082B7887"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FQ082B7887');
+</script>
+<body class="bg-gray-50 font-poppins">
+    <nav class="bg-white/80 backdrop-blur-md shadow-lg w-full fixed top-0 left-0 z-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <a href="index.html" class="text-2xl font-bold text-blue-600">Daedalus</a>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-blue-600 font-medium">Home</a>
+                    <a href="features.html" class="text-gray-700 hover:text-blue-600 font-medium">Features</a>
+                    <a href="about.html" class="text-gray-700 hover:text-blue-600 font-medium">About</a>
+                </div>
+                <button id="mobile-menu-button" class="md:hidden text-gray-700 hover:text-blue-600">
+                    <i data-feather="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+            <div id="mobile-menu" class="md:hidden hidden bg-white border-t shadow-lg">
+                <div class="px-4 py-4 space-y-2">
+                    <a href="index.html" class="block text-blue-600 font-medium">Home</a>
+                    <a href="features.html" class="block text-gray-700 hover:text-blue-600 font-medium">Features</a>
+                    <a href="about.html" class="block text-gray-700 hover:text-blue-600 font-medium">About</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="w-full max-w-6xl mx-auto pt-20 px-4" itemscope itemtype="https://schema.org/WebPage">
+        <div class="text-center mb-10">
+            <h1 class="text-4xl sm:text-5xl font-bold text-gray-800 mb-3" itemprop="headline">
+                <span class="text-blue-600">PDF to Image</span> Converter
+            </h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto" itemprop="description">
+                Convert PDF pages to high-quality images (JPG/PNG) instantly in your browser. Preview all pages, download individually or as a zip file.
+            </p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-xl overflow-hidden mb-8">
+            <div class="p-8">
+                <!-- File Upload Section -->
+                <div id="dropZone" class="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center cursor-pointer transition-all duration-300 hover:border-blue-400 hover:bg-blue-50">
+                    <div class="mx-auto w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mb-4">
+                        <i data-feather="file-text" class="text-blue-500 w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Select PDF File</h3>
+                    <p class="text-gray-500 mb-4">Drag & drop your PDF here or click to browse</p>
+                    <label for="pdfInput" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-6 rounded-lg transition-colors duration-300 shadow-md cursor-pointer">
+                        Choose PDF File
+                    </label>
+                    <input type="file" id="pdfInput" class="hidden" accept=".pdf,application/pdf">
+                    <p id="fileName" class="mt-4 text-sm text-gray-500">No file selected</p>
+                </div>
+
+                <!-- Conversion Settings -->
+                <div id="settingsPanel" class="mt-8 hidden">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+                        <i data-feather="settings" class="w-5 h-5 mr-2 text-blue-500"></i>
+                        Conversion Settings
+                    </h3>
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div>
+                            <label for="formatSelect" class="block text-sm font-medium text-gray-700 mb-1">Output Format</label>
+                            <select id="formatSelect" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                <option value="jpeg">JPEG</option>
+                                <option value="png">PNG</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="qualitySlider" class="block text-sm font-medium text-gray-700 mb-1">Quality (%)</label>
+                            <input type="range" id="qualitySlider" min="10" max="100" value="90" class="w-full">
+                            <span id="qualityValue" class="text-sm text-gray-500">90%</span>
+                        </div>
+                        <div>
+                            <label for="scaleSlider" class="block text-sm font-medium text-gray-700 mb-1">Scale</label>
+                            <input type="range" id="scaleSlider" min="0.5" max="3" step="0.1" value="1.5" class="w-full">
+                            <span id="scaleValue" class="text-sm text-gray-500">1.5x</span>
+                        </div>
+                    </div>
+                    <div class="mt-6">
+                        <button id="convertBtn" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-300 shadow-md flex items-center justify-center">
+                            <i data-feather="image" class="w-5 h-5 mr-2"></i>
+                            Convert to Images
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Progress Bar -->
+                <div id="progressDiv" class="mt-6 hidden">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-sm font-medium text-gray-700">Converting...</span>
+                        <span id="progressText" class="text-sm text-gray-500">0%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-2">
+                        <div id="progressBar" class="bg-blue-600 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div id="resultsSection" class="hidden">
+            <div class="bg-white rounded-2xl shadow-xl overflow-hidden mb-8">
+                <div class="p-8">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-xl font-semibold text-gray-800 flex items-center">
+                            <i data-feather="check-circle" class="w-6 h-6 mr-2 text-green-500"></i>
+                            Conversion Complete
+                        </h3>
+                        <div class="flex gap-3">
+                            <button id="downloadAllBtn" class="bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-300 shadow-md flex items-center">
+                                <i data-feather="download" class="w-4 h-4 mr-2"></i>
+                                Download All (ZIP)
+                            </button>
+                            <button id="resetBtn" class="bg-gray-200 hover:bg-gray-300 text-gray-700 font-medium py-2 px-4 rounded-lg transition-colors duration-300 shadow-md flex items-center">
+                                <i data-feather="refresh-cw" class="w-4 h-4 mr-2"></i>
+                                Reset
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Image Preview Grid -->
+                    <div id="imageGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                        <!-- Dynamic content will be inserted here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-10 text-center text-gray-500 text-sm">
+            <p>Made with <span class="text-red-400">♥</span> for creators worldwide</p>
+        </div>
+    </main>
+
+    <script>
+        feather.replace();
+
+        // Mobile menu logic
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenuBtn?.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Global variables
+        let pdfDoc = null;
+        let convertedImages = [];
+        const pdfjsLib = window['pdfjs-dist/build/pdf'];
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+        // DOM elements
+        const pdfInput = document.getElementById('pdfInput');
+        const fileName = document.getElementById('fileName');
+        const dropZone = document.getElementById('dropZone');
+        const settingsPanel = document.getElementById('settingsPanel');
+        const convertBtn = document.getElementById('convertBtn');
+        const progressDiv = document.getElementById('progressDiv');
+        const progressBar = document.getElementById('progressBar');
+        const progressText = document.getElementById('progressText');
+        const resultsSection = document.getElementById('resultsSection');
+        const imageGrid = document.getElementById('imageGrid');
+        const downloadAllBtn = document.getElementById('downloadAllBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        const formatSelect = document.getElementById('formatSelect');
+        const qualitySlider = document.getElementById('qualitySlider');
+        const qualityValue = document.getElementById('qualityValue');
+        const scaleSlider = document.getElementById('scaleSlider');
+        const scaleValue = document.getElementById('scaleValue');
+
+        // Event listeners
+        pdfInput.addEventListener('change', handleFileSelect);
+        dropZone.addEventListener('click', () => pdfInput.click());
+        dropZone.addEventListener('dragover', handleDragOver);
+        dropZone.addEventListener('drop', handleDrop);
+        convertBtn.addEventListener('click', convertPdfToImages);
+        downloadAllBtn.addEventListener('click', downloadAllAsZip);
+        resetBtn.addEventListener('click', resetAll);
+
+        qualitySlider.addEventListener('input', () => {
+            qualityValue.textContent = qualitySlider.value + '%';
+        });
+
+        scaleSlider.addEventListener('input', () => {
+            scaleValue.textContent = scaleSlider.value + 'x';
+        });
+
+        function handleDragOver(e) {
+            e.preventDefault();
+            dropZone.classList.add('border-blue-400', 'bg-blue-50');
+        }
+
+        function handleDrop(e) {
+            e.preventDefault();
+            dropZone.classList.remove('border-blue-400', 'bg-blue-50');
+            const files = e.dataTransfer.files;
+            if (files.length > 0 && files[0].type === 'application/pdf') {
+                pdfInput.files = files;
+                handleFileSelect({ target: pdfInput });
+            }
+        }
+
+        async function handleFileSelect(e) {
+            const file = e.target.files[0];
+            if (!file || file.type !== 'application/pdf') {
+                showToast('Please select a valid PDF file', 'error');
+                return;
+            }
+
+            fileName.textContent = file.name;
+            settingsPanel.classList.remove('hidden');
+
+            try {
+                const arrayBuffer = await file.arrayBuffer();
+                pdfDoc = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+                showToast(`PDF loaded successfully! ${pdfDoc.numPages} pages found`, 'success');
+            } catch (error) {
+                console.error('Error loading PDF:', error);
+                showToast('Error loading PDF file', 'error');
+            }
+        }
+
+        async function convertPdfToImages() {
+            if (!pdfDoc) {
+                showToast('Please select a PDF file first', 'error');
+                return;
+            }
+
+            convertBtn.disabled = true;
+            convertBtn.innerHTML = '<div class="loader mr-2"></div>Converting...';
+            progressDiv.classList.remove('hidden');
+            resultsSection.classList.add('hidden');
+            imageGrid.innerHTML = '';
+            convertedImages = [];
+
+            const format = formatSelect.value;
+            const quality = qualitySlider.value / 100;
+            const scale = parseFloat(scaleSlider.value);
+            const numPages = pdfDoc.numPages;
+
+            try {
+                for (let pageNum = 1; pageNum <= numPages; pageNum++) {
+                    const progress = (pageNum / numPages) * 100;
+                    progressBar.style.width = progress + '%';
+                    progressText.textContent = Math.round(progress) + '%';
+
+                    const page = await pdfDoc.getPage(pageNum);
+                    const viewport = page.getViewport({ scale });
+
+                    const canvas = document.createElement('canvas');
+                    const context = canvas.getContext('2d');
+                    canvas.height = viewport.height;
+                    canvas.width = viewport.width;
+
+                    await page.render({
+                        canvasContext: context,
+                        viewport: viewport
+                    }).promise;
+
+                    const mimeType = format === 'png' ? 'image/png' : 'image/jpeg';
+                    const dataUrl = canvas.toDataURL(mimeType, quality);
+                    
+                    convertedImages.push({
+                        dataUrl,
+                        pageNum,
+                        fileName: `page_${pageNum.toString().padStart(3, '0')}.${format}`
+                    });
+
+                    // Add preview to grid
+                    addImageToGrid(dataUrl, pageNum, format);
+                }
+
+                convertBtn.disabled = false;
+                convertBtn.innerHTML = '<i data-feather="image" class="w-5 h-5 mr-2"></i>Convert to Images';
+                feather.replace();
+                progressDiv.classList.add('hidden');
+                resultsSection.classList.remove('hidden');
+                showToast('Conversion completed successfully!', 'success');
+
+            } catch (error) {
+                console.error('Error converting PDF:', error);
+                showToast('Error during conversion', 'error');
+                convertBtn.disabled = false;
+                convertBtn.innerHTML = '<i data-feather="image" class="w-5 h-5 mr-2"></i>Convert to Images';
+                feather.replace();
+                progressDiv.classList.add('hidden');
+            }
+        }
+
+        function addImageToGrid(dataUrl, pageNum, format) {
+            const imageCard = document.createElement('div');
+            imageCard.className = 'page-preview bg-gray-50 rounded-lg p-4 border border-gray-200';
+            imageCard.innerHTML = `
+                <div class="relative">
+                    <img src="${dataUrl}" alt="Page ${pageNum}" class="w-full h-auto rounded-lg shadow-sm mb-3">
+                    <div class="absolute top-2 right-2 bg-black bg-opacity-75 text-white text-xs px-2 py-1 rounded">
+                        Page ${pageNum}
+                    </div>
+                </div>
+                <div class="flex justify-between items-center">
+                    <span class="text-sm text-gray-600">page_${pageNum.toString().padStart(3, '0')}.${format}</span>
+                    <button onclick="downloadSingle(${pageNum - 1})" class="bg-blue-500 hover:bg-blue-600 text-white text-xs px-3 py-1 rounded transition-colors duration-200 flex items-center">
+                        <i data-feather="download" class="w-3 h-3 mr-1"></i>
+                        Download
+                    </button>
+                </div>
+            `;
+            imageGrid.appendChild(imageCard);
+            feather.replace();
+        }
+
+        function downloadSingle(index) {
+            const image = convertedImages[index];
+            const link = document.createElement('a');
+            link.href = image.dataUrl;
+            link.download = image.fileName;
+            link.click();
+        }
+
+        async function downloadAllAsZip() {
+            if (convertedImages.length === 0) return;
+
+            downloadAllBtn.disabled = true;
+            downloadAllBtn.innerHTML = '<div class="loader mr-2"></div>Creating ZIP...';
+
+            try {
+                const zip = new JSZip();
+                
+                convertedImages.forEach(image => {
+                    const base64Data = image.dataUrl.split(',')[1];
+                    zip.file(image.fileName, base64Data, { base64: true });
+                });
+
+                const content = await zip.generateAsync({ type: 'blob' });
+                saveAs(content, 'converted_images.zip');
+                
+                downloadAllBtn.disabled = false;
+                downloadAllBtn.innerHTML = '<i data-feather="download" class="w-4 h-4 mr-2"></i>Download All (ZIP)';
+                feather.replace();
+                showToast('ZIP file downloaded successfully!', 'success');
+
+            } catch (error) {
+                console.error('Error creating ZIP:', error);
+                showToast('Error creating ZIP file', 'error');
+                downloadAllBtn.disabled = false;
+                downloadAllBtn.innerHTML = '<i data-feather="download" class="w-4 h-4 mr-2"></i>Download All (ZIP)';
+                feather.replace();
+            }
+        }
+
+        function resetAll() {
+            pdfInput.value = '';
+            fileName.textContent = 'No file selected';
+            settingsPanel.classList.add('hidden');
+            resultsSection.classList.add('hidden');
+            progressDiv.classList.add('hidden');
+            imageGrid.innerHTML = '';
+            convertedImages = [];
+            pdfDoc = null;
+            progressBar.style.width = '0%';
+            progressText.textContent = '0%';
+        }
+
+        function showToast(message, type = 'info') {
+            let toast = document.getElementById('toast');
+            if (!toast) {
+                toast = document.createElement('div');
+                toast.id = 'toast';
+                toast.className = 'fixed bottom-4 right-4 px-6 py-3 rounded-lg shadow-lg flex items-center z-50 transition-all duration-300';
+                document.body.appendChild(toast);
+            }
+
+            const colors = {
+                success: 'bg-green-500 text-white',
+                error: 'bg-red-500 text-white',
+                info: 'bg-blue-500 text-white'
+            };
+
+            toast.className = toast.className.replace(/bg-\w+-500 text-white/g, '') + ' ' + colors[type];
+            toast.textContent = message;
+            toast.style.transform = 'translateX(0)';
+
+            setTimeout(() => {
+                toast.style.transform = 'translateX(100%)';
+            }, 3000);
+        }
+
+        // Make downloadSingle function global
+        window.downloadSingle = downloadSingle;
+    </script>
+</body>
+
+</html>

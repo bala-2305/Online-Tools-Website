@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="images/letter-d.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daedalus - Advanced PDF Tools</title>
+    <meta name="description"
+        content="A suite of advanced PDF tools to merge, split, convert images to PDF, and unlock PDFs. All done in your browser for free.">
+    <meta name="keywords"
+        content="merge pdf, split pdf, image to pdf, unlock pdf, pdf tools, free online tools, Daedalus">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="google-adsense-account" content="ca-pub-3135787759848459">
+    <meta property="og:title" content="Daedalus - Advanced PDF Tools">
+    <meta property="og:description" content="A suite of advanced PDF tools to merge, split, convert images to PDF, and unlock PDFs. All done in your browser for free.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://infinityforge.tech/pdftools.html">
+    <meta property="og:image" content="https://infinityforge.tech/assets/daedalus-og.png">
+    <link rel="canonical" href="https://infinityforge.tech/pdftools.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Daedalus - Advanced PDF Tools">
+    <meta name="twitter:description" content="A suite of advanced PDF tools to merge, split, convert images to PDF, and unlock PDFs. All done in your browser for free.">
+    <meta name="twitter:image" content="https://infinityforge.tech/assets/daedalus-og.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.14.305/pdf.min.js"></script>
+    <style>
+        .tab-active {
+            color: #2563EB; /* blue-600 */
+            border-color: #2563EB;
+            background-color: #DBEAFE; /* blue-100 */
+        }
+        .tab-button {
+            transition: all 0.3s ease-in-out;
+            border-bottom: 3px solid transparent;
+        }
+        .tab-button:hover {
+            background-color: #EFF6FF; /* blue-50 */
+        }
+        .tab-panel {
+            animation: fadeIn 0.5s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .loader {
+            border: 2px solid #f3f4f6;
+            border-top: 2px solid #3b82f6;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FQ082B7887"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FQ082B7887');
+</script>
+<body class="bg-blue-50 font-poppins">
+    <nav class="bg-white/80 backdrop-blur-lg shadow-sm w-full fixed top-0 left-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="index.html" class="text-2xl font-bold text-blue-600" aria-label="Daedalus Home">Daedalus</a>
+                <div class="hidden sm:flex items-center space-x-6">
+                    <a href="index.html" class="text-blue-600 font-medium">Home</a>
+                    <a href="features.html" class="text-gray-700 hover:text-blue-600 font-medium">Features</a>
+                    <a href="about.html" class="text-gray-700 hover:text-blue-600 font-medium">About</a>
+                </div>
+                <button id="mobile-menu-button" class="sm:hidden text-gray-700 hover:text-blue-600 focus:outline-none">
+                    <i data-feather="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="sm:hidden hidden bg-white border-t shadow-lg">
+            <div class="px-4 py-4 space-y-2">
+                <a href="index.html" class="block text-blue-600 font-medium">Home</a>
+                <a href="features.html" class="block text-gray-700 hover:text-blue-600 font-medium">Features</a>
+                <a href="about.html" class="block text-gray-700 hover:text-blue-600 font-medium">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="w-full max-w-4xl mx-auto pt-24 px-4">
+        <div class="text-center mb-12">
+            <h1 class="text-3xl sm:text-5xl font-bold text-gray-800 mb-4">Advanced PDF Tools</h1>
+            <p class="text-md sm:text-lg text-gray-600 max-w-3xl mx-auto">A powerful suite to merge, split, convert, and unlock your PDFs with ease.</p>
+        </div>
+
+        <div class="bg-white/60 backdrop-blur-lg rounded-xl shadow-lg overflow-hidden">
+            <!-- Tab Buttons -->
+            <div class="border-b border-gray-200/80">
+                <div class="flex flex-col sm:flex-row" role="tablist">
+                    <button role="tab" class="tab-button tab-active flex-1 flex items-center justify-center py-4 px-2 sm:px-6 font-semibold text-gray-700 focus:outline-none" data-target="merge">
+                        <i data-feather="copy" class="mr-2"></i><span class="truncate">Merge PDFs</span>
+                    </button>
+                    <button role="tab" class="tab-button flex-1 flex items-center justify-center py-4 px-2 sm:px-6 font-semibold text-gray-500 hover:text-gray-700 focus:outline-none" data-target="split">
+                        <i data-feather="scissors" class="mr-2"></i><span class="truncate">Split PDF</span>
+                    </button>
+                    <button role="tab" class="tab-button flex-1 flex items-center justify-center py-4 px-2 sm:px-6 font-semibold text-gray-500 hover:text-gray-700 focus:outline-none" data-target="image-to-pdf">
+                        <i data-feather="image" class="mr-2"></i><span class="truncate">Image to PDF</span>
+                    </button>
+                    <button role="tab" class="tab-button flex-1 flex items-center justify-center py-4 px-2 sm:px-6 font-semibold text-gray-500 hover:text-gray-700 focus:outline-none" data-target="unlock">
+                        <i data-feather="unlock" class="mr-2"></i><span class="truncate">Unlock PDF</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tab Panels -->
+            <div class="p-4 sm:p-8">
+                <!-- Merge PDF Panel -->
+                <div id="merge" role="tabpanel" class="tab-panel">
+                    <h3 class="text-xl sm:text-2xl font-bold text-gray-800 mb-2">Merge Multiple PDFs</h3>
+                    <p class="text-gray-600 mb-6">Combine several PDF files into a single document. Files are merged in the order they are selected.</p>
+                    <input type="file" id="merge-files" multiple accept=".pdf" class="block w-full text-sm text-gray-500 file:mr-4 file:py-3 file:px-5 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-100 file:text-blue-700 hover:file:bg-blue-200 cursor-pointer"/>
+                    <div id="merge-preview" class="mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4"></div>
+                    <button id="merge-btn" class="mt-6 w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 disabled:bg-gray-400 transition-transform transform hover:scale-105" disabled>
+                        <i data-feather="copy" class="inline-block mr-2"></i>Merge PDFs
+                    </button>
+                </div>
+
+                <!-- Split PDF Panel -->
+                <div id="split" role="tabpanel" class="tab-panel hidden">
+                    <h3 class="text-xl sm:text-2xl font-bold text-gray-800 mb-2">Split a PDF</h3>
+                    <p class="text-gray-600 mb-6">Extract a range of pages or select individual pages from a PDF file.</p>
+                    <input type="file" id="split-file" accept=".pdf" class="block w-full text-sm text-gray-500 file:mr-4 file:py-3 file:px-5 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-100 file:text-blue-700 hover:file:bg-blue-200 cursor-pointer"/>
+                    <div id="split-options" class="mt-6 hidden">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="space-y-4">
+                                <div>
+                                    <label for="split-range" class="block text-sm font-medium text-gray-700">Page Range (e.g., "1-5, 8")</label>
+                                    <input type="text" id="split-range" placeholder="e.g., 1-5, 8, 10-12" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                                </div>
+                                <button id="split-btn" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-transform transform hover:scale-105">
+                                    <i data-feather="scissors" class="inline-block mr-2"></i>Split PDF
+                                </button>
+                            </div>
+                            <div class="relative bg-gray-100 rounded-lg border flex items-center justify-center p-2">
+                                <canvas id="split-preview-canvas"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Image to PDF Panel -->
+                <div id="image-to-pdf" role="tabpanel" class="tab-panel hidden">
+                    <h3 class="text-xl sm:text-2xl font-bold text-gray-800 mb-2">Convert Images to PDF</h3>
+                    <p class="text-gray-600 mb-6">Upload JPG or PNG images to combine them into a single PDF document.</p>
+                    <input type="file" id="image-files" multiple accept="image/jpeg, image/png" class="block w-full text-sm text-gray-500 file:mr-4 file:py-3 file:px-5 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-100 file:text-blue-700 hover:file:bg-blue-200 cursor-pointer"/>
+                    <div id="image-preview" class="mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4"></div>
+                    <button id="image-to-pdf-btn" class="mt-6 w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 disabled:bg-gray-400 transition-transform transform hover:scale-105" disabled>
+                        <i data-feather="image" class="inline-block mr-2"></i>Convert to PDF
+                    </button>
+                </div>
+
+                <!-- Unlock PDF Panel -->
+                <div id="unlock" role="tabpanel" class="tab-panel hidden">
+                    <h3 class="text-xl sm:text-2xl font-bold text-gray-800 mb-2">Unlock a PDF</h3>
+                    <p class="text-gray-600 mb-6">Remove the password from a PDF file. You must provide the current password.</p>
+                    <input type="file" id="unlock-file" accept=".pdf" class="block w-full text-sm text-gray-500 file:mr-4 file:py-3 file:px-5 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-100 file:text-blue-700 hover:file:bg-blue-200 cursor-pointer"/>
+                    <div id="unlock-options" class="mt-6 hidden">
+                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="space-y-4">
+                                <div>
+                                    <label for="unlock-password" class="block text-sm font-medium text-gray-700">PDF Password</label>
+                                    <input type="password" id="unlock-password" placeholder="Enter PDF Password" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                                </div>
+                                <button id="unlock-btn" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-transform transform hover:scale-105">
+                                    <i data-feather="unlock" class="inline-block mr-2"></i>Unlock PDF
+                                </button>
+                            </div>
+                            <div class="relative bg-gray-100 rounded-lg border flex items-center justify-center p-2">
+                                <canvas id="unlock-preview-canvas"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-white/80 backdrop-blur-lg mt-12 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-600">
+            <p class="font-semibold">&copy; 2025 Daedalus Tools. All Rights Reserved.</p>
+            <p class="text-sm mt-2">Your privacy is our priority. All tools run directly in your browser, meaning your files are never uploaded to our servers.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const { PDFDocument, rgb } = PDFLib;
+            const { saveAs } = FileSaver;
+
+            // pdf.js worker
+            if (window.pdfjsLib) {
+                pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.14.305/pdf.worker.min.js';
+            }
+
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Tab functionality
+            const tabs = document.querySelectorAll('.tab-button');
+            const panels = document.querySelectorAll('.tab-panel');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Deactivate all tabs and hide all panels
+                    tabs.forEach(t => {
+                        t.classList.remove('tab-active', 'text-gray-700');
+                        t.classList.add('text-gray-500', 'hover:text-gray-700');
+                    });
+                    panels.forEach(p => p.classList.add('hidden'));
+
+                    // Activate the clicked tab and show the corresponding panel
+                    tab.classList.add('tab-active', 'text-gray-700');
+                    tab.classList.remove('text-gray-500', 'hover:text-gray-700');
+                    
+                    const target = tab.getAttribute('data-target');
+                    const targetPanel = document.getElementById(target);
+                    if (targetPanel) {
+                        targetPanel.classList.remove('hidden');
+                    }
+                });
+            });
+
+            feather.replace();
+
+            // --- Helper function to render PDF preview ---
+            async function renderPdfPreview(file, canvas) {
+                if (!window.pdfjsLib) {
+                    console.error("pdf.js is not loaded.");
+                    // Fallback: show a simple placeholder if pdf.js is missing
+                    const context = canvas.getContext('2d');
+                    canvas.width = 200;
+                    canvas.height = 280;
+                    context.fillStyle = '#f0f0f0';
+                    context.fillRect(0, 0, 200, 280);
+                    context.fillStyle = '#a0a0a0';
+                    context.font = '16px Arial';
+                    context.textAlign = 'center';
+                    context.fillText('Preview unavailable', 100, 140);
+                    return;
+                }
+                try {
+                    const fileReader = new FileReader();
+                    fileReader.onload = async function() {
+                        const typedarray = new Uint8Array(this.result);
+                        const pdf = await pdfjsLib.getDocument(typedarray).promise;
+                        const page = await pdf.getPage(1);
+                        const viewport = page.getViewport({ scale: 0.4 });
+
+                        const context = canvas.getContext('2d');
+                        canvas.height = viewport.height;
+                        canvas.width = viewport.width;
+                        
+                        const renderContext = {
+                            canvasContext: context,
+                            viewport: viewport
+                        };
+                        await page.render(renderContext).promise;
+                    };
+                    fileReader.readAsArrayBuffer(file);
+                } catch (error) {
+                    console.error('Error rendering PDF preview:', error);
+                    const context = canvas.getContext('2d');
+                    canvas.width = 200;
+                    canvas.height = 280;
+                    context.fillStyle = '#f0f0f0';
+                    context.fillRect(0, 0, 200, 280);
+                    context.fillStyle = '#d9534f';
+                    context.font = '16px Arial';
+                    context.textAlign = 'center';
+                    context.fillText('Preview Error', 100, 140);
+                }
+            }
+
+            // --- Merge PDF ---
+            const mergeFilesInput = document.getElementById('merge-files');
+            const mergeBtn = document.getElementById('merge-btn');
+            const mergePreview = document.getElementById('merge-preview');
+            let mergeFiles = [];
+
+            function showMergeError(fileContainer, message) {
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'absolute inset-0 flex items-center justify-center bg-red-50 bg-opacity-90 rounded-lg';
+                errorDiv.innerHTML = `<p class="text-red-600 text-sm text-center px-2">${message}</p>`;
+                fileContainer.appendChild(errorDiv);
+            }
+
+            function updateMergeButtonState() {
+                const validFiles = mergeFiles.filter(file => file.type === 'application/pdf');
+                mergeBtn.disabled = validFiles.length < 2;
+                if (validFiles.length < 2) {
+                    mergeBtn.title = 'Select at least two valid PDF files to merge';
+                } else {
+                    mergeBtn.title = 'Click to merge selected PDF files';
+                }
+            }
+
+            mergeFilesInput.addEventListener('change', async (e) => {
+                mergeFiles = Array.from(e.target.files);
+                mergePreview.innerHTML = '';
+                updateMergeButtonState();
+                
+                if (mergeFiles.length > 0) {
+                    for (const file of mergeFiles) {
+                        const fileContainer = document.createElement('div');
+                        fileContainer.className = 'relative p-2 border rounded-lg bg-gray-50';
+                        const canvas = document.createElement('canvas');
+                        canvas.className = 'w-full h-auto rounded-md';
+                        const fileName = document.createElement('p');
+                        fileName.textContent = file.name;
+                        fileName.className = 'text-xs text-center text-gray-500 mt-1 truncate';
+                        fileContainer.appendChild(canvas);
+                        fileContainer.appendChild(fileName);
+                        mergePreview.appendChild(fileContainer);
+
+                        if (file.type !== 'application/pdf') {
+                            showMergeError(fileContainer, 'Invalid file type. Please select a PDF file.');
+                            continue;
+                        }
+
+                        try {
+                            await renderPdfPreview(file, canvas);
+                        } catch (err) {
+                            console.error(`Error previewing ${file.name}:`, err);
+                            showMergeError(fileContainer, 'Could not preview this PDF. The file may be corrupted.');
+                        }
+                    }
+                    updateMergeButtonState();
+                }
+            });
+
+            mergeBtn.addEventListener('click', async () => {
+                if (mergeFiles.length < 2) {
+                    alert('Please select at least two PDF files to merge.');
+                    return;
+                }
+                if (typeof PDFDocument === 'undefined' || !PDFDocument) {
+                    alert('Error: PDF library not loaded. Please refresh the page and try again.');
+                    return;
+                }
+
+                mergeBtn.disabled = true;
+                const progressContainer = document.createElement('div');
+                progressContainer.className = 'fixed top-4 right-4 bg-white p-4 rounded-lg shadow-lg z-50';
+                progressContainer.innerHTML = `
+                    <div class="flex items-center space-x-3">
+                        <div class="loader"></div>
+                        <div>
+                            <p class="text-sm font-semibold text-gray-700">Merging PDFs...</p>
+                            <p class="text-xs text-gray-500" id="merge-progress">Preparing...</p>
+                        </div>
+                    </div>
+                `;
+                document.body.appendChild(progressContainer);
+                
+                const updateProgress = (message) => {
+                    const progressElement = document.getElementById('merge-progress');
+                    if (progressElement) {
+                        progressElement.textContent = message;
+                    }
+                };
+                
+                try {
+                    updateProgress('Initializing merge process...');
+                    console.log('Creating new PDF document...');
+                    const mergedPdf = await PDFDocument.create();
+                    
+                    for (let i = 0; i < mergeFiles.length; i++) {
+                        const file = mergeFiles[i];
+                        updateProgress(`Processing file ${i + 1} of ${mergeFiles.length}: ${file.name}`);
+                        console.log(`Processing file ${i + 1}/${mergeFiles.length}: ${file.name}`);
+                        
+                        try {
+                            const pdfBytes = await file.arrayBuffer();
+                            console.log(`Loading PDF: ${file.name}`);
+                            const pdf = await PDFDocument.load(pdfBytes, { ignoreEncryption: true });
+                            
+                            const pageIndices = pdf.getPageIndices();
+                            console.log(`Copying ${pageIndices.length} pages from ${file.name}`);
+                            updateProgress(`Copying ${pageIndices.length} pages from ${file.name}`);
+                            const copiedPages = await mergedPdf.copyPages(pdf, pageIndices);
+                            
+                            copiedPages.forEach((page, idx) => {
+                                mergedPdf.addPage(page);
+                                console.log(`Added page ${idx + 1} from ${file.name}`);
+                            });
+                        } catch (fileErr) {
+                            console.error(`Error processing file ${file.name}:`, fileErr);
+                            throw new Error(`Failed to process file ${file.name}: ${fileErr.message}`);
+                        }
+                    }
+                    
+                    updateProgress('Finalizing merged PDF...');
+                    console.log('Saving merged PDF...');
+                    const mergedPdfBytes = await mergedPdf.save();
+                    console.log('PDF merged successfully, initiating download...');
+                    updateProgress('Starting download...');
+                    
+                    // Try to use FileSaver.js first
+                    if (typeof saveAs !== 'undefined') {
+                        saveAs(new Blob([mergedPdfBytes], { type: 'application/pdf' }), 'Daedalus_merged.pdf');
+                    } else {
+                        // Fallback: Use native browser download
+                        const blob = new Blob([mergedPdfBytes], { type: 'application/pdf' });
+                        const url = window.URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.style.display = 'none';
+                        a.href = url;
+                        a.download = 'Daedalus_merged.pdf';
+                        document.body.appendChild(a);
+                        a.click();
+                        window.URL.revokeObjectURL(url);
+                        document.body.removeChild(a);
+                    }
+                } catch (err) {
+                    console.error('PDF merge error:', err);
+                    alert('An error occurred while merging PDFs: ' + err.message);
+                } finally {
+                    mergeBtn.disabled = false;
+                    mergeBtn.innerHTML = '<i data-feather="copy" class="inline-block mr-2"></i>Merge PDFs';
+                    feather.replace();
+                    const progressContainer = document.querySelector('.fixed.top-4.right-4');
+                    if (progressContainer) {
+                        progressContainer.remove();
+                    }
+                }
+            });
+
+            // --- Split PDF ---
+            const splitFileInput = document.getElementById('split-file');
+            const splitOptions = document.getElementById('split-options');
+            const splitBtn = document.getElementById('split-btn');
+            const splitRangeInput = document.getElementById('split-range');
+            const splitPreviewCanvas = document.getElementById('split-preview-canvas');
+            let splitFile = null;
+
+            splitFileInput.addEventListener('change', async (e) => {
+                splitFile = e.target.files[0];
+                if (splitFile) {
+                    splitOptions.classList.remove('hidden');
+                    await renderPdfPreview(splitFile, splitPreviewCanvas);
+                } else {
+                    splitOptions.classList.add('hidden');
+                }
+            });
+
+            splitBtn.addEventListener('click', async () => {
+                if (!splitFile) {
+                    alert('Please select a PDF file to split.');
+                    return;
+                }
+                const rangeText = splitRangeInput.value;
+                if (!rangeText) {
+                    alert('Please specify a page range.');
+                    return;
+                }
+                splitBtn.disabled = true;
+                splitBtn.innerHTML = '<div class="loader inline-block mr-2"></div>Splitting...';
+                try {
+                    const pdfBytes = await splitFile.arrayBuffer();
+                    const pdf = await PDFDocument.load(pdfBytes, { ignoreEncryption: true });
+                    const newPdf = await PDFDocument.create();
+                    
+                    const pageIndices = new Set();
+                    const totalPages = pdf.getPageCount();
+                    const ranges = rangeText.split(',');
+                    ranges.forEach(range => {
+                        range = range.trim();
+                        if (range.includes('-')) {
+                            const [start, end] = range.split('-').map(Number);
+                            for (let i = start; i <= end; i++) {
+                                if (i > 0 && i <= totalPages) pageIndices.add(i - 1);
+                            }
+                        } else {
+                            const pageNum = Number(range);
+                            if (pageNum > 0 && pageNum <= totalPages) pageIndices.add(pageNum - 1);
+                        }
+                    });
+
+                    if (pageIndices.size === 0) {
+                        alert('Invalid page range. Please enter valid page numbers.');
+                        splitBtn.disabled = false;
+                        splitBtn.innerHTML = '<i data-feather="scissors" class="inline-block mr-2"></i>Split PDF';
+                        feather.replace();
+                        return;
+                    }
+
+                    const sortedIndices = Array.from(pageIndices).sort((a, b) => a - b);
+                    const copiedPages = await newPdf.copyPages(pdf, sortedIndices);
+                    copiedPages.forEach(page => newPdf.addPage(page));
+
+                    const newPdfBytes = await newPdf.save();
+                    
+                    if (typeof saveAs !== 'undefined') {
+                        saveAs(new Blob([newPdfBytes], { type: 'application/pdf' }), 'Daedalus_split.pdf');
+                    } else {
+                        const blob = new Blob([newPdfBytes], { type: 'application/pdf' });
+                        const url = window.URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.style.display = 'none';
+                        a.href = url;
+                        a.download = 'Daedalus_split.pdf';
+                        document.body.appendChild(a);
+                        a.click();
+                        window.URL.revokeObjectURL(url);
+                        document.body.removeChild(a);
+                    }
+                } catch (err) {
+                    alert('An error occurred: ' + err.message);
+                } finally {
+                    splitBtn.disabled = false;
+                    splitBtn.innerHTML = '<i data-feather="scissors" class="inline-block mr-2"></i>Split PDF';
+                    feather.replace();
+                }
+            });
+
+            // --- Image to PDF ---
+            const imageFilesInput = document.getElementById('image-files');
+            const imageToPdfBtn = document.getElementById('image-to-pdf-btn');
+            const imagePreview = document.getElementById('image-preview');
+            let imageFiles = [];
+
+            imageFilesInput.addEventListener('change', (e) => {
+                imageFiles = Array.from(e.target.files);
+                imagePreview.innerHTML = '';
+                imageToPdfBtn.disabled = true;
+                if (imageFiles.length > 0) {
+                    imageToPdfBtn.disabled = false;
+                    imageFiles.forEach(file => {
+                        const reader = new FileReader();
+                        reader.onload = (event) => {
+                            const imgContainer = document.createElement('div');
+                            imgContainer.className = 'relative p-2 border rounded-lg bg-gray-50';
+                            const img = document.createElement('img');
+                            img.src = event.target.result;
+                            img.className = 'w-full h-auto rounded-md object-contain';
+                             const fileName = document.createElement('p');
+                            fileName.textContent = file.name;
+                            fileName.className = 'text-xs text-center text-gray-500 mt-1 truncate';
+                            imgContainer.appendChild(img);
+                            imgContainer.appendChild(fileName);
+                            imagePreview.appendChild(imgContainer);
+                        };
+                        reader.readAsDataURL(file);
+                    });
+                }
+            });
+
+            imageToPdfBtn.addEventListener('click', async () => {
+                if (imageFiles.length === 0) {
+                    alert('Please select at least one image file.');
+                    return;
+                }
+                imageToPdfBtn.disabled = true;
+                imageToPdfBtn.innerHTML = '<div class="loader inline-block mr-2"></div>Converting...';
+                try {
+                    const pdfDoc = await PDFDocument.create();
+                    for (const file of imageFiles) {
+                        const bytes = await file.arrayBuffer();
+                        let image;
+                        if (file.type === 'image/jpeg') {
+                            image = await pdfDoc.embedJpg(bytes);
+                        } else if (file.type === 'image/png') {
+                            image = await pdfDoc.embedPng(bytes);
+                        } else {
+                            continue; // Skip unsupported file types
+                        }
+                        const page = pdfDoc.addPage([image.width, image.height]);
+                        page.drawImage(image, { x: 0, y: 0, width: image.width, height: image.height });
+                    }
+                    const pdfBytes = await pdfDoc.save();
+                    if (typeof saveAs !== 'undefined') {
+                        saveAs(new Blob([pdfBytes], { type: 'application/pdf' }), 'Daedalus_converted.pdf');
+                    } else {
+                        const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+                        const url = window.URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.style.display = 'none';
+                        a.href = url;
+                        a.download = 'Daedalus_converted.pdf';
+                        document.body.appendChild(a);
+                        a.click();
+                        window.URL.revokeObjectURL(url);
+                        document.body.removeChild(a);
+                    }
+                } catch (err) {
+                    alert('An error occurred: ' + err.message);
+                } finally {
+                    imageToPdfBtn.disabled = false;
+                    imageToPdfBtn.innerHTML = '<i data-feather="image" class="inline-block mr-2"></i>Convert to PDF';
+                    feather.replace();
+                }
+            });
+
+            // --- Unlock PDF ---
+            const unlockFileInput = document.getElementById('unlock-file');
+            const unlockOptions = document.getElementById('unlock-options');
+            const unlockBtn = document.getElementById('unlock-btn');
+            const unlockPasswordInput = document.getElementById('unlock-password');
+            const unlockPreviewCanvas = document.getElementById('unlock-preview-canvas');
+            let unlockFile = null;
+
+            unlockFileInput.addEventListener('change', (e) => {
+                unlockFile = e.target.files[0];
+                if (unlockFile) {
+                    unlockOptions.classList.remove('hidden');
+                    // Preview for encrypted PDF is tricky, so we just show a placeholder
+                    const context = unlockPreviewCanvas.getContext('2d');
+                    unlockPreviewCanvas.width = 200;
+                    unlockPreviewCanvas.height = 280;
+                    context.fillStyle = '#f0f0f0';
+                    context.fillRect(0, 0, 200, 280);
+                    context.fillStyle = '#a0a0a0';
+                    context.font = '16px Arial';
+                    context.textAlign = 'center';
+                    context.fillText('Encrypted PDF', 100, 140);
+                    context.fillText('(Preview not available)', 100, 160);
+                } else {
+                    unlockOptions.classList.add('hidden');
+                }
+            });
+
+            unlockBtn.addEventListener('click', async () => {
+                if (!unlockFile) {
+                    alert('Please select a PDF file to unlock.');
+                    return;
+                }
+                const password = unlockPasswordInput.value;
+                if (!password) {
+                    alert('Please enter the PDF password.');
+                    return;
+                }
+                unlockBtn.disabled = true;
+                unlockBtn.innerHTML = '<div class="loader inline-block mr-2"></div>Unlocking...';
+                try {
+                    const pdfBytes = await unlockFile.arrayBuffer();
+                    const pdfDoc = await PDFDocument.load(pdfBytes, {
+                        password: password
+                    });
+                    // Saving the document without a password effectively removes it.
+                    const pdfDocBytes = await pdfDoc.save();
+                    if (typeof saveAs !== 'undefined') {
+                        saveAs(new Blob([pdfDocBytes], { type: 'application/pdf' }), 'Daedalus_unlocked.pdf');
+                    } else {
+                        const blob = new Blob([pdfDocBytes], { type: 'application/pdf' });
+                        const url = window.URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.style.display = 'none';
+                        a.href = url;
+                        a.download = 'Daedalus_unlocked.pdf';
+                        document.body.appendChild(a);
+                        a.click();
+                        window.URL.revokeObjectURL(url);
+                        document.body.removeChild(a);
+                    }
+                } catch (err) {
+                    alert('Failed to unlock PDF. Please check the password or ensure the file is not corrupted. Error: ' + err.message);
+                } finally {
+                    unlockBtn.disabled = false;
+                    unlockBtn.innerHTML = '<i data-feather="unlock" class="inline-block mr-2"></i>Unlock PDF';
+                    feather.replace();
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

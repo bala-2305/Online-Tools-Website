@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="images/letter-d.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCR - Image to Text | Toolswebsite</title>
+    <meta name="description" content="Extract editable text from your images in seconds.">
+    <meta name="keywords" content="ocr, image to text, text recognition, free online tools, Daedalus">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="google-adsense-account" content="ca-pub-3135787759848459">
+    <meta property="og:title" content="Daedalus - OCR Image to Text">
+    <meta property="og:description" content="Extract editable text from your images in seconds.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://infinityforge.tech/ocr.html">
+    <meta property="og:image" content="https://infinityforge.tech/assets/daedalus-og.png">
+    <link rel="canonical" href="https://infinityforge.tech/ocr.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Daedalus - OCR Image to Text">
+    <meta name="twitter:description" content="Extract editable text from your images in seconds.">
+    <meta name="twitter:image" content="https://infinityforge.tech/assets/daedalus-og.png">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #111827; /* Dark background */
+            color: #d1d5db; /* Light text */
+        }
+        .tool-card {
+            background-color: #1f2937;
+            border: 1px solid #374151;
+        }
+        .btn-primary {
+            background-color: #3b82f6;
+        }
+        .btn-primary:hover {
+            background-color: #2563eb;
+        }
+        .progress-bar-container {
+            width: 100%;
+            background-color: #374151;
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+        .progress-bar {
+            height: 1.5rem;
+            background-color: #3b82f6;
+            text-align: center;
+            line-height: 1.5rem;
+            color: white;
+            transition: width 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FQ082B7887"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FQ082B7887');
+</script>
+<body class="bg-gray-900 text-gray-200 font-sans">
+
+    <!-- Header -->
+    <header class="bg-white/80 backdrop-blur-md shadow-lg w-full fixed top-0 left-0 z-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <a href="index.html" class="text-2xl font-bold text-blue-600">Daedalus</a>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-blue-600 font-medium">Home</a>
+                    <a href="features.html" class="text-gray-700 hover:text-blue-600 font-medium">Features</a>
+                    <a href="about.html" class="text-gray-700 hover:text-blue-600 font-medium">About</a>
+                </div>
+                <button id="mobile-menu-button" class="md:hidden text-gray-700 hover:text-blue-600">
+                    <i data-feather="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+            <div id="mobile-menu" class="md:hidden hidden bg-white border-t shadow-lg">
+                <div class="px-4 py-4 space-y-2">
+                    <a href="index.html" class="block text-blue-600 font-medium">Home</a>
+                    <a href="features.html" class="block text-gray-700 hover:text-blue-600 font-medium">Features</a>
+                    <a href="about.html" class="block text-gray-700 hover:text-blue-600 font-medium">About</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-12 pt-24">
+        <section class="text-center">
+            <h1 class="text-4xl font-bold text-white mb-4">OCR - Image to Text Converter</h1>
+            <p class="text-lg text-gray-400 mb-8">Extract editable text from your images in seconds.</p>
+
+            <!-- OCR Tool -->
+            <div class="bg-gray-800 p-8 rounded-2xl shadow-2xl w-full max-w-2xl mx-auto">
+                <!-- File Input -->
+                <div class="mb-6">
+                    <label for="image-input" class="block text-lg font-medium text-white mb-2">Upload an Image</label>
+                    <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-600 border-dashed rounded-md">
+                        <div class="space-y-1 text-center">
+                            <svg class="mx-auto h-12 w-12 text-gray-500" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                                <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <div class="flex text-sm text-gray-400">
+                                <label for="image-input" class="relative cursor-pointer bg-gray-700 rounded-md font-medium text-blue-400 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-800 focus-within:ring-blue-500">
+                                    <span>Upload a file</span>
+                                    <input id="image-input" name="image-input" type="file" class="sr-only" accept="image/*">
+                                </label>
+                                <p class="pl-1">or drag and drop</p>
+                            </div>
+                            <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+                            <p id="file-name" class="text-sm text-gray-300 mt-2"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Language Selection -->
+                <div class="mb-6">
+                    <label for="lang-select" class="block text-lg font-medium text-white mb-2">Select Language</label>
+                    <select id="lang-select" class="w-full bg-gray-700 border border-gray-600 rounded-md py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="eng" selected>English</option>
+                        <option value="tam">Tamil</option>
+                        <option value="spa">Spanish</option>
+                        <option value="fra">French</option>
+                        <option value="deu">German</option>
+                        <option value="chi_sim">Chinese (Simplified)</option>
+                        <!-- Add more languages as needed -->
+                    </select>
+                </div>
+
+                <div class="flex justify-center mt-6">
+                    <button id="recognize-btn" disabled class="bg-blue-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-transform transform hover:scale-105 disabled:bg-gray-400 disabled:cursor-not-allowed disabled:transform-none">
+                        <i data-feather="eye" class="inline-block mr-2"></i> Recognize Text
+                    </button>
+                </div>
+            </div>
+
+            <!-- Progress and Output -->
+            <div id="output-section" class="hidden mt-12 bg-gray-800 p-8 rounded-2xl shadow-2xl w-full max-w-4xl mx-auto">
+                <!-- Progress Bar -->
+                <div id="progress-container" class="hidden mb-6">
+                    <p id="progress-label" class="text-lg text-white mb-2">Processing...</p>
+                    <div class="progress-bar-container">
+                        <div id="progress-bar" class="progress-bar" style="width: 0%;">0%</div>
+                    </div>
+                </div>
+
+                <!-- Recognized Text -->
+                <div id="text-output-section" class="hidden">
+                    <h3 class="text-2xl font-bold text-white mb-4">Recognized Text</h3>
+                    <div class="relative">
+                        <textarea id="text-area" readonly class="w-full h-96 p-4 bg-gray-900 text-gray-300 rounded-lg border-2 border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                        <button id="copy-btn" class="absolute top-3 right-3 text-gray-400 hover:text-white focus:outline-none" title="Copy to Clipboard">
+                            <i data-feather="copy"></i>
+                        </button>
+                    </div>
+                    <div class="mt-6 text-center">
+                        <button id="download-btn" class="bg-purple-600 text-white font-bold py-2 px-5 rounded-lg shadow-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50 transition-transform transform hover:scale-105">
+                            <i data-feather="download" class="inline-block mr-2"></i> Download as .txt
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@2.1.5/dist/tesseract.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            feather.replace();
+
+            const imageInput = document.getElementById('image-input');
+            const fileNameDisplay = document.getElementById('file-name');
+            const langSelect = document.getElementById('lang-select');
+            const recognizeBtn = document.getElementById('recognize-btn');
+            const outputSection = document.getElementById('output-section');
+            const progressContainer = document.getElementById('progress-container');
+            const progressLabel = document.getElementById('progress-label');
+            const progressBar = document.getElementById('progress-bar');
+            const textOutputSection = document.getElementById('text-output-section');
+            const textArea = document.getElementById('text-area');
+            const copyBtn = document.getElementById('copy-btn');
+            const downloadBtn = document.getElementById('download-btn');
+
+            let imageFile = null;
+
+            imageInput.addEventListener('change', (e) => {
+                imageFile = e.target.files[0];
+                if (imageFile) {
+                    fileNameDisplay.textContent = imageFile.name;
+                    recognizeBtn.disabled = false;
+                    outputSection.classList.add('hidden');
+                    textOutputSection.classList.add('hidden');
+                } else {
+                    fileNameDisplay.textContent = '';
+                    recognizeBtn.disabled = true;
+                }
+            });
+
+            recognizeBtn.addEventListener('click', async () => {
+                if (!imageFile) return;
+
+                outputSection.classList.remove('hidden');
+                progressContainer.classList.remove('hidden');
+                textOutputSection.classList.add('hidden');
+                recognizeBtn.disabled = true;
+
+                const lang = langSelect.value;
+                const { data: { text } } = await Tesseract.recognize(
+                    imageFile,
+                    lang,
+                    {
+                        logger: m => {
+                            if (m.status === 'recognizing text') {
+                                const progress = Math.round(m.progress * 100);
+                                progressBar.style.width = `${progress}%`;
+                                progressBar.textContent = `${progress}%`;
+                                progressLabel.textContent = `Recognizing Text...`;
+                            } else {
+                                progressLabel.textContent = m.status.charAt(0).toUpperCase() + m.status.slice(1) + '...';
+                                progressBar.style.width = `0%`;
+                                progressBar.textContent = `0%`;
+                            }
+                        }
+                    }
+                );
+
+                textArea.value = text;
+                progressContainer.classList.add('hidden');
+                textOutputSection.classList.remove('hidden');
+                recognizeBtn.disabled = false;
+                feather.replace();
+            });
+
+            copyBtn.addEventListener('click', () => {
+                navigator.clipboard.writeText(textArea.value).then(() => {
+                    alert('Text copied to clipboard!');
+                }, (err) => {
+                    console.error('Could not copy text: ', err);
+                    alert('Failed to copy text.');
+                });
+            });
+
+            downloadBtn.addEventListener('click', () => {
+                const blob = new Blob([textArea.value], { type: 'text/plain;charset=utf-8' });
+                saveAs(blob, 'recognized-text.txt');
+            });
+            
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        });
+    </script>
+
+</body>
+</html>
