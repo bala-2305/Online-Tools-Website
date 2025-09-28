@@ -6,6 +6,7 @@
     <link rel="icon" type="image/png" href="images/letter-d.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daedalus - Your Ultimate Online Tool Suite</title>
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="description"
         content="Free online tools for image editing, PDF conversion, and more. No uploads, no watermarks. Perfect for creators and professionals.">
     <meta name="keywords"
@@ -23,7 +24,8 @@
         rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-</head>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "InfinityForge", "url": "https://infinityforge.tech", "logo": "https://infinityforge.tech/assets/letter-d.png", "sameAs": ["https://www.linkedin.com/in/mahibala-h", "https://x.com/HMahibala42802", "https://www.youtube.com/@echo14-w3y", "https://www.instagram.com/ig_balah?igsh=dXo4ank3OWxiaXVy", "https://www.facebook.com/share/19qwy1GdmZ/"]}</script>
+
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-FQ082B7887"></script>
 <script>
@@ -31,9 +33,34 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
+  // Set default consent state
+  gtag('consent', 'default', {
+    'analytics_storage': 'denied'
+  });
+
   gtag('config', 'G-FQ082B7887');
 </script>
 <body class="bg-gray-50 font-poppins">
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-consent" class="fixed bottom-0 left-0 right-0 bg-gray-800 text-white p-4 z-50 transform translate-y-full transition-transform duration-300" style="display: none;">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between">
+            <div class="mb-4 md:mb-0 md:mr-4">
+                <p class="text-sm">
+                    We use cookies to enhance your experience and analyze site traffic. By continuing to use this site, you consent to our use of cookies.
+                    <a href="privacy.html" class="underline hover:no-underline">Learn more</a>
+                </p>
+            </div>
+            <div class="flex space-x-2">
+                <button id="accept-cookies" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm font-medium transition-colors">
+                    Accept All
+                </button>
+                <button id="decline-cookies" class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded text-sm font-medium transition-colors">
+                    Decline
+                </button>
+            </div>
+        </div>
+    </div>
+
     <nav class="bg-white shadow-md w-full fixed top-0 left-0 z-50" aria-label="Main Navigation">
         <div class="max-w-6xl mx-auto px-4">
             <div class="flex justify-between items-center h-16">
@@ -45,6 +72,10 @@
                         class="hidden md:inline-block ml-6 text-gray-700 hover:text-blue-600 font-medium">Features</a>
                     <a href="about.html"
                         class="hidden md:inline-block ml-6 text-gray-700 hover:text-blue-600 font-medium">About</a>
+                    <a href="sitemap.html"
+                        class="hidden md:inline-block ml-6 text-gray-700 hover:text-blue-600 font-medium">Sitemap</a>
+                    <a href="contact.html"
+                        class="hidden md:inline-block ml-6 text-gray-700 hover:text-blue-600 font-medium">Contact</a>
                     <!-- Mobile menu button -->
                     <button id="mobileMenuBtn"
                         class="md:hidden ml-4 text-gray-700 hover:text-blue-600 focus:outline-none">
@@ -59,6 +90,8 @@
                     <a href="index.html" class="block px-2 py-2 text-blue-600 rounded">Home</a>
                     <a href="features.html" class="block px-2 py-2 text-gray-700 hover:bg-blue-50 rounded">Features</a>
                     <a href="about.html" class="block px-2 py-2 text-gray-700 hover:bg-blue-50 rounded">About</a>
+                    <a href="sitemap.html" class="block px-2 py-2 text-gray-700 hover:bg-blue-50 rounded">Sitemap</a>
+                    <a href="contact.html" class="block px-2 py-2 text-gray-700 hover:bg-blue-50 rounded">Contact</a>
                 </div>
             </div>
         </div>
@@ -151,7 +184,7 @@
             <p class="mb-6">Explore our tools and see how Daedalus can simplify your workflow.</p>
             <a href="features.html" class="bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-300">Explore Features</a>
         </section>
-        <div class="mt-10 text-center text-gray-500 text-sm">
+        <div class="mt-10 text-center text-gray-600 text-sm">
             <p>Made with <span class="text-red-400">♥</span> for creators worldwide</p>
             <div class="mt-2">
                 <a href="privacy.html" class="hover:underline mx-2">Privacy Policy</a>
@@ -160,6 +193,70 @@
         </div>
     </main>
     <script>
+        // Cookie Consent Management
+        function setCookie(name, value, days) {
+            const expires = new Date();
+            expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
+            document.cookie = name + '=' + value + ';expires=' + expires.toUTCString() + ';path=/';
+        }
+
+        function getCookie(name) {
+            const nameEQ = name + '=';
+            const ca = document.cookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+
+        function showCookieConsent() {
+            const consent = getCookie('cookie-consent');
+            if (!consent) {
+                const banner = document.getElementById('cookie-consent');
+                banner.style.display = 'block';
+                setTimeout(() => {
+                    banner.classList.remove('translate-y-full');
+                }, 100);
+            }
+        }
+
+        function hideCookieConsent() {
+            const banner = document.getElementById('cookie-consent');
+            banner.classList.add('translate-y-full');
+            setTimeout(() => {
+                banner.style.display = 'none';
+            }, 300);
+        }
+
+        // Initialize cookie consent
+        document.addEventListener('DOMContentLoaded', function() {
+            showCookieConsent();
+
+            document.getElementById('accept-cookies').addEventListener('click', function() {
+                setCookie('cookie-consent', 'accepted', 365);
+                hideCookieConsent();
+                // Enable Google Analytics if it was disabled
+                if (typeof gtag !== 'undefined') {
+                    gtag('consent', 'update', {
+                        'analytics_storage': 'granted'
+                    });
+                }
+            });
+
+            document.getElementById('decline-cookies').addEventListener('click', function() {
+                setCookie('cookie-consent', 'declined', 365);
+                hideCookieConsent();
+                // Disable Google Analytics
+                if (typeof gtag !== 'undefined') {
+                    gtag('consent', 'update', {
+                        'analytics_storage': 'denied'
+                    });
+                }
+            });
+        });
+
         feather.replace();
         // Fix for Mobile Menu Toggle
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
@@ -168,5 +265,7 @@
             mobileMenu.classList.toggle('hidden');
         });
     </script>
+
+    <div class="site-socials" style="text-align:center;padding:12px 0"> <a href="https://www.linkedin.com/in/mahibala-h" target="_blank" rel="noopener" style="margin:0 6px">Linkedin</a> <a href="https://x.com/HMahibala42802" target="_blank" rel="noopener" style="margin:0 6px">Twitter</a> <a href="https://www.youtube.com/@echo14-w3y" target="_blank" rel="noopener" style="margin:0 6px">Youtube</a> <a href="https://www.instagram.com/ig_balah?igsh=dXo4ank3OWxiaXVy" target="_blank" rel="noopener" style="margin:0 6px">Instagram</a> <a href="https://www.facebook.com/share/19qwy1GdmZ/" target="_blank" rel="noopener" style="margin:0 6px">Facebook</a></div>
 </body>
 </html>

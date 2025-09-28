@@ -62,7 +62,8 @@
             100% { transform: rotate(360deg); }
         }
     </style>
-</head>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "InfinityForge", "url": "https://infinityforge.tech", "logo": "https://infinityforge.tech/assets/letter-d.png", "sameAs": ["https://www.linkedin.com/in/mahibala-h", "https://x.com/HMahibala42802", "https://www.youtube.com/@echo14-w3y", "https://www.instagram.com/ig_balah?igsh=dXo4ank3OWxiaXVy", "https://www.facebook.com/share/19qwy1GdmZ/"]}</script>
+
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-FQ082B7887"></script>
 <script>
@@ -110,13 +111,13 @@
                     <button role="tab" class="tab-button tab-active flex-1 flex items-center justify-center py-4 px-2 sm:px-6 font-semibold text-gray-700 focus:outline-none" data-target="merge">
                         <i data-feather="copy" class="mr-2"></i><span class="truncate">Merge PDFs</span>
                     </button>
-                    <button role="tab" class="tab-button flex-1 flex items-center justify-center py-4 px-2 sm:px-6 font-semibold text-gray-500 hover:text-gray-700 focus:outline-none" data-target="split">
+                    <button role="tab" class="tab-button flex-1 flex items-center justify-center py-4 px-2 sm:px-6 font-semibold text-gray-600 hover:text-gray-700 focus:outline-none" data-target="split">
                         <i data-feather="scissors" class="mr-2"></i><span class="truncate">Split PDF</span>
                     </button>
-                    <button role="tab" class="tab-button flex-1 flex items-center justify-center py-4 px-2 sm:px-6 font-semibold text-gray-500 hover:text-gray-700 focus:outline-none" data-target="image-to-pdf">
+                    <button role="tab" class="tab-button flex-1 flex items-center justify-center py-4 px-2 sm:px-6 font-semibold text-gray-600 hover:text-gray-700 focus:outline-none" data-target="image-to-pdf">
                         <i data-feather="image" class="mr-2"></i><span class="truncate">Image to PDF</span>
                     </button>
-                    <button role="tab" class="tab-button flex-1 flex items-center justify-center py-4 px-2 sm:px-6 font-semibold text-gray-500 hover:text-gray-700 focus:outline-none" data-target="unlock">
+                    <button role="tab" class="tab-button flex-1 flex items-center justify-center py-4 px-2 sm:px-6 font-semibold text-gray-600 hover:text-gray-700 focus:outline-none" data-target="unlock">
                         <i data-feather="unlock" class="mr-2"></i><span class="truncate">Unlock PDF</span>
                     </button>
                 </div>
@@ -128,7 +129,7 @@
                 <div id="merge" role="tabpanel" class="tab-panel">
                     <h3 class="text-xl sm:text-2xl font-bold text-gray-800 mb-2">Merge Multiple PDFs</h3>
                     <p class="text-gray-600 mb-6">Combine several PDF files into a single document. Files are merged in the order they are selected.</p>
-                    <input type="file" id="merge-files" multiple accept=".pdf" class="block w-full text-sm text-gray-500 file:mr-4 file:py-3 file:px-5 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-100 file:text-blue-700 hover:file:bg-blue-200 cursor-pointer"/>
+                    <input type="file" id="merge-files" multiple accept=".pdf" class="block w-full text-sm text-gray-600 file:mr-4 file:py-3 file:px-5 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-100 file:text-blue-700 hover:file:bg-blue-200 cursor-pointer"/>
                     <div id="merge-preview" class="mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4"></div>
                     <button id="merge-btn" class="mt-6 w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 disabled:bg-gray-400 transition-transform transform hover:scale-105" disabled>
                         <i data-feather="copy" class="inline-block mr-2"></i>Merge PDFs
@@ -139,7 +140,7 @@
                 <div id="split" role="tabpanel" class="tab-panel hidden">
                     <h3 class="text-xl sm:text-2xl font-bold text-gray-800 mb-2">Split a PDF</h3>
                     <p class="text-gray-600 mb-6">Extract a range of pages or select individual pages from a PDF file.</p>
-                    <input type="file" id="split-file" accept=".pdf" class="block w-full text-sm text-gray-500 file:mr-4 file:py-3 file:px-5 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-100 file:text-blue-700 hover:file:bg-blue-200 cursor-pointer"/>
+                    <input type="file" id="split-file" accept=".pdf" class="block w-full text-sm text-gray-600 file:mr-4 file:py-3 file:px-5 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-100 file:text-blue-700 hover:file:bg-blue-200 cursor-pointer"/>
                     <div id="split-options" class="mt-6 hidden">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div class="space-y-4">
@@ -162,7 +163,7 @@
                 <div id="image-to-pdf" role="tabpanel" class="tab-panel hidden">
                     <h3 class="text-xl sm:text-2xl font-bold text-gray-800 mb-2">Convert Images to PDF</h3>
                     <p class="text-gray-600 mb-6">Upload JPG or PNG images to combine them into a single PDF document.</p>
-                    <input type="file" id="image-files" multiple accept="image/jpeg, image/png" class="block w-full text-sm text-gray-500 file:mr-4 file:py-3 file:px-5 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-100 file:text-blue-700 hover:file:bg-blue-200 cursor-pointer"/>
+                    <input type="file" id="image-files" multiple accept="image/jpeg, image/png" class="block w-full text-sm text-gray-600 file:mr-4 file:py-3 file:px-5 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-100 file:text-blue-700 hover:file:bg-blue-200 cursor-pointer"/>
                     <div id="image-preview" class="mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4"></div>
                     <button id="image-to-pdf-btn" class="mt-6 w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 disabled:bg-gray-400 transition-transform transform hover:scale-105" disabled>
                         <i data-feather="image" class="inline-block mr-2"></i>Convert to PDF
@@ -173,7 +174,7 @@
                 <div id="unlock" role="tabpanel" class="tab-panel hidden">
                     <h3 class="text-xl sm:text-2xl font-bold text-gray-800 mb-2">Unlock a PDF</h3>
                     <p class="text-gray-600 mb-6">Remove the password from a PDF file. You must provide the current password.</p>
-                    <input type="file" id="unlock-file" accept=".pdf" class="block w-full text-sm text-gray-500 file:mr-4 file:py-3 file:px-5 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-100 file:text-blue-700 hover:file:bg-blue-200 cursor-pointer"/>
+                    <input type="file" id="unlock-file" accept=".pdf" class="block w-full text-sm text-gray-600 file:mr-4 file:py-3 file:px-5 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-100 file:text-blue-700 hover:file:bg-blue-200 cursor-pointer"/>
                     <div id="unlock-options" class="mt-6 hidden">
                          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div class="space-y-4">
@@ -228,13 +229,13 @@
                     // Deactivate all tabs and hide all panels
                     tabs.forEach(t => {
                         t.classList.remove('tab-active', 'text-gray-700');
-                        t.classList.add('text-gray-500', 'hover:text-gray-700');
+                        t.classList.add('text-gray-600', 'hover:text-gray-700');
                     });
                     panels.forEach(p => p.classList.add('hidden'));
 
                     // Activate the clicked tab and show the corresponding panel
                     tab.classList.add('tab-active', 'text-gray-700');
-                    tab.classList.remove('text-gray-500', 'hover:text-gray-700');
+                    tab.classList.remove('text-gray-600', 'hover:text-gray-700');
                     
                     const target = tab.getAttribute('data-target');
                     const targetPanel = document.getElementById(target);
@@ -331,7 +332,7 @@
                         canvas.className = 'w-full h-auto rounded-md';
                         const fileName = document.createElement('p');
                         fileName.textContent = file.name;
-                        fileName.className = 'text-xs text-center text-gray-500 mt-1 truncate';
+                        fileName.className = 'text-xs text-center text-gray-600 mt-1 truncate';
                         fileContainer.appendChild(canvas);
                         fileContainer.appendChild(fileName);
                         mergePreview.appendChild(fileContainer);
@@ -370,7 +371,7 @@
                         <div class="loader"></div>
                         <div>
                             <p class="text-sm font-semibold text-gray-700">Merging PDFs...</p>
-                            <p class="text-xs text-gray-500" id="merge-progress">Preparing...</p>
+                            <p class="text-xs text-gray-600" id="merge-progress">Preparing...</p>
                         </div>
                     </div>
                 `;
@@ -559,7 +560,7 @@
                             img.className = 'w-full h-auto rounded-md object-contain';
                              const fileName = document.createElement('p');
                             fileName.textContent = file.name;
-                            fileName.className = 'text-xs text-center text-gray-500 mt-1 truncate';
+                            fileName.className = 'text-xs text-center text-gray-600 mt-1 truncate';
                             imgContainer.appendChild(img);
                             imgContainer.appendChild(fileName);
                             imagePreview.appendChild(imgContainer);
@@ -686,6 +687,8 @@
             });
         });
     </script>
+
+    <div class="site-socials" style="text-align:center;padding:12px 0"> <a href="https://www.linkedin.com/in/mahibala-h" target="_blank" rel="noopener" style="margin:0 6px">Linkedin</a> <a href="https://x.com/HMahibala42802" target="_blank" rel="noopener" style="margin:0 6px">Twitter</a> <a href="https://www.youtube.com/@echo14-w3y" target="_blank" rel="noopener" style="margin:0 6px">Youtube</a> <a href="https://www.instagram.com/ig_balah?igsh=dXo4ank3OWxiaXVy" target="_blank" rel="noopener" style="margin:0 6px">Instagram</a> <a href="https://www.facebook.com/share/19qwy1GdmZ/" target="_blank" rel="noopener" style="margin:0 6px">Facebook</a></div>
 </body>
 
 </html>

@@ -73,7 +73,8 @@
             box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
         }
     </style>
-</head>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "InfinityForge", "url": "https://infinityforge.tech", "logo": "https://infinityforge.tech/assets/letter-d.png", "sameAs": ["https://www.linkedin.com/in/mahibala-h", "https://x.com/HMahibala42802", "https://www.youtube.com/@echo14-w3y", "https://www.instagram.com/ig_balah?igsh=dXo4ank3OWxiaXVy", "https://www.facebook.com/share/19qwy1GdmZ/"]}</script>
+
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-FQ082B7887"></script>
 <script>
@@ -84,6 +85,25 @@
   gtag('config', 'G-FQ082B7887');
 </script>
 <body class="flex items-center justify-center p-4 sm:p-6">
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-consent" class="fixed bottom-0 left-0 right-0 bg-gray-800 text-white p-4 z-50 transform translate-y-full transition-transform duration-300" style="display: none;">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between">
+            <div class="mb-4 md:mb-0 md:mr-4">
+                <p class="text-sm">
+                    We use cookies to enhance your experience and analyze site traffic. By continuing to use this site, you consent to our use of cookies.
+                    <a href="privacy.html" class="underline hover:no-underline">Learn more</a>
+                </p>
+            </div>
+            <div class="flex space-x-2">
+                <button id="accept-cookies" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm font-medium transition-colors">
+                    Accept All
+                </button>
+                <button id="decline-cookies" class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded text-sm font-medium transition-colors">
+                    Decline
+                </button>
+            </div>
+        </div>
+    </div>
     <!-- Navbar -->
     <nav class="bg-white/80 backdrop-blur-md shadow-lg w-full fixed top-0 left-0 z-50">
         <div class="max-w-6xl mx-auto px-4">
@@ -132,12 +152,12 @@
                             <i data-feather="upload" class="text-blue-500 w-8 h-8"></i>
                         </div>
                         <h3 class="text-xl font-semibold text-gray-800 mb-2">Drag & Drop Image</h3>
-                        <p class="text-gray-500 mb-4">or click to browse files</p>
+                        <p class="text-gray-600 mb-4">or click to browse files</p>
                         <label for="fileInput" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-6 rounded-lg transition-colors duration-300 shadow-md">
                             Select Image
                         </label>
                         <input type="file" id="fileInput" class="hidden" accept="image/*">
-                        <p id="fileName" class="mt-4 text-sm text-gray-500 truncate max-w-full">No file selected</p>
+                        <p id="fileName" class="mt-4 text-sm text-gray-600 truncate max-w-full">No file selected</p>
                     </div>
 
                     <!-- Settings Panel -->
@@ -212,7 +232,7 @@
                         <div class="mx-auto w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center mb-4">
                             <i data-feather="image" class="text-gray-400 w-8 h-8"></i>
                         </div>
-                        <h3 class="text-xl font-semibold text-gray-500 mb-2">Image Preview</h3>
+                        <h3 class="text-xl font-semibold text-gray-600 mb-2">Image Preview</h3>
                         <p class="text-gray-400">Your resized image will appear here</p>
                     </div>
                     
@@ -222,7 +242,7 @@
                                 <i data-feather="check-circle" class="w-5 h-5 mr-2 text-green-500"></i>
                                 Resized Image
                             </h3>
-                            <span id="dimensionsDisplay" class="text-sm text-gray-500"></span>
+                            <span id="dimensionsDisplay" class="text-sm text-gray-600"></span>
                         </div>
                         
                         <div class="relative bg-white p-4 rounded-lg shadow-inner border border-gray-200 mb-4">
@@ -259,26 +279,69 @@
                     <i data-feather="shield" class="text-blue-500 w-6 h-6"></i>
                 </div>
                 <h3 class="text-lg font-semibold text-gray-800 mb-2">Privacy First</h3>
-                <p class="text-gray-500">All processing happens in your browser. Your images never leave your device.</p>
+                <p class="text-gray-600">All processing happens locally in your browser using WebAssembly technology. Your images never leave your device, ensuring complete privacy and security for sensitive content.</p>
             </div>
             <div class="bg-white p-6 rounded-xl shadow-md" data-aos="fade-up" data-aos-delay="200">
                 <div class="w-12 h-12 bg-purple-50 rounded-full flex items-center justify-center mb-4">
                     <i data-feather="zap" class="text-purple-500 w-6 h-6"></i>
                 </div>
                 <h3 class="text-lg font-semibold text-gray-800 mb-2">Lightning Fast</h3>
-                <p class="text-gray-500">Resize images instantly with our optimized browser-based processing.</p>
+                <p class="text-gray-600">Powered by advanced browser APIs and optimized algorithms, our resizer processes images instantly without server round-trips or upload delays.</p>
             </div>
             <div class="bg-white p-6 rounded-xl shadow-md" data-aos="fade-up" data-aos-delay="300">
                 <div class="w-12 h-12 bg-green-50 rounded-full flex items-center justify-center mb-4">
                     <i data-feather="award" class="text-green-500 w-6 h-6"></i>
                 </div>
                 <h3 class="text-lg font-semibold text-gray-800 mb-2">Premium Quality</h3>
-                <p class="text-gray-500">Get high-quality resized images with our advanced resizing algorithm.</p>
+                <p class="text-gray-600">Our intelligent resizing algorithm maintains image quality and aspect ratios, using advanced interpolation techniques for professional results.</p>
+            </div>
+        </div>
+
+        <!-- Use Cases Section -->
+        <div class="mt-16 bg-gray-50 rounded-2xl p-8" data-aos="fade-up">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Perfect For Every Creator</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">Social Media Managers</h3>
+                    <p class="text-gray-600 mb-4">Resize images for Instagram, Twitter, Facebook, and LinkedIn with precise dimensions. Maintain aspect ratios and optimize file sizes for faster loading.</p>
+                    <ul class="text-sm text-gray-600 space-y-1">
+                        <li>• Instagram posts: 1080×1080px</li>
+                        <li>• Instagram stories: 1080×1920px</li>
+                        <li>• Twitter header: 1500×500px</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">Web Designers</h3>
+                    <p class="text-gray-600 mb-4">Create responsive images for websites and applications. Generate multiple sizes for different screen resolutions and devices.</p>
+                    <ul class="text-sm text-gray-600 space-y-1">
+                        <li>• Thumbnails: 300×300px</li>
+                        <li>• Blog images: 800×600px</li>
+                        <li>• Hero banners: 1920×1080px</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">Photographers</h3>
+                    <p class="text-gray-600 mb-4">Prepare photos for print or digital portfolios. Resize high-resolution images while maintaining professional quality and color accuracy.</p>
+                    <ul class="text-sm text-gray-600 space-y-1">
+                        <li>• Print photos: 300 DPI</li>
+                        <li>• Web galleries: 72 DPI</li>
+                        <li>• Email attachments: Under 2MB</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">Content Creators</h3>
+                    <p class="text-gray-600 mb-4">Optimize images for YouTube thumbnails, blog posts, and digital marketing materials. Ensure fast loading times without quality loss.</p>
+                    <ul class="text-sm text-gray-600 space-y-1">
+                        <li>• YouTube thumbnails: 1280×720px</li>
+                        <li>• Blog featured images: 1200×630px</li>
+                        <li>• Email newsletters: 600×400px</li>
+                    </ul>
+                </div>
             </div>
         </div>
 
         <!-- Footer -->
-        <div class="text-center mt-12 text-gray-500 text-sm" data-aos="fade-up">
+        <div class="text-center mt-12 text-gray-600 text-sm" data-aos="fade-up">
         <p>Made with <i data-feather="heart" class="w-4 h-4 inline text-red-400"></i> for creators worldwide</p>
     </main>
         </div>
@@ -496,6 +559,72 @@
                 resetButton.click();
             }
         });
+
+        // Cookie Consent Management
+        function setCookie(name, value, days) {
+            const expires = new Date();
+            expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
+            document.cookie = name + '=' + value + ';expires=' + expires.toUTCString() + ';path=/';
+        }
+
+        function getCookie(name) {
+            const nameEQ = name + '=';
+            const ca = document.cookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+
+        function showCookieConsent() {
+            const consent = getCookie('cookie-consent');
+            if (!consent) {
+                const banner = document.getElementById('cookie-consent');
+                banner.style.display = 'block';
+                setTimeout(() => {
+                    banner.classList.remove('translate-y-full');
+                }, 100);
+            }
+        }
+
+        function hideCookieConsent() {
+            const banner = document.getElementById('cookie-consent');
+            banner.classList.add('translate-y-full');
+            setTimeout(() => {
+                banner.style.display = 'none';
+            }, 300);
+        }
+
+        // Initialize cookie consent
+        document.addEventListener('DOMContentLoaded', function() {
+            showCookieConsent();
+
+            document.getElementById('accept-cookies').addEventListener('click', function() {
+                setCookie('cookie-consent', 'accepted', 365);
+                hideCookieConsent();
+                // Enable Google Analytics if it was disabled
+                if (typeof gtag !== 'undefined') {
+                    gtag('consent', 'update', {
+                        'analytics_storage': 'granted'
+                    });
+                }
+            });
+
+            document.getElementById('decline-cookies').addEventListener('click', function() {
+                setCookie('cookie-consent', 'declined', 365);
+                hideCookieConsent();
+                // Disable Google Analytics
+                if (typeof gtag !== 'undefined') {
+                    gtag('consent', 'update', {
+                        'analytics_storage': 'denied'
+                    });
+                }
+            });
+        });
     </script>
+
+    <div class="site-socials" style="text-align:center;padding:12px 0"> <a href="https://www.linkedin.com/in/mahibala-h" target="_blank" rel="noopener" style="margin:0 6px">Linkedin</a> <a href="https://x.com/HMahibala42802" target="_blank" rel="noopener" style="margin:0 6px">Twitter</a> <a href="https://www.youtube.com/@echo14-w3y" target="_blank" rel="noopener" style="margin:0 6px">Youtube</a> <a href="https://www.instagram.com/ig_balah?igsh=dXo4ank3OWxiaXVy" target="_blank" rel="noopener" style="margin:0 6px">Instagram</a> <a href="https://www.facebook.com/share/19qwy1GdmZ/" target="_blank" rel="noopener" style="margin:0 6px">Facebook</a></div>
 </body>
 </html>

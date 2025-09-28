@@ -5,6 +5,7 @@
     <link rel="icon" type="image/png" href="images/letter-d.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daedalus - About Us | Free Online Image & PDF Tools Suite</title>
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="description" content="About Daedalus: Free online tools for image editing, PDF conversion, and document management. Privacy-focused, no uploads, no watermarks. Perfect for creators and professionals.">
     <meta name="keywords" content="image resizer, image compressor, free online tools, privacy, Daedalus, browser-based, no watermark, fast image editing">
     <meta name="robots" content="index, follow">
@@ -20,6 +21,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <meta name="google-adsense-account" content="ca-pub-3135787759848459">
+    <!-- Structured Data -->
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "InfinityForge", "url": "https://infinityforge.tech", "logo": "https://infinityforge.tech/assets/letter-d.png", "sameAs": ["https://www.linkedin.com/in/mahibala-h", "https://x.com/HMahibala42802", "https://www.youtube.com/@echo14-w3y", "https://www.instagram.com/ig_balah?igsh=dXo4ank3OWxiaXVy", "https://www.facebook.com/share/19qwy1GdmZ/"]}</script>
 </head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-FQ082B7887"></script>
@@ -28,9 +31,34 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
+  // Set default consent state
+  gtag('consent', 'default', {
+    'analytics_storage': 'denied'
+  });
+
   gtag('config', 'G-FQ082B7887');
 </script>
 <body class="bg-gray-50 font-poppins">
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-consent" class="fixed bottom-0 left-0 right-0 bg-gray-800 text-white p-4 z-50 transform translate-y-full transition-transform duration-300" style="display: none;">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between">
+            <div class="mb-4 md:mb-0 md:mr-4">
+                <p class="text-sm">
+                    We use cookies to enhance your experience and analyze site traffic. By continuing to use this site, you consent to our use of cookies.
+                    <a href="privacy.html" class="underline hover:no-underline">Learn more</a>
+                </p>
+            </div>
+            <div class="flex space-x-2">
+                <button id="accept-cookies" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm font-medium transition-colors">
+                    Accept All
+                </button>
+                <button id="decline-cookies" class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded text-sm font-medium transition-colors">
+                    Decline
+                </button>
+            </div>
+        </div>
+    </div>
+
     <nav class="bg-white/80 backdrop-blur-lg shadow-sm w-full fixed top-0 left-0 z-50" aria-label="Main Navigation">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
@@ -39,6 +67,7 @@
                     <a href="index.html" class="text-gray-700 hover:text-blue-600 font-medium">Home</a>
                     <a href="features.html" class="text-gray-700 hover:text-blue-600 font-medium">Features</a>
                     <a href="about.html" class="text-blue-600 font-medium">About</a>
+                    <a href="contact.html" class="text-gray-700 hover:text-blue-600 font-medium">Contact</a>
                 </div>
                 <div class="sm:hidden">
                     <button id="mobile-menu-button" class="text-gray-700 hover:text-blue-600 focus:outline-none">
@@ -52,9 +81,28 @@
             <a href="index.html" class="block py-2 px-4 text-sm text-gray-700 hover:bg-blue-50">Home</a>
             <a href="features.html" class="block py-2 px-4 text-sm text-gray-700 hover:bg-blue-50">Features</a>
             <a href="about.html" class="block py-2 px-4 text-sm text-blue-600 hover:bg-blue-50">About</a>
+            <a href="contact.html" class="block py-2 px-4 text-sm text-gray-700 hover:bg-blue-50">Contact</a>
         </div>
     </nav>
-    <main class="max-w-4xl mx-auto pt-24 pb-12 px-4" itemscope itemtype="https://schema.org/WebPage">
+
+    <!-- Breadcrumb Navigation -->
+    <nav aria-label="Breadcrumb" class="bg-gray-50 py-3">
+        <div class="max-w-4xl mx-auto px-4">
+                        <ol class="flex items-center space-x-2 text-sm text-gray-600">
+                <li>
+                    <a href="index.html" class="text-blue-600 hover:text-blue-800">Home</a>
+                </li>
+                <li class="flex items-center">
+                    <svg class="w-4 h-4 text-gray-400 mx-2" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="text-gray-600">About</span>
+                </li>
+            </ol>
+        </div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto pt-6 pb-12 px-4" itemscope itemtype="https://schema.org/WebPage">
         <h1 class="text-4xl font-bold text-gray-800 mb-8 text-center" itemprop="headline">About Daedalus</h1>
         
         <!-- Mission Statement -->
@@ -151,7 +199,7 @@
 
                 <h3 class="text-xl font-semibold mb-3 text-gray-800">Browser-First Approach</h3>
                 <p class="mb-4 text-gray-700">
-                    By leveraging modern web technologies like WebAssembly, Canvas API, and advanced JavaScript libraries,
+                    By leveraging modern web technologies like <a href="https://developer.mozilla.org/en-US/docs/WebAssembly" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">WebAssembly</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Canvas API</a>, and advanced JavaScript libraries such as <a href="https://www.tensorflow.org/js" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">TensorFlow.js</a>,
                     we've created tools that rival desktop applications in functionality while maintaining the convenience
                     of web-based access. This approach eliminates the need for downloads, installations, or software updates,
                     making our tools instantly accessible across all devices and platforms.
@@ -162,7 +210,7 @@
                     Privacy isn't just a feature—it's our foundation. Unlike traditional online tools that upload your
                     files to remote servers, Daedalus processes everything locally in your browser. Your images never
                     leave your device, ensuring complete confidentiality for sensitive business documents, personal photos,
-                    and creative projects.
+                    and creative projects. We follow <a href="https://www.eff.org/privacy" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Electronic Frontier Foundation</a> privacy best practices and comply with GDPR standards.
                 </p>
 
                 <h3 class="text-xl font-semibold mb-3 text-gray-800">Continuous Innovation</h3>
@@ -199,6 +247,44 @@
             </div>
         </div>
 
+        <!-- Team Section -->
+        <div class="bg-white p-8 rounded-xl shadow-md mb-8">
+            <div class="flex items-center justify-center mb-6">
+                <i data-feather="users" class="w-12 h-12 text-green-600" aria-label="Team users icon"></i>
+            </div>
+            <h2 class="text-2xl font-semibold text-gray-800 mb-6 text-center">Meet the Team</h2>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Developer -->
+                <div class="text-center">
+                    <div class="w-24 h-24 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <i data-feather="code" class="w-12 h-12 text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Development Team</h3>
+                    <p class="text-gray-600 mb-3">Experienced web developers and AI specialists</p>
+                    <p class="text-sm text-gray-600">Our team combines expertise in modern web technologies, machine learning, and user experience design to create tools that are both powerful and intuitive.</p>
+                </div>
+
+                <!-- Support -->
+                <div class="text-center">
+                    <div class="w-24 h-24 bg-gradient-to-br from-green-500 to-blue-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                        <i data-feather="headphones" class="w-12 h-12 text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Support & Community</h3>
+                    <p class="text-gray-600 mb-3">Dedicated to helping users succeed</p>
+                    <p class="text-sm text-gray-600">We provide responsive support and actively engage with our community to improve our tools based on real user feedback and needs.</p>
+                </div>
+            </div>
+
+            <div class="mt-8 text-center">
+                <h3 class="text-lg font-semibold text-gray-800 mb-3">Get In Touch</h3>
+                <p class="text-gray-600 mb-4">Have questions, feedback, or suggestions? We'd love to hear from you!</p>
+                <a href="contact.html" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-6 rounded-lg transition-colors duration-300">
+                    Contact Us
+                </a>
+            </div>
+        </div>
+
         <!-- Social Media Section -->
         <div class="bg-white p-8 rounded-xl shadow-md mb-8">
             <h2 class="text-2xl font-semibold text-gray-800 mb-6 text-center">Follow Our Journey</h2>
@@ -207,25 +293,25 @@
                 about digital content creation. Join our community of creators and professionals.
             </p>
             <div class="flex justify-center space-x-8">
-                <a href="https://www.youtube.com/@daedalustools" target="_blank" rel="noopener noreferrer" class="text-red-600 hover:text-red-800 transition-colors">
+                <a href="https://www.youtube.com/@echo14-w3y" target="_blank" rel="noopener noreferrer" class="text-red-600 hover:text-red-800 transition-colors">
                     <i data-feather="youtube" class="w-10 h-10" aria-label="YouTube"></i>
                 </a>
-                <a href="https://www.twitter.com/daedalustools" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-600 transition-colors">
+                <a href="https://x.com/HMahibala42802" target="_blank" rel="noopener noreferrer" class="text-blue-400 hover:text-blue-600 transition-colors">
                     <i data-feather="twitter" class="w-10 h-10" aria-label="Twitter"></i>
                 </a>
-                <a href="https://www.linkedin.com/company/daedalustools" target="_blank" rel="noopener noreferrer" class="text-blue-700 hover:text-blue-900 transition-colors">
+                <a href="https://www.linkedin.com/in/mahibala-h" target="_blank" rel="noopener noreferrer" class="text-blue-700 hover:text-blue-900 transition-colors">
                     <i data-feather="linkedin" class="w-10 h-10" aria-label="LinkedIn"></i>
                 </a>
-                <a href="https://www.instagram.com/daedalustools" target="_blank" rel="noopener noreferrer" class="text-pink-600 hover:text-pink-800 transition-colors">
+                <a href="https://www.instagram.com/ig_balah?igsh=dXo4ank3OWxiaXVy" target="_blank" rel="noopener noreferrer" class="text-pink-600 hover:text-pink-800 transition-colors">
                     <i data-feather="instagram" class="w-10 h-10" aria-label="Instagram"></i>
                 </a>
-                <a href="https://www.facebook.com/daedalustools" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800 transition-colors">
+                <a href="https://www.facebook.com/share/19qwy1GdmZ/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800 transition-colors">
                     <i data-feather="facebook" class="w-10 h-10" aria-label="Facebook"></i>
                 </a>
             </div>
         </div>
 
-        <div class="mt-12 text-center text-gray-500 text-sm">
+        <div class="mt-12 text-center text-gray-600 text-sm">
             <p>Made with <span class="text-red-400">♥</span> for creators worldwide</p>
             <div class="mt-2">
                 <a href="privacy.html" class="hover:underline mx-2">Privacy Policy</a>
@@ -234,6 +320,70 @@
         </div>
     </main>
     <script>
+        // Cookie Consent Management
+        function setCookie(name, value, days) {
+            const expires = new Date();
+            expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
+            document.cookie = name + '=' + value + ';expires=' + expires.toUTCString() + ';path=/';
+        }
+
+        function getCookie(name) {
+            const nameEQ = name + '=';
+            const ca = document.cookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+
+        function showCookieConsent() {
+            const consent = getCookie('cookie-consent');
+            if (!consent) {
+                const banner = document.getElementById('cookie-consent');
+                banner.style.display = 'block';
+                setTimeout(() => {
+                    banner.classList.remove('translate-y-full');
+                }, 100);
+            }
+        }
+
+        function hideCookieConsent() {
+            const banner = document.getElementById('cookie-consent');
+            banner.classList.add('translate-y-full');
+            setTimeout(() => {
+                banner.style.display = 'none';
+            }, 300);
+        }
+
+        // Initialize cookie consent
+        document.addEventListener('DOMContentLoaded', function() {
+            showCookieConsent();
+
+            document.getElementById('accept-cookies').addEventListener('click', function() {
+                setCookie('cookie-consent', 'accepted', 365);
+                hideCookieConsent();
+                // Enable Google Analytics if it was disabled
+                if (typeof gtag !== 'undefined') {
+                    gtag('consent', 'update', {
+                        'analytics_storage': 'granted'
+                    });
+                }
+            });
+
+            document.getElementById('decline-cookies').addEventListener('click', function() {
+                setCookie('cookie-consent', 'declined', 365);
+                hideCookieConsent();
+                // Disable Google Analytics
+                if (typeof gtag !== 'undefined') {
+                    gtag('consent', 'update', {
+                        'analytics_storage': 'denied'
+                    });
+                }
+            });
+        });
+
         // Defer initialization until page loads to improve INP
         window.addEventListener('load', function() {
             // Initialize Feather Icons

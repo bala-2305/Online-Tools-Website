@@ -51,7 +51,8 @@
             transform: scale(1.02);
         }
     </style>
-</head>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "InfinityForge", "url": "https://infinityforge.tech", "logo": "https://infinityforge.tech/assets/letter-d.png", "sameAs": ["https://www.linkedin.com/in/mahibala-h", "https://x.com/HMahibala42802", "https://www.youtube.com/@echo14-w3y", "https://www.instagram.com/ig_balah?igsh=dXo4ank3OWxiaXVy", "https://www.facebook.com/share/19qwy1GdmZ/"]}</script>
+
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-FQ082B7887"></script>
 <script>
@@ -103,12 +104,12 @@
                         <i data-feather="file-text" class="text-blue-500 w-8 h-8"></i>
                     </div>
                     <h3 class="text-xl font-semibold text-gray-800 mb-2">Select PDF File</h3>
-                    <p class="text-gray-500 mb-4">Drag & drop your PDF here or click to browse</p>
+                    <p class="text-gray-600 mb-4">Drag & drop your PDF here or click to browse</p>
                     <label for="pdfInput" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-6 rounded-lg transition-colors duration-300 shadow-md cursor-pointer">
                         Choose PDF File
                     </label>
                     <input type="file" id="pdfInput" class="hidden" accept=".pdf,application/pdf">
-                    <p id="fileName" class="mt-4 text-sm text-gray-500">No file selected</p>
+                    <p id="fileName" class="mt-4 text-sm text-gray-600">No file selected</p>
                 </div>
 
                 <!-- Conversion Settings -->
@@ -128,12 +129,12 @@
                         <div>
                             <label for="qualitySlider" class="block text-sm font-medium text-gray-700 mb-1">Quality (%)</label>
                             <input type="range" id="qualitySlider" min="10" max="100" value="90" class="w-full">
-                            <span id="qualityValue" class="text-sm text-gray-500">90%</span>
+                            <span id="qualityValue" class="text-sm text-gray-600">90%</span>
                         </div>
                         <div>
                             <label for="scaleSlider" class="block text-sm font-medium text-gray-700 mb-1">Scale</label>
                             <input type="range" id="scaleSlider" min="0.5" max="3" step="0.1" value="1.5" class="w-full">
-                            <span id="scaleValue" class="text-sm text-gray-500">1.5x</span>
+                            <span id="scaleValue" class="text-sm text-gray-600">1.5x</span>
                         </div>
                     </div>
                     <div class="mt-6">
@@ -148,7 +149,7 @@
                 <div id="progressDiv" class="mt-6 hidden">
                     <div class="flex justify-between items-center mb-2">
                         <span class="text-sm font-medium text-gray-700">Converting...</span>
-                        <span id="progressText" class="text-sm text-gray-500">0%</span>
+                        <span id="progressText" class="text-sm text-gray-600">0%</span>
                     </div>
                     <div class="w-full bg-gray-200 rounded-full h-2">
                         <div id="progressBar" class="bg-blue-600 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
@@ -186,7 +187,7 @@
             </div>
         </div>
 
-        <div class="mt-10 text-center text-gray-500 text-sm">
+        <div class="mt-10 text-center text-gray-600 text-sm">
             <p>Made with <span class="text-red-400">♥</span> for creators worldwide</p>
         </div>
     </main>
@@ -446,6 +447,8 @@
         // Make downloadSingle function global
         window.downloadSingle = downloadSingle;
     </script>
+
+    <div class="site-socials" style="text-align:center;padding:12px 0"> <a href="https://www.linkedin.com/in/mahibala-h" target="_blank" rel="noopener" style="margin:0 6px">Linkedin</a> <a href="https://x.com/HMahibala42802" target="_blank" rel="noopener" style="margin:0 6px">Twitter</a> <a href="https://www.youtube.com/@echo14-w3y" target="_blank" rel="noopener" style="margin:0 6px">Youtube</a> <a href="https://www.instagram.com/ig_balah?igsh=dXo4ank3OWxiaXVy" target="_blank" rel="noopener" style="margin:0 6px">Instagram</a> <a href="https://www.facebook.com/share/19qwy1GdmZ/" target="_blank" rel="noopener" style="margin:0 6px">Facebook</a></div>
 </body>
 
 </html>
