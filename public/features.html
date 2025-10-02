@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daedalus - Complete Tool Suite | Free Online Image & PDF Tools Directory</title>
     <link rel="icon" type="image/png" href="images/letter-d.png">
-    <meta name="description" content="Explore all Daedalus tools: Image resizer, compressor, converter, enhancer, filters, PDF tools, document converter, OCR, social media optimizer, QR code generator, GitHub repo visualizer, video to GIF creator, video cutter/trimmer, and more. Free, privacy-focused, no uploads required.">
-    <meta name="keywords" content="image resizer, image compressor, image converter, image enhancer, image filters, PDF converter, document converter, OCR, social media tools, QR code generator, GitHub visualizer, repository analyzer, video to gif, gif creator, video cutter, video trimmer, online video editor, free online tools, privacy, Daedalus, browser-based tools, no watermark, fast image editing, PDF tools, document processing">
+    <meta name="description" content="Explore all Daedalus tools: Image resizer, compressor, converter, enhancer, filters, PDF tools, document converter, OCR, social media optimizer, QR code generator, GitHub repo visualizer, code formatter, video to GIF creator, video cutter/trimmer, and more. Free, privacy-focused, no uploads required.">
+    <meta name="keywords" content="image resizer, image compressor, image converter, image enhancer, image filters, PDF converter, document converter, OCR, social media tools, QR code generator, GitHub visualizer, repository analyzer, code formatter, code beautifier, video to gif, gif creator, video cutter, video trimmer, online video editor, free online tools, privacy, Daedalus, browser-based tools, no watermark, fast image editing, PDF tools, document processing">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     <meta property="og:title" content="Daedalus - Complete Tool Suite | Free Online Image & PDF Tools Directory">
     <meta property="og:description" content="Access all Daedalus tools: Image editing, PDF processing, document conversion, and utilities. Free, fast, and privacy-focused. No uploads, no watermarks.">
@@ -134,6 +134,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script><style>/* Fluid scaling styles */:root {--fluid-font-size: clamp(14px, 2vw, 18px);--fluid-h1: clamp(1.5rem, 5vw, 3rem);--fluid-h2: clamp(1.25rem, 4vw, 2.5rem);--fluid-h3: clamp(1.125rem, 3vw, 2rem);--fluid-p: clamp(0.875rem, 2vw, 1rem);}body {font-size: var(--fluid-font-size);}h1 { font-size: var(--fluid-h1) !important; }h2 { font-size: var(--fluid-h2) !important; }h3 { font-size: var(--fluid-h3) !important; }p { font-size: var(--fluid-p) !important; }@media (max-width: 640px) {.container, .max-w-4xl, .max-w-6xl, .max-w-7xl {max-width: 95vw !important;margin-left: auto;margin-right: auto;}}</style><style>/* Fluid scaling styles */:root {--fluid-font-size: clamp(14px, 2vw, 18px);--fluid-h1: clamp(1.5rem, 5vw, 3rem);--fluid-h2: clamp(1.25rem, 4vw, 2.5rem);--fluid-h3: clamp(1.125rem, 3vw, 2rem);--fluid-p: clamp(0.875rem, 2vw, 1rem);}body {font-size: var(--fluid-font-size);}h1 { font-size: var(--fluid-h1) !important; }h2 { font-size: var(--fluid-h2) !important; }h3 { font-size: var(--fluid-h3) !important; }p { font-size: var(--fluid-p) !important; }@media (max-width: 640px) {.container, .max-w-4xl, .max-w-6xl, .max-w-7xl {max-width: 95vw !important;margin-left: auto;margin-right: auto;}}</style>
     <script defer src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <link rel="stylesheet" href="/css/responsive-fix.css">
 </head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-FQ082B7887"></script>
@@ -284,6 +285,15 @@
         <section class="mb-16">
             <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Image Tools</h2>
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow">
+                    <i data-feather="monitor" class="w-10 h-10 text-gray-700 mb-4" aria-label="Playground icon"></i>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">HTML Playground (Daedalus)</h3>
+                    <p class="text-gray-600 mb-4">Experiment with HTML, CSS, and JavaScript in a live, sandboxed editor. Run, debug, and export your pages directly from the browser.</p>
+                    <a href="html-playground.html" class="inline-flex items-center px-4 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-800 transition-colors">
+                        <span>Open Playground</span>
+                        <i data-feather="arrow-right" class="w-4 h-4 ml-2" aria-label="Go to playground"></i>
+                    </a>
+                </div>
                 <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow">
                     <i data-feather="maximize" class="w-10 h-10 text-blue-500 mb-4" aria-label="Resize icon"></i>
                     <h3 class="text-xl font-semibold text-gray-800 mb-2">Image Resizer</h3>
@@ -473,6 +483,16 @@
                 </div>
 
                 <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow">
+                    <i data-feather="code" class="w-10 h-10 text-indigo-500 mb-4" aria-label="Code icon"></i>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Code Formatter</h3>
+                    <p class="text-gray-600 mb-4">Format and beautify code for JavaScript, Python, HTML, CSS, JSON, XML, SQL, and more.</p>
+                    <a href="code-formatter.html" class="inline-flex items-center px-4 py-2 bg-indigo-500 text-white rounded-lg hover:bg-indigo-600 transition-colors">
+                        <span>Use Tool</span>
+                        <i data-feather="arrow-right" class="w-4 h-4 ml-2" aria-label="Go to tool"></i>
+                    </a>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow">
                     <i data-feather="video" class="w-10 h-10 text-red-500 mb-4" aria-label="Video icon"></i>
                     <h3 class="text-xl font-semibold text-gray-800 mb-2">Video to GIF Creator</h3>
                     <p class="text-gray-600 mb-4">Convert videos to animated GIFs with custom start time, duration, and quality settings.</p>
@@ -497,6 +517,16 @@
                     <h3 class="text-xl font-semibold text-gray-800 mb-2">Video Compressor</h3>
                     <p class="text-gray-600 mb-4">Compress videos to reduce file size while maintaining quality. Multiple compression presets available.</p>
                     <a href="video-compressor.html" class="inline-flex items-center px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors">
+                        <span>Use Tool</span>
+                        <i data-feather="arrow-right" class="w-4 h-4 ml-2" aria-label="Go to tool"></i>
+                    </a>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow">
+                    <i data-feather="play-circle" class="w-10 h-10 text-purple-500 mb-4" aria-label="Slideshow icon"></i>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Slideshow Video Maker</h3>
+                    <p class="text-gray-600 mb-4">Create stunning slideshow videos from your images with background music, transitions, and customizable settings.</p>
+                    <a href="slideshow-video-maker.html" class="inline-flex items-center px-4 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition-colors">
                         <span>Use Tool</span>
                         <i data-feather="arrow-right" class="w-4 h-4 ml-2" aria-label="Go to tool"></i>
                     </a>

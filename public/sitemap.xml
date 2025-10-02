@@ -123,6 +123,11 @@
   <priority>0.64</priority>
 </url>
 <url>
+  <loc>https://infiniteforge.tech/code-formatter.html</loc>
+  <lastmod>2025-10-02T00:00:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
   <loc>https://infiniteforge.tech/video-to-gif.html</loc>
   <lastmod>2025-10-02T00:00:00+00:00</lastmod>
   <priority>0.64</priority>
@@ -134,6 +139,11 @@
 </url>
 <url>
   <loc>https://infiniteforge.tech/video-compressor.html</loc>
+  <lastmod>2025-10-02T00:00:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://infiniteforge.tech/slideshow-video-maker.html</loc>
   <lastmod>2025-10-02T00:00:00+00:00</lastmod>
   <priority>0.64</priority>
 </url>
