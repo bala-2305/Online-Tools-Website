@@ -62,6 +62,169 @@
                 margin-right: auto;
             }
         }
+
+        /* Animations and Micro-interactions */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Apply animations on scroll */
+        .animate-fade-in-up {
+            animation: fadeInUp 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .animate-slide-in-left {
+            animation: slideInLeft 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+        .animate-slide-in-right {
+            animation: slideInRight 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Stagger animations */
+        .animate-delay-100 { animation-delay: 0.1s; }
+        .animate-delay-200 { animation-delay: 0.2s; }
+        .animate-delay-300 { animation-delay: 0.3s; }
+        .animate-delay-400 { animation-delay: 0.4s; }
+        .animate-delay-500 { animation-delay: 0.5s; }
+
+        /* Enhanced hover effects */
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+        }
+
+        /* Loading animation for buttons */
+        .btn-loading {
+            position: relative;
+            color: transparent !important;
+        }
+
+        .btn-loading::after {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            top: 50%;
+            left: 50%;
+            margin-left: -8px;
+            margin-top: -8px;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 1s linear infinite;
+        }
+
+        /* Gradient text animation */
+        .gradient-text {
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6, #06b6d4);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientShift 3s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
     </style>
     <script type="application/ld+json">{
         "@context": "https://schema.org",
@@ -152,7 +315,7 @@
                 "name": "What types of tools are available on Daedalus?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Daedalus offers a comprehensive suite of tools including image editing (resize, compress, convert, enhance, filters), PDF tools (convert, edit, compress, translate), OCR text extraction, QR code generation, social media optimization tools, and SEO tools (keyword analyzer, meta tag generator, Open Graph preview)."
+                    "text": "Daedalus offers a comprehensive suite of tools including image editing (resize, compress, convert, enhance, filters), PDF tools (convert, edit, compress, translate), OCR text extraction, QR code generation, social media optimization tools, SEO tools (keyword analyzer, meta tag generator, Open Graph preview), and utility tools (random number selector, tic tac toe game, memory card game, 2048 number puzzle, word guessing game, connect four game, typing speed test, website screenshot tool, HTML playground, regex tester, data validators)."
                 }
             },
             {
@@ -258,178 +421,720 @@
     </nav>
 
     <main class="w-full max-w-6xl mx-auto pt-20 px-4" itemscope itemtype="https://schema.org/WebPage">
-        <div class="text-center mb-10">
-            <h1 class="text-4xl sm:text-5xl font-bold text-gray-800 mb-3 flex justify-center items-center" itemprop="headline">
-                <img src="images/letter-d.png" alt="Daedalus Logo" class="w-12 h-12 sm:w-16 sm:h-16 mr-4">
-                <span class="text-blue-600">Daedalus</span>
-            </h1>
-            <h2 class="text-2xl font-semibold text-gray-700 mb-4">Explore Our Tools</h2>
-            <p class="text-lg text-gray-600 max-w-3xl mx-auto" itemprop="description">
-                Your ultimate suite of free online tools for image editing, document conversion, and more. Perfect for
-                creators, designers, and professionals.
-            </p>
-            <!-- Social Sharing Section -->
-            <div class="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-4 mb-8">
-                <span class="text-gray-600 font-medium mb-2 sm:mb-0">Share Daedalus:</span>
-                <div class="flex flex-wrap justify-center gap-2 sm:gap-4">
-                    <a href="https://twitter.com/intent/tweet?text=Check%20out%20Daedalus%20-%20Free%20online%20tools%20for%20image%20editing%20and%20PDF%20conversion!&url=https://infiniteforge.tech&via=DaedalusTools"
-                       target="_blank" class="inline-flex items-center px-3 py-2 bg-blue-500 hover:bg-blue-600 text-white text-sm font-medium rounded-lg transition-colors">
-                        <i data-feather="twitter" class="w-4 h-4 mr-2"></i>Twitter
+        <!-- Hero Section -->
+        <section class="relative overflow-hidden bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-800 rounded-3xl mb-16">
+            <div class="absolute inset-0 bg-black bg-opacity-20"></div>
+            <div class="absolute inset-0">
+                <div class="absolute top-10 left-10 w-20 h-20 bg-white bg-opacity-10 rounded-full blur-xl"></div>
+                <div class="absolute bottom-10 right-10 w-32 h-32 bg-white bg-opacity-10 rounded-full blur-xl"></div>
+                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-white bg-opacity-5 rounded-full blur-2xl"></div>
+            </div>
+            <div class="relative z-10 py-20 px-6 text-center text-white">
+                <div class="flex justify-center items-center mb-6">
+                    <img src="images/letter-d.png" alt="Daedalus Logo" class="w-16 h-16 sm:w-20 sm:h-20 mr-4 drop-shadow-lg">
+                    <h1 class="text-5xl sm:text-6xl font-bold bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent" itemprop="headline">
+                        Daedalus
+                    </h1>
+                </div>
+                <h2 class="text-2xl sm:text-3xl font-semibold mb-6 text-blue-100">Your Ultimate Online Tool Suite</h2>
+                <p class="text-xl text-blue-100 max-w-3xl mx-auto mb-8 leading-relaxed" itemprop="description">
+                    Discover a comprehensive collection of free online tools for image editing, document conversion, and creative workflows.
+                    No uploads, no watermarks—just powerful tools that work in your browser.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+                    <a href="features.html" class="bg-white text-blue-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                        Explore Tools
+                        <i data-feather="arrow-right" class="w-5 h-5 ml-2 inline"></i>
                     </a>
-                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://infiniteforge.tech"
-                       target="_blank" class="inline-flex items-center px-3 py-2 bg-blue-700 hover:bg-blue-800 text-white text-sm font-medium rounded-lg transition-colors">
-                        <i data-feather="facebook" class="w-4 h-4 mr-2"></i>Facebook
+                    <a href="#tools" class="border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-blue-600 transition-all duration-300">
+                        Get Started Free
                     </a>
-                    <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://infiniteforge.tech"
-                       target="_blank" class="inline-flex items-center px-3 py-2 bg-blue-800 hover:bg-blue-900 text-white text-sm font-medium rounded-lg transition-colors">
-                        <i data-feather="linkedin" class="w-4 h-4 mr-2"></i>LinkedIn
+                </div>
+                <!-- Social Sharing Section -->
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-4">
+                    <span class="text-blue-200 font-medium mb-2 sm:mb-0">Share Daedalus:</span>
+                    <div class="flex flex-wrap justify-center gap-2 sm:gap-3">
+                        <a href="https://twitter.com/intent/tweet?text=Check%20out%20Daedalus%20-%20Free%20online%20tools%20for%20image%20editing%20and%20PDF%20conversion!&url=https://infiniteforge.tech&via=DaedalusTools"
+                           target="_blank" class="inline-flex items-center px-4 py-2 bg-white bg-opacity-20 hover:bg-opacity-30 text-white text-sm font-medium rounded-full transition-all duration-300 backdrop-blur-sm">
+                            <i data-feather="twitter" class="w-4 h-4 mr-2"></i>Twitter
+                        </a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=https://infiniteforge.tech"
+                           target="_blank" class="inline-flex items-center px-4 py-2 bg-white bg-opacity-20 hover:bg-opacity-30 text-white text-sm font-medium rounded-full transition-all duration-300 backdrop-blur-sm">
+                            <i data-feather="facebook" class="w-4 h-4 mr-2"></i>Facebook
+                        </a>
+                        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://infiniteforge.tech"
+                           target="_blank" class="inline-flex items-center px-4 py-2 bg-white bg-opacity-20 hover:bg-opacity-30 text-white text-sm font-medium rounded-full transition-all duration-300 backdrop-blur-sm">
+                            <i data-feather="linkedin" class="w-4 h-4 mr-2"></i>LinkedIn
+                        </a>
+                        <a href="https://wa.me/?text=Check%20out%20Daedalus%20-%20Free%20online%20tools%20for%20creators!%20https://infiniteforge.tech"
+                           target="_blank" class="inline-flex items-center px-4 py-2 bg-white bg-opacity-20 hover:bg-opacity-30 text-white text-sm font-medium rounded-full transition-all duration-300 backdrop-blur-sm">
+                            <i data-feather="message-circle" class="w-4 h-4 mr-2"></i>WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Tool Categories Section -->
+        <section id="tools" class="mb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">Powerful Tools for Every Need</h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Choose from our comprehensive collection of tools designed to streamline your creative workflow
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Image Tools Card -->
+                <div class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl p-8 text-center transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 animate-fade-in-up animate-delay-100">
+                    <div class="relative mb-6">
+                        <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <i data-feather="image" class="w-10 h-10 text-white"></i>
+                        </div>
+                        <div class="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
+                            <i data-feather="check" class="w-3 h-3 text-white"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3">Image Tools</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        Professional image editing tools including resize, compress, enhance, filters, background removal, and format conversion.
+                    </p>
+                    <div class="space-y-2 mb-6">
+                        <div class="flex items-center text-sm text-gray-500">
+                            <i data-feather="check-circle" class="w-4 h-4 text-green-500 mr-2"></i>
+                            Resize & Compress
+                        </div>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <i data-feather="check-circle" class="w-4 h-4 text-green-500 mr-2"></i>
+                            Background Removal
+                        </div>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <i data-feather="check-circle" class="w-4 h-4 text-green-500 mr-2"></i>
+                            Format Conversion
+                        </div>
+                    </div>
+                    <a href="features.html" class="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl transition-colors duration-300 group-hover:shadow-lg">
+                        Explore Image Tools
+                        <i data-feather="arrow-right" class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"></i>
                     </a>
-                    <a href="https://wa.me/?text=Check%20out%20Daedalus%20-%20Free%20online%20tools%20for%20creators!%20https://infiniteforge.tech"
-                       target="_blank" class="inline-flex items-center px-3 py-2 bg-green-600 hover:bg-green-700 text-white text-sm font-medium rounded-lg transition-colors">
-                        <i data-feather="message-circle" class="w-4 h-4 mr-2"></i>WhatsApp
+                </div>
+
+                <!-- Document Tools Card -->
+                <div class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl p-8 text-center transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 animate-fade-in-up animate-delay-200">
+                    <div class="relative mb-6">
+                        <div class="w-20 h-20 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <i data-feather="file-text" class="w-10 h-10 text-white"></i>
+                        </div>
+                        <div class="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
+                            <i data-feather="check" class="w-3 h-3 text-white"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3">Document Tools</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        Complete PDF toolkit with conversion, editing, compression, translation, and OCR text extraction capabilities.
+                    </p>
+                    <div class="space-y-2 mb-6">
+                        <div class="flex items-center text-sm text-gray-500">
+                            <i data-feather="check-circle" class="w-4 h-4 text-green-500 mr-2"></i>
+                            PDF Conversion
+                        </div>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <i data-feather="check-circle" class="w-4 h-4 text-green-500 mr-2"></i>
+                            OCR Text Extraction
+                        </div>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <i data-feather="check-circle" class="w-4 h-4 text-green-500 mr-2"></i>
+                            Document Translation
+                        </div>
+                    </div>
+                    <a href="features.html" class="inline-flex items-center px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-xl transition-colors duration-300 group-hover:shadow-lg">
+                        Explore Document Tools
+                        <i data-feather="arrow-right" class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+
+                <!-- Utility Tools Card -->
+                <div class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl p-8 text-center transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 animate-fade-in-up animate-delay-300">
+                    <div class="relative mb-6">
+                        <div class="w-20 h-20 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                            <i data-feather="tool" class="w-10 h-10 text-white"></i>
+                        </div>
+                        <div class="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
+                            <i data-feather="check" class="w-3 h-3 text-white"></i>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3">Utility Tools</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        Essential utilities including SEO tools, QR code generation, social media optimization, and fun games.
+                    </p>
+                    <div class="space-y-2 mb-6">
+                        <div class="flex items-center text-sm text-gray-500">
+                            <i data-feather="check-circle" class="w-4 h-4 text-green-500 mr-2"></i>
+                            SEO & Meta Tools
+                        </div>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <i data-feather="check-circle" class="w-4 h-4 text-green-500 mr-2"></i>
+                            QR Code Generator
+                        </div>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <i data-feather="check-circle" class="w-4 h-4 text-green-500 mr-2"></i>
+                            Social Media Tools
+                        </div>
+                    </div>
+                    <a href="features.html" class="inline-flex items-center px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-xl transition-colors duration-300 group-hover:shadow-lg">
+                        Explore Utility Tools
+                        <i data-feather="arrow-right" class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"></i>
                     </a>
                 </div>
             </div>
-        </div>
-        <div class="grid md:grid-cols-3 gap-6">
-            <div class="bg-white rounded-lg shadow-md p-6 text-center">
-                <div class="flex justify-center mb-4">
-                    <i data-feather="image" class="w-12 h-12 text-blue-500" aria-label="Image tools icon"></i>
+
+            <!-- AI Tools Section -->
+            <div class="mt-16">
+                <div class="text-center mb-8">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-2">✨ AI-Powered Tools</h3>
+                    <p class="text-gray-600">Experience the future of content creation with our AI tools</p>
                 </div>
-                <h3 class="text-xl font-semibold text-gray-800 mb-2">Image Tools</h3>
-                <p class="text-gray-600 mb-4">Resize, compress, and enhance your images effortlessly.</p>
-                <a href="features.html" class="text-blue-500 hover:underline">Explore Image Tools</a>
-            </div>
-            <div class="bg-white rounded-lg shadow-md p-6 text-center">
-                <div class="flex justify-center mb-4">
-                    <i data-feather="file-text" class="w-12 h-12 text-blue-500" aria-label="Document tools icon"></i>
+
+                <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                    <!-- Landing Page Builder Card -->
+                    <div class="group bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl shadow-lg hover:shadow-2xl p-8 text-center transition-all duration-300 transform hover:-translate-y-2 border border-indigo-100 animate-fade-in-up animate-delay-400">
+                        <div class="relative mb-6">
+                            <div class="w-20 h-20 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                                <i data-feather="layout" class="w-10 h-10 text-white"></i>
+                            </div>
+                            <div class="absolute -top-2 -right-2 w-6 h-6 bg-indigo-500 rounded-full flex items-center justify-center">
+                                <i data-feather="zap" class="w-3 h-3 text-white"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">Landing Page Builder with AI</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            Create stunning, professional landing pages in minutes with AI assistance. Perfect for businesses, products, and services.
+                        </p>
+                        <div class="space-y-2 mb-6">
+                            <div class="flex items-center text-sm text-gray-500 justify-center">
+                                <i data-feather="check-circle" class="w-4 h-4 text-indigo-500 mr-2"></i>
+                                AI-Generated Content
+                            </div>
+                            <div class="flex items-center text-sm text-gray-500 justify-center">
+                                <i data-feather="check-circle" class="w-4 h-4 text-indigo-500 mr-2"></i>
+                                Customizable Design
+                            </div>
+                            <div class="flex items-center text-sm text-gray-500 justify-center">
+                                <i data-feather="check-circle" class="w-4 h-4 text-indigo-500 mr-2"></i>
+                                Ready-to-Use HTML
+                            </div>
+                        </div>
+                        <a href="landing-page-builder.html" class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-semibold rounded-xl transition-all duration-300 group-hover:shadow-lg">
+                            Try AI Landing Page Builder
+                            <i data-feather="arrow-right" class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+
+                    <!-- AI Learning Assistant Card -->
+                    <div class="group bg-gradient-to-br from-emerald-50 to-teal-50 rounded-2xl shadow-lg hover:shadow-2xl p-8 text-center transition-all duration-300 transform hover:-translate-y-2 border border-emerald-100 animate-fade-in-up animate-delay-500">
+                        <div class="relative mb-6">
+                            <div class="w-20 h-20 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                                <i data-feather="book-open" class="w-10 h-10 text-white"></i>
+                            </div>
+                            <div class="absolute -top-2 -right-2 w-6 h-6 bg-emerald-500 rounded-full flex items-center justify-center">
+                                <i data-feather="brain" class="w-3 h-3 text-white"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">AI Learning Assistant</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            Get personalized learning support with AI. Generate study guides, explanations, and practice materials for any subject.
+                        </p>
+                        <div class="space-y-2 mb-6">
+                            <div class="flex items-center text-sm text-gray-500 justify-center">
+                                <i data-feather="check-circle" class="w-4 h-4 text-emerald-500 mr-2"></i>
+                                Personalized Learning
+                            </div>
+                            <div class="flex items-center text-sm text-gray-500 justify-center">
+                                <i data-feather="check-circle" class="w-4 h-4 text-emerald-500 mr-2"></i>
+                                Multiple Subjects
+                            </div>
+                            <div class="flex items-center text-sm text-gray-500 justify-center">
+                                <i data-feather="check-circle" class="w-4 h-4 text-emerald-500 mr-2"></i>
+                                24/7 Availability
+                            </div>
+                        </div>
+                        <a href="ai-learning-assistant.html" class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-semibold rounded-xl transition-all duration-300 group-hover:shadow-lg">
+                            Try AI Learning Assistant
+                            <i data-feather="arrow-right" class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
                 </div>
-                <h3 class="text-xl font-semibold text-gray-800 mb-2">Document Tools</h3>
-                <p class="text-gray-600 mb-4">Convert PDFs and manage your documents with ease.</p>
-                <a href="features.html" class="text-blue-500 hover:underline">Explore Document Tools</a>
             </div>
-            <div class="bg-white rounded-lg shadow-md p-6 text-center">
-                <div class="flex justify-center mb-4">
-                    <i data-feather="tool" class="w-12 h-12 text-blue-500" aria-label="Utility tools icon"></i>
-                </div>
-                <h3 class="text-xl font-semibold text-gray-800 mb-2">Utility Tools</h3>
-                <p class="text-gray-600 mb-4">Analyze images and optimize for social media.</p>
-                <a href="features.html" class="text-blue-500 hover:underline">Explore Utility Tools</a>
-            </div>
-        </div>
+        </section>
 
                 </div>
 
-        <!-- New Content Section: Why Choose Us -->
-        <section class="mt-16 bg-blue-50 py-12">
-            <div class="max-w-4xl mx-auto text-center">
-                <h2 class="text-3xl font-bold text-gray-800 mb-6">Why Choose Daedalus?</h2>
-                <p class="text-gray-600 mb-8">Daedalus offers a seamless experience with no uploads, no watermarks, and
-                    completely free tools designed for creators and professionals.</p>
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div class="bg-white rounded-lg shadow-md p-6">
-                        <div class="flex justify-center mb-4">
-                            <i data-feather="shield" class="w-12 h-12 text-blue-500"></i>
+        <!-- Why Choose Us Section -->
+        <section class="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+            <div class="max-w-6xl mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-gray-800 mb-4">Why Choose Daedalus?</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                        Experience the difference with our privacy-first approach, powerful features, and commitment to excellence
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8 mb-16">
+                    <!-- Privacy First Card -->
+                    <div class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl p-8 text-center transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 animate-slide-in-left animate-delay-100">
+                        <div class="relative mb-6">
+                            <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300">
+                                <i data-feather="shield" class="w-8 h-8 text-white"></i>
+                            </div>
+                            <div class="absolute -top-2 -right-2 w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <i data-feather="check" class="w-4 h-4 text-white"></i>
+                            </div>
                         </div>
-                        <h3 class="text-xl font-semibold text-gray-800 mb-2 text-center">Privacy First</h3>
-                        <p class="text-gray-600 text-center">All tools run in your browser, ensuring your data stays
-                            private.</p>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Privacy First</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            All tools run entirely in your browser. Your files never leave your device, ensuring complete privacy and security.
+                        </p>
+                        <div class="mt-6 flex justify-center">
+                            <div class="w-12 h-1 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full"></div>
+                        </div>
                     </div>
-                    <div class="bg-white rounded-lg shadow-md p-6">
-                        <div class="flex justify-center mb-4">
-                            <i data-feather="user-check" class="w-12 h-12 text-blue-500"></i>
+
+                    <!-- User-Friendly Card -->
+                    <div class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl p-8 text-center transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 animate-fade-in animate-delay-200">
+                        <div class="relative mb-6">
+                            <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300">
+                                <i data-feather="user-check" class="w-8 h-8 text-white"></i>
+                            </div>
+                            <div class="absolute -top-2 -right-2 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <i data-feather="check" class="w-4 h-4 text-white"></i>
+                            </div>
                         </div>
-                        <h3 class="text-xl font-semibold text-gray-800 mb-2 text-center">User-Friendly</h3>
-                        <p class="text-gray-600 text-center">Intuitive interfaces make it easy for anyone to use.</p>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">User-Friendly</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Intuitive interfaces designed for everyone. No technical expertise required—start creating immediately.
+                        </p>
+                        <div class="mt-6 flex justify-center">
+                            <div class="w-12 h-1 bg-gradient-to-r from-green-500 to-green-600 rounded-full"></div>
+                        </div>
                     </div>
-                    <div class="bg-white rounded-lg shadow-md p-6">
-                        <div class="flex justify-center mb-4">
-                            <i data-feather="gift" class="w-12 h-12 text-blue-500"></i>
+
+                    <!-- Completely Free Card -->
+                    <div class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl p-8 text-center transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 animate-slide-in-right animate-delay-300">
+                        <div class="relative mb-6">
+                            <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300">
+                                <i data-feather="gift" class="w-8 h-8 text-white"></i>
+                            </div>
+                            <div class="absolute -top-2 -right-2 w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <i data-feather="check" class="w-4 h-4 text-white"></i>
+                            </div>
                         </div>
-                        <h3 class="text-xl font-semibold text-gray-800 mb-2 text-center">Completely Free</h3>
-                        <p class="text-gray-600 text-center">No hidden fees or subscriptions—just free tools.</p>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Completely Free</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            No hidden fees, subscriptions, or premium features. All tools are free forever with no limitations.
+                        </p>
+                        <div class="mt-6 flex justify-center">
+                            <div class="w-12 h-1 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Benefits -->
+                <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12">
+                    <div class="grid md:grid-cols-2 gap-8 items-center">
+                        <div>
+                            <h3 class="text-3xl font-bold text-gray-800 mb-4">Built for Creators</h3>
+                            <p class="text-gray-600 mb-6 leading-relaxed">
+                                Daedalus is designed specifically for creators, designers, and professionals who need reliable,
+                                high-quality tools without the complexity of traditional software.
+                            </p>
+                            <div class="space-y-3">
+                                <div class="flex items-center">
+                                    <i data-feather="check-circle" class="w-5 h-5 text-green-500 mr-3"></i>
+                                    <span class="text-gray-700">No file uploads required</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i data-feather="check-circle" class="w-5 h-5 text-green-500 mr-3"></i>
+                                    <span class="text-gray-700">Works offline once loaded</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i data-feather="check-circle" class="w-5 h-5 text-green-500 mr-3"></i>
+                                    <span class="text-gray-700">Regular updates and new tools</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i data-feather="check-circle" class="w-5 h-5 text-green-500 mr-3"></i>
+                                    <span class="text-gray-700">Community-driven development</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-48 h-48 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <i data-feather="heart" class="w-24 h-24 text-blue-600"></i>
+                            </div>
+                            <p class="text-lg font-semibold text-gray-800">Made with love for creators worldwide</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Newsletter Signup Section -->
-        <section class="mt-16 bg-gradient-to-r from-blue-600 to-blue-800 py-12">
-            <div class="max-w-4xl mx-auto text-center px-4">
-                <h2 class="text-3xl font-bold text-white mb-4">Stay Updated with Daedalus</h2>
-                <p class="text-blue-100 mb-8 text-lg">Get notified about new tools, features, and tips for creators. Join our community!</p>
-                <div class="max-w-md mx-auto">
+        <section class="py-20 bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-800 relative overflow-hidden">
+            <div class="absolute inset-0">
+                <div class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-10"></div>
+                <div class="absolute top-10 right-10 w-32 h-32 bg-white bg-opacity-5 rounded-full blur-2xl"></div>
+                <div class="absolute bottom-10 left-10 w-24 h-24 bg-white bg-opacity-5 rounded-full blur-xl"></div>
+            </div>
+            <div class="relative z-10 max-w-4xl mx-auto text-center px-4">
+                <div class="mb-8">
+                    <i data-feather="mail" class="w-16 h-16 text-white mx-auto mb-4"></i>
+                    <h2 class="text-4xl font-bold text-white mb-4">Stay Updated with Daedalus</h2>
+                    <p class="text-blue-100 text-xl leading-relaxed max-w-2xl mx-auto">
+                        Get notified about new tools, features, and tips for creators. Join our growing community of satisfied users!
+                    </p>
+                </div>
+
+                <div class="max-w-lg mx-auto mb-12">
                     <form class="flex flex-col sm:flex-row gap-4" action="#" method="post">
                         <input type="email" placeholder="Enter your email address" required
-                               class="flex-1 px-4 py-3 rounded-lg border-0 focus:ring-2 focus:ring-blue-300 focus:outline-none">
-                        <button type="submit" class="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-colors whitespace-nowrap">
+                               class="flex-1 px-6 py-4 rounded-2xl border-0 focus:ring-2 focus:ring-white focus:outline-none text-gray-800 font-medium text-lg shadow-lg">
+                        <button type="submit" class="bg-white text-blue-600 px-8 py-4 rounded-2xl font-bold text-lg hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                            <i data-feather="send" class="w-5 h-5 mr-2 inline"></i>
                             Subscribe
                         </button>
                     </form>
-                    <p class="text-blue-200 text-sm mt-4">No spam, unsubscribe at any time. We respect your privacy.</p>
+                    <p class="text-blue-200 text-sm mt-4 flex items-center justify-center">
+                        <i data-feather="shield" class="w-4 h-4 mr-2"></i>
+                        No spam, unsubscribe at any time. We respect your privacy.
+                    </p>
                 </div>
-                <!-- Social Proof -->
-                <div class="mt-8 flex justify-center space-x-6">
-                    <div class="text-center">
-                        <div class="text-2xl font-bold text-white">10K+</div>
-                        <div class="text-blue-200 text-sm">Happy Users</div>
+
+                <!-- Enhanced Social Proof -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl mx-auto">
+                    <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-2xl p-6 border border-white border-opacity-20">
+                        <div class="text-3xl font-bold text-white mb-2">10K+</div>
+                        <div class="text-blue-200 text-sm font-medium">Happy Users</div>
+                        <div class="w-full bg-white bg-opacity-20 rounded-full h-1 mt-3">
+                            <div class="bg-white h-1 rounded-full w-4/5"></div>
+                        </div>
                     </div>
-                    <div class="text-center">
-                        <div class="text-2xl font-bold text-white">50+</div>
-                        <div class="text-blue-200 text-sm">Free Tools</div>
+                    <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-2xl p-6 border border-white border-opacity-20">
+                        <div class="text-3xl font-bold text-white mb-2">50+</div>
+                        <div class="text-blue-200 text-sm font-medium">Free Tools</div>
+                        <div class="w-full bg-white bg-opacity-20 rounded-full h-1 mt-3">
+                            <div class="bg-white h-1 rounded-full w-full"></div>
+                        </div>
                     </div>
-                    <div class="text-center">
-                        <div class="text-2xl font-bold text-white">4.9★</div>
-                        <div class="text-blue-200 text-sm">User Rating</div>
+                    <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-2xl p-6 border border-white border-opacity-20">
+                        <div class="text-3xl font-bold text-white mb-2">4.9★</div>
+                        <div class="text-blue-200 text-sm font-medium">User Rating</div>
+                        <div class="flex justify-center mt-3">
+                            <div class="flex space-x-1">
+                                <i data-feather="star" class="w-4 h-4 fill-current text-yellow-400"></i>
+                                <i data-feather="star" class="w-4 h-4 fill-current text-yellow-400"></i>
+                                <i data-feather="star" class="w-4 h-4 fill-current text-yellow-400"></i>
+                                <i data-feather="star" class="w-4 h-4 fill-current text-yellow-400"></i>
+                                <i data-feather="star" class="w-4 h-4 fill-current text-yellow-400"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white bg-opacity-10 backdrop-blur-sm rounded-2xl p-6 border border-white border-opacity-20">
+                        <div class="text-3xl font-bold text-white mb-2">24/7</div>
+                        <div class="text-blue-200 text-sm font-medium">Support</div>
+                        <div class="w-full bg-white bg-opacity-20 rounded-full h-1 mt-3">
+                            <div class="bg-white h-1 rounded-full w-3/4"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trust Indicators -->
+                <div class="mt-12 flex flex-wrap justify-center items-center gap-6 text-blue-200">
+                    <div class="flex items-center">
+                        <i data-feather="check-circle" class="w-5 h-5 mr-2 text-green-400"></i>
+                        <span class="text-sm font-medium">Privacy First</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i data-feather="check-circle" class="w-5 h-5 mr-2 text-green-400"></i>
+                        <span class="text-sm font-medium">No Ads</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i data-feather="check-circle" class="w-5 h-5 mr-2 text-green-400"></i>
+                        <span class="text-sm font-medium">Free Forever</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- New Content Section: Testimonials -->
-        <section class="mt-16 py-12">
-            <div class="max-w-4xl mx-auto text-center">
-                <h2 class="text-3xl font-bold text-gray-800 mb-6">What Our Users Say</h2>
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div class="bg-white rounded-lg shadow-md p-6">
-                        <p class="text-gray-600 italic">"Daedalus has transformed the way I work on images. It's fast,
-                            reliable, and so easy to use!"</p>
-                        <span class="block mt-4 text-gray-800 font-semibold">- Alex, Designer</span>
+        <!-- Testimonials Section -->
+        <section class="py-20 bg-gradient-to-br from-gray-50 via-white to-blue-50">
+            <div class="max-w-6xl mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-gray-800 mb-4">What Our Users Say</h2>
+                    <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                        Join thousands of creators who trust Daedalus for their daily creative needs
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8 mb-12">
+                    <!-- Testimonial 1 -->
+                    <div class="bg-white rounded-2xl shadow-lg p-8 border border-gray-100 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+                        <div class="flex items-center mb-6">
+                            <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mr-4">
+                                <span class="text-white font-bold text-lg">A</span>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex text-yellow-400 mb-1">
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                </div>
+                                <div class="text-sm text-gray-500">Verified User</div>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 italic leading-relaxed mb-4">
+                            "Daedalus has transformed the way I work on images. It's fast, reliable, and so easy to use! The privacy-first approach is exactly what I needed."
+                        </p>
+                        <div class="border-t pt-4">
+                            <div class="font-semibold text-gray-800">Alex Chen</div>
+                            <div class="text-sm text-gray-500">UI/UX Designer</div>
+                        </div>
                     </div>
-                    <div class="bg-white rounded-lg shadow-md p-6">
-                        <p class="text-gray-600 italic">"I love the privacy-first approach. No uploads mean I can work
-                            with sensitive files worry-free."</p>
-                        <span class="block mt-4 text-gray-800 font-semibold">- Jamie, Photographer</span>
+
+                    <!-- Testimonial 2 -->
+                    <div class="bg-white rounded-2xl shadow-lg p-8 border border-gray-100 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+                        <div class="flex items-center mb-6">
+                            <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center mr-4">
+                                <span class="text-white font-bold text-lg">J</span>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex text-yellow-400 mb-1">
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                </div>
+                                <div class="text-sm text-gray-500">Verified User</div>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 italic leading-relaxed mb-4">
+                            "I love the privacy-first approach. No uploads mean I can work with sensitive client files worry-free. The PDF tools are incredible!"
+                        </p>
+                        <div class="border-t pt-4">
+                            <div class="font-semibold text-gray-800">Jamie Rodriguez</div>
+                            <div class="text-sm text-gray-500">Professional Photographer</div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 3 -->
+                    <div class="bg-white rounded-2xl shadow-lg p-8 border border-gray-100 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+                        <div class="flex items-center mb-6">
+                            <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center mr-4">
+                                <span class="text-white font-bold text-lg">M</span>
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex text-yellow-400 mb-1">
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                    <i data-feather="star" class="w-4 h-4 fill-current"></i>
+                                </div>
+                                <div class="text-sm text-gray-500">Verified User</div>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 italic leading-relaxed mb-4">
+                            "As a content creator, Daedalus saves me hours every week. The image optimization and social media tools are game-changers!"
+                        </p>
+                        <div class="border-t pt-4">
+                            <div class="font-semibold text-gray-800">Marcus Thompson</div>
+                            <div class="text-sm text-gray-500">Content Creator</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Testimonials Carousel Style -->
+                <div class="bg-white rounded-2xl shadow-xl p-8">
+                    <div class="grid md:grid-cols-2 gap-8 items-center">
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-800 mb-4">Trusted by Professionals Worldwide</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-start">
+                                    <i data-feather="quote" class="w-6 h-6 text-blue-500 mr-3 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <p class="text-gray-600 italic">"The meta tag generator is a lifesaver for SEO work. Clean, fast, and accurate."</p>
+                                        <div class="text-sm text-gray-500 mt-2">- Sarah Kim, SEO Specialist</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <i data-feather="quote" class="w-6 h-6 text-green-500 mr-3 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <p class="text-gray-600 italic">"Finally, a QR code generator that doesn't require sign-ups or have annoying watermarks!"</p>
+                                        <div class="text-sm text-gray-500 mt-2">- David Park, Marketing Manager</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <i data-feather="quote" class="w-6 h-6 text-purple-500 mr-3 mt-1 flex-shrink-0"></i>
+                                    <div>
+                                        <p class="text-gray-600 italic">"The regex tester and HTML playground are perfect for developers. Simple and effective."</p>
+                                        <div class="text-sm text-gray-500 mt-2">- Lisa Chen, Web Developer</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <div class="relative">
+                                <div class="w-32 h-32 bg-gradient-to-br from-blue-100 to-purple-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                                    <i data-feather="users" class="w-16 h-16 text-blue-600"></i>
+                                </div>
+                                <div class="absolute -top-2 -right-2 w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
+                                    <i data-feather="trending-up" class="w-6 h-6 text-white"></i>
+                                </div>
+                            </div>
+                            <h4 class="text-xl font-bold text-gray-800 mb-2">Growing Community</h4>
+                            <p class="text-gray-600">Join over 10,000 creators who trust Daedalus for their daily creative needs</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
         <!-- Call-to-Action Section -->
-        <section class="mt-16 bg-gray-800 py-12 text-white text-center">
-            <h2 class="text-3xl font-bold mb-4">Ready to Get Started?</h2>
-            <p class="mb-6">Explore our tools and see how Daedalus can simplify your workflow.</p>
-            <a href="features.html"
-                class="bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-300">Explore
-                Features</a>
+        <section class="py-20 bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 text-white relative overflow-hidden">
+            <div class="absolute inset-0">
+                <div class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-30"></div>
+                <div class="absolute top-10 left-10 w-20 h-20 bg-white bg-opacity-5 rounded-full blur-xl"></div>
+                <div class="absolute bottom-10 right-10 w-32 h-32 bg-white bg-opacity-5 rounded-full blur-xl"></div>
+            </div>
+            <div class="relative z-10 max-w-4xl mx-auto text-center px-4">
+                <h2 class="text-4xl font-bold mb-6">Ready to Get Started?</h2>
+                <p class="text-xl text-blue-100 mb-8 max-w-2xl mx-auto leading-relaxed">
+                    Explore our tools and see how Daedalus can simplify your workflow. Join thousands of creators who trust us.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="features.html" class="bg-white text-blue-600 px-8 py-4 rounded-2xl font-bold text-lg hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                        <i data-feather="play" class="w-5 h-5 mr-2 inline"></i>
+                        Explore Features
+                    </a>
+                    <a href="#tools" class="border-2 border-white text-white px-8 py-4 rounded-2xl font-bold text-lg hover:bg-white hover:text-blue-600 transition-all duration-300">
+                        <i data-feather="tool" class="w-5 h-5 mr-2 inline"></i>
+                        Try Tools Now
+                    </a>
+                </div>
+            </div>
         </section>
-        <!-- Extra SEO paragraph to increase content length -->
-        <section class="mt-6 max-w-4xl mx-auto text-gray-700 text-base leading-7">
-            <p>
-                Daedalus brings together a flexible collection of browser-based utilities that help you edit images,
-                convert documents, compress PDFs, and optimize media for the web—without uploading files to a server.
-                Our tools are fast, privacy-first, and designed for makers who want reliable results without the
-                complexity. Whether you need to resize a photo for social media, remove a background, or convert a
-                document to PDF, Daedalus provides clear, easy-to-use tools that run right inside your browser.
-            </p>
+
+        <!-- SEO Content Section -->
+        <section class="py-16 bg-white">
+            <div class="max-w-4xl mx-auto px-4">
+                <div class="prose prose-lg mx-auto text-gray-700 leading-relaxed">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Why Daedalus Stands Out</h3>
+                    <p class="mb-6">
+                        Daedalus brings together a flexible collection of browser-based utilities that help you edit images,
+                        convert documents, compress PDFs, and optimize media for the web—without uploading files to a server.
+                        Our tools are fast, privacy-first, and designed for makers who want reliable results without the complexity.
+                    </p>
+                    <p class="mb-6">
+                        Whether you need to resize a photo for social media, remove a background, convert a document to PDF,
+                        generate QR codes, or optimize your website's meta tags, Daedalus provides clear, easy-to-use tools
+                        that run right inside your browser. No downloads, no installations, no waiting—just instant access
+                        to professional-grade creative tools.
+                    </p>
+                    <p>
+                        Join our growing community of creators, designers, developers, and professionals who rely on Daedalus
+                        for their daily creative and productivity needs. Experience the difference of privacy-first, free tools
+                        that respect your data and your time.
+                    </p>
+                </div>
+            </div>
         </section>
-        <div class="mt-10 text-center text-gray-600 text-sm">
-            <p>Made with <span class="text-red-400">♥</span> for creators worldwide</p>
-            <div class="mt-2">
-                <a href="privacy.html" class="hover:underline mx-2">Privacy Policy</a>
-                <a href="terms.html" class="hover:underline mx-2">Terms of Service</a>
+    </main>
+
+    <!-- Modern Footer -->
+    <footer class="bg-gray-900 text-white">
+        <!-- Main Footer Content -->
+        <div class="max-w-6xl mx-auto px-4 py-16">
+            <div class="grid md:grid-cols-4 gap-8">
+                <!-- Brand Section -->
+                <div class="md:col-span-1">
+                    <div class="flex items-center mb-6">
+                        <img src="images/letter-d.png" alt="Daedalus Logo" class="w-10 h-10 mr-3">
+                        <span class="text-2xl font-bold">Daedalus</span>
+                    </div>
+                    <p class="text-gray-400 mb-6 leading-relaxed">
+                        Free online tools for creators. Privacy-first, no uploads, no watermarks. Built for the modern creative workflow.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://twitter.com/intent/tweet?text=Check%20out%20Daedalus%20-%20Free%20online%20tools!&url=https://infiniteforge.tech" target="_blank"
+                           class="w-10 h-10 bg-gray-800 hover:bg-blue-600 rounded-lg flex items-center justify-center transition-colors">
+                            <i data-feather="twitter" class="w-5 h-5"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://infiniteforge.tech" target="_blank"
+                           class="w-10 h-10 bg-gray-800 hover:bg-blue-700 rounded-lg flex items-center justify-center transition-colors">
+                            <i data-feather="linkedin" class="w-5 h-5"></i>
+                        </a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=https://infiniteforge.tech" target="_blank"
+                           class="w-10 h-10 bg-gray-800 hover:bg-blue-800 rounded-lg flex items-center justify-center transition-colors">
+                            <i data-feather="facebook" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tools Section -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Tools</h3>
+                    <ul class="space-y-3">
+                        <li><a href="features.html" class="text-gray-400 hover:text-white transition-colors">Image Tools</a></li>
+                        <li><a href="features.html" class="text-gray-400 hover:text-white transition-colors">Document Tools</a></li>
+                        <li><a href="features.html" class="text-gray-400 hover:text-white transition-colors">Utility Tools</a></li>
+                        <li><a href="features.html" class="text-gray-400 hover:text-white transition-colors">SEO Tools</a></li>
+                        <li><a href="features.html" class="text-gray-400 hover:text-white transition-colors">QR Generator</a></li>
+                    </ul>
+                </div>
+
+                <!-- Company Section -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Company</h3>
+                    <ul class="space-y-3">
+                        <li><a href="about.html" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="features.html" class="text-gray-400 hover:text-white transition-colors">Features</a></li>
+                        <li><a href="sitemap.html" class="text-gray-400 hover:text-white transition-colors">Sitemap</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                        <li><a href="privacy.html" class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+                <!-- Support Section -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Support</h3>
+                    <ul class="space-y-3">
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition-colors">Help Center</a></li>
+                        <li><a href="terms.html" class="text-gray-400 hover:text-white transition-colors">Terms of Service</a></li>
+                        <li><a href="privacy.html" class="text-gray-400 hover:text-white transition-colors">Privacy</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition-colors">Feedback</a></li>
+                        <li><span class="text-gray-400">Status: <span class="text-green-400">All Systems Operational</span></span></li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </main>
+
+        <!-- Footer Bottom -->
+        <div class="border-t border-gray-800">
+            <div class="max-w-6xl mx-auto px-4 py-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="text-gray-400 text-sm mb-4 md:mb-0">
+                        © 2025 Daedalus. Made with <span class="text-red-400">♥</span> for creators worldwide by <a href="https://www.linkedin.com/in/mahibala-h" target="_blank" class="hover:text-white transition-colors">InfinityForge</a>
+                    </div>
+                    <div class="flex items-center space-x-6 text-sm text-gray-400">
+                        <a href="https://www.linkedin.com/in/mahibala-h" target="_blank" class="hover:text-white transition-colors">LinkedIn</a>
+                        <a href="https://x.com/HMahibala42802" target="_blank" class="hover:text-white transition-colors">Twitter</a>
+                        <a href="https://www.youtube.com/@echo14-w3y" target="_blank" class="hover:text-white transition-colors">YouTube</a>
+                        <a href="https://www.instagram.com/ig_balah?igsh=dXo4ank3OWxiaXVy" target="_blank" class="hover:text-white transition-colors">Instagram</a>
+                        <a href="https://www.facebook.com/61557410529583/" target="_blank" class="hover:text-white transition-colors">Facebook</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
     <script>
         // Cookie Consent Management
         function setCookie(name, value, days) {
@@ -506,15 +1211,302 @@
         mobileMenuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
+
+        // Animation on scroll functionality
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.animate-fade-in-up, .animate-fade-in, .animate-slide-in-left, .animate-slide-in-right');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.animationPlayState = 'running';
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            elements.forEach(element => {
+                observer.observe(element);
+            });
+        }
+
+        // Initialize animations when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            animateOnScroll();
+
+            // Add loading state to forms
+            const forms = document.querySelectorAll('form');
+            forms.forEach(form => {
+                form.addEventListener('submit', function(e) {
+                    const submitBtn = form.querySelector('button[type="submit"]');
+                    if (submitBtn) {
+                        submitBtn.classList.add('btn-loading');
+                        submitBtn.disabled = true;
+                    }
+                });
+            });
+
+            // Add smooth scroll to anchor links
+            const anchorLinks = document.querySelectorAll('a[href^="#"]');
+            anchorLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+
+        // Add some interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add ripple effect to buttons
+            const buttons = document.querySelectorAll('button, .bg-white, .bg-blue-600, .bg-green-600, .bg-purple-600');
+            buttons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const ripple = document.createElement('div');
+                    ripple.style.position = 'absolute';
+                    ripple.style.borderRadius = '50%';
+                    ripple.style.background = 'rgba(255, 255, 255, 0.3)';
+                    ripple.style.transform = 'scale(0)';
+                    ripple.style.animation = 'ripple 0.6s linear';
+                    ripple.style.left = (e.offsetX - 10) + 'px';
+                    ripple.style.top = (e.offsetY - 10) + 'px';
+                    ripple.style.width = '20px';
+                    ripple.style.height = '20px';
+
+                    this.style.position = 'relative';
+                    this.style.overflow = 'hidden';
+                    this.appendChild(ripple);
+
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+            });
+        });
+
+        // Add ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 
-    <div class="site-socials" style="text-align:center;padding:12px 0"> <a href="https://www.linkedin.com/in/mahibala-h"
-            target="_blank" rel="noopener" style="margin:0 6px">Linkedin</a> <a href="https://x.com/HMahibala42802"
-            target="_blank" rel="noopener" style="margin:0 6px">Twitter</a> <a
-            href="https://www.youtube.com/@echo14-w3y" target="_blank" rel="noopener" style="margin:0 6px">Youtube</a>
-        <a href="https://www.instagram.com/ig_balah?igsh=dXo4ank3OWxiaXVy" target="_blank" rel="noopener"
-            style="margin:0 6px">Instagram</a> <a href="https://www.facebook.com/61557410529583/" target="_blank"
-            rel="noopener" style="margin:0 6px">Facebook</a></div>
+    <style>
+        /* Mobile Responsiveness Enhancements */
+        @media (max-width: 768px) {
+            /* Hero section mobile adjustments */
+            .hero-section {
+                padding-top: 120px;
+                padding-bottom: 80px;
+            }
+
+            /* Tool cards mobile spacing */
+            .tool-card-mobile {
+                margin-bottom: 20px;
+            }
+
+            /* Newsletter form mobile adjustments */
+            .newsletter-form-mobile input,
+            .newsletter-form-mobile button {
+                width: 100%;
+                margin-bottom: 12px;
+            }
+
+            /* Footer mobile adjustments */
+            .footer-mobile {
+                text-align: center;
+            }
+
+            .footer-mobile .grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            /* Testimonial cards mobile */
+            .testimonial-mobile {
+                margin-bottom: 24px;
+            }
+
+            /* Social sharing mobile */
+            .social-share-mobile {
+                flex-direction: column;
+                align-items: center;
+                gap: 12px;
+            }
+
+            /* CTA buttons mobile */
+            .cta-buttons-mobile {
+                flex-direction: column;
+                align-items: center;
+                gap: 16px;
+            }
+
+            /* Feature grid mobile */
+            .feature-grid-mobile {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 640px) {
+            /* Extra small screens */
+            .text-5xl {
+                font-size: 2.5rem;
+            }
+
+            .text-4xl {
+                font-size: 2rem;
+            }
+
+            .text-3xl {
+                font-size: 1.75rem;
+            }
+
+            .text-2xl {
+                font-size: 1.5rem;
+            }
+
+            /* Reduce padding on mobile */
+            .py-20 {
+                padding-top: 4rem;
+                padding-bottom: 4rem;
+            }
+
+            .py-16 {
+                padding-top: 3rem;
+                padding-bottom: 3rem;
+            }
+
+            .py-12 {
+                padding-top: 2rem;
+                padding-bottom: 2rem;
+            }
+
+            /* Adjust margins */
+            .mb-16 {
+                margin-bottom: 3rem;
+            }
+
+            .mb-12 {
+                margin-bottom: 2rem;
+            }
+
+            .mb-8 {
+                margin-bottom: 1.5rem;
+            }
+
+            /* Card padding adjustments */
+            .p-8 {
+                padding: 1.5rem;
+            }
+
+            .p-6 {
+                padding: 1rem;
+            }
+
+            /* Button adjustments */
+            .px-8 {
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
+
+            .py-4 {
+                padding-top: 0.75rem;
+                padding-bottom: 0.75rem;
+            }
+
+            /* Grid gap adjustments */
+            .gap-8 {
+                gap: 1.5rem;
+            }
+
+            .gap-6 {
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            /* Very small screens */
+            .text-5xl {
+                font-size: 2rem;
+            }
+
+            .text-4xl {
+                font-size: 1.75rem;
+            }
+
+            /* Further reduce spacing */
+            .py-20 {
+                padding-top: 3rem;
+                padding-bottom: 3rem;
+            }
+
+            /* Adjust logo size */
+            .logo-mobile {
+                width: 40px;
+                height: 40px;
+            }
+
+            /* Social icons smaller */
+            .social-icon-mobile {
+                width: 36px;
+                height: 36px;
+            }
+        }
+
+        /* Touch-friendly interactions */
+        @media (hover: none) and (pointer: coarse) {
+            /* Remove hover effects on touch devices */
+            .hover-lift:hover {
+                transform: none;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            /* Make buttons more touch-friendly */
+            button, .btn-touch {
+                min-height: 44px;
+                min-width: 44px;
+            }
+        }
+
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            .gradient-text {
+                background: none;
+                -webkit-text-fill-color: currentColor;
+                color: inherit;
+            }
+        }
+
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+    </style>
+
+
 </body>
 
 </html>

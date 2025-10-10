@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Screenshot Tool — Daedalus</title>
+    <link rel="icon" type="image/png" href="images/letter-d.png">
+    <meta name="description" content="Take professional website screenshots with our comprehensive screenshot tool. Capture full pages, custom dimensions, multiple formats, and enhance your screenshots with editing tools.">
+    <meta name="keywords" content="website screenshot, screenshot tool, web screenshot, page capture, screenshot generator, website capture, web page screenshot, screenshot online, free screenshot tool, website thumbnail, page screenshot, web capture tool, screenshot maker, online screenshot, website image, web page image">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta property="og:title" content="Website Screenshot Tool — Daedalus">
+    <meta property="og:description" content="Take professional website screenshots with our comprehensive screenshot tool. Capture full pages, custom dimensions, multiple formats, and enhance your screenshots with editing tools.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://infiniteforge.tech/website-screenshot-tool.html">
+    <meta property="og:image" content="https://infiniteforge.tech/assets/letter-d.png">
+    <meta name="author" content="InfinityForge">
+    <meta name="theme-color" content="#2563eb">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Daedalus Logo">
+    <meta property="og:site_name" content="Daedalus">
+    <meta property="og:locale" content="en_US">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Website Screenshot Tool — Daedalus">
+    <meta name="twitter:description" content="Take professional website screenshots with our comprehensive screenshot tool. Capture full pages, custom dimensions, multiple formats, and enhance your screenshots with editing tools.">
+    <meta name="twitter:image" content="https://infiniteforge.tech/assets/letter-d.png">
+    <meta name="twitter:image:alt" content="Daedalus Logo">
+    <link rel="canonical" href="https://infiniteforge.tech/website-screenshot-tool.html">
+    <link rel="alternate" hreflang="en" href="https://infiniteforge.tech/website-screenshot-tool.html">
+    <script type="application/ld+json">{
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Website Screenshot Tool — Daedalus",
+        "description": "Take professional website screenshots with our comprehensive screenshot tool. Capture full pages, custom dimensions, multiple formats, and enhance your screenshots with editing tools.",
+        "url": "https://infiniteforge.tech/website-screenshot-tool.html",
+        "isPartOf": {
+            "@type": "WebSite",
+            "name": "Daedalus",
+            "url": "https://infiniteforge.tech"
+        },
+        "primaryImageOfPage": {
+            "@type": "ImageObject",
+            "url": "https://infiniteforge.tech/assets/letter-d.png"
+        },
+        "datePublished": "2025-10-08",
+        "dateModified": "2025-10-08"
+    }</script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <link rel="stylesheet" href="/css/responsive-fix.css">
+    <style>
+        /* Fluid scaling styles */
+        :root {
+            --fluid-font-size: clamp(14px, 2vw, 18px);
+            --fluid-h1: clamp(1.5rem, 5vw, 3rem);
+            --fluid-h2: clamp(1.25rem, 4vw, 2.5rem);
+            --fluid-h3: clamp(1.125rem, 3vw, 2rem);
+            --fluid-p: clamp(0.875rem, 2vw, 1rem);
+        }
+        body {
+            font-size: var(--fluid-font-size);
+        }
+        h1 { font-size: var(--fluid-h1) !important; }
+        h2 { font-size: var(--fluid-h2) !important; }
+        h3 { font-size: var(--fluid-h3) !important; }
+        p { font-size: var(--fluid-p) !important; }
+        @media (max-width: 640px) {
+            .container, .max-w-4xl, .max-w-6xl, .max-w-7xl {
+                max-width: 95vw !important;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        .screenshot-preview {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border: 2px dashed #cbd5e1;
+            border-radius: 8px;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .screenshot-preview.has-image {
+            border-color: #10b981;
+            background: white;
+        }
+
+        .screenshot-preview img {
+            max-width: 100%;
+            max-height: 400px;
+            border-radius: 4px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .tool-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .method-button {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .method-button:hover {
+            border-color: #3b82f6;
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            transform: translateY(-1px);
+        }
+
+        .method-button.active {
+            border-color: #10b981;
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .code-snippet {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 16px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            overflow-x: auto;
+        }
+
+        .browser-compatibility {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 1px solid #f59e0b;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+        }
+
+        .loading-spinner {
+            border: 4px solid #f3f4f6;
+            border-top: 4px solid #3b82f6;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FQ082B7887"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FQ082B7887');
+</script>
+<body class="bg-gray-50 font-poppins overflow-x-hidden">
+    <nav class="bg-white/80 backdrop-blur-lg shadow-sm w-full fixed top-0 left-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="index.html" class="text-2xl font-bold text-blue-600" aria-label="Daedalus Home">Daedalus</a>
+                <div class="hidden sm:flex items-center space-x-6">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 font-medium">Home</a>
+                    <a href="features.html" class="text-gray-700 hover:text-blue-600 font-medium">Features</a>
+                    <a href="about.html" class="text-gray-700 hover:text-blue-600 font-medium">About</a>
+                </div>
+                <div class="sm:hidden">
+                    <button id="mobile-menu-button" class="text-gray-700 hover:text-blue-600 focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden">
+            <a href="index.html" class="block py-2 px-4 text-sm text-gray-700 hover:bg-blue-50">Home</a>
+            <a href="features.html" class="block py-2 px-4 text-sm text-gray-700 hover:bg-blue-50">Features</a>
+            <a href="about.html" class="block py-2 px-4 text-sm text-gray-700 hover:bg-blue-50">About</a>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto pt-24 pb-12 px-4" itemscope itemtype="https://schema.org/WebPage">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl sm:text-5xl font-bold text-gray-800 mb-4" itemprop="headline">Website Screenshot Tool</h1>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto" itemprop="description">
+                Capture professional website screenshots with multiple methods, custom dimensions, and editing tools. Perfect for documentation, marketing, and web development.
+            </p>
+        </div>
+
+        <div class="grid lg:grid-cols-3 gap-8 mb-8">
+            <!-- Screenshot Methods -->
+            <div class="lg:col-span-1">
+                <div class="tool-card">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+                        <i data-feather="camera" class="w-5 h-5 mr-2 text-blue-500"></i>
+                        Capture Methods
+                    </h3>
+                    <div class="space-y-3">
+                        <div class="method-button active" data-method="current-page">
+                            <div class="font-medium text-gray-800">Current Page</div>
+                            <div class="text-sm text-gray-600">Screenshot this page</div>
+                        </div>
+                        <div class="method-button" data-method="manual">
+                            <div class="font-medium text-gray-800">External Websites</div>
+                            <div class="text-sm text-gray-600">Browser tools guide</div>
+                        </div>
+                        <div class="method-button" data-method="extension">
+                            <div class="font-medium text-gray-800">Browser Extensions</div>
+                            <div class="text-sm text-gray-600">Recommended tools</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Settings -->
+                <div class="tool-card mt-6">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+                        <i data-feather="settings" class="w-5 h-5 mr-2 text-indigo-500"></i>
+                        Settings
+                    </h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Format</label>
+                            <select id="format-select" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <option value="png">PNG (High Quality)</option>
+                                <option value="jpeg">JPEG (Smaller Size)</option>
+                                <option value="webp">WebP (Modern)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Quality</label>
+                            <input type="range" id="quality-slider" min="0.1" max="1" step="0.1" value="0.9" class="w-full">
+                            <div class="text-xs text-gray-500 mt-1">Quality: <span id="quality-value">90%</span></div>
+                        </div>
+                        <div class="flex items-center">
+                            <input type="checkbox" id="include-background" checked class="mr-2">
+                            <label for="include-background" class="text-sm text-gray-700">Include background</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <div class="tool-card mt-6">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+                        <i data-feather="download" class="w-5 h-5 mr-2 text-green-500"></i>
+                        Actions
+                    </h3>
+                    <div class="space-y-3">
+                        <button id="capture-btn" class="w-full bg-blue-600 text-white px-4 py-3 rounded-md hover:bg-blue-700 transition-colors font-medium">
+                            <i data-feather="camera" class="w-4 h-4 mr-2 inline"></i>
+                            Capture Screenshot
+                        </button>
+                        <button id="download-btn" class="w-full bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition-colors" disabled>
+                            <i data-feather="download" class="w-4 h-4 mr-2 inline"></i>
+                            Download Image
+                        </button>
+                        <button id="copy-btn" class="w-full bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700 transition-colors" disabled>
+                            <i data-feather="copy" class="w-4 h-4 mr-2 inline"></i>
+                            Copy to Clipboard
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Preview Area -->
+            <div class="lg:col-span-2">
+                <div class="tool-card">
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-2xl font-semibold text-gray-800">Screenshot Preview</h2>
+                        <div class="flex items-center space-x-2">
+                            <div id="image-info" class="text-sm text-gray-600 hidden">
+                                <span id="image-size"></span> • <span id="image-dimensions"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="preview-container" class="screenshot-preview">
+                        <div class="text-center text-gray-500">
+                            <i data-feather="image" class="w-16 h-16 mx-auto mb-4 text-gray-300"></i>
+                            <p class="text-lg font-medium">No screenshot captured yet</p>
+                            <p class="text-sm">Click "Capture Screenshot" to get started</p>
+                        </div>
+                    </div>
+
+                    <div id="loading-indicator" class="hidden mt-4 text-center">
+                        <div class="loading-spinner"></div>
+                        <p class="text-sm text-gray-600 mt-2">Capturing screenshot...</p>
+                    </div>
+                </div>
+
+                <!-- Current Method Content -->
+                <div id="method-content" class="mt-6">
+                    <!-- Current Page Method -->
+                    <div id="current-page-content" class="tool-card">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">Current Page Screenshot</h3>
+                        <p class="text-gray-600 mb-4">
+                            Capture a screenshot of this page using HTML5 Canvas technology. This method works within browser security restrictions.
+                        </p>
+                        <div class="browser-compatibility">
+                            <strong>✅ Browser Support:</strong> Works in all modern browsers (Chrome, Firefox, Safari, Edge)
+                        </div>
+                    </div>
+
+                    <!-- Manual Method -->
+                    <div id="manual-content" class="tool-card hidden">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">External Website Screenshots</h3>
+                        <p class="text-gray-600 mb-4">
+                            Due to browser security restrictions, capturing screenshots of external websites requires using your browser's built-in tools or extensions.
+                        </p>
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-medium text-gray-800 mb-2">🖥️ Desktop Browsers</h4>
+                                <div class="code-snippet">
+Chrome: Ctrl + Shift + I → Toggle Device Toolbar → Capture full size screenshot<br>
+Firefox: Right-click → Take Screenshot → Save full page<br>
+Edge: F12 → Toggle device emulation → Capture screenshot<br>
+Safari: Develop menu → Show Web Inspector → Take screenshot
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-gray-800 mb-2">📱 Mobile Browsers</h4>
+                                <div class="code-snippet">
+iOS Safari: Share button → Options → Print → Save as PDF<br>
+Android Chrome: Menu → Share → Print → Save as PDF<br>
+Mobile Firefox: Menu → Page → Save as PDF
+                                </div>
+                            </div>
+                            <div class="bg-blue-50 border border-blue-200 rounded-lg p-3">
+                                <div class="flex items-start">
+                                    <i data-feather="info" class="w-4 h-4 text-blue-600 mt-0.5 mr-2 flex-shrink-0"></i>
+                                    <div class="text-sm text-blue-800">
+                                        <strong>Why can't we capture external websites directly?</strong> Browser security policies prevent websites from accessing content from other domains for privacy and security reasons.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Extension Method -->
+                    <div id="extension-content" class="tool-card hidden">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-4">Browser Extensions</h3>
+                        <div class="feature-grid">
+                            <div class="text-center">
+                                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                                    <i data-feather="chrome" class="w-6 h-6 text-blue-600"></i>
+                                </div>
+                                <h4 class="font-medium text-gray-800">GoFullPage</h4>
+                                <p class="text-sm text-gray-600">Full page screenshots</p>
+                                <a href="https://chrome.google.com/webstore/detail/gofullpage-full-page-scre/fdpohaocaechififmbbbbbknoalclacl" target="_blank" class="text-blue-600 text-sm hover:underline">Install</a>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                                    <i data-feather="monitor" class="w-6 h-6 text-green-600"></i>
+                                </div>
+                                <h4 class="font-medium text-gray-800">Fireshot</h4>
+                                <p class="text-sm text-gray-600">Advanced capture tools</p>
+                                <a href="https://chrome.google.com/webstore/detail/take-webpage-screenshots/mcbpblocgmgfnpjjppndjkmgjaogfceg" target="_blank" class="text-blue-600 text-sm hover:underline">Install</a>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                                    <i data-feather="camera" class="w-6 h-6 text-purple-600"></i>
+                                </div>
+                                <h4 class="font-medium text-gray-800">Awesome Screenshot</h4>
+                                <p class="text-sm text-gray-600">Screen recording & capture</p>
+                                <a href="https://chrome.google.com/webstore/detail/awesome-screenshot-screen/nlipoenfbbikpbjkfpfillcgkoblgpmj" target="_blank" class="text-blue-600 text-sm hover:underline">Install</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <div class="tool-card text-center">
+                <i data-feather="zap" class="w-8 h-8 text-yellow-500 mx-auto mb-3"></i>
+                <h4 class="font-semibold text-gray-800 mb-2">Fast Capture</h4>
+                <p class="text-sm text-gray-600">Instant screenshot generation with optimized performance</p>
+            </div>
+            <div class="tool-card text-center">
+                <i data-feather="settings" class="w-8 h-8 text-blue-500 mx-auto mb-3"></i>
+                <h4 class="font-semibold text-gray-800 mb-2">Customizable</h4>
+                <p class="text-sm text-gray-600">Multiple formats, quality settings, and capture options</p>
+            </div>
+            <div class="tool-card text-center">
+                <i data-feather="download" class="w-8 h-8 text-green-500 mx-auto mb-3"></i>
+                <h4 class="font-semibold text-gray-800 mb-2">Easy Export</h4>
+                <p class="text-sm text-gray-600">Download images or copy to clipboard instantly</p>
+            </div>
+            <div class="tool-card text-center">
+                <i data-feather="shield" class="w-8 h-8 text-indigo-500 mx-auto mb-3"></i>
+                <h4 class="font-semibold text-gray-800 mb-2">Privacy First</h4>
+                <p class="text-sm text-gray-600">No uploads required, all processing happens locally</p>
+            </div>
+        </div>
+
+        <!-- Tips -->
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="tool-card">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+                    <i data-feather="lightbulb" class="w-5 h-5 mr-2 text-yellow-500"></i>
+                    Pro Tips
+                </h3>
+                <div class="space-y-3 text-sm text-gray-600">
+                    <p><strong>📏 Dimensions:</strong> Use standard sizes like 1920x1080 for web, 1280x720 for social media</p>
+                    <p><strong>🎨 Format:</strong> PNG for transparency, JPEG for smaller files, WebP for modern browsers</p>
+                    <p><strong>⚡ Quality:</strong> 80-90% quality balances file size and image clarity</p>
+                    <p><strong>📱 Mobile:</strong> Test screenshots on different screen sizes for responsive design</p>
+                    <p><strong>🎯 Focus:</strong> Capture specific sections by scrolling to the desired area first</p>
+                </div>
+            </div>
+
+            <div class="tool-card">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+                    <i data-feather="info" class="w-5 h-5 mr-2 text-blue-500"></i>
+                    Limitations
+                </h3>
+                <div class="space-y-3 text-sm text-gray-600">
+                    <p><strong>🌐 Cross-origin:</strong> Cannot capture external websites due to browser security</p>
+                    <p><strong>📜 Full page:</strong> Current method captures visible area only</p>
+                    <p><strong>🎭 Dynamic content:</strong> May not capture animations or interactive elements perfectly</p>
+                    <p><strong>📊 Large pages:</strong> Very long pages may be truncated in capture</p>
+                    <p><strong>🔒 HTTPS:</strong> Some features require secure (HTTPS) connections</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="message" class="mt-4 text-center text-sm text-gray-600"></div>
+    </main>
+
+    <script>
+        // Defer initialization until page loads to improve INP
+        window.addEventListener('load', function() {
+            // Initialize Feather Icons
+            if (typeof feather !== 'undefined') {
+                feather.replace();
+            }
+
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+        });
+    </script>
+
+    <footer class="bg-gray-800 text-white py-4 mt-8">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2025 Remote Rise. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+            // DOM Elements
+            const captureBtn = document.getElementById('capture-btn');
+            const downloadBtn = document.getElementById('download-btn');
+            const copyBtn = document.getElementById('copy-btn');
+            const previewContainer = document.getElementById('preview-container');
+            const loadingIndicator = document.getElementById('loading-indicator');
+            const formatSelect = document.getElementById('format-select');
+            const qualitySlider = document.getElementById('quality-slider');
+            const qualityValue = document.getElementById('quality-value');
+            const includeBackground = document.getElementById('include-background');
+            const imageInfo = document.getElementById('image-info');
+            const imageSize = document.getElementById('image-size');
+            const imageDimensions = document.getElementById('image-dimensions');
+
+            // Method buttons
+            const methodButtons = document.querySelectorAll('.method-button');
+            const methodContents = {
+                'current-page': document.getElementById('current-page-content'),
+                'manual': document.getElementById('manual-content'),
+                'extension': document.getElementById('extension-content')
+            };
+
+            let capturedImage = null;
+            let currentMethod = 'current-page';
+
+            // Initialize
+            updateQualityValue();
+
+            // Event listeners
+            captureBtn.addEventListener('click', captureScreenshot);
+            downloadBtn.addEventListener('click', downloadImage);
+            copyBtn.addEventListener('click', copyToClipboard);
+            qualitySlider.addEventListener('input', updateQualityValue);
+
+            methodButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const method = button.dataset.method;
+                    switchMethod(method);
+                });
+            });
+
+            function switchMethod(method) {
+                // Update active button
+                methodButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.dataset.method === method) {
+                        btn.classList.add('active');
+                    }
+                });
+
+                // Update content visibility
+                Object.values(methodContents).forEach(content => {
+                    content.classList.add('hidden');
+                });
+
+                if (methodContents[method]) {
+                    methodContents[method].classList.remove('hidden');
+                }
+
+                currentMethod = method;
+
+                // Update capture button availability
+                captureBtn.disabled = method !== 'current-page';
+                if (method !== 'current-page') {
+                    captureBtn.textContent = 'Not Available';
+                } else {
+                    captureBtn.innerHTML = '<i data-feather="camera" class="w-4 h-4 mr-2 inline"></i>Capture Screenshot';
+                    feather.replace(); // Re-initialize icons
+                }
+            }
+
+            function updateQualityValue() {
+                const value = Math.round(qualitySlider.value * 100);
+                qualityValue.textContent = `${value}%`;
+            }
+
+            async function captureScreenshot() {
+                if (currentMethod !== 'current-page') return;
+
+                try {
+                    loadingIndicator.classList.remove('hidden');
+                    captureBtn.disabled = true;
+
+                    const options = {
+                        allowTaint: true,
+                        useCORS: true,
+                        scale: 1,
+                        width: window.innerWidth,
+                        height: window.innerHeight,
+                        backgroundColor: includeBackground.checked ? null : 'white'
+                    };
+
+                    const canvas = await html2canvas(document.body, options);
+                    capturedImage = canvas;
+
+                    // Update preview
+                    const img = new Image();
+                    img.src = canvas.toDataURL();
+                    img.onload = () => {
+                        previewContainer.innerHTML = '';
+                        previewContainer.appendChild(img);
+                        previewContainer.classList.add('has-image');
+
+                        // Update image info
+                        const size = Math.round((canvas.toDataURL().length * 3) / 4 / 1024);
+                        imageSize.textContent = `${size} KB`;
+                        imageDimensions.textContent = `${canvas.width} × ${canvas.height}`;
+                        imageInfo.classList.remove('hidden');
+
+                        // Enable buttons
+                        downloadBtn.disabled = false;
+                        copyBtn.disabled = false;
+
+                        loadingIndicator.classList.add('hidden');
+                        captureBtn.disabled = false;
+
+                        showMessage('Screenshot captured successfully!', 'success');
+                    };
+
+                } catch (error) {
+                    console.error('Screenshot capture failed:', error);
+                    loadingIndicator.classList.add('hidden');
+                    captureBtn.disabled = false;
+                    showMessage('Failed to capture screenshot. Please try again.', 'error');
+                }
+            }
+
+            function downloadImage() {
+                if (!capturedImage) return;
+
+                const format = formatSelect.value;
+                const quality = parseFloat(qualitySlider.value);
+                const mimeType = format === 'jpeg' ? 'image/jpeg' : format === 'webp' ? 'image/webp' : 'image/png';
+
+                const link = document.createElement('a');
+                link.download = `screenshot-${Date.now()}.${format}`;
+                link.href = capturedImage.toDataURL(mimeType, quality);
+                link.click();
+
+                showMessage('Image downloaded successfully!', 'success');
+            }
+
+            async function copyToClipboard() {
+                if (!capturedImage) return;
+
+                try {
+                    const format = formatSelect.value;
+                    const quality = parseFloat(qualitySlider.value);
+                    const mimeType = format === 'jpeg' ? 'image/jpeg' : format === 'webp' ? 'image/webp' : 'image/png';
+                    const blob = await new Promise(resolve => capturedImage.toBlob(resolve, mimeType, quality));
+
+                    await navigator.clipboard.write([
+                        new ClipboardItem({ [mimeType]: blob })
+                    ]);
+
+                    showMessage('Image copied to clipboard!', 'success');
+                } catch (error) {
+                    console.error('Copy to clipboard failed:', error);
+                    showMessage('Failed to copy to clipboard. Try downloading instead.', 'error');
+                }
+            }
+
+            function showMessage(msg, type = 'info') {
+                const messageEl = document.getElementById('message');
+                messageEl.textContent = msg;
+                messageEl.className = `mt-4 text-center text-sm ${type === 'error' ? 'text-red-600' : type === 'success' ? 'text-green-600' : 'text-gray-600'}`;
+                setTimeout(() => {
+                    messageEl.textContent = '';
+                }, 5000);
+            }
+
+            // Initialize method content
+            switchMethod('current-page');
+        });
+    </script>
+</body>
+</html>
