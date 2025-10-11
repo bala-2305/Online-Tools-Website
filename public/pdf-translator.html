@@ -21,13 +21,40 @@
     <meta name="twitter:image" content="https://infiniteforge.tech/assets/daedalus-og.png">
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script><style>/* Fluid scaling styles */:root {--fluid-font-size: clamp(14px, 2vw, 18px);--fluid-h1: clamp(1.5rem, 5vw, 3rem);--fluid-h2: clamp(1.25rem, 4vw, 2.5rem);--fluid-h3: clamp(1.125rem, 3vw, 2rem);--fluid-p: clamp(0.875rem, 2vw, 1rem);}body {font-size: var(--fluid-font-size);}h1 { font-size: var(--fluid-h1) !important; }h2 { font-size: var(--fluid-h2) !important; }h3 { font-size: var(--fluid-h3) !important; }p { font-size: var(--fluid-p) !important; }@media (max-width: 640px) {.container, .max-w-4xl, .max-w-6xl, .max-w-7xl {max-width: 95vw !important;margin-left: auto;margin-right: auto;}}</style><style>/* Fluid scaling styles */:root {--fluid-font-size: clamp(14px, 2vw, 18px);--fluid-h1: clamp(1.5rem, 5vw, 3rem);--fluid-h2: clamp(1.25rem, 4vw, 2.5rem);--fluid-h3: clamp(1.125rem, 3vw, 2rem);--fluid-p: clamp(0.875rem, 2vw, 1rem);}body {font-size: var(--fluid-font-size);}h1 { font-size: var(--fluid-h1) !important; }h2 { font-size: var(--fluid-h2) !important; }h3 { font-size: var(--fluid-h3) !important; }p { font-size: var(--fluid-p) !important; }@media (max-width: 640px) {.container, .max-w-4xl, .max-w-6xl, .max-w-7xl {max-width: 95vw !important;margin-left: auto;margin-right: auto;}}</style>
-    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.14.305/pdf.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/argos-translate/dist/argos-translate.min.js"></script>
-
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        /* Fluid scaling styles */
+        :root {
+            --fluid-font-size: clamp(14px, 2vw, 18px);
+            --fluid-h1: clamp(1.5rem, 5vw, 3rem);
+            --fluid-h2: clamp(1.25rem, 4vw, 2.5rem);
+            --fluid-h3: clamp(1.125rem, 3vw, 2rem);
+            --fluid-p: clamp(0.875rem, 2vw, 1rem);
+        }
+        body {
+            font-size: var(--fluid-font-size);
+        }
+        h1 {
+            font-size: var(--fluid-h1) !important;
+        }
+        h2 {
+            font-size: var(--fluid-h2) !important;
+        }
+        h3 {
+            font-size: var(--fluid-h3) !important;
+        }
+        p {
+            font-size: var(--fluid-p) !important;
+        }
+        @media (max-width: 640px) {
+            .container, .max-w-4xl, .max-w-6xl, .max-w-7xl {
+                max-width: 95vw !important;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        /* Loading spinner */
         .loader {
             border: 4px solid #f3f4f6;
             border-top: 4px solid #3b82f6;
@@ -41,6 +68,10 @@
             100% { transform: rotate(360deg); }
         }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.14.305/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/argos-translate/dist/argos-translate.min.js"></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "InfinityForge", "url": "https://infiniteforge.tech", "logo": "https://infiniteforge.tech/assets/letter-d.png", "sameAs": ["https://www.linkedin.com/in/mahibala-h", "https://x.com/HMahibala42802", "https://www.youtube.com/@echo14-w3y", "https://www.instagram.com/ig_balah?igsh=dXo4ank3OWxiaXVy", "https://www.facebook.com/61557410529583/"]}</script>
     <script type="application/ld+json">{
         "@context": "https://schema.org",
@@ -496,63 +527,9 @@
         });
     </script>
 
-        <button id="toggle-share-widget" class="w-full flex items-center justify-between mb-3 text-gray-700 hover:text-gray-900">
-            <span class="font-medium">Share</span>
-            <i data-feather="chevron-right" class="w-4 h-4 transition-transform duration-300"></i>
-        </button>
-        <div id="share-buttons" class="space-y-2 overflow-hidden transition-all duration-300" style="max-height: 0;">
-            <a href="https://twitter.com/intent/tweet?text=Translate%20PDF%20documents%20online%20for%20free%20with%20Daedalus%20-%20Free%20Online%20Tools&url=https://infiniteforge.tech/pdf-translator.html&via=DaedalusTools"
-               target="_blank" rel="noopener noreferrer"
-               class="flex items-center space-x-2 text-blue-400 hover:text-blue-500 transition-colors duration-300">
-                <i data-feather="twitter" class="w-4 h-4"></i>
-                <span class="text-sm">Twitter</span>
-            </a>
-            <a href="https://www.facebook.com/sharer/sharer.php?u=https://infiniteforge.tech/pdf-translator.html"
-               target="_blank" rel="noopener noreferrer"
-               class="flex items-center space-x-2 text-blue-600 hover:text-blue-700 transition-colors duration-300">
-                <i data-feather="facebook" class="w-4 h-4"></i>
-                <span class="text-sm">Facebook</span>
-            </a>
-            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://infiniteforge.tech/pdf-translator.html"
-               target="_blank" rel="noopener noreferrer"
-               class="flex items-center space-x-2 text-blue-700 hover:text-blue-800 transition-colors duration-300">
-                <i data-feather="linkedin" class="w-4 h-4"></i>
-                <span class="text-sm">LinkedIn</span>
-            </a>
-            <a href="https://wa.me/?text=Check%20out%20this%20free%20PDF%20translator:%20https://infiniteforge.tech/pdf-translator.html"
-               target="_blank" rel="noopener noreferrer"
-               class="flex items-center space-x-2 text-green-500 hover:text-green-600 transition-colors duration-300">
-                <i data-feather="message-circle" class="w-4 h-4"></i>
-                <span class="text-sm">WhatsApp</span>
-            </a>
-        </div>
     </div>
 
-    <script>
-        // Floating share widget toggle
-        const toggleBtn = document.getElementById('toggle-share-widget');
-        const shareButtons = document.getElementById('share-buttons');
-        const chevronIcon = toggleBtn.querySelector('i');
-        let isExpanded = false;
-
-        toggleBtn.addEventListener('click', () => {
-            isExpanded = !isExpanded;
-            if (isExpanded) {
-                shareButtons.style.maxHeight = shareButtons.scrollHeight + 'px';
-                chevronIcon.style.transform = 'rotate(90deg)';
-            } else {
-                shareButtons.style.maxHeight = '0';
-                chevronIcon.style.transform = 'rotate(0deg)';
-            }
-        });
-
-        // Initialize Feather icons for the floating widget
-        if (typeof feather !== 'undefined') {
-            feather.replace();
-        }
-    </script>
-
-    ...-align:center;padding:12px 0"> <a href="https://www.linkedin.com/in/mahibala-h" target="_blank" rel="noopener" style="margin:0 6px">Linkedin</a> <a href="https://x.com/HMahibala42802" target="_blank" rel="noopener" style="margin:0 6px">Twitter</a> <a href="https://www.youtube.com/@echo14-w3y" target="_blank" rel="noopener" style="margin:0 6px">Youtube</a> <a href="https://www.instagram.com/ig_balah?igsh=dXo4ank3OWxiaXVy" target="_blank" rel="noopener" style="margin:0 6px">Instagram</a> <a href="https://www.facebook.com/61557410529583/" target="_blank" rel="noopener" style="margin:0 6px">Facebook</a></div>
+    <div style="text-align:center;padding:12px 0"> <a href="https://www.linkedin.com/in/mahibala-h" target="_blank" rel="noopener" style="margin:0 6px">Linkedin</a> <a href="https://x.com/HMahibala42802" target="_blank" rel="noopener" style="margin:0 6px">Twitter</a> <a href="https://www.youtube.com/@echo14-w3y" target="_blank" rel="noopener" style="margin:0 6px">Youtube</a> <a href="https://www.instagram.com/ig_balah?igsh=dXo4ank3OWxiaXVy" target="_blank" rel="noopener" style="margin:0 6px">Instagram</a> <a href="https://www.facebook.com/61557410529583/" target="_blank" rel="noopener" style="margin:0 6px">Facebook</a></div>
     <footer class="bg-gray-800 text-white py-4 mt-8">
         <div class="container mx-auto text-center">
             <p>&copy; 2025 Remote Rise. All rights reserved.</p>

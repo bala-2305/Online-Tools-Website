@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Code Assistant - Daedalus</title>
+    <meta name="description" content="AI-powered code assistant with intelligent code generation, completion, and debugging. Write, edit, and optimize code with AI help.">
+    <meta name="keywords" content="AI code assistant, code generation, AI programming, code completion, debugging, code optimization">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="AI Code Assistant - Daedalus">
+    <meta property="og:description" content="AI-powered code assistant with intelligent code generation and debugging">
+    <meta property="og:image" content="https://infiniteforge.tech/assets/images/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Monaco Editor -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.45.0/min/vs/loader.js"></script>
+
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .editor-container {
+            height: 500px;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .loading-spinner {
+            border: 2px solid #f3f4f6;
+            border-top: 2px solid #3b82f6;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .ai-suggestion {
+            background-color: #f0f9ff;
+            border: 1px solid #0ea5e9;
+            border-radius: 6px;
+            padding: 12px;
+            margin-bottom: 12px;
+        }
+
+        .ai-suggestion pre {
+            background-color: #f8fafc;
+            padding: 8px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+
+        .error-highlight {
+            background-color: #fef2f2;
+            border-left: 3px solid #dc2626;
+        }
+
+        @media (max-width: 768px) {
+            .editor-container {
+                height: calc(100vh - 300px);
+                min-height: 300px;
+            }
+
+            .controls-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .control-group {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center mr-3">
+                                <span class="text-white font-bold text-sm">D</span>
+                            </div>
+                            <span class="text-xl font-bold text-gray-900">Daedalus</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 transition-colors">Home</a>
+                    <a href="features.html" class="text-gray-700 hover:text-blue-600 transition-colors">Tools</a>
+                    <a href="about.html" class="text-gray-700 hover:text-blue-600 transition-colors">About</a>
+                    <a href="contact.html" class="text-gray-700 hover:text-blue-600 transition-colors">Contact</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-700 hover:text-blue-600" aria-label="Toggle menu">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="index.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Home</a>
+                <a href="features.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Tools</a>
+                <a href="about.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">About</a>
+                <a href="contact.html" class="block px-3 py-2 text-gray-700 hover:text-blue-600">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">AI Code Assistant</h1>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Write, debug, and optimize code with AI-powered assistance. Get intelligent code suggestions,
+                error detection, and automated code generation.
+            </p>
+        </div>
+
+        <!-- Code Editor Section -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+            <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
+                <div class="flex items-center gap-4">
+                    <select id="language-select" class="border border-gray-300 rounded px-3 py-2">
+                        <option value="javascript">JavaScript</option>
+                        <option value="typescript">TypeScript</option>
+                        <option value="python">Python</option>
+                        <option value="java">Java</option>
+                        <option value="cpp">C++</option>
+                        <option value="csharp">C#</option>
+                        <option value="php">PHP</option>
+                        <option value="go">Go</option>
+                        <option value="rust">Rust</option>
+                        <option value="html">HTML</option>
+                        <option value="css">CSS</option>
+                        <option value="sql">SQL</option>
+                        <option value="json">JSON</option>
+                    </select>
+                    <select id="theme-select" class="border border-gray-300 rounded px-3 py-2">
+                        <option value="vs">Light</option>
+                        <option value="vs-dark">Dark</option>
+                        <option value="hc-black">High Contrast</option>
+                    </select>
+                </div>
+                <div class="flex gap-2">
+                    <button id="new-file-btn" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">
+                        New File
+                    </button>
+                    <button id="load-sample-btn" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                        Load Sample
+                    </button>
+                    <button id="format-code-btn" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
+                        Format
+                    </button>
+                </div>
+            </div>
+
+            <!-- AI Suggestions Panel -->
+            <div id="ai-panel" class="hidden ai-suggestion mb-4">
+                <div class="flex items-center justify-between mb-2">
+                    <h3 class="font-semibold text-blue-800">AI Suggestion</h3>
+                    <button id="close-ai-panel" class="text-gray-500 hover:text-gray-700">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div id="ai-content"></div>
+                <div class="mt-3 flex gap-2">
+                    <button id="apply-suggestion" class="bg-blue-500 text-white px-3 py-1 rounded text-sm hover:bg-blue-600">
+                        Apply
+                    </button>
+                    <button id="discard-suggestion" class="bg-gray-500 text-white px-3 py-1 rounded text-sm hover:bg-gray-600">
+                        Discard
+                    </button>
+                </div>
+            </div>
+
+            <!-- Code Editor -->
+            <div id="editor-container" class="editor-container"></div>
+        </div>
+
+        <!-- AI Actions -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+            <h2 class="text-xl font-semibold mb-4">AI Code Assistant</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <button id="generate-code-btn" class="bg-purple-500 text-white p-4 rounded-lg hover:bg-purple-600 transition-colors">
+                    <div class="text-center">
+                        <svg class="w-8 h-8 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                        </svg>
+                        Generate Code
+                    </div>
+                </button>
+                <button id="explain-code-btn" class="bg-blue-500 text-white p-4 rounded-lg hover:bg-blue-600 transition-colors">
+                    <div class="text-center">
+                        <svg class="w-8 h-8 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        Explain Code
+                    </div>
+                </button>
+                <button id="debug-code-btn" class="bg-red-500 text-white p-4 rounded-lg hover:bg-red-600 transition-colors">
+                    <div class="text-center">
+                        <svg class="w-8 h-8 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+                        </svg>
+                        Debug Code
+                    </div>
+                </button>
+                <button id="optimize-code-btn" class="bg-green-500 text-white p-4 rounded-lg hover:bg-green-600 transition-colors">
+                    <div class="text-center">
+                        <svg class="w-8 h-8 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                        Optimize Code
+                    </div>
+                </button>
+            </div>
+        </div>
+
+        <!-- Status Messages -->
+        <div id="status-container" class="hidden">
+            <!-- Messages will be inserted here -->
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center mb-4">
+                        <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center mr-3">
+                            <span class="text-white font-bold text-sm">D</span>
+                        </div>
+                        <span class="text-xl font-bold">Daedalus</span>
+                    </div>
+                    <p class="text-gray-400 mb-4">
+                        Empowering developers with AI-powered tools for coding, design, and productivity.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="features.html" class="text-gray-400 hover:text-white transition-colors">Tools</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-white transition-colors">About</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Legal</h3>
+                    <ul class="space-y-2">
+                        <li><a href="privacy.html" class="text-gray-400 hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="terms.html" class="text-gray-400 hover:text-white transition-colors">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center">
+                <p class="text-gray-400">&copy; 2025 Daedalus. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Feather Icons
+        feather.replace();
+
+        // Global variables
+        let editor = null;
+        let currentLanguage = 'javascript';
+        let aiSuggestions = [];
+
+        // Language configurations
+        const languageConfigs = {
+            javascript: {
+                sample: `// JavaScript Example
+function greetUser(name) {
+    const greeting = \`Hello, \${name}!\`;
+    console.log(greeting);
+    return greeting;
+}
+
+// Async function example
+async function fetchUserData(userId) {
+    try {
+        const response = await fetch(\`/api/users/\${userId}\`);
+        const userData = await response.json();
+        return userData;
+    } catch (error) {
+        console.error('Error fetching user data:', error);
+        throw error;
+    }
+}
+
+// Class example
+class UserManager {
+    constructor() {
+        this.users = [];
+    }
+
+    addUser(user) {
+        this.users.push(user);
+    }
+
+    findUserById(id) {
+        return this.users.find(user => user.id === id);
+    }
+}
+
+export { greetUser, fetchUserData, UserManager };`,
+                extensions: ['js']
+            },
+            typescript: {
+                sample: `// TypeScript Example
+interface User {
+    id: number;
+    name: string;
+    email: string;
+    isActive: boolean;
+}
+
+interface ApiResponse<T> {
+    data: T;
+    success: boolean;
+    message?: string;
+}
+
+function greetUser(user: User): string {
+    const greeting = \`Hello, \${user.name}!\`;
+    console.log(greeting);
+    return greeting;
+}
+
+async function fetchUserData(userId: number): Promise<User> {
+    try {
+        const response = await fetch(\`/api/users/\${userId}\`);
+        const result: ApiResponse<User> = await response.json();
+
+        if (!result.success) {
+            throw new Error(result.message || 'Failed to fetch user');
+        }
+
+        return result.data;
+    } catch (error) {
+        console.error('Error fetching user data:', error);
+        throw error;
+    }
+}
+
+class UserManager {
+    private users: User[] = [];
+
+    constructor(initialUsers?: User[]) {
+        if (initialUsers) {
+            this.users = initialUsers;
+        }
+    }
+
+    public addUser(user: User): void {
+        this.users.push(user);
+    }
+
+    public findUserById(id: number): User | undefined {
+        return this.users.find(user => user.id === id);
+    }
+
+    public getActiveUsers(): User[] {
+        return this.users.filter(user => user.isActive);
+    }
+}
+
+export { User, ApiResponse, greetUser, fetchUserData, UserManager };`,
+                extensions: ['ts']
+            },
+            python: {
+                sample: `# Python Example
+from typing import List, Dict, Optional
+import asyncio
+import json
+
+class UserManager:
+    def __init__(self):
+        self.users: List[Dict] = []
+
+    def add_user(self, user: Dict) -> None:
+        """Add a new user to the collection."""
+        self.users.append(user)
+
+    def find_user_by_id(self, user_id: int) -> Optional[Dict]:
+        """Find a user by their ID."""
+        return next((user for user in self.users if user['id'] == user_id), None)
+
+    def get_active_users(self) -> List[Dict]:
+        """Get all active users."""
+        return [user for user in self.users if user.get('is_active', False)]
+
+def greet_user(name: str) -> str:
+    """Generate a greeting for a user."""
+    greeting = "Hello, {}!".format(name)
+    print(greeting)
+    return greeting
+
+async def fetch_user_data(user_id: int) -> Dict:
+    """Fetch user data from API asynchronously."""
+    try:
+        # Simulate API call
+        await asyncio.sleep(0.1)
+        return {
+            'id': user_id,
+            'name': 'User {}'.format(user_id),
+            'email': 'user{}@example.com'.format(user_id),
+            'is_active': True
+        }
+    except Exception as error:
+        print("Error fetching user data: {}".format(error))
+        raise
+
+if __name__ == "__main__":
+    # Example usage
+    manager = UserManager()
+    manager.add_user({'id': 1, 'name': 'Alice', 'is_active': True})
+    manager.add_user({'id': 2, 'name': 'Bob', 'is_active': False})
+
+    print("Active users:", manager.get_active_users())`,
+                extensions: ['py']
+            }
+        };
+
+        // Initialize Monaco Editor
+        function initMonaco() {
+            require.config({ paths: { vs: 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.45.0/min/vs' } });
+
+            require(['vs/editor/editor.main'], function() {
+                // Create editor
+                editor = monaco.editor.create(document.getElementById('editor-container'), {
+                    value: languageConfigs[currentLanguage].sample,
+                    language: currentLanguage,
+                    theme: 'vs',
+                    fontSize: 14,
+                    minimap: { enabled: true },
+                    scrollBeyondLastLine: false,
+                    automaticLayout: true,
+                    wordWrap: 'on',
+                    suggestOnTriggerCharacters: true,
+                    acceptSuggestionOnEnter: 'on',
+                    tabCompletion: 'on',
+                    quickSuggestions: { other: true, comments: true, strings: true },
+                    parameterHints: { enabled: true },
+                    renderWhitespace: 'selection',
+                    autoClosingBrackets: 'always',
+                    autoClosingQuotes: 'always',
+                    formatOnPaste: true,
+                    formatOnType: true,
+                    mouseWheelZoom: true,
+                    lineNumbers: 'on',
+                    glyphMargin: true,
+                    folding: true,
+                    foldingStrategy: 'auto',
+                    showFoldingControls: 'always',
+                    matchBrackets: 'always',
+                    renderControlCharacters: true,
+                    contextmenu: true,
+                    lineHeight: 21,
+                    suggest: {
+                        snippetsPreventQuickSuggestions: false,
+                        localityBonus: true,
+                        shareSuggestSelections: true,
+                        showIcons: true,
+                        maxVisibleSuggestions: 12,
+                        insertMode: 'insert',
+                        filterGraceful: true,
+                        selectionMode: 'always'
+                    }
+                });
+
+                // Setup event listeners
+                setupEditorEventListeners();
+
+                // Setup AI features
+                setupAIFeatures();
+
+                // Load initial suggestions
+                loadAISuggestions();
+            });
+        }
+
+        // Setup editor event listeners
+        function setupEditorEventListeners() {
+            // Language change
+            document.getElementById('language-select').addEventListener('change', function(e) {
+                currentLanguage = e.target.value;
+                const model = editor.getModel();
+                monaco.editor.setModelLanguage(model, currentLanguage);
+                showStatus('Switched to ' + getLanguageDisplayName(currentLanguage), 'success');
+            });
+
+            // Theme change
+            document.getElementById('theme-select').addEventListener('change', function(e) {
+                monaco.editor.setTheme(e.target.value);
+            });
+
+            // New file
+            document.getElementById('new-file-btn').addEventListener('click', function() {
+                editor.setValue('');
+                showStatus('New file created', 'success');
+            });
+
+            // Load sample
+            document.getElementById('load-sample-btn').addEventListener('click', function() {
+                const sample = languageConfigs[currentLanguage]?.sample || '';
+                editor.setValue(sample);
+                showStatus('Loaded ' + getLanguageDisplayName(currentLanguage) + ' sample', 'success');
+            });
+
+            // Format code
+            document.getElementById('format-code-btn').addEventListener('click', function() {
+                editor.getAction('editor.action.formatDocument').run();
+                showStatus('Code formatted', 'success');
+            });
+
+            // Close AI panel
+            document.getElementById('close-ai-panel').addEventListener('click', function() {
+                document.getElementById('ai-panel').classList.add('hidden');
+            });
+
+            // Apply suggestion
+            document.getElementById('apply-suggestion').addEventListener('click', function() {
+                if (aiSuggestions.length > 0) {
+                    const suggestion = aiSuggestions[0];
+                    const position = editor.getPosition();
+                    const range = new monaco.Range(position.lineNumber, position.column, position.lineNumber, position.column);
+                    const op = { range: range, text: suggestion.code, forceMoveMarkers: true };
+                    editor.executeEdits('ai-suggestion', [op]);
+                    document.getElementById('ai-panel').classList.add('hidden');
+                    showStatus('AI suggestion applied', 'success');
+                }
+            });
+
+            // Discard suggestion
+            document.getElementById('discard-suggestion').addEventListener('click', function() {
+                document.getElementById('ai-panel').classList.add('hidden');
+                showStatus('AI suggestion discarded', 'info');
+            });
+
+            // Mobile menu
+            document.getElementById('mobile-menu-button').addEventListener('click', toggleMobileMenu);
+        }
+
+        // Setup AI features
+        function setupAIFeatures() {
+            // Generate code button
+            document.getElementById('generate-code-btn').addEventListener('click', async function() {
+                const prompt = prompt('Describe what code you want to generate:');
+                if (prompt) {
+                    showStatus('Generating code...', 'info');
+                    try {
+                        const generatedCode = await callAIAPI('Generate ' + currentLanguage + ' code for: ' + prompt);
+                        showAISuggestion('Generated Code', generatedCode);
+                    } catch (error) {
+                        showStatus('Failed to generate code', 'error');
+                    }
+                }
+            });
+
+            // Explain code button
+            document.getElementById('explain-code-btn').addEventListener('click', async function() {
+                const code = editor.getValue();
+                if (code.trim()) {
+                    showStatus('Analyzing code...', 'info');
+                    try {
+                        const explanation = await callAIAPI('Explain this ' + currentLanguage + ' code: \n\n' + code);
+                        showAISuggestion('Code Explanation', explanation);
+                    } catch (error) {
+                        showStatus('Failed to analyze code', 'error');
+                    }
+                } else {
+                    showStatus('Please write some code first', 'warning');
+                }
+            });
+
+            // Debug code button
+            document.getElementById('debug-code-btn').addEventListener('click', async function() {
+                const code = editor.getValue();
+                if (code.trim()) {
+                    showStatus('Debugging code...', 'info');
+                    try {
+                        const debugInfo = await callAIAPI('Debug this ' + currentLanguage + ' code and find issues: \n\n' + code);
+                        showAISuggestion('Debug Report', debugInfo);
+                    } catch (error) {
+                        showStatus('Failed to debug code', 'error');
+                    }
+                } else {
+                    showStatus('Please write some code first', 'warning');
+                }
+            });
+
+            // Optimize code button
+            document.getElementById('optimize-code-btn').addEventListener('click', async function() {
+                const code = editor.getValue();
+                if (code.trim()) {
+                    showStatus('Optimizing code...', 'info');
+                    try {
+                        const optimizedCode = await callAIAPI('Optimize this ' + currentLanguage + ' code for performance and best practices: \n\n' + code);
+                        showAISuggestion('Optimized Code', optimizedCode);
+                    } catch (error) {
+                        showStatus('Failed to optimize code', 'error');
+                    }
+                } else {
+                    showStatus('Please write some code first', 'warning');
+                }
+            });
+        }
+
+        // Configuration - Replace with your actual API settings
+        const AI_CONFIG = {
+            // Choose your AI provider: 'openai', 'anthropic', 'google', 'huggingface', or 'none'
+            provider: 'none', // Set to 'none' for placeholder responses
+
+            // OpenAI Configuration
+            openai: {
+                apiKey: 'YOUR_OPENAI_API_KEY_HERE',
+                model: 'gpt-3.5-turbo', // or 'gpt-4' for better results
+                baseURL: 'https://api.openai.com/v1'
+            },
+
+            // Anthropic Configuration
+            anthropic: {
+                apiKey: 'YOUR_ANTHROPIC_API_KEY_HERE',
+                model: 'claude-3-sonnet-20240229',
+                baseURL: 'https://api.anthropic.com'
+            },
+
+            // Google Gemini Configuration
+            google: {
+                apiKey: 'YOUR_GOOGLE_API_KEY_HERE',
+                model: 'gemini-pro',
+                baseURL: 'https://generativelanguage.googleapis.com'
+            },
+
+            // General settings
+            maxTokens: 1000,
+            temperature: 0.7,
+            timeout: 30000 // 30 seconds
+        };
+
+        // AI API integration
+        // To integrate with a real AI API, replace this function with actual API calls
+        // Recommended APIs:
+        // 1. OpenAI GPT API: https://platform.openai.com/docs/api-reference
+        // 2. Anthropic Claude API: https://docs.anthropic.com/claude/docs
+        // 3. Google Gemini API: https://ai.google.dev/docs
+        // 4. Hugging Face Inference API: https://huggingface.co/inference-api
+        //
+        // For security, consider implementing API calls on the server-side
+        // to avoid exposing API keys in client-side code
+        async function callAIAPI(prompt) {
+            try {
+                if (AI_CONFIG.provider === 'none') {
+                    // Placeholder response for demonstration
+                    return new Promise((resolve) => {
+                        setTimeout(() => {
+                            resolve('AI Response for: "' + prompt.substring(0, 50) + '..."\n\nThis is a placeholder response. To integrate with a real AI API:\n\n1. Choose an AI provider (OpenAI, Anthropic, Google, etc.)\n2. Get an API key from the provider\n3. Update AI_CONFIG above with your settings\n4. Set AI_CONFIG.provider to your chosen provider\n\nExample OpenAI integration:\n\n// AI_CONFIG.openai.apiKey = "your-api-key-here";\n// AI_CONFIG.provider = "openai";');
+                        }, 2000);
+                    });
+                }
+
+                if (AI_CONFIG.provider === 'openai') {
+                    const response = await fetch(AI_CONFIG.openai.baseURL + '/chat/completions', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': 'Bearer ' + AI_CONFIG.openai.apiKey
+                        },
+                        body: JSON.stringify({
+                            model: AI_CONFIG.openai.model,
+                            messages: [{ role: 'user', content: prompt }],
+                            max_tokens: AI_CONFIG.maxTokens,
+                            temperature: AI_CONFIG.temperature
+                        })
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('OpenAI API error: ' + response.status);
+                    }
+
+                    const data = await response.json();
+                    return data.choices[0].message.content;
+                }
+
+                if (AI_CONFIG.provider === 'anthropic') {
+                    const response = await fetch(AI_CONFIG.anthropic.baseURL + '/v1/messages', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'x-api-key': AI_CONFIG.anthropic.apiKey,
+                            'anthropic-version': '2023-06-01'
+                        },
+                        body: JSON.stringify({
+                            model: AI_CONFIG.anthropic.model,
+                            max_tokens: AI_CONFIG.maxTokens,
+                            temperature: AI_CONFIG.temperature,
+                            messages: [{ role: 'user', content: prompt }]
+                        })
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('Anthropic API error: ' + response.status);
+                    }
+
+                    const data = await response.json();
+                    return data.content[0].text;
+                }
+
+                if (AI_CONFIG.provider === 'google') {
+                    const response = await fetch(AI_CONFIG.google.baseURL + '/v1beta/models/' + AI_CONFIG.google.model + ':generateContent?key=' + AI_CONFIG.google.apiKey, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            contents: [{
+                                parts: [{ text: prompt }]
+                            }],
+                            generationConfig: {
+                                temperature: AI_CONFIG.temperature,
+                                maxOutputTokens: AI_CONFIG.maxTokens
+                            }
+                        })
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('Google Gemini API error: ' + response.status);
+                    }
+
+                    const data = await response.json();
+                    return data.candidates[0].content.parts[0].text;
+                }
+
+                return 'Unsupported AI provider: ' + AI_CONFIG.provider;
+
+            } catch (error) {
+                console.error('AI API Error:', error);
+                return 'Sorry, there was an error processing your request: ' + error.message + '\n\nPlease check your API configuration and try again.';
+            }
+        }
+
+        // Show AI suggestion
+        function showAISuggestion(title, content) {
+            const aiPanel = document.getElementById('ai-panel');
+            const aiContent = document.getElementById('ai-content');
+
+            aiContent.innerHTML = '<h4 class="font-semibold mb-2">' + title + '</h4><pre class="text-sm">' + content + '</pre>';
+            aiPanel.classList.remove('hidden');
+
+            // Store suggestion for apply button
+            aiSuggestions = [{ title, code: content }];
+        }
+
+        // Load AI suggestions
+        function loadAISuggestions() {
+            // This could be enhanced with context-aware suggestions
+            aiSuggestions = [];
+        }
+
+        // Utility functions
+        function getLanguageDisplayName(language) {
+            const names = {
+                javascript: 'JavaScript',
+                typescript: 'TypeScript',
+                python: 'Python',
+                java: 'Java',
+                cpp: 'C++',
+                csharp: 'C#',
+                php: 'PHP',
+                go: 'Go',
+                rust: 'Rust',
+                html: 'HTML',
+                css: 'CSS',
+                sql: 'SQL',
+                json: 'JSON'
+            };
+            return names[language] || language;
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const button = document.getElementById('mobile-menu-button');
+
+            menu.classList.toggle('hidden');
+
+            // Update aria-expanded
+            const isExpanded = !menu.classList.contains('hidden');
+            button.setAttribute('aria-expanded', isExpanded.toString());
+
+            // Add slide animation
+            if (isExpanded) {
+                menu.style.maxHeight = menu.scrollHeight + 'px';
+            } else {
+                menu.style.maxHeight = '0';
+            }
+        }
+
+        function showStatus(message, type) {
+            const container = document.getElementById('status-container');
+            const className = type === 'success' ? 'bg-green-100 text-green-800 border-green-200' :
+                             type === 'error' ? 'bg-red-100 text-red-800 border-red-200' :
+                             type === 'warning' ? 'bg-yellow-100 text-yellow-800 border-yellow-200' :
+                             'bg-blue-100 text-blue-800 border-blue-200';
+
+            container.innerHTML = '<div class="' + className + ' border px-4 py-3 rounded mb-4">' + message + '</div>';
+            container.classList.remove('hidden');
+
+            setTimeout(() => {
+                container.classList.add('hidden');
+            }, 5000);
+        }
+
+        // Initialize when DOM is loaded
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initMonaco);
+        } else {
+            initMonaco();
+        }
+    </script>
+</body>
+</html>

@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF and Word Document Converter - Free Online Tools Suite</title>
-    <meta name="description" content="Convert PDF to Word and Word to PDF online for free. Secure document conversion in your browser. No uploads, no watermarks, fast and easy.">
-    <meta name="keywords" content="pdf to word, word to pdf, document converter, free converter, online tools, Daedalus">
+    <title>Document Converter - PDF, Word & Excel Tools - Free Online Suite</title>
+    <meta name="description" content="Convert between PDF, Word, and Excel files online for free. Preview, edit, and convert DOCX, PDF, XLSX securely in your browser.">
+    <meta name="keywords" content="pdf to word, word to pdf, excel to word, document converter, free converter, online tools, Daedalus">
     <meta name="author" content="Daedalus">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     <meta property="og:title" content="PDF and Word Document Converter - Free Online Tools">
@@ -28,6 +28,9 @@
     <script defer src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.14.305/pdf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/mammoth@1.5.1/mammoth.browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script src="https://unpkg.com/docx@7.3.0/build/index.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
@@ -65,6 +68,15 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+        .editable-cell {
+            min-width: 100px;
+            padding: 4px;
+            border: 1px solid #e5e7eb;
+        }
+        .editable-cell:focus {
+            outline: 2px solid #3b82f6;
+            background-color: #fefefe;
+        }
     </style>
 
     <!-- Comprehensive Structured Data -->
@@ -87,10 +99,11 @@
         "featureList": [
             "PDF to Word conversion",
             "Word to PDF conversion",
-            "Batch processing support",
+            "Excel to Word conversion",
+            "Preview and edit capabilities",
+            "Multiple sheet support",
             "Privacy-first design",
-            "No file uploads",
-            "Fast conversion"
+            "No file uploads"
         ],
         "screenshot": "https://infiniteforge.tech/assets/letter-d.png"
     }
@@ -181,6 +194,14 @@
             },
             {
                 "@type": "Question",
+                "name": "How do I convert Excel to Word?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Upload your Excel file (.xlsx or .xls), preview and edit the data if needed, then click convert to download the Word document with a formatted table."
+                }
+            },
+            {
+                "@type": "Question",
                 "name": "Is my document data secure?",
                 "acceptedAnswer": {
                     "@type": "Answer",
@@ -192,7 +213,7 @@
                 "name": "What formats are supported?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "The tool supports PDF to Word (.docx) and Word to PDF conversions. Additional formats may be supported in future updates."
+                    "text": "The tool supports PDF to Word, Word to PDF, and Excel to Word conversions. Input formats include .pdf, .docx, .xlsx, and .xls."
                 }
             },
             {
@@ -246,7 +267,7 @@
     <main class="w-full max-w-4xl mx-auto pt-24 px-4">
         <div class="text-center mb-12">
             <h1 class="text-3xl sm:text-5xl font-bold text-gray-800 mb-4">Document Converter</h1>
-            <p class="text-md sm:text-lg text-gray-600 max-w-3xl mx-auto">Convert your PDF and Word documents with ease.</p>
+            <p class="text-md sm:text-lg text-gray-600 max-w-3xl mx-auto">Convert your PDF, Word, and Excel documents with ease. Preview, edit, and convert between formats securely.</p>
         </div>
 
         <div class="bg-white/60 backdrop-blur-lg rounded-xl shadow-lg overflow-hidden">
@@ -258,6 +279,9 @@
                     </button>
                     <button role="tab" class="tab-button flex-1 flex items-center justify-center py-4 px-2 sm:px-6 font-semibold text-gray-500 hover:text-gray-700 focus:outline-none" data-target="pdf-to-word">
                         <i data-feather="file" class="mr-2" aria-label="PDF document icon"></i><span class="truncate">PDF to Word</span>
+                    </button>
+                    <button role="tab" class="tab-button flex-1 flex items-center justify-center py-4 px-2 sm:px-6 font-semibold text-gray-500 hover:text-gray-700 focus:outline-none" data-target="excel-to-word">
+                        <i data-feather="grid" class="mr-2" aria-label="Excel document icon"></i><span class="truncate">Excel to Word</span>
                     </button>
                 </div>
             </div>
@@ -284,6 +308,28 @@
                         <i data-feather="arrow-down-circle" class="inline-block mr-2" aria-label="Download icon"></i>Convert to Word
                     </button>
                 </div>
+
+                <!-- Excel to Word Panel -->
+                <div id="excel-to-word" role="tabpanel" class="tab-panel hidden">
+                    <h3 class="text-xl sm:text-2xl font-bold text-gray-800 mb-2">Excel to Word Converter</h3>
+                    <p class="text-gray-600 mb-6">Upload an Excel file (.xlsx or .xls) to preview, edit, and convert it to a Word document.</p>
+                    
+                    <input type="file" id="excel-file" accept=".xlsx,.xls" class="block w-full text-sm text-gray-500 file:mr-4 file:py-3 file:px-5 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-100 file:text-blue-700 hover:file:bg-blue-200 cursor-pointer mb-4"/>
+                    
+                    <div id="sheet-selector" class="mb-4 hidden">
+                        <label for="sheet-select" class="block text-sm font-medium text-gray-700 mb-2">Select Sheet:</label>
+                        <select id="sheet-select" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"></select>
+                    </div>
+                    
+                    <div id="preview-container" class="mt-4 p-4 border rounded-lg bg-gray-50 hidden">
+                        <h4 class="text-lg font-semibold mb-2">Preview & Edit Data</h4>
+                        <div id="table-container" class="overflow-x-auto max-h-96"></div>
+                    </div>
+                    
+                    <button id="convert-excel-btn" class="mt-6 w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 disabled:bg-gray-400 transition-transform transform hover:scale-105" disabled>
+                        <i data-feather="arrow-down-circle" class="inline-block mr-2" aria-label="Download icon"></i>Convert to Word
+                    </button>
+                </div>
             </div>
         </div>
         
@@ -302,9 +348,9 @@
         <!-- Social Sharing Section -->
         <div class="bg-white rounded-xl shadow-lg p-8 mt-10">
             <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Share Our Document Converter</h2>
-            <p class="text-gray-600 text-center mb-6">Help others discover our free PDF and Word conversion tools</p>
+            <p class="text-gray-600 text-center mb-6">Help others discover our free PDF, Word, and Excel conversion tools</p>
             <div class="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6">
-                <a href="https://twitter.com/intent/tweet?text=Convert%20PDF%20to%20Word%20and%20Word%20to%20PDF%20for%20free%20with%20Daedalus%20-%20secure%2C%20no%20uploads%2C%20fast%20conversion&url=https://infiniteforge.tech/document-converter.html&via=DaedalusTools"
+                <a href="https://twitter.com/intent/tweet?text=Convert%20PDF%20to%20Word%2C%20Word%20to%20PDF%2C%20and%20Excel%20to%20Word%20for%20free%20with%20Daedalus%20-%20secure%2C%20no%20uploads%2C%20fast%20conversion&url=https://infiniteforge.tech/document-converter.html&via=DaedalusTools"
                    target="_blank" rel="noopener noreferrer"
                    class="w-full sm:w-auto bg-blue-400 hover:bg-blue-500 text-white px-6 py-3 rounded-lg transition-colors duration-300 flex items-center justify-center gap-2">
                     <i data-feather="twitter" class="w-5 h-5"></i>
@@ -359,8 +405,9 @@
             <div class="prose max-w-none">
                 <p class="mb-4 text-gray-700">
                     Document conversion is a crucial tool in today's digital workflow. Whether you're converting Word
-                    documents to PDF for professional presentations, or extracting text from PDFs for editing, our
-                    free online converter makes the process simple, secure, and efficient.
+                    documents to PDF for professional presentations, extracting text from PDFs for editing, or transforming
+                    Excel spreadsheets into formatted Word tables, our free online converter makes the process simple,
+                    secure, and efficient.
                 </p>
 
                 <h3 class="text-2xl font-semibold mb-3 text-gray-800">Word to PDF Conversion</h3>
@@ -377,6 +424,14 @@
                     modifications. Our tool extracts text content from PDF files and creates editable Word documents.
                     While complex formatting, tables, and images may require manual adjustment, the core text content
                     is preserved for efficient editing and repurposing.
+                </p>
+
+                <h3 class="text-2xl font-semibold mb-3 text-gray-800">Excel to Word Conversion</h3>
+                <p class="mb-4 text-gray-700">
+                    Transform your Excel spreadsheets into professionally formatted Word documents with ease. Our converter
+                    reads Excel data, allows you to preview and edit it before conversion, and creates a Word document
+                    with a properly scaled table. Perfect for converting financial reports, data tables, or any
+                    spreadsheet content into a shareable Word format.
                 </p>
 
                 <h3 class="text-2xl font-semibold mb-3 text-gray-800">Privacy and Security</h3>
@@ -400,8 +455,8 @@
                     We support industry-standard document formats to ensure maximum compatibility:
                 </p>
                 <ul class="list-disc pl-6 mb-4 text-gray-700">
-                    <li><strong>Input Formats:</strong> .docx (Word), .pdf (Portable Document Format)</li>
-                    <li><strong>Output Formats:</strong> .pdf (from Word), .docx (from PDF text extraction)</li>
+                    <li><strong>Input Formats:</strong> .docx (Word), .pdf (Portable Document Format), .xlsx/.xls (Excel)</li>
+                    <li><strong>Output Formats:</strong> .pdf (from Word), .docx (from PDF text extraction or Excel data)</li>
                     <li><strong>Compatibility:</strong> Works across all modern browsers and devices</li>
                     <li><strong>Size Limits:</strong> Handles documents up to reasonable sizes for web processing</li>
                 </ul>
@@ -414,6 +469,7 @@
                     <li><strong>Business Professionals:</strong> Convert reports and presentations to PDF for client sharing</li>
                     <li><strong>Legal Documents:</strong> Create PDF versions of contracts and agreements</li>
                     <li><strong>Educators:</strong> Convert assignments and materials between formats</li>
+                    <li><strong>Data Analysts:</strong> Transform Excel spreadsheets into formatted Word tables</li>
                     <li><strong>Content Creators:</strong> Extract and repurpose text from various document types</li>
                     <li><strong>Administrative Work:</strong> Standardize document formats for record keeping</li>
                 </ul>
@@ -644,6 +700,200 @@
                     console.error('Error converting PDF to Word:', err);
                     alert('An error occurred while processing the PDF.');
                     hideLoading();
+                }
+            });
+
+            // --- Excel to Word ---
+            let workbook = null;
+            let currentSheetData = null;
+
+            const excelFileInput = document.getElementById('excel-file');
+            const sheetSelector = document.getElementById('sheet-selector');
+            const sheetSelect = document.getElementById('sheet-select');
+            const previewContainer = document.getElementById('preview-container');
+            const tableContainer = document.getElementById('table-container');
+            const convertExcelBtn = document.getElementById('convert-excel-btn');
+
+            excelFileInput.addEventListener('change', function(event) {
+                const file = event.target.files[0];
+                if (!file) {
+                    sheetSelector.classList.add('hidden');
+                    previewContainer.classList.add('hidden');
+                    convertExcelBtn.disabled = true;
+                    return;
+                }
+
+                showLoading('Reading Excel file...');
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    try {
+                        workbook = XLSX.read(e.target.result, { type: 'array' });
+                        const sheetNames = workbook.SheetNames;
+                        
+                        // Populate sheet selector
+                        sheetSelect.innerHTML = '';
+                        sheetNames.forEach(name => {
+                            const option = document.createElement('option');
+                            option.value = name;
+                            option.textContent = name;
+                            sheetSelect.appendChild(option);
+                        });
+                        
+                        sheetSelector.classList.remove('hidden');
+                        loadSheet(sheetNames[0]);
+                        hideLoading();
+                    } catch (error) {
+                        console.error('Error reading Excel file:', error);
+                        alert('Could not read the Excel file. Please ensure it is a valid .xlsx or .xls file.');
+                        hideLoading();
+                    }
+                };
+                reader.readAsArrayBuffer(file);
+            });
+
+            sheetSelect.addEventListener('change', function() {
+                loadSheet(this.value);
+            });
+
+            function loadSheet(sheetName) {
+                if (!workbook) return;
+                
+                const worksheet = workbook.Sheets[sheetName];
+                currentSheetData = XLSX.utils.sheet_to_json(worksheet, { header: 1, defval: '' });
+                
+                // Normalize data to ensure all rows have the same number of columns
+                if (currentSheetData.length > 0) {
+                    const maxCols = Math.max(...currentSheetData.map(row => row.length));
+                    currentSheetData = currentSheetData.map(row => {
+                        while (row.length < maxCols) {
+                            row.push('');
+                        }
+                        return row;
+                    });
+                }
+                
+                renderTable(currentSheetData);
+                previewContainer.classList.remove('hidden');
+                convertExcelBtn.disabled = false;
+            }
+
+            function renderTable(data) {
+                if (!data || data.length === 0) {
+                    tableContainer.innerHTML = '<p>No data found in this sheet.</p>';
+                    return;
+                }
+
+                let html = '<table class="min-w-full divide-y divide-gray-200 border">';
+                
+                data.forEach((row, rowIndex) => {
+                    html += '<tr>';
+                    row.forEach((cell, colIndex) => {
+                        const cellId = `cell-${rowIndex}-${colIndex}`;
+                        html += `<td class="px-2 py-1 border border-gray-300">
+                            <input type="text" class="editable-cell w-full" id="${cellId}" value="${String(cell ?? '')}">
+                        </td>`;
+                    });
+                    html += '</tr>';
+                });
+                
+                html += '</table>';
+                tableContainer.innerHTML = html;
+
+                // Add event listeners for editing
+                data.forEach((row, rowIndex) => {
+                    row.forEach((cell, colIndex) => {
+                        const cellId = `cell-${rowIndex}-${colIndex}`;
+                        const input = document.getElementById(cellId);
+                        input.addEventListener('input', function() {
+                            currentSheetData[rowIndex][colIndex] = this.value;
+                        });
+                    });
+                });
+            }
+
+            convertExcelBtn.addEventListener('click', function() {
+                if (!currentSheetData || currentSheetData.length === 0) {
+                    alert('No data to convert. Please select a valid Excel file.');
+                    return;
+                }
+
+                showLoading('Converting to Word document...');
+
+                try {
+                    // Calculate column widths based on content
+                    const numCols = currentSheetData[0].length;
+                    const columnWidths = [];
+                    
+                    for (let col = 0; col < numCols; col++) {
+                        let maxLength = 0;
+                        for (let row = 0; row < currentSheetData.length; row++) {
+                            const cellValue = String(currentSheetData[row][col] || '');
+                            maxLength = Math.max(maxLength, cellValue.length);
+                        }
+                        // Set minimum width and scale based on content
+                        const width = Math.max(1000, Math.min(3000, maxLength * 150)); // Convert to twips
+                        columnWidths.push(width);
+                    }
+
+                    // Create table rows for docx with column widths
+                    const tableRows = currentSheetData.map(row => 
+                        new docx.TableRow({
+                            children: row.map((cell, colIndex) => 
+                                new docx.TableCell({
+                                    width: {
+                                        size: columnWidths[colIndex],
+                                        type: docx.WidthType.DXA,
+                                    },
+                                    children: [new docx.Paragraph(String(cell ?? ''))],
+                                })
+                            ),
+                        })
+                    );
+
+                    const table = new docx.Table({
+                        width: {
+                            size: 100,
+                            type: docx.WidthType.PERCENTAGE,
+                        },
+                        layout: docx.TableLayoutType.FIXED,
+                        borders: {
+                            top: { style: docx.BorderStyle.SINGLE, size: 1, color: "000000" },
+                            bottom: { style: docx.BorderStyle.SINGLE, size: 1, color: "000000" },
+                            left: { style: docx.BorderStyle.SINGLE, size: 1, color: "000000" },
+                            right: { style: docx.BorderStyle.SINGLE, size: 1, color: "000000" },
+                            insideHorizontal: { style: docx.BorderStyle.SINGLE, size: 1, color: "000000" },
+                            insideVertical: { style: docx.BorderStyle.SINGLE, size: 1, color: "000000" },
+                        },
+                        rows: tableRows,
+                    });
+
+                    const doc = new docx.Document({
+                        sections: [{
+                            properties: {},
+                            children: [
+                                new docx.Paragraph({
+                                    text: "Excel Data",
+                                    heading: docx.HeadingLevel.HEADING_1,
+                                }),
+                                table,
+                            ],
+                        }],
+                    });
+
+                    docx.Packer.toBlob(doc).then(blob => {
+                        const fileName = excelFileInput.files[0].name.replace(/\.(xlsx|xls)$/i, '.docx');
+                        saveAs(blob, fileName);
+                        hideLoading();
+                        alert('Excel file has been converted to Word document successfully!');
+                    }).catch(error => {
+                        console.error('Error creating Word document:', error);
+                        hideLoading();
+                        alert('An error occurred while creating the Word document. Please try again.');
+                    });
+                } catch (error) {
+                    console.error('Error during conversion:', error);
+                    hideLoading();
+                    alert('An error occurred during conversion. Please try again.');
                 }
             });
         });

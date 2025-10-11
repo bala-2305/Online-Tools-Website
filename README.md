@@ -82,6 +82,7 @@ Daedalus is a modern, privacy-focused web application that provides a comprehens
 | 👁️ **OCR** | Extract text from images | [Use Tool](https://infiniteforge.tech/ocr.html) |
 | 📱 **Social Media Tools** | Optimize content for social platforms | [Use Tool](https://infiniteforge.tech/socialmedia.html) |
 | 📊 **GitHub Visualizer** | Analyze GitHub repository data | [Use Tool](https://infiniteforge.tech/github-visualizer.html) |
+| 🤖 **AI Code Helper** | AI-powered code assistant with Monaco Editor | [Use Tool](https://infiniteforge.tech/ai-code-helper.html) |
 | 🔳 **QR Code Generator** | Generate QR codes instantly | [Use Tool](https://infiniteforge.tech/qrcode-generator.html) |
 
 ---
@@ -122,6 +123,48 @@ Daedalus is a modern, privacy-focused web application that provides a comprehens
 - **Code Editor**: [CodeMirror](https://codemirror.net/) for advanced code editing
 - **Hosting**: [Firebase](https://firebase.google.com/) for reliable deployment
 - **Community**: Thanks to all contributors and users!
+
+---
+
+## 🤖 AI Code Helper Integration
+
+The AI Code Helper tool provides AI-powered code assistance using Monaco Editor. To enable real AI functionality:
+
+### Supported AI APIs
+
+- **OpenAI GPT**: Industry-standard AI for code generation and explanation
+- **Anthropic Claude**: Advanced reasoning capabilities for complex coding tasks
+- **Google Gemini**: Google's multimodal AI with strong coding support
+- **Hugging Face**: Open-source models for specialized coding tasks
+
+### Integration Steps
+
+1. **Get API Key**: Sign up for your preferred AI service and obtain an API key
+2. **Modify `callAIAPI()` function**: Replace the placeholder in `ai-code-helper.html`
+3. **Security Considerations**: Consider server-side implementation to protect API keys
+4. **Rate Limiting**: Implement proper rate limiting and error handling
+
+### Example OpenAI Integration
+
+```javascript
+async function callAIAPI(prompt) {
+    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer YOUR_API_KEY_HERE'
+        },
+        body: JSON.stringify({
+            model: 'gpt-3.5-turbo',
+            messages: [{ role: 'user', content: prompt }],
+            max_tokens: 1000,
+            temperature: 0.7
+        })
+    });
+    const data = await response.json();
+    return data.choices[0].message.content;
+}
+```
 
 ---
 
