@@ -597,36 +597,36 @@
                 </div>
 
                 <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                    <!-- Landing Page Builder Card -->
+                    <!-- AI Chat Builder Card -->
                     <div class="group bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl shadow-lg hover:shadow-2xl p-8 text-center transition-all duration-300 transform hover:-translate-y-2 border border-indigo-100 animate-fade-in-up animate-delay-400">
                         <div class="relative mb-6">
                             <div class="w-20 h-20 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                                <i data-feather="layout" class="w-10 h-10 text-white"></i>
+                                <i data-feather="message-circle" class="w-10 h-10 text-white"></i>
                             </div>
                             <div class="absolute -top-2 -right-2 w-6 h-6 bg-indigo-500 rounded-full flex items-center justify-center">
                                 <i data-feather="zap" class="w-3 h-3 text-white"></i>
                             </div>
                         </div>
-                        <h3 class="text-2xl font-bold text-gray-800 mb-3">Landing Page Builder with AI</h3>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">Custom AI Chat Builder</h3>
                         <p class="text-gray-600 mb-6 leading-relaxed">
-                            Create stunning, professional landing pages in minutes with AI assistance. Perfect for businesses, products, and services.
+                            Create your own personalized AI chat assistant with custom personality, expertise, and behavior. Free online tool with no uploads required.
                         </p>
                         <div class="space-y-2 mb-6">
                             <div class="flex items-center text-sm text-gray-500 justify-center">
                                 <i data-feather="check-circle" class="w-4 h-4 text-indigo-500 mr-2"></i>
-                                AI-Generated Content
+                                Custom Personality
                             </div>
                             <div class="flex items-center text-sm text-gray-500 justify-center">
                                 <i data-feather="check-circle" class="w-4 h-4 text-indigo-500 mr-2"></i>
-                                Customizable Design
+                                Expert Knowledge
                             </div>
                             <div class="flex items-center text-sm text-gray-500 justify-center">
                                 <i data-feather="check-circle" class="w-4 h-4 text-indigo-500 mr-2"></i>
-                                Ready-to-Use HTML
+                                Instant Chat
                             </div>
                         </div>
-                        <a href="landing-page-builder.html" class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-semibold rounded-xl transition-all duration-300 group-hover:shadow-lg">
-                            Try AI Landing Page Builder
+                        <a href="genai-builder.html" class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-semibold rounded-xl transition-all duration-300 group-hover:shadow-lg">
+                            Build Your AI Assistant
                             <i data-feather="arrow-right" class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"></i>
                         </a>
                     </div>
@@ -638,7 +638,7 @@
                                 <i data-feather="book-open" class="w-10 h-10 text-white"></i>
                             </div>
                             <div class="absolute -top-2 -right-2 w-6 h-6 bg-emerald-500 rounded-full flex items-center justify-center">
-                                <i data-feather="brain" class="w-3 h-3 text-white"></i>
+                                <i data-feather="cpu" class="w-3 h-3 text-white"></i>
                             </div>
                         </div>
                         <h3 class="text-2xl font-bold text-gray-800 mb-3">AI Learning Assistant</h3>
@@ -1214,6 +1214,21 @@
             mobileMenu.classList.toggle('hidden');
         });
 
+        // Close mobile menu when a link is clicked
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Close mobile menu when scrolling
+        window.addEventListener('scroll', () => {
+            if (!mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+
         // Animation on scroll functionality
         function animateOnScroll() {
             const elements = document.querySelectorAll('.animate-fade-in-up, .animate-fade-in, .animate-slide-in-left, .animate-slide-in-right');
@@ -1270,8 +1285,8 @@
 
         // Add some interactive effects
         document.addEventListener('DOMContentLoaded', function() {
-            // Add ripple effect to buttons
-            const buttons = document.querySelectorAll('button, .bg-white, .bg-blue-600, .bg-green-600, .bg-purple-600');
+            // Add ripple effect to buttons only
+            const buttons = document.querySelectorAll('button:not([data-feather]), a.inline-flex');
             buttons.forEach(button => {
                 button.addEventListener('click', function(e) {
                     const ripple = document.createElement('div');
