@@ -153,6 +153,16 @@
   <priority>0.64</priority>
 </url>
 <url>
+  <loc>https://infiniteforge.tech/xml-validator.html</loc>
+  <lastmod>2025-10-12T10:00:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://infiniteforge.tech/diff-checker.html</loc>
+  <lastmod>2025-10-12T10:00:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
   <loc>https://infiniteforge.tech/base64-tool.html</loc>
   <lastmod>2025-10-03T10:25:17+00:00</lastmod>
   <priority>0.64</priority>
@@ -190,6 +200,21 @@
 <url>
   <loc>https://infiniteforge.tech/video-to-gif.html</loc>
   <lastmod>2025-10-03T10:25:17+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://infiniteforge.tech/genai-builder.html</loc>
+  <lastmod>2025-10-12T10:00:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://infiniteforge.tech/ai-learning-assistant.html</loc>
+  <lastmod>2025-10-12T10:00:00+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://infiniteforge.tech/ai-hashtag-generator.html</loc>
+  <lastmod>2025-10-12T10:00:00+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 
