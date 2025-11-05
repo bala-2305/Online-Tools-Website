@@ -15,7 +15,7 @@
 
 [🌐 Visit Daedalus](https://infiniteforge.tech) • [📋 Features](https://infiniteforge.tech/features.html) • [📞 Contact](https://infiniteforge.tech/contact.html)
 
-![Daedalus Banner](https://infiniteforge.tech/assets/letter-d.png)
+![Daedalus Banner](https://infiniteforge.tech/images/letter-d.png)
 
 </div>
 
@@ -58,6 +58,22 @@ Daedalus is a modern, privacy-focused web application that provides a comprehens
 | ✏️ **PDF Editor** | Edit and modify PDF content | [Use Tool](https://infiniteforge.tech/pdf-editor.html) |
 | 🌐 **PDF Translator** | Translate PDF documents | [Use Tool](https://infiniteforge.tech/pdf-translator.html) |
 | 🔄 **Document Converter** | Convert between various document formats | [Use Tool](https://infiniteforge.tech/document-converter.html) |
+| 📊 **CSV to Excel** | Convert CSV files to Excel format | [Use Tool](https://infiniteforge.tech/csv-to-excel-converter.html) |
+| 📄 **CSV to PDF** | Convert CSV files to PDF format | [Use Tool](https://infiniteforge.tech/csv-to-pdf-converter.html) |
+| 🧹 **Excel Data Cleaner** | Clean and format Excel data | [Use Tool](https://infiniteforge.tech/excel-data-cleaner.html) |
+| 🔗 **Excel File Merger** | Merge multiple Excel files | [Use Tool](https://infiniteforge.tech/excel-file-merger.html) |
+| 📊 **Excel to CSV** | Convert Excel files to CSV format | [Use Tool](https://infiniteforge.tech/excel-to-csv-converter.html) |
+| 📋 **Excel to JSON** | Convert Excel files to JSON format | [Use Tool](https://infiniteforge.tech/excel-to-json-converter.html) |
+| 📄 **Excel to PDF** | Convert Excel files to PDF format | [Use Tool](https://infiniteforge.tech/excel-to-pdf-converter.html) |
+| 📝 **Excel to Word** | Convert Excel files to Word format | [Use Tool](https://infiniteforge.tech/excel-to-word-converter.html) |
+| 🌐 **HTML to PDF** | Convert HTML pages to PDF | [Use Tool](https://infiniteforge.tech/html-to-pdf-converter.html) |
+| 🖼️ **Image to PDF** | Convert images to PDF format | [Use Tool](https://infiniteforge.tech/image-to-pdf-converter.html) |
+| 📝 **Markdown to HTML** | Convert Markdown to HTML | [Use Tool](https://infiniteforge.tech/markdown-to-html.html) |
+| 📊 **PDF to PowerPoint** | Convert PDF to PowerPoint format | [Use Tool](https://infiniteforge.tech/pdf-to-powerpoint-converter.html) |
+| 📄 **PDF to Text** | Extract text from PDF files | [Use Tool](https://infiniteforge.tech/pdf-to-text-converter.html) |
+| 📊 **PowerPoint to PDF** | Convert PowerPoint to PDF format | [Use Tool](https://infiniteforge.tech/powerpoint-to-pdf-converter.html) |
+| 📄 **Text to PDF** | Convert text files to PDF | [Use Tool](https://infiniteforge.tech/text-to-pdf-converter.html) |
+| 📝 **Word to PDF** | Convert Word documents to PDF | [Use Tool](https://infiniteforge.tech/word-to-pdf-converter.html) |
 
 ### 💻 **Developer Tools**
 | Tool | Description | Link |
@@ -67,6 +83,10 @@ Daedalus is a modern, privacy-focused web application that provides a comprehens
 | 📊 **JSON Validator** | Validate, format, and convert JSON data | [Use Tool](https://infiniteforge.tech/json-validator.html) |
 | 📋 **CSV Validator** | Validate and convert CSV data | [Use Tool](https://infiniteforge.tech/csv-validator.html) |
 | 💻 **Code Formatter** | Format and beautify code | [Use Tool](https://infiniteforge.tech/code-formatter.html) |
+| 🔧 **API Testing Tool** | Test and debug API endpoints | [Use Tool](https://infiniteforge.tech/api-testing-tool.html) |
+| 🔄 **Base64 Tool** | Encode/decode Base64 strings | [Use Tool](https://infiniteforge.tech/base64-tool.html) |
+| 📦 **JS/CSS/HTML Minifier** | Minify JavaScript, CSS, and HTML code | [Use Tool](https://infiniteforge.tech/js-css-html-minifier.html) |
+| 📋 **XML Validator** | Validate and format XML data | [Use Tool](https://infiniteforge.tech/xml-validator.html) |
 
 ### 🎥 **Video & Media Tools**
 | Tool | Description | Link |
@@ -76,6 +96,16 @@ Daedalus is a modern, privacy-focused web application that provides a comprehens
 | 📦 **Video Compressor** | Compress videos for web optimization | [Use Tool](https://infiniteforge.tech/video-compressor.html) |
 | 🎞️ **Slideshow Maker** | Create videos from image slideshows | [Use Tool](https://infiniteforge.tech/slideshow-video-maker.html) |
 
+### 🤖 **AI Tools**
+| Tool | Description | Link |
+|------|-------------|------|
+| ✍️ **AI Content Generator** | Generate blog posts, essays, and social media content | [Use Tool](https://infiniteforge.tech/ai-content-generator.html) |
+| 🏷️ **AI Hashtag Generator** | Create optimized hashtags for social media | [Use Tool](https://infiniteforge.tech/ai-hashtag-generator.html) |
+| 🧠 **AI Learning Assistant** | AI-powered learning and tutoring | [Use Tool](https://infiniteforge.tech/ai-learning-assistant.html) |
+| 🏗️ **GenAI Builder** | Build and customize AI models | [Use Tool](https://infiniteforge.tech/genai-builder.html) |
+| 💬 **Nova AI Web** | AI-powered chat interface | [Use Tool](https://infiniteforge.tech/novaaiweb/index.html) |
+| 💻 **Nova Code Assistant** | AI code generation and assistance | [Use Tool](https://infiniteforge.tech/novaaiweb/code-assistant.html) |
+
 ### 🔧 **Utility Tools**
 | Tool | Description | Link |
 |------|-------------|------|
@@ -84,6 +114,30 @@ Daedalus is a modern, privacy-focused web application that provides a comprehens
 | 📊 **GitHub Visualizer** | Analyze GitHub repository data | [Use Tool](https://infiniteforge.tech/github-visualizer.html) |
 | 🤖 **AI Code Helper** | AI-powered code assistant with Monaco Editor | [Use Tool](https://infiniteforge.tech/ai-code-helper.html) |
 | 🔳 **QR Code Generator** | Generate QR codes instantly | [Use Tool](https://infiniteforge.tech/qrcode-generator.html) |
+| 🎨 **Color Picker** | Pick and convert colors | [Use Tool](https://infiniteforge.tech/color-picker.html) |
+| 🎨 **CSS Gradient Generator** | Create beautiful CSS gradients | [Use Tool](https://infiniteforge.tech/css-gradient-generator.html) |
+| 📚 **Dictionary Thesaurus** | Find definitions and synonyms | [Use Tool](https://infiniteforge.tech/dictionary-thesaurus.html) |
+| 🔍 **Diff Checker** | Compare text and find differences | [Use Tool](https://infiniteforge.tech/diff-checker.html) |
+| 💰 **Expense Splitter** | Split bills and expenses | [Use Tool](https://infiniteforge.tech/expense-splitter.html) |
+| 🎯 **Favicon Generator** | Generate favicons from images | [Use Tool](https://infiniteforge.tech/favicon-generator.html) |
+| 📝 **Flashcard Generator** | Create educational flashcards | [Use Tool](https://infiniteforge.tech/flashcard-generator.html) |
+| 🎮 **GIF Maker** | Create animated GIFs | [Use Tool](https://infiniteforge.tech/gif-maker.html) |
+| 📊 **GPA Calculator** | Calculate grade point average | [Use Tool](https://infiniteforge.tech/gpa-calculator.html) |
+| 🔗 **IndexNow Manager** | Manage IndexNow submissions | [Use Tool](https://infiniteforge.tech/indexnow-manager.html) |
+| 🚀 **Landing Page Builder** | Create landing pages quickly | [Use Tool](https://infiniteforge.tech/landing-page-builder.html) |
+| 📈 **Marketing SEO Tools** | SEO and marketing optimization | [Use Tool](https://infiniteforge.tech/marketing-seo-tools.html) |
+| 🎴 **Memory Card Game** | Fun memory card game | [Use Tool](https://infiniteforge.tech/memory-card-game.html) |
+| 🏷️ **Meta Tag Generator** | Generate HTML meta tags | [Use Tool](https://infiniteforge.tech/meta-tag-generator.html) |
+| 🌐 **Network Speed Test** | Test internet connection speed | [Use Tool](https://infiniteforge.tech/network-speed-test.html) |
+| 🎲 **Random Number Selector** | Generate random numbers | [Use Tool](https://infiniteforge.tech/random-number-selector.html) |
+| 📱 **Responsive Design Tester** | Test responsive designs | [Use Tool](https://infiniteforge.tech/responsive-design-tester.html) |
+| 🔍 **SEO Keyword Analyzer** | Analyze keywords for SEO | [Use Tool](https://infiniteforge.tech/seo-keyword-analyzer.html) |
+| 🗣️ **Text to Speech Reader** | Convert text to speech | [Use Tool](https://infiniteforge.tech/text-to-speech-reader.html) |
+| ⌨️ **Typing Speed Test** | Test your typing speed | [Use Tool](https://infiniteforge.tech/typing-speed-test.html) |
+| 🔄 **Unit Converter** | Convert between different units | [Use Tool](https://infiniteforge.tech/unit-converter.html) |
+| 🔗 **URL Tool** | Encode/decode URLs | [Use Tool](https://infiniteforge.tech/url-tool.html) |
+| 🆔 **UUID Generator** | Generate unique identifiers | [Use Tool](https://infiniteforge.tech/uuid-generator.html) |
+| 📸 **Website Screenshot Tool** | Take website screenshots | [Use Tool](https://infiniteforge.tech/website-screenshot-tool.html) |
 
 ---
 
@@ -100,6 +154,7 @@ Daedalus is a modern, privacy-focused web application that provides a comprehens
 ### **Libraries & Frameworks**
 ![Feather Icons](https://img.shields.io/badge/Feather_Icons-000000?style=for-the-badge&logo=feather&logoColor=white)
 ![CodeMirror](https://img.shields.io/badge/CodeMirror-000000?style=for-the-badge&logo=codemirror&logoColor=white)
+![OpenRouter](https://img.shields.io/badge/OpenRouter-000000?style=for-the-badge&logo=openai&logoColor=white)
 ![Google Analytics](https://img.shields.io/badge/Google_Analytics-E37400?style=for-the-badge&logo=google-analytics&logoColor=white)
 
 ### **Deployment**
@@ -125,46 +180,6 @@ Daedalus is a modern, privacy-focused web application that provides a comprehens
 - **Community**: Thanks to all contributors and users!
 
 ---
-
-## 🤖 AI Code Helper Integration
-
-The AI Code Helper tool provides AI-powered code assistance using Monaco Editor. To enable real AI functionality:
-
-### Supported AI APIs
-
-- **OpenAI GPT**: Industry-standard AI for code generation and explanation
-- **Anthropic Claude**: Advanced reasoning capabilities for complex coding tasks
-- **Google Gemini**: Google's multimodal AI with strong coding support
-- **Hugging Face**: Open-source models for specialized coding tasks
-
-### Integration Steps
-
-1. **Get API Key**: Sign up for your preferred AI service and obtain an API key
-2. **Modify `callAIAPI()` function**: Replace the placeholder in `ai-code-helper.html`
-3. **Security Considerations**: Consider server-side implementation to protect API keys
-4. **Rate Limiting**: Implement proper rate limiting and error handling
-
-### Example OpenAI Integration
-
-```javascript
-async function callAIAPI(prompt) {
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer YOUR_API_KEY_HERE'
-        },
-        body: JSON.stringify({
-            model: 'gpt-3.5-turbo',
-            messages: [{ role: 'user', content: prompt }],
-            max_tokens: 1000,
-            temperature: 0.7
-        })
-    });
-    const data = await response.json();
-    return data.choices[0].message.content;
-}
-```
 
 ---
 

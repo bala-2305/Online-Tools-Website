@@ -1,0 +1,181 @@
+{
+  "log": {
+    "enabled": true,
+    "debug": false,
+    "console": true,
+    "output": "test/build.log"
+  },
+  "profiles": {
+    "production": ["clean", "compile", "typings", "typedoc", "lint", "changelog"],
+    "development": ["serve", "watch", "compile"],
+    "serve": ["serve"],
+    "clean": ["clean"]
+  },
+  "clean": {
+    "locations": ["dist/*", "types/*", "typedoc/*"]
+  },
+  "lint": {
+    "locations": [ "**/*.json", "src/**/*.ts", "test/**/*.js", "demo/**/*.js", "**/*.md" ],
+    "rules": { }
+  },
+  "changelog": {
+    "log": "CHANGELOG.md"
+  },
+  "serve": {
+    "sslKey": "node_modules/@vladmandic/build/cert/https.key",
+    "sslCrt": "node_modules/@vladmandic/build/cert/https.crt",
+    "httpPort": 8000,
+    "httpsPort": 8001,
+    "documentRoot": ".",
+    "defaultFolder": "demo",
+    "defaultFile": "index.html"
+    },
+  "build": {
+    "global": {
+      "target": "es2018",
+      "sourcemap": false,
+      "treeShaking": true,
+      "ignoreAnnotations": true,
+      "banner": { "js": "/*\n  Human\n  homepage: <https://github.com/vladmandic/human>\n  author: <https://github.com/vladmandic>'\n*/\n" }
+    },
+    "targets": [
+      { 
+        "name": "tfjs/browser/version",
+        "platform": "browser",
+        "format": "esm",
+        "input": "tfjs/tf-version.ts",
+        "output": "dist/tfjs.version.js"
+      },
+      {
+        "name": "tfjs/nodejs/cpu",
+        "platform": "node",
+        "format": "cjs",
+        "input": "tfjs/tf-node.ts",
+        "output": "dist/tfjs.esm.js",
+        "external": ["@tensorflow"]
+      },
+      {
+        "name": "human/nodejs/cpu",
+        "platform": "node",
+        "format": "cjs",
+        "input": "src/human.ts",
+        "output": "dist/human.node.js",
+        "external": ["@tensorflow"]
+      },
+      {
+        "name": "tfjs/nodejs/gpu",
+        "platform": "node",
+        "format": "cjs",
+        "input": "tfjs/tf-node-gpu.ts",
+        "output": "dist/tfjs.esm.js",
+        "external": ["@tensorflow"]
+      },
+      {
+        "name": "human/nodejs/gpu",
+        "platform": "node",
+        "format": "cjs",
+        "input": "src/human.ts",
+        "output": "dist/human.node-gpu.js",
+        "external": ["@tensorflow"]
+      },
+      {
+        "name": "tfjs/nodejs/wasm",
+        "platform": "node",
+        "format": "cjs",
+        "input": "tfjs/tf-node-wasm.ts",
+        "output": "dist/tfjs.esm.js",
+        "minify": false,
+        "external": ["@tensorflow"]
+      },
+      {
+        "name": "human/nodejs/wasm",
+        "platform": "node",
+        "format": "cjs",
+        "input": "src/human.ts",
+        "output": "dist/human.node-wasm.js",
+        "external": ["@tensorflow"]
+      },
+      {
+        "name": "tfjs/browser/esm/nobundle",
+        "platform": "browser",
+        "format": "esm",
+        "input": "tfjs/tf-browser.ts",
+        "output": "dist/tfjs.esm.js",
+        "external": ["@tensorflow"]
+      },
+      {
+        "name": "human/browser/esm/nobundle",
+        "platform": "browser",
+        "format": "esm",
+        "input": "src/human.ts",
+        "output": "dist/human.esm-nobundle.js",
+        "sourcemap": false,
+        "external": ["@tensorflow"]
+      },
+      {
+        "name": "tfjs/browser/esm/bundle",
+        "platform": "browser",
+        "format": "esm",
+        "input": "tfjs/tf-browser.ts",
+        "output": "dist/tfjs.esm.js",
+        "sourcemap": false,
+        "minify": true
+      },
+      {
+        "name": "human/browser/iife/bundle",
+        "platform": "browser",
+        "format": "iife",
+        "input": "src/human.ts",
+        "output": "dist/human.js",
+        "minify": true,
+        "globalName": "Human",
+        "external": ["@tensorflow"]
+      },
+      {
+        "name": "human/browser/esm/bundle",
+        "platform": "browser",
+        "format": "esm",
+        "input": "src/human.ts",
+        "output": "dist/human.esm.js",
+        "sourcemap": true,
+        "minify": false,
+        "external": ["@tensorflow"],
+        "typings": "types/lib",
+        "typedoc": "typedoc"
+      },
+      {
+        "name": "demo/typescript",
+        "platform": "browser",
+        "format": "esm",
+        "input": "demo/typescript/index.ts",
+        "output": "demo/typescript/index.js",
+        "sourcemap": true,
+        "external": ["*/human.esm.js"]
+      },
+      {
+        "name": "demo/faceid",
+        "platform": "browser",
+        "format": "esm",
+        "input": "demo/faceid/index.ts",
+        "output": "demo/faceid/index.js",
+        "sourcemap": true,
+        "external": ["*/human.esm.js"]
+      },
+      {
+        "name": "demo/tracker",
+        "platform": "browser",
+        "format": "esm",
+        "input": "demo/tracker/index.ts",
+        "output": "demo/tracker/index.js",
+        "sourcemap": true,
+        "external": ["*/human.esm.js"]
+      }
+    ]
+  },
+  "watch": {
+    "locations": [ "src/**/*", "tfjs/**/*", "demo/**/*.ts" ]
+  },
+  "typescript": {
+    "allowJs": false
+  }
+}

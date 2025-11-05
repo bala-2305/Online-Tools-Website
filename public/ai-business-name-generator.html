@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Business Name Generator — Daedalus</title>
+    <link rel="icon" type="image/png" href="images/letter-d.png">
+    <meta name="description" content="Generate creative business name ideas using keywords, industry and style hints.">
+    <meta name="keywords" content="business name generator, startup name, company name, brand name, ai name generator">
+    <meta name="author" content="InfinityForge">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <link rel="stylesheet" href="/css/responsive-fix.css">
+    <style>
+        :root { --fluid-font-size: clamp(14px, 2vw, 18px);} body { font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif; font-size: var(--fluid-font-size); }
+        .gen-input, .gen-output { font-family: inherit; }
+        .generate-btn { background: linear-gradient(135deg,#8b5cf6,#7c3aed); color: white; }
+        .copy-btn { background: linear-gradient(135deg,#10b981,#059669); color: white; }
+        .clear-btn { background: linear-gradient(135deg,#ef4444,#dc2626); color: white; }
+        .result-chip { background: linear-gradient(135deg,#f8fafc,#fff); border:1px solid #e5e7eb; padding:0.5rem 0.75rem; border-radius:0.5rem; }
+        .msg { margin-bottom: 12px; padding: 8px 12px; border-radius: 8px; max-width: 80%; }
+        .msg.bot { background-color: #e5e7eb; color: #374151; margin-right: auto; }
+        .msg.user { background-color: #8b5cf6; color: white; margin-left: auto; text-align: right; }
+    </style>
+</head>
+
+<script>(function(s){s.dataset.zone='10030137',s.src='https://gizokraijaw.net/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FQ082B7887"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FQ082B7887');
+</script>
+<body class="bg-gray-50 text-gray-800">
+    <nav class="bg-white/80 backdrop-blur-lg shadow-sm w-full fixed top-0 left-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="index.html" class="text-2xl font-bold text-blue-600" aria-label="Daedalus Home">Daedalus</a>
+                <div class="hidden sm:flex items-center space-x-6">
+                    <a href="index.html" class="text-gray-700 hover:text-blue-600 font-medium">Home</a>
+                    <a href="features.html" class="text-gray-700 hover:text-blue-600 font-medium">Features</a>
+                    <a href="about.html" class="text-gray-700 hover:text-blue-600 font-medium">About</a>
+                </div>
+                <div class="sm:hidden">
+                    <button id="mobile-menu-button" class="text-gray-700 hover:text-blue-600 focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden">
+            <a href="index.html" class="block py-2 px-4 text-sm text-gray-700 hover:bg-blue-50">Home</a>
+            <a href="features.html" class="block py-2 px-4 text-sm text-gray-700 hover:bg-blue-50">Features</a>
+            <a href="about.html" class="block py-2 px-4 text-sm text-gray-700 hover:bg-blue-50">About</a>
+        </div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto pt-20 sm:pt-24 pb-12 px-4 sm:px-6" itemscope itemtype="https://schema.org/WebPage">
+        <div class="text-center mb-6">
+            <h1 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-2">AI Business Name Generator</h1>
+            <p class="text-gray-600 max-w-2xl mx-auto">Enter keywords, select an industry and style and get creative business name suggestions using AI.</p>
+            
+            <!-- Interface Toggle -->
+            <div class="flex justify-center mt-6 mb-4">
+                <div class="bg-gray-100 p-1 rounded-lg">
+                    <button id="form-toggle" class="px-4 py-2 rounded-md text-sm font-medium transition-colors bg-white text-gray-900 shadow-sm">Form Input</button>
+                    <button id="chat-toggle" class="px-4 py-2 rounded-md text-sm font-medium transition-colors text-gray-600 hover:text-gray-900">Chat Interface</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl shadow-lg">
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <h3 class="text-lg font-semibold mb-3 flex items-center"><i data-feather="layers" class="w-5 h-5 mr-2 text-purple-500"></i>Input</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium mb-1">Keywords (comma separated)</label>
+                            <input id="keywords" class="gen-input form-input w-full p-3 rounded-lg border border-gray-200" placeholder="coffee, organic, roast">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1">Industry (optional)</label>
+                            <input id="industry" class="gen-input form-input w-full p-3 rounded-lg border border-gray-200" placeholder="Food & Beverage, Tech, Health">
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-sm font-medium mb-1">Style</label>
+                                <select id="style" class="form-select w-full p-3 rounded-lg border border-gray-200">
+                                    <option value="modern">Modern</option>
+                                    <option value="classic">Classic</option>
+                                    <option value="quirky">Quirky</option>
+                                    <option value="professional">Professional</option>
+                                    <option value="luxury">Luxury</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-1">Results</label>
+                                <input id="count" type="number" min="3" max="50" value="10" class="form-input w-full p-3 rounded-lg border border-gray-200">
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-3">
+                            <input id="includeDomain" type="checkbox" class="h-4 w-4" checked>
+                            <label for="includeDomain" class="text-sm">Include domain suggestions (.com/.ai)</label>
+                        </div>
+
+                        <div class="flex gap-3">
+                            <button id="generate-btn" class="generate-btn px-5 py-3 rounded-lg font-medium">Generate</button>
+                            <button id="clear-btn" class="clear-btn px-4 py-3 rounded-lg font-medium">Clear</button>
+                            <button id="regenerate-btn" class="px-4 py-3 rounded-lg border border-gray-200">Shuffle</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold mb-3 flex items-center"><i data-feather="star" class="w-5 h-5 mr-2 text-green-500"></i>Suggestions</h3>
+                    <div id="results" class="space-y-3 min-h-[220px]">
+                        <!-- results appear here -->
+                    </div>
+
+                    <div class="mt-4 flex items-center gap-3">
+                        <button id="copy-btn" class="copy-btn px-4 py-2 rounded-lg font-medium" disabled><i data-feather="copy" class="w-4 h-4 mr-2"></i> Copy</button>
+                        <button id="download-btn" class="px-4 py-2 rounded-lg border border-gray-200" disabled><i data-feather="download" class="w-4 h-4 mr-2"></i>Download</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chat Interface -->
+        <div id="chat-interface" class="bg-white p-6 rounded-2xl shadow-lg hidden">
+            <div class="mb-4">
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">Chat with AI Name Generator</h3>
+                <p class="text-sm text-gray-600">Describe your business idea and get personalized name suggestions through conversation.</p>
+            </div>
+            
+            <div id="chat-box" class="border border-gray-200 rounded-lg p-4 h-96 overflow-y-auto mb-4 bg-gray-50">
+                <div class="msg bot text-gray-800">Hello! I'm your AI Business Name Generator. Tell me about your business idea, industry, or what kind of name you're looking for, and I'll suggest creative business names for you.</div>
+            </div>
+            
+            <div class="flex gap-2">
+                <input type="text" id="user-input" class="flex-1 px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent" placeholder="Describe your business idea..." onkeypress="if(event.key === 'Enter') sendMessage()">
+                <button onclick="sendMessage()" class="bg-purple-600 text-white px-4 py-3 rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition-colors">
+                    <i data-feather="send" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 dark:bg-gray-900 text-white py-4 mt-8">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2025 Remote Rise. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const API_URL = "https://nim-serv.vercel.app/chat"; // Local development URL
+
+        const chatBox = document.getElementById("chat-box");
+        const userInput = document.getElementById("user-input");
+
+        async function sendMessage() {
+          const text = userInput.value.trim();
+          if (!text) return;
+
+          appendMessage(text, "user");
+          userInput.value = "";
+
+          appendMessage("Thinking...", "bot");
+
+          try {
+            const res = await fetch(API_URL, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                messages: [
+                  { role: "system", content: "You are a creative AI assistant specialized in business name generation. Help users create memorable, brandable business names based on their descriptions. Provide multiple name suggestions with brief explanations. Consider factors like memorability, domain availability, pronunciation, and brand potential. Be creative and professional." },
+                  { role: "user", content: text }
+                ]
+              })
+            });
+
+            const data = await res.json();
+
+            // Remove "Thinking..."
+            chatBox.removeChild(chatBox.lastChild);
+
+            appendMessage(data.reply || "No response", "bot");
+          } catch (error) {
+            console.error(error);
+            chatBox.removeChild(chatBox.lastChild);
+            appendMessage("⚠️ Error connecting to server.", "bot");
+          }
+        }
+
+        function appendMessage(content, sender) {
+          const msg = document.createElement("div");
+          msg.className = `msg ${sender}`;
+          msg.textContent = content;
+          chatBox.appendChild(msg);
+          chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        // Basic helper utilities
+        function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+        function shuffle(array) { for (let i = array.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [array[i], array[j]] = [array[j], array[i]]; } return array; }
+        function unique(arr) { return [...new Set(arr)]; }
+
+        function normalizeWords(input) {
+            if (!input) return [];
+            return input.split(',').map(s => s.trim()).filter(Boolean).map(s => s.toLowerCase());
+        }
+
+        async function generateNames({ keywords = [], industry = '', style = 'modern', count = 10, includeDomain = true }) {
+            const prompt = `Generate ${count} creative business name suggestions based on keywords: ${keywords.join(', ')}. Industry: ${industry || 'general'}. Style: ${style}. Provide only the names, one per line, no numbering or extra text.`;
+
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        messages: [
+                            { role: "system", content: "You are a creative AI assistant specialized in business name generation. Generate business names based on user requirements. Provide only the names, one per line, no numbering or extra text." },
+                            { role: "user", content: prompt }
+                        ]
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`API error: ${response.status}`);
+                }
+
+                const data = await response.json();
+                const namesText = (data.reply || "").trim();
+                const names = namesText.split('\n').map(n => n.trim()).filter(n => n).slice(0, count);
+
+                const results = names.map(name => {
+                    const record = { name };
+                    if (includeDomain) {
+                        const finalName = name.toLowerCase().replace(/[^a-z0-9]/g, '');
+                        const tld = Math.random() > 0.3 ? '.com' : '.ai';
+                        record.domain = finalName + tld;
+                    }
+                    return record;
+                });
+
+                return results;
+            } catch (error) {
+                console.error('Error generating names:', error);
+                alert('Error generating names: ' + error.message);
+                return [];
+            }
+        }
+
+        // UI wiring
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof feather !== 'undefined') feather.replace();
+
+            const keywordsInput = document.getElementById('keywords');
+            const industryInput = document.getElementById('industry');
+            const styleSelect = document.getElementById('style');
+            const countInput = document.getElementById('count');
+            const includeDomain = document.getElementById('includeDomain');
+            const generateBtn = document.getElementById('generate-btn');
+            const clearBtn = document.getElementById('clear-btn');
+            const regenerateBtn = document.getElementById('regenerate-btn');
+            const resultsContainer = document.getElementById('results');
+            const copyBtn = document.getElementById('copy-btn');
+            const downloadBtn = document.getElementById('download-btn');
+
+            let lastResults = [];
+
+            function renderResults(list) {
+                resultsContainer.innerHTML = '';
+                if (!list.length) {
+                    resultsContainer.innerHTML = '<div class="text-sm text-gray-500">No suggestions yet — click Generate.</div>';
+                    copyBtn.disabled = true;
+                    downloadBtn.disabled = true;
+                    return;
+                }
+
+                list.forEach((r) => {
+                    const div = document.createElement('div');
+                    div.className = 'result-chip flex items-center justify-between';
+                    div.innerHTML = `
+                        <div class="flex-1 pr-4">
+                            <div class="font-medium">${r.name}</div>
+                            ${r.domain ? `<div class="text-xs text-gray-500">${r.domain}</div>` : ''}
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button class="px-2 py-1 text-xs rounded-md bg-gray-100" data-copy="${r.domain ? r.domain : r.name}">Copy</button>
+                        </div>
+                    `;
+                    resultsContainer.appendChild(div);
+                });
+
+                // attach copy handlers per-row
+                resultsContainer.querySelectorAll('[data-copy]').forEach(btn => {
+                    btn.addEventListener('click', async (e) => {
+                        const text = e.currentTarget.getAttribute('data-copy');
+                        try { await navigator.clipboard.writeText(text); e.currentTarget.textContent = 'Copied'; setTimeout(()=>{ e.currentTarget.innerHTML = 'Copy'; if (typeof feather !== 'undefined') feather.replace(); }, 1200); }
+                        catch (err) { console.error(err); }
+                    });
+                });
+
+                copyBtn.disabled = false;
+                downloadBtn.disabled = false;
+            }
+
+            async function runGenerate() {
+                console.log('runGenerate called');
+                generateBtn.disabled = true;
+                generateBtn.textContent = 'Generating...';
+                const keywords = normalizeWords(keywordsInput.value);
+                const industry = industryInput.value.trim();
+                const style = styleSelect.value;
+                const count = Math.min(50, Math.max(3, Number(countInput.value) || 10));
+                const include = includeDomain.checked;
+
+                console.log('Calling generateNames with:', { keywords, industry, style, count, includeDomain: include });
+                const names = await generateNames({ keywords, industry, style, count, includeDomain: include });
+                console.log('Generated names:', names);
+                lastResults = names;
+                renderResults(names);
+                generateBtn.disabled = false;
+                generateBtn.textContent = 'Generate';
+            }
+
+            generateBtn.addEventListener('click', runGenerate);
+            regenerateBtn.addEventListener('click', runGenerate);
+
+            clearBtn.addEventListener('click', () => {
+                keywordsInput.value = '';
+                industryInput.value = '';
+                countInput.value = 10;
+                includeDomain.checked = true;
+                styleSelect.value = 'modern';
+                lastResults = [];
+                renderResults([]);
+            });
+
+            copyBtn.addEventListener('click', async () => {
+                if (!lastResults.length) return;
+                const text = lastResults.map(r => r.domain ? `${r.name} — ${r.domain}` : r.name).join('\n');
+                try { await navigator.clipboard.writeText(text); copyBtn.innerHTML = '<i data-feather="check" class="w-4 h-4 mr-2"></i>Copied'; if (typeof feather !== 'undefined') feather.replace(); setTimeout(()=>{ copyBtn.innerHTML = '<i data-feather="copy" class="w-4 h-4 mr-2"></i> Copy'; if (typeof feather !== 'undefined') feather.replace(); }, 1600); }
+                catch (err) { console.error(err); }
+            });
+
+            downloadBtn.addEventListener('click', () => {
+                if (!lastResults.length) return;
+                const text = lastResults.map(r => r.domain ? `${r.name} — ${r.domain}` : r.name).join('\n');
+                const blob = new Blob([text], { type: 'text/plain' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url; a.download = 'business-name-suggestions.txt';
+                document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+            });
+
+            // Interface toggle functionality
+            const formInterface = document.querySelector('.bg-white.p-6.rounded-2xl.shadow-lg');
+            const chatInterface = document.getElementById('chat-interface');
+            const formToggle = document.getElementById('form-toggle');
+            const chatToggle = document.getElementById('chat-toggle');
+
+            formToggle.addEventListener('click', () => {
+                formInterface.classList.remove('hidden');
+                chatInterface.classList.add('hidden');
+                formToggle.classList.add('bg-white', 'text-gray-900', 'shadow-sm');
+                formToggle.classList.remove('text-gray-600');
+                chatToggle.classList.remove('bg-white', 'text-gray-900', 'shadow-sm');
+                chatToggle.classList.add('text-gray-600');
+            });
+
+            chatToggle.addEventListener('click', () => {
+                formInterface.classList.add('hidden');
+                chatInterface.classList.remove('hidden');
+                chatToggle.classList.add('bg-white', 'text-gray-900', 'shadow-sm');
+                chatToggle.classList.remove('text-gray-600');
+                formToggle.classList.remove('bg-white', 'text-gray-900', 'shadow-sm');
+                formToggle.classList.add('text-gray-600');
+            });
+
+            // mobile menu toggle similar to other pages
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+            }
+
+            // initial state
+            renderResults([]);
+        });
+    </script>
+</body>
+</html>

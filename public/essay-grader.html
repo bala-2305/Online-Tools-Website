@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Essay Grader & Evaluator — Daedalus</title>
+    <link rel="icon" type="image/png" href="images/letter-d.png">
+    <meta name="description" content="Get AI-powered essay evaluation with detailed feedback on grammar, structure, clarity, and more. Receive scores and suggestions for improvement.">
+    <meta name="keywords" content="essay grader, essay evaluator, writing feedback, grammar checker, essay scoring, AI essay analysis, writing assistant">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    
+    <meta property="og:title" content="Daedalus - Essay Grader & Evaluator">
+    <meta property="og:description" content="Get AI-powered essay evaluation with detailed feedback on grammar, structure, clarity, and more.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://infiniteforge.tech/essay-grader.html">
+    <meta property="og:image" content="https://infiniteforge.tech/assets/daedalus-og.png">
+    <link rel="canonical" href="https://infiniteforge.tech/essay-grader.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Daedalus - Essay Grader & Evaluator">
+    <meta name="twitter:description" content="Get AI-powered essay evaluation with detailed feedback on grammar, structure, clarity, and more.">
+    <meta name="twitter:image" content="https://infiniteforge.tech/assets/daedalus-og.png">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .score-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 28px;
+            margin: 10px;
+        }
+        
+        .score-excellent { background: linear-gradient(135deg, #10b981, #059669); color: white; }
+        .score-good { background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; }
+        .score-fair { background: linear-gradient(135deg, #f59e0b, #d97706); color: white; }
+        .score-poor { background: linear-gradient(135deg, #ef4444, #dc2626); color: white; }
+        
+        .criteria-card {
+            border-left: 4px solid #667eea;
+            transition: all 0.3s ease;
+        }
+        
+        .criteria-card:hover {
+            transform: translateX(5px);
+            border-left-color: #764ba2;
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transition: width 0.3s ease;
+        }
+        
+        .feedback-box {
+            background: #f3f4f6;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 10px 0;
+        }
+        
+        .suggestion-box {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 4px;
+        }
+        
+        .btn-gradient {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-gradient:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .loading-spinner {
+            border: 4px solid #e5e7eb;
+            border-top-color: #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 0.8s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Essay Grader & Evaluator | Daedalus",
+        "description": "Get AI-powered essay evaluation with detailed feedback on grammar, structure, clarity, and more.",
+        "url": "https://infiniteforge.tech/essay-grader.html"
+    }
+    </script>
+</head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FQ082B7887"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-FQ082B7887');
+</script>
+
+<script>(function(s){s.dataset.zone='10030137',s.src='https://gizokraijaw.net/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+
+<body class="text-gray-800">
+    <!-- Header -->
+    <header class="bg-white/95 backdrop-blur-md shadow-lg sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <a href="index.html" class="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Daedalus</a>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-purple-600 font-medium">Home</a>
+                    <a href="features.html" class="text-gray-700 hover:text-purple-600 font-medium">Features</a>
+                    <a href="about.html" class="text-gray-700 hover:text-purple-600 font-medium">About</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-12">
+        <div class="max-w-4xl mx-auto">
+            <!-- Title Section -->
+            <div class="text-center mb-12">
+                <h1 class="text-4xl font-bold text-white mb-4">Essay Grader & Evaluator</h1>
+                <p class="text-lg text-white/90">Get AI-powered feedback on your essay with detailed analysis and improvement suggestions</p>
+            </div>
+
+            <!-- Main Tool Card -->
+            <div class="glass-effect rounded-2xl shadow-2xl p-8 mb-8">
+                <!-- Input Section -->
+                <div class="mb-8">
+                    <label for="essay-input" class="block text-lg font-semibold text-gray-800 mb-3">
+                        <i data-feather="edit-3" class="inline mr-2"></i>Paste Your Essay
+                    </label>
+                    <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-4">
+                        <p class="text-sm text-blue-800">
+                            <i data-feather="info" class="inline w-4 h-4 mr-1"></i>
+                            <strong>Note:</strong> This tool uses AI for essay evaluation. If you experience rate limiting, please wait a few minutes before trying again.
+                        </p>
+                    </div>
+                    <textarea 
+                        id="essay-input" 
+                        placeholder="Enter your essay here (minimum 100 words)..."
+                        class="w-full h-48 p-4 border-2 border-gray-300 rounded-lg focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-200 resize-none"
+                    ></textarea>
+                    <div class="flex justify-between items-center mt-3">
+                        <span id="word-count" class="text-sm text-gray-600">Words: 0</span>
+                        <div class="space-x-2">
+                            <button id="clear-btn" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 transition-colors">
+                                <i data-feather="trash-2" class="inline mr-1 w-4 h-4"></i>Clear
+                            </button>
+                            <button id="grade-btn" class="px-6 py-2 btn-gradient rounded-lg font-semibold">
+                                <i data-feather="check-circle" class="inline mr-2 w-4 h-4"></i>Grade Essay
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Options Section -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 bg-gray-50 rounded-lg">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Essay Level</label>
+                        <select id="level-select" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:border-purple-500 focus:outline-none">
+                            <option value="high-school">High School</option>
+                            <option value="college">College</option>
+                            <option value="professional">Professional</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Essay Type</label>
+                        <select id="type-select" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:border-purple-500 focus:outline-none">
+                            <option value="argumentative">Argumentative</option>
+                            <option value="descriptive">Descriptive</option>
+                            <option value="narrative">Narrative</option>
+                            <option value="expository">Expository</option>
+                            <option value="persuasive">Persuasive</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Section (Initially Hidden) -->
+            <div id="results-section" class="hidden">
+                <!-- Overall Score -->
+                <div class="glass-effect rounded-2xl shadow-2xl p-8 mb-8">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Evaluation Results</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-5 gap-4 mb-8">
+                        <div class="text-center">
+                            <div id="overall-score" class="score-badge score-good">A</div>
+                            <p class="text-sm font-semibold text-gray-600">Overall Score</p>
+                        </div>
+                        <div class="text-center">
+                            <div id="grammar-score" class="score-badge score-good">85</div>
+                            <p class="text-sm font-semibold text-gray-600">Grammar</p>
+                        </div>
+                        <div class="text-center">
+                            <div id="clarity-score" class="score-badge score-good">80</div>
+                            <p class="text-sm font-semibold text-gray-600">Clarity</p>
+                        </div>
+                        <div class="text-center">
+                            <div id="structure-score" class="score-badge score-good">78</div>
+                            <p class="text-sm font-semibold text-gray-600">Structure</p>
+                        </div>
+                        <div class="text-center">
+                            <div id="originality-score" class="score-badge score-good">82</div>
+                            <p class="text-sm font-semibold text-gray-600">Originality</p>
+                        </div>
+                    </div>
+
+                    <!-- Detailed Criteria -->
+                    <div class="space-y-4">
+                        <h3 class="text-lg font-bold text-gray-800">Detailed Breakdown</h3>
+                        
+                        <div id="criteria-container">
+                            <!-- Criteria cards will be inserted here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feedback Section -->
+                <div class="glass-effect rounded-2xl shadow-2xl p-8 mb-8">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Detailed Feedback</h3>
+                    <div id="feedback-container">
+                        <!-- Feedback will be inserted here -->
+                    </div>
+                </div>
+
+                <!-- Suggestions Section -->
+                <div class="glass-effect rounded-2xl shadow-2xl p-8 mb-8">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Improvement Suggestions</h3>
+                    <div id="suggestions-container">
+                        <!-- Suggestions will be inserted here -->
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex gap-4 justify-center mb-8">
+                    <button id="download-report-btn" class="px-6 py-3 btn-gradient rounded-lg font-semibold flex items-center gap-2">
+                        <i data-feather="download"></i>Download Report
+                    </button>
+                    <button id="new-essay-btn" class="px-6 py-3 bg-gray-300 text-gray-700 rounded-lg font-semibold hover:bg-gray-400 transition-colors flex items-center gap-2">
+                        <i data-feather="plus"></i>Grade Another Essay
+                    </button>
+                </div>
+            </div>
+
+            <!-- Loading Indicator -->
+            <div id="loading-section" class="hidden glass-effect rounded-2xl shadow-2xl p-12 text-center">
+                <div class="flex justify-center mb-4">
+                    <div class="loading-spinner"></div>
+                </div>
+                <p class="text-lg font-semibold text-gray-700">Analyzing your essay...</p>
+                <p class="text-sm text-gray-600 mt-2">This may take a moment. Please be patient.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white/80 backdrop-blur-md text-gray-700 py-6 mt-12">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2025 Daedalus. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            feather.replace();
+
+            const essayInput = document.getElementById('essay-input');
+            const wordCountDisplay = document.getElementById('word-count');
+            const gradeBtn = document.getElementById('grade-btn');
+            const clearBtn = document.getElementById('clear-btn');
+            const levelSelect = document.getElementById('level-select');
+            const typeSelect = document.getElementById('type-select');
+            const resultsSection = document.getElementById('results-section');
+            const loadingSection = document.getElementById('loading-section');
+            const newEssayBtn = document.getElementById('new-essay-btn');
+            const downloadReportBtn = document.getElementById('download-report-btn');
+
+            // Update word count
+            essayInput.addEventListener('input', () => {
+                const words = essayInput.value.trim().split(/\s+/).filter(w => w.length > 0).length;
+                wordCountDisplay.textContent = `Words: ${words}`;
+                gradeBtn.disabled = words < 100;
+            });
+
+            // Clear button
+            clearBtn.addEventListener('click', () => {
+                essayInput.value = '';
+                wordCountDisplay.textContent = 'Words: 0';
+                resultsSection.classList.add('hidden');
+                gradeBtn.disabled = true;
+            });
+
+            // New essay button
+            newEssayBtn.addEventListener('click', () => {
+                essayInput.value = '';
+                wordCountDisplay.textContent = 'Words: 0';
+                resultsSection.classList.add('hidden');
+                loadingSection.classList.add('hidden');
+                gradeBtn.disabled = true;
+                essayInput.focus();
+            });
+
+            // Grade button
+            gradeBtn.addEventListener('click', async () => {
+                const essay = essayInput.value.trim();
+                const level = levelSelect.value;
+                const type = typeSelect.value;
+
+                if (essay.split(/\s+/).length < 100) {
+                    alert('Please enter at least 100 words');
+                    return;
+                }
+
+                loadingSection.classList.remove('hidden');
+                resultsSection.classList.add('hidden');
+                gradeBtn.disabled = true;
+
+                try {
+                    const evaluation = await gradeEssay(essay, level, type);
+                    displayResults(evaluation);
+                } catch (error) {
+                    console.error('Error grading essay:', error);
+                    alert(`Error grading essay: ${error.message}\n\nPlease check the console for more details and try again.`);
+                } finally {
+                    loadingSection.classList.add('hidden');
+                    gradeBtn.disabled = false;
+                }
+            });
+
+            // Download report button
+            downloadReportBtn.addEventListener('click', () => {
+                const report = generateReport();
+                const blob = new Blob([report], { type: 'text/plain;charset=utf-8' });
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = 'essay_evaluation_report.txt';
+                link.click();
+            });
+
+            async function gradeEssay(essay, level, type, retryCount = 0) {
+                const maxRetries = 3;
+                const baseDelay = 2000; // 2 seconds
+                const prompt = `You are an expert essay evaluator. Evaluate the following ${level} level ${type} essay and provide a comprehensive analysis.
+
+Essay:
+"${essay}"
+
+Provide your evaluation in the following JSON format (respond ONLY with valid JSON, no other text):
+{
+  "overall_grade": "A-F letter grade",
+  "overall_score": 0-100,
+  "grammar_score": 0-100,
+  "clarity_score": 0-100,
+  "structure_score": 0-100,
+  "originality_score": 0-100,
+  "word_count": number,
+  "estimated_reading_time": "X minutes",
+  "strengths": ["strength1", "strength2", "strength3"],
+  "weaknesses": ["weakness1", "weakness2", "weakness3"],
+  "grammar_feedback": "Detailed feedback about grammar and mechanics",
+  "clarity_feedback": "Feedback about clarity and readability",
+  "structure_feedback": "Feedback about essay structure and organization",
+  "argument_feedback": "Feedback about arguments and thesis",
+  "suggestions": ["suggestion1", "suggestion2", "suggestion3", "suggestion4", "suggestion5"],
+  "summary": "Brief summary of the evaluation"
+}`;
+
+                const API_URL = "https://nim-serv.vercel.app/chat";
+
+                console.log(`Sending request to chat API... (attempt ${retryCount + 1}/${maxRetries + 1})`);
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        messages: [
+                            { role: "system", content: "You are a helpful AI assistant." },
+                            { role: "user", content: prompt }
+                        ]
+                    })
+                });
+
+                console.log('Response status:', response.status);
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    console.error('API Error:', errorText);
+                    
+                    // Handle rate limiting with retry
+                    if (response.status === 429 && retryCount < maxRetries) {
+                        const delay = baseDelay * Math.pow(2, retryCount); // Exponential backoff
+                        console.log(`Rate limited. Retrying in ${delay}ms...`);
+                        
+                        // Update loading message to show retry attempt
+                        const loadingText = document.querySelector('#loading-section p:first-child');
+                        if (loadingText) {
+                            loadingText.textContent = `Rate limited. Retrying in ${Math.ceil(delay/1000)} seconds...`;
+                        }
+                        
+                        await new Promise(resolve => setTimeout(resolve, delay));
+                        return gradeEssay(essay, level, type, retryCount + 1);
+                    }
+                    
+                    // Handle rate limiting specifically
+                    if (response.status === 429) {
+                        throw new Error('Rate limit exceeded. The AI service is temporarily unavailable. Please try again in a few minutes.');
+                    }
+                    
+                    throw new Error(`API error: ${response.status} - ${errorText}`);
+                }
+
+                const data = await response.json();
+                console.log('API Response:', data);
+                
+                const content = data.reply;
+                console.log('AI Response content:', content);
+                
+                // Try to extract JSON from the response
+                let jsonContent = content.trim();
+                
+                // Remove any markdown code blocks if present
+                if (jsonContent.startsWith('```json')) {
+                    jsonContent = jsonContent.replace(/^```json\s*/, '').replace(/\s*```$/, '');
+                } else if (jsonContent.startsWith('```')) {
+                    jsonContent = jsonContent.replace(/^```\s*/, '').replace(/\s*```$/, '');
+                }
+                
+                // Clean up the content
+                jsonContent = jsonContent.trim();
+                
+                console.log('Cleaned JSON content:', jsonContent);
+                
+                // First try to parse the entire content as JSON
+                try {
+                    const evaluation = JSON.parse(jsonContent);
+                    console.log('Parsed evaluation directly:', evaluation);
+                    return evaluation;
+                } catch (directParseError) {
+                    console.log('Direct JSON parse failed, trying regex extraction:', directParseError);
+                    
+                    // If direct parsing fails, try to find JSON object with regex
+                    const jsonMatch = jsonContent.match(/\{[\s\S]*\}/);
+                    if (!jsonMatch) {
+                        console.error('Could not find JSON in response:', jsonContent);
+                        throw new Error('Could not parse evaluation - no JSON found in response');
+                    }
+
+                    const jsonString = jsonMatch[0];
+                    console.log('Extracted JSON with regex:', jsonString);
+                    
+                    try {
+                        const evaluation = JSON.parse(jsonString);
+                        console.log('Parsed evaluation from regex:', evaluation);
+                        return evaluation;
+                    } catch (parseError) {
+                        console.error('JSON parse error:', parseError, 'for string:', jsonString);
+                        throw new Error('Could not parse evaluation - invalid JSON');
+                    }
+                }
+            }
+
+            function displayResults(evaluation) {
+                console.log('Displaying results for evaluation:', evaluation);
+                
+                // Validate evaluation object
+                if (!evaluation || typeof evaluation !== 'object') {
+                    throw new Error('Invalid evaluation data received');
+                }
+
+                // Update scores with safety checks
+                const overallScore = evaluation.overall_score || 0;
+                const grammarScore = evaluation.grammar_score || 0;
+                const clarityScore = evaluation.clarity_score || 0;
+                const structureScore = evaluation.structure_score || 0;
+                const originalityScore = evaluation.originality_score || 0;
+
+                document.getElementById('overall-score').textContent = evaluation.overall_grade || 'N/A';
+                document.getElementById('overall-score').className = `score-badge ${getScoreBadgeClass(overallScore)}`;
+                
+                document.getElementById('grammar-score').textContent = grammarScore;
+                document.getElementById('grammar-score').className = `score-badge ${getScoreBadgeClass(grammarScore)}`;
+                
+                document.getElementById('clarity-score').textContent = clarityScore;
+                document.getElementById('clarity-score').className = `score-badge ${getScoreBadgeClass(clarityScore)}`;
+                
+                document.getElementById('structure-score').textContent = structureScore;
+                document.getElementById('structure-score').className = `score-badge ${getScoreBadgeClass(structureScore)}`;
+                
+                document.getElementById('originality-score').textContent = originalityScore;
+                document.getElementById('originality-score').className = `score-badge ${getScoreBadgeClass(originalityScore)}`;
+
+                // Criteria breakdown
+                const criteriaContainer = document.getElementById('criteria-container');
+                criteriaContainer.innerHTML = `
+                    ${createCriteriaCard('Grammar & Mechanics', grammarScore)}
+                    ${createCriteriaCard('Clarity & Readability', clarityScore)}
+                    ${createCriteriaCard('Structure & Organization', structureScore)}
+                    ${createCriteriaCard('Argument & Thesis', Math.round((originalityScore + overallScore) / 2))}
+                    ${createCriteriaCard('Originality & Creativity', originalityScore)}
+                `;
+
+                // Feedback with safety checks
+                const feedbackContainer = document.getElementById('feedback-container');
+                const strengths = Array.isArray(evaluation.strengths) ? evaluation.strengths : [];
+                const weaknesses = Array.isArray(evaluation.weaknesses) ? evaluation.weaknesses : [];
+                
+                feedbackContainer.innerHTML = `
+                    <div class="feedback-box">
+                        <h4 class="font-bold text-gray-800 mb-2">Strengths</h4>
+                        <ul class="list-disc pl-5 text-gray-700">
+                            ${strengths.length > 0 ? strengths.map(s => `<li>${s}</li>`).join('') : '<li>No strengths identified</li>'}
+                        </ul>
+                    </div>
+                    <div class="feedback-box">
+                        <h4 class="font-bold text-gray-800 mb-2">Areas for Improvement</h4>
+                        <ul class="list-disc pl-5 text-gray-700">
+                            ${weaknesses.length > 0 ? weaknesses.map(w => `<li>${w}</li>`).join('') : '<li>No areas for improvement identified</li>'}
+                        </ul>
+                    </div>
+                    <div class="feedback-box">
+                        <h4 class="font-bold text-gray-800 mb-2">Grammar Feedback</h4>
+                        <p class="text-gray-700">${evaluation.grammar_feedback || 'No grammar feedback available'}</p>
+                    </div>
+                    <div class="feedback-box">
+                        <h4 class="font-bold text-gray-800 mb-2">Clarity Feedback</h4>
+                        <p class="text-gray-700">${evaluation.clarity_feedback || 'No clarity feedback available'}</p>
+                    </div>
+                    <div class="feedback-box">
+                        <h4 class="font-bold text-gray-800 mb-2">Structure Feedback</h4>
+                        <p class="text-gray-700">${evaluation.structure_feedback || 'No structure feedback available'}</p>
+                    </div>
+                `;
+
+                // Suggestions with safety checks
+                const suggestionsContainer = document.getElementById('suggestions-container');
+                const suggestions = Array.isArray(evaluation.suggestions) ? evaluation.suggestions : [];
+                
+                suggestionsContainer.innerHTML = suggestions.length > 0 
+                    ? suggestions.map(s => `
+                        <div class="suggestion-box">
+                            <i data-feather="zap" class="inline w-4 h-4 text-blue-500 mr-2"></i>
+                            <span class="text-gray-700">${s}</span>
+                        </div>
+                    `).join('')
+                    : '<div class="suggestion-box">No suggestions available</div>';
+
+                feather.replace();
+                resultsSection.classList.remove('hidden');
+                window.scrollTo({ top: resultsSection.offsetTop - 100, behavior: 'smooth' });
+                console.log('Results displayed successfully');
+            }
+
+            function createCriteriaCard(title, score) {
+                const percentage = Math.min(100, Math.max(0, score));
+                return `
+                    <div class="criteria-card bg-white p-4 rounded-lg mb-4">
+                        <div class="flex justify-between items-center mb-2">
+                            <h4 class="font-semibold text-gray-800">${title}</h4>
+                            <span class="text-sm font-bold text-purple-600">${score}/100</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: ${percentage}%"></div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            function getScoreBadgeClass(score) {
+                if (score >= 90) return 'score-excellent';
+                if (score >= 80) return 'score-good';
+                if (score >= 70) return 'score-fair';
+                return 'score-poor';
+            }
+
+            function generateReport() {
+                const essay = essayInput.value;
+                const grammar = document.getElementById('grammar-score').textContent;
+                const clarity = document.getElementById('clarity-score').textContent;
+                const structure = document.getElementById('structure-score').textContent;
+                const originality = document.getElementById('originality-score').textContent;
+                const overall = document.getElementById('overall-score').textContent;
+
+                return `ESSAY EVALUATION REPORT
+================================
+
+Overall Grade: ${overall}
+
+SCORES:
+- Grammar & Mechanics: ${grammar}/100
+- Clarity & Readability: ${clarity}/100
+- Structure & Organization: ${structure}/100
+- Originality & Creativity: ${originality}/100
+
+Generated: ${new Date().toLocaleString()}
+
+This report was generated by Daedalus Essay Grader.
+================================`;
+            }
+        });
+    </script>
+</body>
+</html>
