@@ -5,6 +5,114 @@
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
+    ],
+
+    "cleanUrls": true,
+
+    "redirects": [
+      {
+        "source": "/:page.html",
+        "destination": "/:page",
+        "type": 301
+      }
+    ],
+
+    "rewrites": [
+      { "source": "/2048", "destination": "/2048-game.html" },
+      { "source": "/connect4", "destination": "/connect-four-game.html" },
+      { "source": "/tic", "destination": "/tic-tac-toe.html" },
+      { "source": "/memory", "destination": "/memory-card-game.html" },
+      { "source": "/wordgame", "destination": "/word-guessing-game.html" },
+
+      { "source": "/ai-idea", "destination": "/ai-business-idea-validator.html" },
+      { "source": "/ai-name", "destination": "/ai-business-name-generator.html" },
+      { "source": "/ai-comment", "destination": "/ai-code-comment-generator.html" },
+      { "source": "/ai-hashtag", "destination": "/ai-hashtag-generator.html" },
+      { "source": "/ai-learn", "destination": "/ai-learning-assistant.html" },
+      { "source": "/ai-para", "destination": "/ai-paraphrasing-tool.html" },
+      { "source": "/ai-pdf", "destination": "/ai-pdf-chat.html" },
+      { "source": "/ai-lyrics", "destination": "/ai-song-lyrics-generator.html" },
+      { "source": "/ai-story", "destination": "/ai-story-script-writer.html" },
+      { "source": "/ai-tagline", "destination": "/ai-tagline-slogan-creator.html" },
+      { "source": "/ai-voice", "destination": "/ai-voice-assistant.html" },
+
+      { "source": "/csv-excel", "destination": "/csv-to-excel-converter.html" },
+      { "source": "/csv-pdf", "destination": "/csv-to-pdf-converter.html" },
+      { "source": "/excel-pdf", "destination": "/excel-to-pdf-converter.html" },
+      { "source": "/word-pdf", "destination": "/word-to-pdf-converter.html" },
+      { "source": "/pdf-word", "destination": "/pdf-to-word-converter.html" },
+      { "source": "/pdf-text", "destination": "/pdf-to-text-converter.html" },
+      { "source": "/pdf-ppt", "destination": "/pdf-to-powerpoint-converter.html" },
+      { "source": "/ppt-pdf", "destination": "/powerpoint-to-pdf-converter.html" },
+      { "source": "/text-pdf", "destination": "/text-to-pdf-converter.html" },
+      { "source": "/img-pdf", "destination": "/image-to-pdf-converter.html" },
+      { "source": "/html-pdf", "destination": "/html-to-pdf-converter.html" },
+      { "source": "/ai-content", "destination": "/ai-content-generator.html" },
+      { "source": "/img-resize", "destination": "/imageresizer.html" },
+      { "source": "/img-compress", "destination": "/imagecompressor.html" },
+      { "source": "/img-convert", "destination": "/imageconverter.html" },
+      { "source": "/img-filters", "destination": "/imagefilters.html" },
+      { "source": "/img-enhance", "destination": "/imageenhancement.html" },
+      { "source": "/img-color", "destination": "/imagecolortools.html" },
+      { "source": "/bg-remove", "destination": "/background-remover.html" },
+
+      { "source": "/pdf-edit", "destination": "/pdf-editor.html" },
+      { "source": "/pdf-merge", "destination": "/pdf-merger.html" },
+      { "source": "/pdf-split", "destination": "/pdf-splitter.html" },
+      { "source": "/pdf-compress", "destination": "/pdf-compressor.html" },
+      { "source": "/pdf-tools", "destination": "/pdftools.html" },
+
+      { "source": "/json", "destination": "/json-validator.html" },
+      { "source": "/xml", "destination": "/xml-validator.html" },
+      { "source": "/regex", "destination": "/regex-tester.html" },
+      { "source": "/jwt", "destination": "/jwt-decoder.html" },
+
+      { "source": "/compiler", "destination": "/online-compiler.html" },
+      { "source": "/api-test", "destination": "/api-testing-tool.html" },
+      { "source": "/diff", "destination": "/diff-checker.html" },
+      { "source": "/dns", "destination": "/dns-lookup-tool.html" },
+      { "source": "/ip", "destination": "/ip-geolocation-finder.html" },
+      { "source": "/port", "destination": "/port-scanner.html" },
+      { "source": "/indexnow", "destination": "/indexnow-manager.html" },
+
+      { "source": "/qrcode", "destination": "/qrcode-generator.html" },
+      { "source": "/meta", "destination": "/meta-tag-generator.html" },
+      { "source": "/favicon", "destination": "/favicon-generator.html" },
+      { "source": "/seo", "destination": "/seo-keyword-analyzer.html" },
+      { "source": "/sitemap", "destination": "/sitemap-generator.html" },
+
+      { "source": "/converter", "destination": "/unit-converter.html" },
+      { "source": "/loan", "destination": "/loan-emi-calculator.html" },
+      { "source": "/gst", "destination": "/gst-calculator.html" },
+      { "source": "/gpa", "destination": "/gpa-calculator.html" },
+      { "source": "/split", "destination": "/expense-splitter.html" },
+
+      { "source": "/video-cut", "destination": "/video-cutter.html" },
+      { "source": "/video-compress", "destination": "/video-compressor.html" },
+      { "source": "/video-gif", "destination": "/video-to-gif.html" },
+      { "source": "/slideshow", "destination": "/slideshow-video-maker.html" },
+      { "source": "/screenshot", "destination": "/website-screenshot-tool.html" },
+
+      { "source": "/social", "destination": "/socialmedia.html" },
+      { "source": "/seo-tools", "destination": "/marketing-seo-tools.html" },
+      { "source": "/builder", "destination": "/genai-builder.html" },
+      { "source": "/ocr", "destination": "/ocr.html" },
+      { "source": "/tts", "destination": "/text-to-speech-reader.html" },
+      { "source": "/faker", "destination": "/fake-data-generator.html" },
+      { "source": "/color", "destination": "/color-picker.html" },
+      { "source": "/gradient", "destination": "/css-gradient-generator.html" },
+
+      { "source": "/about", "destination": "/about.html" },
+      { "source": "/features", "destination": "/features.html" },
+      { "source": "/contact", "destination": "/contact.html" },
+      { "source": "/privacy", "destination": "/privacy.html" },
+
+      { "source": "/nova", "destination": "/novaaiweb/index.html" },
+      { "source": "/nova/chat", "destination": "/novaaiweb/index.html" },
+      { "source": "/nova/code", "destination": "/novaaiweb/code-assistant.html" },
+      { "source": "/face", "destination": "/humanai/det/index.html" },
+      { "source": "/:page", "destination": "/:page.html" },
+      { "source": "/**", "destination": "/index.html" }
     ]
   }
 }

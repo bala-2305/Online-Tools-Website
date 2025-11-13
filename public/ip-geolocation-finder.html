@@ -3,13 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IP Geolocation Finder — Daedalus</title>
+    <title>IP Geolocation Finder — Daedalus | Free IP Location Lookup Tool</title>
     <link rel="icon" type="image/png" href="images/letter-d.png">
-    <meta name="description" content="Free IP Geolocation Finder tool to locate IP addresses worldwide. Get country, city, coordinates, ISP, and timezone information for any IP address.">
-    <meta name="keywords" content="ip geolocation, ip lookup, ip location finder, ip address locator, geolocation api, ip tracker, ip information, ip details">
+    <meta name="description" content="Free IP Geolocation Finder tool to locate IP addresses worldwide. Get country, city, coordinates, ISP, timezone, and network information for any IP address instantly.">
+    <meta name="keywords" content="ip geolocation, ip lookup, ip location finder, ip address locator, geolocation api, ip tracker, ip information, ip details, find ip location, ip geolocation tool, ip address search, geolocation lookup, ip mapping, ip location database, ip geolocation api, trace ip address, ip address finder, geolocation service, ip location service">
     <meta name="author" content="InfinityForge">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="language" content="English">
+    <meta name="revisit-after" content="7 days">
+    <meta name="distribution" content="global">
+    <meta name="rating" content="general">
+    <meta name="last-modified" content="2025-11-11">
+    <meta name="category" content="tools, utilities, network, geolocation">
+    <link rel="canonical" href="https://infiniteforge.tech/ip-geolocation-finder.html">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://infiniteforge.tech/ip-geolocation-finder.html">
+    <meta property="og:title" content="IP Geolocation Finder — Daedalus | Free IP Location Lookup Tool">
+    <meta property="og:description" content="Free IP Geolocation Finder tool to locate IP addresses worldwide. Get country, city, coordinates, ISP, and timezone information for any IP address.">
+    <meta property="og:image" content="https://infiniteforge.tech/images/letter-d.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="Daedalus">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://infiniteforge.tech/ip-geolocation-finder.html">
+    <meta property="twitter:title" content="IP Geolocation Finder — Daedalus | Free IP Location Lookup Tool">
+    <meta property="twitter:description" content="Free IP Geolocation Finder tool to locate IP addresses worldwide. Get country, city, coordinates, ISP, and timezone information for any IP address.">
+    <meta property="twitter:image" content="https://infiniteforge.tech/images/letter-d.png">
+    <meta property="twitter:creator" content="@HMahibala42802">
+    <meta property="twitter:site" content="@HMahibala42802">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "IP Geolocation Finder",
+        "description": "Free IP Geolocation Finder tool to locate IP addresses worldwide. Get country, city, coordinates, ISP, and timezone information for any IP address.",
+        "url": "https://infiniteforge.tech/ip-geolocation-finder.html",
+        "applicationCategory": "WebApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "Requires JavaScript",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "provider": {
+            "@type": "Organization",
+            "name": "Daedalus",
+            "url": "https://infiniteforge.tech",
+            "logo": "https://infiniteforge.tech/images/letter-d.png",
+            "sameAs": [
+                "https://www.linkedin.com/in/mahibala-h",
+                "https://x.com/HMahibala42802",
+                "https://www.youtube.com/@echo14-w3y",
+                "https://www.facebook.com/61557410529583/",
+                "https://www.instagram.com/ig_balah?igsh=dXo4ank3OWxiaXVy"
+            ]
+        },
+        "featureList": [
+            "IP Address Geolocation Lookup",
+            "Country and City Detection",
+            "GPS Coordinates",
+            "ISP Information",
+            "Network Details",
+            "Timezone Information",
+            "Export Results",
+            "IPv4 and IPv6 Support"
+        ],
+        "potentialAction": {
+            "@type": "UseAction",
+            "target": "https://infiniteforge.tech/ip-geolocation-finder.html",
+            "description": "Find the geographical location of any IP address"
+        }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Daedalus",
+        "url": "https://infiniteforge.tech",
+        "logo": "https://infiniteforge.tech/images/letter-d.png",
+        "description": "Free online tools for creators, developers, and businesses. Privacy-focused digital utilities.",
+        "foundingDate": "2025",
+        "sameAs": [
+            "https://www.linkedin.com/in/mahibala-h",
+            "https://x.com/HMahibala42802",
+            "https://www.youtube.com/@echo14-w3y",
+            "https://www.facebook.com/61557410529583/",
+            "https://www.instagram.com/ig_balah?igsh=dXo4ank3OWxiaXVy"
+        ]
+    }
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <link rel="stylesheet" href="/css/responsive-fix.css">
     <style>
         :root { --fluid-font-size: clamp(14px, 2vw, 18px);} body { font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif; font-size: var(--fluid-font-size); }
@@ -20,7 +117,24 @@
         .info-item:hover { background: #f1f5f9; transform: translateX(2px); }
         .map-container { background: #f8f9fa; border: 2px dashed #d1d5db; border-radius: 0.5rem; }
     </style>
-</head>
+
+    <!-- Fix for Leaflet CSS -->
+    <style>
+        .leaflet-container {
+            background: #f8f9fa !important;
+            z-index: 1;
+        }
+        .leaflet-popup-content-wrapper {
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .leaflet-popup-tip {
+            background-color: white;
+        }
+        .leaflet-control-attribution {
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+    </style>
 
 <script>(function(s){s.dataset.zone='10030137',s.src='https://gizokraijaw.net/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
 
@@ -61,9 +175,46 @@
     </nav>
 
     <main class="max-w-6xl mx-auto pt-20 sm:pt-24 pb-12 px-4 sm:px-6" itemscope itemtype="https://schema.org/WebPage">
+        <!-- Breadcrumb Navigation -->
+        <nav aria-label="Breadcrumb" class="mb-6">
+            <ol class="flex items-center space-x-2 text-sm text-gray-500" itemscope itemtype="https://schema.org/BreadcrumbList">
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    <a href="index.html" class="hover:text-blue-600" itemprop="item">
+                        <span itemprop="name">Home</span>
+                    </a>
+                    <meta itemprop="position" content="1" />
+                </li>
+                <li class="flex items-center">
+                    <svg class="w-4 h-4 mx-2" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                </li>
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    <a href="features.html" class="hover:text-blue-600" itemprop="item">
+                        <span itemprop="name">Tools</span>
+                    </a>
+                    <meta itemprop="position" content="2" />
+                </li>
+                <li class="flex items-center">
+                    <svg class="w-4 h-4 mx-2" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                </li>
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    <span class="text-gray-900" itemprop="name">IP Geolocation Finder</span>
+                    <meta itemprop="position" content="3" />
+                </li>
+            </ol>
+        </nav>
+
         <div class="text-center mb-6">
-            <h1 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-2">IP Geolocation Finder</h1>
-            <p class="text-lg text-gray-600">Find the geographical location and details of any IP address</p>
+            <h1 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-2" itemprop="name">IP Geolocation Finder</h1>
+            <p class="text-lg text-gray-600" itemprop="description">Find the geographical location and details of any IP address</p>
+            <meta itemprop="about" content="IP Geolocation, Network Tools, IP Lookup">
+            <div class="mt-4 flex items-center justify-center text-sm text-gray-500 gap-2">
+                <i data-feather="users" class="w-4 h-4"></i>
+                <span id="user-counter">Loading...</span> visitors
+            </div>
         </div>
 
         <div class="bg-white rounded-2xl shadow-lg p-6 sm:p-8 mb-8">
@@ -179,19 +330,16 @@
                 </div>
             </div>
 
-            <!-- Map Placeholder -->
+            <!-- Map Section -->
             <div class="result-card p-6">
                 <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
                     <i data-feather="map" class="w-5 h-5 mr-2 text-red-600"></i>
                     Location Map
                 </h3>
-                <div id="map-container" class="map-container p-8 text-center">
-                    <i data-feather="map" class="w-16 h-16 text-gray-400 mx-auto mb-4"></i>
-                    <p class="text-gray-600 mb-2">Interactive map would be displayed here</p>
-                    <p class="text-sm text-gray-500">For full functionality, consider integrating with Google Maps or OpenStreetMap APIs</p>
-                    <div id="coordinates-display" class="mt-4 p-3 bg-gray-100 rounded-lg">
-                        <p class="text-sm font-medium text-gray-700">Coordinates: <span id="coordinates" class="font-mono">---</span></p>
-                    </div>
+                <div id="map" class="w-full rounded-lg border border-gray-300" style="height: 400px; min-height: 400px;"></div>
+                <div id="coordinates-display" class="mt-4 p-3 bg-gray-100 rounded-lg">
+                    <p class="text-sm font-medium text-gray-700">Coordinates: <span id="coordinates" class="font-mono">---</span></p>
+                    <p class="text-xs text-gray-600 mt-1">Click on the map to get coordinates at that location</p>
                 </div>
             </div>
         </div>
@@ -212,6 +360,47 @@
                 <p class="text-blue-800 text-sm">
                     <strong>Note:</strong> This tool uses free geolocation APIs. For the most accurate results, ensure the IP address is valid and publicly routable.
                 </p>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="bg-white border border-gray-200 rounded-lg p-6 mt-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Frequently Asked Questions</h2>
+            <div class="space-y-4" itemscope itemtype="https://schema.org/FAQPage">
+                <div class="border-b border-gray-200 pb-4" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2" itemprop="name">What is IP Geolocation?</h3>
+                    <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <p class="text-gray-600" itemprop="text">IP geolocation is the process of determining the geographical location of an IP address. It provides information about the country, city, region, and coordinates associated with an IP address.</p>
+                    </div>
+                </div>
+
+                <div class="border-b border-gray-200 pb-4" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2" itemprop="name">How accurate is IP geolocation?</h3>
+                    <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <p class="text-gray-600" itemprop="text">IP geolocation accuracy varies depending on the database and IP address type. Generally, country-level accuracy is very high (95%+), while city-level accuracy can range from 70-90% depending on the location and ISP.</p>
+                    </div>
+                </div>
+
+                <div class="border-b border-gray-200 pb-4" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2" itemprop="name">What information can I get from an IP address?</h3>
+                    <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <p class="text-gray-600" itemprop="text">Our IP geolocation tool provides: country and city location, GPS coordinates, timezone information, ISP/organization details, ASN numbers, and network information.</p>
+                    </div>
+                </div>
+
+                <div class="border-b border-gray-200 pb-4" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2" itemprop="name">Is this tool free to use?</h3>
+                    <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <p class="text-gray-600" itemprop="text">Yes, our IP Geolocation Finder is completely free to use. There are no usage limits or registration requirements.</p>
+                    </div>
+                </div>
+
+                <div itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-2" itemprop="name">Can I export the results?</h3>
+                    <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <p class="text-gray-600" itemprop="text">Yes, you can export all geolocation results to a text file for documentation, analysis, or record-keeping purposes.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
@@ -250,7 +439,8 @@
                         <li><a href="pdfconverter.html" class="hover:text-white transition-colors">PDF Tools</a></li>
                         <li><a href="dns-lookup-tool.html" class="hover:text-white transition-colors">DNS Lookup</a></li>
                         <li><a href="http-header-checker.html" class="hover:text-white transition-colors">HTTP Headers</a></li>
-                        <li><a href="ip-geolocation-finder.html" class="hover:text-white transition-colors">IP Geolocation</a></li>
+                        <li><a href="ip-geolocation-finder.html" class="hover:text-white transition-colors font-semibold">IP Geolocation</a></li>
+                        <li><a href="ai-content-generator.html" class="hover:text-white transition-colors">AI Content Generator</a></li>
                     </ul>
                 </div>
                 <div>
@@ -274,6 +464,28 @@
             feather.replace();
         }
 
+        // Initialize User Counter
+        function initializeUserCounter() {
+            const counterElement = document.getElementById('user-counter');
+            if (!counterElement) return;
+
+            fetch('https://api.counterapi.dev/v1/infiniteforge.tech/ip-geolocation-finder')
+                .then(response => response.json())
+                .then(data => {
+                    const count = data.value || 0;
+                    counterElement.textContent = count.toLocaleString();
+                })
+                .catch(error => {
+                    console.error('Counter fetch error:', error);
+                    counterElement.textContent = '∞';
+                });
+        }
+
+        // Call counter on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeUserCounter();
+        });
+
         // Form handling
         const form = document.getElementById('geolocation-form');
         const findBtn = document.getElementById('find-btn');
@@ -294,15 +506,20 @@
         const networkContent = document.getElementById('network-content');
         const coordinates = document.getElementById('coordinates');
 
+        // Map variables
+        let map = null;
+        let marker = null;
+
         // Store current results for export
         let currentResults = null;
 
         function showError(message) {
             errorText.textContent = message;
             errorMessage.classList.remove('hidden');
+            console.error('Error:', message);
             setTimeout(() => {
                 errorMessage.classList.add('hidden');
-            }, 5000);
+            }, 8000);
         }
 
         function showLoading() {
@@ -388,8 +605,8 @@
 
             const networkItems = [
                 { label: 'ISP', value: data.org, icon: 'server' },
-                { label: 'Organization', value: data.org, icon: 'building' },
-                { label: 'ASN', value: data.asn, icon: 'network' },
+                { label: 'Organization', value: data.org, icon: 'hard-drive' },
+                { label: 'ASN', value: data.asn, icon: 'cable' },
                 { label: 'Connection Type', value: data.connection_type || 'N/A', icon: 'wifi' },
                 { label: 'Security', value: data.security || 'N/A', icon: 'shield' },
                 { label: 'Threat Level', value: data.threat || 'Low', icon: 'alert-triangle' }
@@ -419,6 +636,17 @@
             currentResults = data;
 
             resultsSection.classList.remove('hidden');
+
+            // Update map if coordinates are available (do this after section is visible)
+            if (data.latitude && data.longitude) {
+                setTimeout(() => {
+                    updateMap(data.latitude, data.longitude, {
+                        city: data.city,
+                        country_name: data.country_name
+                    });
+                }, 100);
+            }
+
             resultsSection.scrollIntoView({ behavior: 'smooth' });
 
             // Re-initialize feather icons for dynamically added content
@@ -428,40 +656,114 @@
         }
 
         async function getGeolocation(ip = '') {
-            const apiUrl = ip
-                ? `https://ipapi.co/${ip}/json/`
-                : 'https://ipapi.co/json/';
-
-            try {
-                const response = await fetch(apiUrl);
-
-                if (!response.ok) {
-                    throw new Error(`API request failed: ${response.status}`);
+            // Try multiple APIs for redundancy
+            const apis = [
+                {
+                    url: ip ? `https://ipapi.co/${ip}/json/` : 'https://ipapi.co/json/',
+                    parser: (data) => {
+                        if (data.error) throw new Error(data.reason || 'Geolocation lookup failed');
+                        return data;
+                    }
+                },
+                {
+                    url: ip ? `https://ipwho.is/?ip=${ip}` : 'https://ipwho.is/',
+                    parser: (data) => {
+                        if (!data.success) throw new Error('IP lookup failed');
+                        return {
+                            ip: data.ip,
+                            country_name: data.country,
+                            country_code: data.country_code,
+                            region: data.region,
+                            city: data.city,
+                            latitude: data.latitude,
+                            longitude: data.longitude,
+                            timezone: data.timezone,
+                            utc_offset: data.utc_offset,
+                            org: data.connection?.organization || 'N/A',
+                            asn: data.connection?.asn || 'N/A',
+                            zip: data.postal || 'N/A',
+                            hostname: data.hostname || 'N/A'
+                        };
+                    }
+                },
+                {
+                    url: ip ? `https://ip-api.com/json/${ip}?fields=66846719` : 'https://ip-api.com/json/?fields=66846719',
+                    parser: (data) => {
+                        if (data.status === 'fail') throw new Error(data.message || 'IP lookup failed');
+                        return {
+                            ip: data.query,
+                            country_name: data.country,
+                            country_code: data.countryCode,
+                            region: data.regionName,
+                            city: data.city,
+                            latitude: data.lat,
+                            longitude: data.lon,
+                            timezone: data.timezone,
+                            utc_offset: data.offset ? `UTC${data.offset > 0 ? '+' : ''}${data.offset / 3600}` : 'N/A',
+                            org: data.org || 'N/A',
+                            asn: data.as || 'N/A',
+                            zip: data.zip || 'N/A',
+                            hostname: data.reverse || 'N/A'
+                        };
+                    }
                 }
+            ];
 
-                const data = await response.json();
+            let lastError = null;
 
-                if (data.error) {
-                    throw new Error(data.reason || 'Geolocation lookup failed');
+            for (const api of apis) {
+                try {
+                    const response = await fetch(api.url, {
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`API request failed with status ${response.status}`);
+                    }
+
+                    const data = await response.json();
+                    return api.parser(data);
+                } catch (error) {
+                    lastError = error;
+                    console.log(`API failed, trying next: ${error.message}`);
+                    continue; // Try next API
                 }
-
-                return data;
-            } catch (error) {
-                if (error.name === 'TypeError' && error.message.includes('fetch')) {
-                    throw new Error('Network error. Please check your internet connection.');
-                }
-                throw error;
             }
+
+            // All APIs failed
+            if (lastError) {
+                throw new Error(`All geolocation APIs failed. Last error: ${lastError.message}`);
+            }
+            throw new Error('Unable to retrieve geolocation data. Please try again.');
         }
 
         async function detectUserIP() {
-            try {
-                const response = await fetch('https://api.ipify.org?format=json');
-                const data = await response.json();
-                return data.ip;
-            } catch (error) {
-                throw new Error('Failed to detect your IP address');
+            const ipifyApis = [
+                'https://api.ipify.org?format=json',
+                'https://api64.ipify.org?format=json',
+                'https://ipwho.is/'
+            ];
+
+            for (const apiUrl of ipifyApis) {
+                try {
+                    const response = await fetch(apiUrl);
+                    if (!response.ok) throw new Error(`Status ${response.status}`);
+                    
+                    const data = await response.json();
+                    if (apiUrl.includes('ipwho')) {
+                        if (data.success) return data.ip;
+                    } else {
+                        if (data.ip) return data.ip;
+                    }
+                } catch (error) {
+                    console.log(`IP detection API failed: ${error.message}`);
+                    continue;
+                }
             }
+
+            throw new Error('Failed to detect your IP address. Please enter it manually.');
         }
 
         function exportResults() {
@@ -504,6 +806,90 @@
             URL.revokeObjectURL(url);
         }
 
+        // Map functions
+        function initMap() {
+            if (map) return; // Map already initialized
+
+            const mapContainer = document.getElementById('map');
+            if (!mapContainer) return;
+
+            // Ensure container is visible and has dimensions
+            mapContainer.style.height = '400px';
+            mapContainer.style.width = '100%';
+
+            // Initialize map centered on a default location (London)
+            map = L.map('map').setView([51.505, -0.09], 10);
+
+            // Add OpenStreetMap tiles
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                maxZoom: 19,
+            }).addTo(map);
+
+            // Add click event to get coordinates
+            map.on('click', function(e) {
+                const lat = e.latlng.lat.toFixed(6);
+                const lng = e.latlng.lng.toFixed(6);
+                coordinates.textContent = `${lat}, ${lng}`;
+            });
+
+            // Force map to resize after initialization
+            setTimeout(() => {
+                if (map) {
+                    map.invalidateSize();
+                }
+            }, 100);
+        }
+
+        function updateMap(lat, lng, locationInfo = {}) {
+            // Initialize map if not already done
+            if (!map) {
+                initMap();
+            }
+
+            if (!map) {
+                console.error('Failed to initialize map');
+                return;
+            }
+
+            // Validate coordinates
+            if (!lat || !lng || isNaN(lat) || isNaN(lng)) {
+                console.warn('Invalid coordinates provided to updateMap');
+                return;
+            }
+
+            const latNum = parseFloat(lat);
+            const lngNum = parseFloat(lng);
+
+            // Remove existing marker
+            if (marker) {
+                map.removeLayer(marker);
+            }
+
+            // Add new marker
+            marker = L.marker([latNum, lngNum]).addTo(map);
+
+            // Create popup content
+            const popupContent = `
+                <div class="text-sm">
+                    <strong>${locationInfo.city || 'Unknown City'}, ${locationInfo.country_name || 'Unknown Country'}</strong><br>
+                    <span class="text-gray-600">Lat: ${latNum.toFixed(4)}, Lng: ${lngNum.toFixed(4)}</span>
+                </div>
+            `;
+
+            marker.bindPopup(popupContent).openPopup();
+
+            // Center map on the location with appropriate zoom
+            map.setView([latNum, lngNum], 12);
+
+            // Force resize to ensure tiles load properly
+            setTimeout(() => {
+                if (map) {
+                    map.invalidateSize();
+                }
+            }, 200);
+        }
+
         // Event listeners
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -520,10 +906,18 @@
             errorMessage.classList.add('hidden');
 
             try {
+                console.log(`Fetching geolocation for IP: ${ip || 'current user IP'}`);
                 const data = await getGeolocation(ip);
+                
+                if (!data) {
+                    throw new Error('No data received from API');
+                }
+
+                console.log('Geolocation data received:', data);
                 renderResults(data);
             } catch (error) {
-                showError(error.message || 'Failed to get geolocation data. Please try again.');
+                console.error('Geolocation error:', error);
+                showError(error.message || 'Failed to get geolocation data. Please try again. Check your internet connection and ensure the IP address is valid.');
             } finally {
                 hideLoading();
             }
@@ -533,6 +927,10 @@
             try {
                 const userIP = await detectUserIP();
                 document.getElementById('ip').value = userIP;
+                // Automatically submit the form after detecting IP
+                setTimeout(() => {
+                    form.dispatchEvent(new Event('submit'));
+                }, 300);
             } catch (error) {
                 showError('Failed to detect your IP address. Please enter it manually.');
             }
@@ -543,6 +941,13 @@
             resultsSection.classList.add('hidden');
             errorMessage.classList.add('hidden');
             currentResults = null;
+
+            // Clear map
+            if (marker) {
+                map.removeLayer(marker);
+                marker = null;
+            }
+            coordinates.textContent = '---';
         });
 
         exportBtn.addEventListener('click', () => {
@@ -560,6 +965,22 @@
                 mobileMenu.classList.toggle('hidden');
             });
         }
+
+        // Close mobile menu on scroll
+        window.addEventListener('scroll', () => {
+            if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+
+        // Handle window resize for map
+        window.addEventListener('resize', () => {
+            if (map) {
+                setTimeout(() => {
+                    map.invalidateSize();
+                }, 100);
+            }
+        });
     </script>
 </body>
 </html>
