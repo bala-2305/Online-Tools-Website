@@ -109,10 +109,10 @@
 
         <!-- User Counter Section -->
         <div class="flex justify-center mb-8">
-            <div class="inline-flex items-center px-6 py-3 bg-white bg-opacity-10 backdrop-blur-sm rounded-full border border-white border-opacity-20">
-                <i data-feather="users" class="w-5 h-5 text-blue-200 mr-3"></i>
-                <span class="text-white font-medium mr-2">Active Users:</span>
-                <span id="user-counter" class="text-blue-200 font-bold text-lg">--</span>
+            <div class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full shadow-lg border border-white border-opacity-20 backdrop-blur-sm">
+                <i data-feather="users" class="w-5 h-5 mr-3"></i>
+                <span class="font-medium mr-2">Active Users:</span>
+                <span id="user-counter" class="font-bold text-lg">--</span>
             </div>
         </div>
 
@@ -244,21 +244,41 @@
 
             <!-- Statistics -->
             <div class="mt-6 lg:mt-8 grid grid-cols-1 sm:grid-cols-4 gap-4 lg:gap-6">
-                <div class="bg-white p-4 sm:p-6 rounded-xl shadow-md text-center">
+                <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-4 sm:p-6 rounded-xl shadow-md text-center border border-blue-200 hover:shadow-lg transition-all duration-300">
+                    <div class="flex justify-center mb-3">
+                        <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center">
+                            <i data-feather="file-text" class="w-5 h-5 text-white"></i>
+                        </div>
+                    </div>
                     <div class="text-xl sm:text-2xl font-bold text-blue-600 mb-2" id="input-lines">0</div>
-                    <div class="text-sm sm:text-base text-gray-600">Input Lines</div>
+                    <div class="text-sm sm:text-base text-gray-600 font-medium">Input Lines</div>
                 </div>
-                <div class="bg-white p-4 sm:p-6 rounded-xl shadow-md text-center">
+                <div class="bg-gradient-to-br from-green-50 to-green-100 p-4 sm:p-6 rounded-xl shadow-md text-center border border-green-200 hover:shadow-lg transition-all duration-300">
+                    <div class="flex justify-center mb-3">
+                        <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center">
+                            <i data-feather="code" class="w-5 h-5 text-white"></i>
+                        </div>
+                    </div>
                     <div class="text-xl sm:text-2xl font-bold text-green-600 mb-2" id="output-lines">0</div>
-                    <div class="text-sm sm:text-base text-gray-600">Output Lines</div>
+                    <div class="text-sm sm:text-base text-gray-600 font-medium">Output Lines</div>
                 </div>
-                <div class="bg-white p-4 sm:p-6 rounded-xl shadow-md text-center">
+                <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-4 sm:p-6 rounded-xl shadow-md text-center border border-purple-200 hover:shadow-lg transition-all duration-300">
+                    <div class="flex justify-center mb-3">
+                        <div class="w-10 h-10 bg-purple-500 rounded-full flex items-center justify-center">
+                            <i data-feather="message-square" class="w-5 h-5 text-white"></i>
+                        </div>
+                    </div>
                     <div class="text-xl sm:text-2xl font-bold text-purple-600 mb-2" id="comments-added">0</div>
-                    <div class="text-sm sm:text-base text-gray-600">Comments Added</div>
+                    <div class="text-sm sm:text-base text-gray-600 font-medium">Comments Added</div>
                 </div>
-                <div class="bg-white p-4 sm:p-6 rounded-xl shadow-md text-center">
+                <div class="bg-gradient-to-br from-orange-50 to-orange-100 p-4 sm:p-6 rounded-xl shadow-md text-center border border-orange-200 hover:shadow-lg transition-all duration-300">
+                    <div class="flex justify-center mb-3">
+                        <div class="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center">
+                            <i data-feather="clock" class="w-5 h-5 text-white"></i>
+                        </div>
+                    </div>
                     <div class="text-xl sm:text-2xl font-bold text-orange-600 mb-2" id="processing-time">0ms</div>
-                    <div class="text-sm sm:text-base text-gray-600">Processing Time</div>
+                    <div class="text-sm sm:text-base text-gray-600 font-medium">Processing Time</div>
                 </div>
             </div>
 
@@ -575,7 +595,6 @@ int main() {
 
                 document.getElementById('code-input').value = samples[language] || samples.javascript;
                 this.showMessage('Sample code loaded', 'info');
-                this.generateComments();
             }
 
             async pasteFromClipboard() {
