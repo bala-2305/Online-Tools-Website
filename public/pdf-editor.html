@@ -420,8 +420,9 @@
             organizePreview.innerHTML = '<div class="col-span-full text-center"><div class="loader inline-block"></div><p class="mt-2">Loading PDF...</p></div>';
             organizeSaveBtn.classList.add('hidden');
 
-            originalPdfBytes = await file.arrayBuffer();
-            renderPdfThumbnails(originalPdfBytes);
+            const buffer = await file.arrayBuffer();
+            originalPdfBytes = buffer.slice(0);
+            renderPdfThumbnails(originalPdfBytes.slice(0));
         });
 
         async function renderPdfThumbnails(pdfBytes) {
@@ -501,7 +502,7 @@
             feather.replace();
 
             try {
-                const sourcePdfDoc = await PDFDocument.load(originalPdfBytes);
+                const sourcePdfDoc = await PDFDocument.load(originalPdfBytes.slice(0), { ignoreEncryption: true });
                 const newPdfDoc = await PDFDocument.create();
                 
                 const pageElements = Array.from(organizePreview.querySelectorAll('.page-thumbnail'));
@@ -532,8 +533,8 @@
                 }
 
             } catch (e) {
-                alert('An error occurred while saving the PDF.');
-                console.error(e);
+                console.error('PDF save error:', e);
+                alert('An error occurred while saving the PDF: ' + (e.message || 'Unknown error'));
             } finally {
                 organizeSaveBtn.disabled = false;
                 organizeSaveBtn.innerHTML = '<i data-feather="save" class="inline-block mr-2"></i>Save Changes';
@@ -555,18 +556,24 @@
         numberFileInput.addEventListener('change', async (e) => {
             const file = e.target.files[0];
             if (!file) return;
-            numberPdfBytes = await file.arrayBuffer();
-            const hasFile = numberPdfBytes.byteLength > 0;
-            numberAddBtn.disabled = !hasFile;
-            numberOptions.classList.toggle('hidden', !hasFile);
-            if(hasFile) updateNumberPreview();
+            try {
+                const buffer = await file.arrayBuffer();
+                numberPdfBytes = buffer.slice(0);
+                const hasFile = numberPdfBytes && numberPdfBytes.byteLength > 0;
+                numberAddBtn.disabled = !hasFile;
+                numberOptions.classList.toggle('hidden', !hasFile);
+                if(hasFile) updateNumberPreview();
+            } catch (err) {
+                console.error('Error loading PDF file:', err);
+                alert('Error loading PDF file. Please try again.');
+            }
         });
 
         numberControls.forEach(id => document.getElementById(id).addEventListener('input', updateNumberPreview));
 
         async function updateNumberPreview() {
             if (!numberPdfBytes) return;
-            const pdfDoc = await pdfjsLib.getDocument({ data: numberPdfBytes }).promise;
+            const pdfDoc = await pdfjsLib.getDocument({ data: numberPdfBytes.slice(0) }).promise;
             const page = await pdfDoc.getPage(1);
             const viewport = page.getViewport({ scale: 1 });
             
@@ -606,12 +613,12 @@
             feather.replace();
 
             try {
-                const pdfDoc = await PDFDocument.load(numberPdfBytes);
+                const pdfDoc = await PDFDocument.load(numberPdfBytes.slice(0), { ignoreEncryption: true });
                 const font = await pdfDoc.embedFont(PDFLib.StandardFonts.Helvetica);
                 
                 const position = document.getElementById('number-position').value;
-                const size = parseInt(document.getElementById('number-size').value, 10);
-                const rangeStr = document.getElementById('number-range').value;
+                const size = parseInt(document.getElementById('number-size').value, 10) || 12;
+                const rangeStr = document.getElementById('number-range').value || 'all';
                 
                 const totalPages = pdfDoc.getPageCount();
                 let pagesToNumber = [];
@@ -647,7 +654,17 @@
                         default: /* bottom-center */ x = width / 2 - textWidth / 2; y = margin; break;
                     }
 
-                    page.drawText(text, { x, y, size, font, color: rgb(0, 0, 0) });
+                    try {
+                        page.drawText(text, { 
+                            x: Math.max(0, x), 
+                            y: Math.max(0, y), 
+                            size: size, 
+                            font: font, 
+                            color: rgb(0.2, 0.2, 0.2) 
+                        });
+                    } catch (err) {
+                        console.warn(`Failed to add page number to page ${pageNum}:`, err);
+                    }
                 }
 
                 const newPdfBytes = await pdfDoc.save();
@@ -667,8 +684,8 @@
                 }
 
             } catch (e) {
-                alert('An error occurred while adding page numbers.');
-                console.error(e);
+                console.error('Page numbering error:', e);
+                alert('An error occurred while adding page numbers: ' + (e.message || 'Unknown error. Check console for details.'));
             } finally {
                 numberAddBtn.disabled = false;
                 numberAddBtn.innerHTML = '<i data-feather="hash" class="inline-block mr-2"></i>Add Page Numbers';
@@ -690,8 +707,9 @@
         watermarkFileInput.addEventListener('change', async (e) => {
             const file = e.target.files[0];
             if (!file) return;
-            watermarkPdfBytes = await file.arrayBuffer();
-            const hasFile = watermarkPdfBytes.byteLength > 0;
+            const buffer = await file.arrayBuffer();
+            watermarkPdfBytes = buffer.slice(0);
+            const hasFile = watermarkPdfBytes && watermarkPdfBytes.byteLength > 0;
             watermarkAddBtn.disabled = !hasFile;
             watermarkOptions.classList.toggle('hidden', !hasFile);
             if(hasFile) updateWatermarkPreview();
@@ -719,7 +737,7 @@
 
         async function updateWatermarkPreview() {
             if (!watermarkPdfBytes) return;
-            const pdfDoc = await pdfjsLib.getDocument({ data: watermarkPdfBytes }).promise;
+            const pdfDoc = await pdfjsLib.getDocument({ data: watermarkPdfBytes.slice(0) }).promise;
             const page = await pdfDoc.getPage(1);
             const viewport = page.getViewport({ scale: 1 });
             
@@ -777,7 +795,7 @@
             feather.replace();
 
             try {
-                const pdfDoc = await PDFDocument.load(watermarkPdfBytes);
+                const pdfDoc = await PDFDocument.load(watermarkPdfBytes.slice(0), { ignoreEncryption: true });
                 const pages = pdfDoc.getPages();
                 const opacity = parseFloat(document.getElementById('watermark-opacity').value);
 
@@ -800,7 +818,6 @@
                             size: fontSize,
                             font,
                             color,
-                            opacity,
                             rotate: degrees(-45),
                             xSkew: degrees(0),
                             ySkew: degrees(0),
