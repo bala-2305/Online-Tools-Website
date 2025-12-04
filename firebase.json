@@ -113,7 +113,6 @@
 
       { "source": "/nova", "destination": "/novaaiweb/index.html" },
       { "source": "/nova/chat", "destination": "/novaaiweb/index.html" },
-      { "source": "/nova/code", "destination": "/novaaiweb/code-assistant.html" },
       { "source": "/face", "destination": "/humanai/det/index.html" },
       { "source": "/:page", "destination": "/:page.html" },
       { "source": "/**", "destination": "/index.html" }
