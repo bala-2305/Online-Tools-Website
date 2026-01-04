@@ -1,19 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI PDF Chat - Ask Questions from PDF | Daedalus</title>
-    <meta name="description" content="Chat with your PDF documents using AI. Upload any PDF and ask questions to get instant answers about the content. Perfect for research, studying, and document analysis.">
-    <meta name="keywords" content="AI PDF chat, PDF question answering, document chat, AI document analysis, PDF reader with AI, ask PDF questions, PDF chatbot, document intelligence, PDF analysis tool">
+    <meta name="description"
+        content="Chat with your PDF documents using AI. Upload any PDF and ask questions to get instant answers about the content. Perfect for research, studying, and document analysis.">
+    <meta name="keywords"
+        content="AI PDF chat, PDF question answering, document chat, AI document analysis, PDF reader with AI, ask PDF questions, PDF chatbot, document intelligence, PDF analysis tool">
     <meta property="og:title" content="AI PDF Chat - Ask Questions from PDF | Daedalus">
-    <meta property="og:description" content="Chat with your PDF documents using AI. Upload any PDF and ask questions to get instant answers about the content.">
+    <meta property="og:description"
+        content="Chat with your PDF documents using AI. Upload any PDF and ask questions to get instant answers about the content.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://infiniteforge.tech/ai-pdf-chat.html">
     <meta property="og:image" content="https://infiniteforge.tech/assets/letter-d.png">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="AI PDF Chat - Ask Questions from PDF | Daedalus">
-    <meta name="twitter:description" content="Chat with your PDF documents using AI. Upload any PDF and ask questions to get instant answers.">
+    <meta name="twitter:description"
+        content="Chat with your PDF documents using AI. Upload any PDF and ask questions to get instant answers.">
     <meta name="twitter:image" content="https://infiniteforge.tech/images/letter-d.png">
     <meta name="author" content="InfinityForge">
     <meta name="theme-color" content="#2563eb">
@@ -23,25 +28,55 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <link rel="stylesheet" href="/css/responsive-fix.css">
+    <link rel="stylesheet" href="/css/ui-enhancements.css">
     <style>
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @keyframes slideInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
         }
 
-        .animate-fadeIn { animation: fadeIn 0.6s ease-out forwards; }
-        .animate-slideInUp { animation: slideInUp 0.8s ease-out forwards; }
-        .animate-pulse { animation: pulse 2s infinite; }
+        .animate-fadeIn {
+            animation: fadeIn 0.6s ease-out forwards;
+        }
+
+        .animate-slideInUp {
+            animation: slideInUp 0.8s ease-out forwards;
+        }
+
+        .animate-pulse {
+            animation: pulse 2s infinite;
+        }
 
         .chat-message {
             animation: fadeIn 0.3s ease-out;
@@ -55,8 +90,13 @@
             animation: pulse 1.4s infinite both;
         }
 
-        .typing-indicator span:nth-child(1) { animation-delay: -0.32s; }
-        .typing-indicator span:nth-child(2) { animation-delay: -0.16s; }
+        .typing-indicator span:nth-child(1) {
+            animation-delay: -0.32s;
+        }
+
+        .typing-indicator span:nth-child(2) {
+            animation-delay: -0.16s;
+        }
 
         .pdf-viewer {
             max-height: 400px;
@@ -105,13 +145,28 @@
             font-size: var(--fluid-font-size);
         }
 
-        h1 { font-size: var(--fluid-h1) !important; }
-        h2 { font-size: var(--fluid-h2) !important; }
-        h3 { font-size: var(--fluid-h3) !important; }
-        p { font-size: var(--fluid-p) !important; }
+        h1 {
+            font-size: var(--fluid-h1) !important;
+        }
+
+        h2 {
+            font-size: var(--fluid-h2) !important;
+        }
+
+        h3 {
+            font-size: var(--fluid-h3) !important;
+        }
+
+        p {
+            font-size: var(--fluid-p) !important;
+        }
 
         @media (max-width: 640px) {
-            .container, .max-w-4xl, .max-w-6xl, .max-w-7xl {
+
+            .container,
+            .max-w-4xl,
+            .max-w-6xl,
+            .max-w-7xl {
                 max-width: 95vw !important;
                 margin-left: auto;
                 margin-right: auto;
@@ -120,15 +175,17 @@
     </style>
 </head>
 
-<script>(function(s){s.dataset.zone='10030137',s.src='https://gizokraijaw.net/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+<script>(function (s) { s.dataset.zone = '10030137', s.src = 'https://gizokraijaw.net/vignette.min.js' })([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
 
 <body class="bg-gray-50 font-poppins overflow-x-hidden">
     <noscript>
-        <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; color: #fff; display: flex; align-items: center; justify-content: center; z-index: 999999; font-family: Arial, sans-serif;">
+        <div
+            style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; color: #fff; display: flex; align-items: center; justify-content: center; z-index: 999999; font-family: Arial, sans-serif;">
             <div style="text-align: center; max-width: 600px; padding: 40px;">
                 <h1 style="color: #ff4444; font-size: 32px; margin-bottom: 20px;">⚠️ JavaScript Required</h1>
                 <p style="font-size: 18px; line-height: 1.6; margin-bottom: 30px;">
-                    This website requires JavaScript to function properly. Please enable JavaScript in your browser settings and reload the page to continue.
+                    This website requires JavaScript to function properly. Please enable JavaScript in your browser
+                    settings and reload the page to continue.
                 </p>
                 <div style="font-size: 14px; color: #ccc;">
                     <p>If you continue to see this message, try:</p>
@@ -146,25 +203,35 @@
     <nav class="bg-white/90 backdrop-blur-xl shadow-lg w-full fixed top-0 left-0 z-50 border-b border-gray-200/50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
-                <a href="index.html" class="text-3xl font-bold gradient-text hover:scale-105 transition-transform duration-300" aria-label="InfiniteForge Home">InfiniteForge</a>
+                <a href="index.html"
+                    class="text-3xl font-bold gradient-text hover:scale-105 transition-transform duration-300"
+                    aria-label="InfiniteForge Home">InfiniteForge</a>
                 <div class="hidden sm:flex items-center space-x-8">
-                    <a href="index.html" class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300 relative group">
+                    <a href="index.html"
+                        class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300 relative group">
                         Home
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300"></span>
+                        <span
+                            class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300"></span>
                     </a>
-                    <a href="features.html" class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300 relative group">
+                    <a href="features.html"
+                        class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300 relative group">
                         Features
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300"></span>
+                        <span
+                            class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300"></span>
                     </a>
-                    <a href="about.html" class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300 relative group">
+                    <a href="about.html"
+                        class="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-300 relative group">
                         About
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300"></span>
+                        <span
+                            class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300"></span>
                     </a>
                 </div>
                 <div class="sm:hidden">
-                    <button id="mobile-menu-button" class="text-gray-700 hover:text-blue-600 focus:outline-none p-2 rounded-lg hover:bg-gray-100 transition-colors duration-300">
+                    <button id="mobile-menu-button"
+                        class="text-gray-700 hover:text-blue-600 focus:outline-none p-2 rounded-lg hover:bg-gray-100 transition-colors duration-300">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16"></path>
                         </svg>
                     </button>
                 </div>
@@ -172,9 +239,12 @@
         </div>
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden bg-white/95 backdrop-blur-xl border-t border-gray-200/50">
-            <a href="index.html" class="block py-3 px-6 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-300">Home</a>
-            <a href="features.html" class="block py-3 px-6 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-300">Features</a>
-            <a href="about.html" class="block py-3 px-6 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-300">About</a>
+            <a href="index.html"
+                class="block py-3 px-6 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-300">Home</a>
+            <a href="features.html"
+                class="block py-3 px-6 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-300">Features</a>
+            <a href="about.html"
+                class="block py-3 px-6 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-300">About</a>
         </div>
     </nav>
 
@@ -182,7 +252,8 @@
     <main class="max-w-7xl mx-auto pt-24 pb-12 px-4">
         <!-- Header -->
         <div class="text-center mb-12 animate-fadeIn">
-            <div class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-200/50 rounded-full text-sm font-medium text-blue-700 mb-6">
+            <div
+                class="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-200/50 rounded-full text-sm font-medium text-blue-700 mb-6">
                 <i data-feather="message-circle" class="w-4 h-4 mr-2"></i>
                 AI-Powered Document Chat
             </div>
@@ -192,19 +263,23 @@
             </h1>
 
             <p class="text-xl sm:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed mb-8">
-                Upload any PDF document and chat with it using AI. Ask questions, get summaries, and extract insights from your documents instantly.
+                Upload any PDF document and chat with it using AI. Ask questions, get summaries, and extract insights
+                from your documents instantly.
             </p>
 
             <div class="flex flex-wrap justify-center gap-4 mb-8">
-                <div class="flex items-center px-4 py-2 bg-green-50 border border-green-200 rounded-full text-green-700 font-medium">
+                <div
+                    class="flex items-center px-4 py-2 bg-green-50 border border-green-200 rounded-full text-green-700 font-medium">
                     <i data-feather="shield" class="w-4 h-4 mr-2"></i>
                     Privacy First
                 </div>
-                <div class="flex items-center px-4 py-2 bg-blue-50 border border-blue-200 rounded-full text-blue-700 font-medium">
+                <div
+                    class="flex items-center px-4 py-2 bg-blue-50 border border-blue-200 rounded-full text-blue-700 font-medium">
                     <i data-feather="zap" class="w-4 h-4 mr-2"></i>
                     Instant Answers
                 </div>
-                <div class="flex items-center px-4 py-2 bg-purple-50 border border-purple-200 rounded-full text-purple-700 font-medium">
+                <div
+                    class="flex items-center px-4 py-2 bg-purple-50 border border-purple-200 rounded-full text-purple-700 font-medium">
                     <i data-feather="tool" class="w-4 h-4 mr-2"></i>
                     AI Powered
                 </div>
@@ -232,7 +307,8 @@
                     <p class="text-sm text-gray-400 mt-2">Supports PDF files up to 10MB</p>
                 </div>
                 <input type="file" id="pdf-file" accept=".pdf" class="hidden">
-                <button id="upload-btn" class="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium">
+                <button id="upload-btn"
+                    class="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors font-medium">
                     Choose PDF File
                 </button>
             </div>
@@ -244,7 +320,8 @@
                     <span class="text-blue-700">Processing PDF...</span>
                 </div>
                 <div class="mt-2 bg-blue-200 rounded-full h-2">
-                    <div id="progress-bar" class="bg-blue-500 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
+                    <div id="progress-bar" class="bg-blue-500 h-2 rounded-full transition-all duration-300"
+                        style="width: 0%"></div>
                 </div>
             </div>
         </div>
@@ -262,7 +339,8 @@
                                 <p id="pdf-pages" class="text-sm opacity-90">0 pages loaded</p>
                             </div>
                         </div>
-                        <button id="new-pdf-btn" class="px-3 py-1 bg-white/20 hover:bg-white/30 rounded-lg text-sm font-medium transition-colors">
+                        <button id="new-pdf-btn"
+                            class="px-3 py-1 bg-white/20 hover:bg-white/30 rounded-lg text-sm font-medium transition-colors">
                             Upload New PDF
                         </button>
                     </div>
@@ -275,7 +353,8 @@
                             <i data-feather="command" class="w-4 h-4 text-white"></i>
                         </div>
                         <div class="bg-gray-100 rounded-lg p-3 max-w-xs lg:max-w-md">
-                            <p class="text-gray-800">Hello! I've analyzed your PDF. You can now ask me any questions about its content. Try asking for summaries, specific information, or key insights!</p>
+                            <p class="text-gray-800">Hello! I've analyzed your PDF. You can now ask me any questions
+                                about its content. Try asking for summaries, specific information, or key insights!</p>
                         </div>
                     </div>
                 </div>
@@ -284,9 +363,10 @@
                 <div class="border-t border-gray-200 p-4">
                     <div class="flex space-x-3">
                         <input type="text" id="chat-input" placeholder="Ask a question about your PDF..."
-                               class="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                               disabled>
-                        <button id="send-btn" class="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                            class="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            disabled>
+                        <button id="send-btn"
+                            class="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
                             <i data-feather="send" class="w-5 h-5"></i>
                         </button>
                     </div>
@@ -298,19 +378,23 @@
 
             <!-- Suggested Questions -->
             <div class="mt-6 grid sm:grid-cols-2 gap-4">
-                <button class="suggested-question p-3 bg-white border border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50 transition-colors text-left">
+                <button
+                    class="suggested-question p-3 bg-white border border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50 transition-colors text-left">
                     <div class="font-medium text-gray-800">Summarize the main points</div>
                     <div class="text-sm text-gray-500">Get a quick overview of the document</div>
                 </button>
-                <button class="suggested-question p-3 bg-white border border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50 transition-colors text-left">
+                <button
+                    class="suggested-question p-3 bg-white border border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50 transition-colors text-left">
                     <div class="font-medium text-gray-800">What are the key findings?</div>
                     <div class="text-sm text-gray-500">Extract important conclusions and results</div>
                 </button>
-                <button class="suggested-question p-3 bg-white border border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50 transition-colors text-left">
+                <button
+                    class="suggested-question p-3 bg-white border border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50 transition-colors text-left">
                     <div class="font-medium text-gray-800">Explain the methodology</div>
                     <div class="text-sm text-gray-500">Understand how the research was conducted</div>
                 </button>
-                <button class="suggested-question p-3 bg-white border border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50 transition-colors text-left">
+                <button
+                    class="suggested-question p-3 bg-white border border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50 transition-colors text-left">
                     <div class="font-medium text-gray-800">What are the recommendations?</div>
                     <div class="text-sm text-gray-500">Find suggested actions or next steps</div>
                 </button>
@@ -326,7 +410,8 @@
                         <i data-feather="upload" class="w-8 h-8 text-blue-600"></i>
                     </div>
                     <h3 class="text-xl font-semibold text-gray-800 mb-3">Upload PDF</h3>
-                    <p class="text-gray-600">Securely upload your PDF document. All processing happens in your browser - your files never leave your device.</p>
+                    <p class="text-gray-600">Securely upload your PDF document. All processing happens in your browser -
+                        your files never leave your device.</p>
                 </div>
 
                 <div class="text-center animate-slideInUp" style="animation-delay: 0.2s">
@@ -334,7 +419,8 @@
                         <i data-feather="tool" class="w-8 h-8 text-green-600"></i>
                     </div>
                     <h3 class="text-xl font-semibold text-gray-800 mb-3">AI Analysis</h3>
-                    <p class="text-gray-600">Our AI analyzes the document content, understanding context, relationships, and key information within the text.</p>
+                    <p class="text-gray-600">Our AI analyzes the document content, understanding context, relationships,
+                        and key information within the text.</p>
                 </div>
 
                 <div class="text-center animate-slideInUp" style="animation-delay: 0.4s">
@@ -342,7 +428,8 @@
                         <i data-feather="message-circle" class="w-8 h-8 text-purple-600"></i>
                     </div>
                     <h3 class="text-xl font-semibold text-gray-800 mb-3">Ask Questions</h3>
-                    <p class="text-gray-600">Chat with your document! Ask questions in natural language and get accurate, contextual answers instantly.</p>
+                    <p class="text-gray-600">Chat with your document! Ask questions in natural language and get
+                        accurate, contextual answers instantly.</p>
                 </div>
             </div>
         </div>
@@ -354,7 +441,8 @@
                 <div>
                     <h3 class="font-semibold text-blue-900 mb-2">Your Privacy Matters</h3>
                     <p class="text-blue-800 text-sm">
-                        All PDF processing and AI analysis happens locally in your browser. Your documents never leave your device,
+                        All PDF processing and AI analysis happens locally in your browser. Your documents never leave
+                        your device,
                         ensuring complete privacy and security. No data is sent to external servers or stored anywhere.
                     </p>
                 </div>
@@ -378,6 +466,9 @@
         </div>
     </footer>
 
+    <script defer src="/js/shared-ui.js"></script>
+
+    <script>(function () { var _0x = ['aHR0cHM6Ly9uaW0tc2Vydi52ZXJjZWwuYXBwL2NoYXQ=']; window.API_URL = atob(_0x[0]); })();</script>
     <script>
         // Initialize PDF.js
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
@@ -552,12 +643,12 @@
             }
 
             async sendToAI(message) {
-                const API_URL = "https://nim-serv.vercel.app/chat";
+                const apiUrl = window.API_URL;
 
                 console.log('Sending message to AI:', message.substring(0, 100) + '...');
 
                 try {
-                    const response = await fetch(API_URL, {
+                    const response = await fetch(apiUrl, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -787,12 +878,12 @@
         });
 
         // Developer Tools Protection
-        document.addEventListener('contextmenu', function(e) {
+        document.addEventListener('contextmenu', function (e) {
             e.preventDefault();
             alert('Right-click is disabled for security reasons.');
         });
 
-        document.addEventListener('keydown', function(e) {
+        document.addEventListener('keydown', function (e) {
             // Disable F12
             if (e.keyCode === 123) {
                 e.preventDefault();
@@ -830,7 +921,7 @@
         });
 
         // Additional protection against developer tools
-        let devtools = {open: false, orientation: null};
+        let devtools = { open: false, orientation: null };
         const threshold = 160;
 
         setInterval(() => {
@@ -852,17 +943,17 @@
         }, 500);
 
         // Disable selection for protection
-        document.addEventListener('selectstart', function(e) {
+        document.addEventListener('selectstart', function (e) {
             e.preventDefault();
         });
 
         // Disable drag and drop
-        document.addEventListener('dragstart', function(e) {
+        document.addEventListener('dragstart', function (e) {
             e.preventDefault();
         });
 
         // Prevent viewing source through other methods
-        document.onkeydown = function(e) {
+        document.onkeydown = function (e) {
             if (e.keyCode == 123) {
                 return false;
             }
@@ -881,19 +972,19 @@
         };
 
         // Override console methods to prevent debugging
-        console.log = function() {};
-        console.warn = function() {};
-        console.error = function() {};
-        console.info = function() {};
+        console.log = function () { };
+        console.warn = function () { };
+        console.error = function () { };
+        console.info = function () { };
 
         // Prevent opening developer tools
-        window.onbeforeunload = function() {
+        window.onbeforeunload = function () {
             // This will show a confirmation dialog when trying to leave/close
             return "Are you sure you want to leave?";
         };
 
         // Additional source protection
-        (function() {
+        (function () {
             'use strict';
             const _z = btoa(Math.random().toString()).substr(10, 5);
             window[_z] = {
@@ -910,4 +1001,5 @@
         feather.replace();
     </script>
 </body>
+
 </html>

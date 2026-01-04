@@ -1,47 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Business Name Generator — Daedalus</title>
+    <title>AI Business Name Generator | Free Brand Name Ideas | Daedalus</title>
     <link rel="icon" type="image/png" href="images/letter-d.png">
-    <meta name="description" content="Generate creative business name ideas using keywords, industry and style hints.">
-    <meta name="keywords" content="business name generator, startup name, company name, brand name, ai name generator">
+    <meta name="description"
+        content="Generate creative, catchy, and available business names with our free AI Business Name Generator. Check domain availability instantly. No signup required.">
+    <meta name="keywords"
+        content="business name generator, ai business name generator, brand name generator, company name ideas, startup name generator, free business name generator, domain name search, Daedalus tools">
     <meta name="author" content="InfinityForge">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <link rel="canonical" href="https://infiniteforge.tech/ai-business-name-generator.html">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://infiniteforge.tech/ai-business-name-generator.html">
+    <meta property="og:title" content="AI Business Name Generator | Free Brand Name Ideas">
+    <meta property="og:description"
+        content="Generate creative, catchy, and available business names with our free AI Business Name Generator. Check domain availability instantly.">
+    <meta property="og:image" content="https://infiniteforge.tech/assets/letter-d.png">
+    <meta property="og:site_name" content="Daedalus">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://infiniteforge.tech/ai-business-name-generator.html">
+    <meta name="twitter:title" content="AI Business Name Generator | Free Brand Name Ideas">
+    <meta name="twitter:description"
+        content="Generate creative, catchy, and available business names with our free AI Business Name Generator. Check domain availability instantly.">
+    <meta name="twitter:image" content="https://infiniteforge.tech/assets/letter-d.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <link rel="stylesheet" href="/css/responsive-fix.css">
+    <link rel="stylesheet" href="/css/ui-enhancements.css">
     <style>
-        :root { --fluid-font-size: clamp(14px, 2vw, 18px);} body { font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif; font-size: var(--fluid-font-size); }
-        .gen-input, .gen-output { font-family: inherit; }
-        .generate-btn { background: linear-gradient(135deg,#8b5cf6,#7c3aed); color: white; }
-        .copy-btn { background: linear-gradient(135deg,#10b981,#059669); color: white; }
-        .clear-btn { background: linear-gradient(135deg,#ef4444,#dc2626); color: white; }
-        .result-chip { background: linear-gradient(135deg,#f8fafc,#fff); border:1px solid #e5e7eb; padding:0.5rem 0.75rem; border-radius:0.5rem; }
-        .msg { margin-bottom: 12px; padding: 8px 12px; border-radius: 8px; max-width: 80%; }
-        .msg.bot { background-color: #e5e7eb; color: #374151; margin-right: auto; }
-        .msg.user { background-color: #8b5cf6; color: white; margin-left: auto; text-align: right; }
+        :root {
+            --fluid-font-size: clamp(14px, 2vw, 18px);
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+            font-size: var(--fluid-font-size);
+        }
+
+        .gen-input,
+        .gen-output {
+            font-family: inherit;
+        }
+
+        .generate-btn {
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+            color: white;
+        }
+
+        .copy-btn {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+        }
+
+        .clear-btn {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+        }
+
+        .result-chip {
+            background: linear-gradient(135deg, #f8fafc, #fff);
+            border: 1px solid #e5e7eb;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.5rem;
+        }
+
+        .msg {
+            margin-bottom: 12px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            max-width: 80%;
+        }
+
+        .msg.bot {
+            background-color: #e5e7eb;
+            color: #374151;
+            margin-right: auto;
+        }
+
+        .msg.user {
+            background-color: #8b5cf6;
+            color: white;
+            margin-left: auto;
+            text-align: right;
+        }
     </style>
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "AI Business Name Generator",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web Browser",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "description": "Free AI-powered tool to generate creative business names and check domain availability.",
+        "publisher": {
+            "@type": "Organization",
+            "name": "InfinityForge"
+        }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://infiniteforge.tech"
+        },{
+            "@type": "ListItem",
+            "position": 2,
+            "name": "AI Business Name Generator",
+            "item": "https://infiniteforge.tech/ai-business-name-generator.html"
+        }]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [{
+            "@type": "Question",
+            "name": "Is this business name generator free?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes, our AI Business Name Generator is 100% free to use with no limits."
+            }
+        },{
+            "@type": "Question",
+            "name": "Does it check for domain availability?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes, the tool suggests names and checks for .com and .ai domain availability simulation."
+            }
+        },{
+            "@type": "Question",
+            "name": "How does the AI generate names?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "It uses advanced language models to analyze your keywords, industry, and style preferences to create unique and brandable names."
+            }
+        }]
+    }
+    </script>
 </head>
 
-<script>(function(s){s.dataset.zone='10030137',s.src='https://gizokraijaw.net/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+<script>(function (s) { s.dataset.zone = '10030137', s.src = 'https://gizokraijaw.net/vignette.min.js' })([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-FQ082B7887"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-  gtag('config', 'G-FQ082B7887');
+    gtag('config', 'G-FQ082B7887');
 </script>
+
 <body class="bg-gray-50 text-gray-800">
     <noscript>
-        <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; color: #fff; display: flex; align-items: center; justify-content: center; z-index: 999999; font-family: Arial, sans-serif;">
+        <div
+            style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; color: #fff; display: flex; align-items: center; justify-content: center; z-index: 999999; font-family: Arial, sans-serif;">
             <div style="text-align: center; max-width: 600px; padding: 40px;">
                 <h1 style="color: #ff4444; font-size: 32px; margin-bottom: 20px;">⚠️ JavaScript Required</h1>
                 <p style="font-size: 18px; line-height: 1.6; margin-bottom: 30px;">
-                    This website requires JavaScript to function properly. Please enable JavaScript in your browser settings and reload the page to continue.
+                    This website requires JavaScript to function properly. Please enable JavaScript in your browser
+                    settings and reload the page to continue.
                 </p>
                 <div style="font-size: 14px; color: #ccc;">
                     <p>If you continue to see this message, try:</p>
@@ -58,7 +195,8 @@
     <nav class="bg-white/80 backdrop-blur-lg shadow-sm w-full fixed top-0 left-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
-                <a href="index.html" class="text-2xl font-bold text-blue-600" aria-label="InfiniteForge Home">InfiniteForge</a>
+                <a href="index.html" class="text-2xl font-bold text-blue-600"
+                    aria-label="InfiniteForge Home">InfiniteForge</a>
                 <div class="hidden sm:flex items-center space-x-6">
                     <a href="index.html" class="text-gray-700 hover:text-blue-600 font-medium">Home</a>
                     <a href="features.html" class="text-gray-700 hover:text-blue-600 font-medium">Features</a>
@@ -67,7 +205,8 @@
                 <div class="sm:hidden">
                     <button id="mobile-menu-button" class="text-gray-700 hover:text-blue-600 focus:outline-none">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16"></path>
                         </svg>
                     </button>
                 </div>
@@ -83,20 +222,33 @@
     <main class="max-w-4xl mx-auto pt-20 sm:pt-24 pb-12 px-4 sm:px-6" itemscope itemtype="https://schema.org/WebPage">
         <div class="text-center mb-6">
             <h1 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-2">AI Business Name Generator</h1>
-            <p class="text-gray-600 max-w-2xl mx-auto">Enter keywords, select an industry and style and get creative business name suggestions using AI.</p>
-            
+            <p class="text-gray-600 max-w-2xl mx-auto">Enter keywords, select an industry and style and get creative
+                business name suggestions using AI.</p>
+
+            <!-- AdSense Placeholder -->
+            <div class="mb-8 flex justify-center">
+                <script>
+                    __ez_fad_position('div-gpt-ad-daedalus-tools-medrectangle-1-0');
+                </script>
+            </div>
+
             <!-- Interface Toggle -->
             <div class="flex justify-center mt-6 mb-4">
                 <div class="bg-gray-100 p-1 rounded-lg">
-                    <button id="form-toggle" class="px-4 py-2 rounded-md text-sm font-medium transition-colors bg-white text-gray-900 shadow-sm">Form Input</button>
-                    <button id="chat-toggle" class="px-4 py-2 rounded-md text-sm font-medium transition-colors text-gray-600 hover:text-gray-900">Chat Interface</button>
+                    <button id="form-toggle"
+                        class="px-4 py-2 rounded-md text-sm font-medium transition-colors bg-white text-gray-900 shadow-sm">Form
+                        Input</button>
+                    <button id="chat-toggle"
+                        class="px-4 py-2 rounded-md text-sm font-medium transition-colors text-gray-600 hover:text-gray-900">Chat
+                        Interface</button>
                 </div>
             </div>
         </div>
 
         <!-- User Counter Section -->
         <div class="flex justify-center mb-8">
-            <div class="inline-flex items-center px-6 py-3 bg-white bg-opacity-10 backdrop-blur-sm rounded-full border border-white border-opacity-20">
+            <div
+                class="inline-flex items-center px-6 py-3 bg-white bg-opacity-10 backdrop-blur-sm rounded-full border border-white border-opacity-20">
                 <i data-feather="users" class="w-5 h-5 text-blue-200 mr-3"></i>
                 <span class="text-white font-medium mr-2">Active Users:</span>
                 <span id="user-counter" class="text-blue-200 font-bold text-lg">--</span>
@@ -106,15 +258,20 @@
         <div class="bg-white p-6 rounded-2xl shadow-lg">
             <div class="grid md:grid-cols-2 gap-6">
                 <div>
-                    <h3 class="text-lg font-semibold mb-3 flex items-center"><i data-feather="layers" class="w-5 h-5 mr-2 text-purple-500"></i>Input</h3>
+                    <h3 class="text-lg font-semibold mb-3 flex items-center"><i data-feather="layers"
+                            class="w-5 h-5 mr-2 text-purple-500"></i>Input</h3>
                     <div class="space-y-4">
                         <div>
                             <label class="block text-sm font-medium mb-1">Keywords (comma separated)</label>
-                            <input id="keywords" class="gen-input form-input w-full p-3 rounded-lg border border-gray-200" placeholder="coffee, organic, roast">
+                            <input id="keywords"
+                                class="gen-input form-input w-full p-3 rounded-lg border border-gray-200"
+                                placeholder="coffee, organic, roast">
                         </div>
                         <div>
                             <label class="block text-sm font-medium mb-1">Industry (optional)</label>
-                            <input id="industry" class="gen-input form-input w-full p-3 rounded-lg border border-gray-200" placeholder="Food & Beverage, Tech, Health">
+                            <input id="industry"
+                                class="gen-input form-input w-full p-3 rounded-lg border border-gray-200"
+                                placeholder="Food & Beverage, Tech, Health">
                         </div>
                         <div class="grid grid-cols-2 gap-3">
                             <div>
@@ -129,7 +286,8 @@
                             </div>
                             <div>
                                 <label class="block text-sm font-medium mb-1">Results</label>
-                                <input id="count" type="number" min="3" max="50" value="10" class="form-input w-full p-3 rounded-lg border border-gray-200">
+                                <input id="count" type="number" min="3" max="50" value="10"
+                                    class="form-input w-full p-3 rounded-lg border border-gray-200">
                             </div>
                         </div>
 
@@ -139,22 +297,27 @@
                         </div>
 
                         <div class="flex gap-3">
-                            <button id="generate-btn" class="generate-btn px-5 py-3 rounded-lg font-medium">Generate</button>
+                            <button id="generate-btn"
+                                class="generate-btn px-5 py-3 rounded-lg font-medium">Generate</button>
                             <button id="clear-btn" class="clear-btn px-4 py-3 rounded-lg font-medium">Clear</button>
-                            <button id="regenerate-btn" class="px-4 py-3 rounded-lg border border-gray-200">Shuffle</button>
+                            <button id="regenerate-btn"
+                                class="px-4 py-3 rounded-lg border border-gray-200">Shuffle</button>
                         </div>
                     </div>
                 </div>
 
                 <div>
-                    <h3 class="text-lg font-semibold mb-3 flex items-center"><i data-feather="star" class="w-5 h-5 mr-2 text-green-500"></i>Suggestions</h3>
+                    <h3 class="text-lg font-semibold mb-3 flex items-center"><i data-feather="star"
+                            class="w-5 h-5 mr-2 text-green-500"></i>Suggestions</h3>
                     <div id="results" class="space-y-3 min-h-[220px]">
                         <!-- results appear here -->
                     </div>
 
                     <div class="mt-4 flex items-center gap-3">
-                        <button id="copy-btn" class="copy-btn px-4 py-2 rounded-lg font-medium" disabled><i data-feather="copy" class="w-4 h-4 mr-2"></i> Copy</button>
-                        <button id="download-btn" class="px-4 py-2 rounded-lg border border-gray-200" disabled><i data-feather="download" class="w-4 h-4 mr-2"></i>Download</button>
+                        <button id="copy-btn" class="copy-btn px-4 py-2 rounded-lg font-medium" disabled><i
+                                data-feather="copy" class="w-4 h-4 mr-2"></i> Copy</button>
+                        <button id="download-btn" class="px-4 py-2 rounded-lg border border-gray-200" disabled><i
+                                data-feather="download" class="w-4 h-4 mr-2"></i>Download</button>
                     </div>
                 </div>
             </div>
@@ -164,79 +327,169 @@
         <div id="chat-interface" class="bg-white p-6 rounded-2xl shadow-lg hidden">
             <div class="mb-4">
                 <h3 class="text-lg font-semibold text-gray-900 mb-2">Chat with AI Name Generator</h3>
-                <p class="text-sm text-gray-600">Describe your business idea and get personalized name suggestions through conversation.</p>
+                <p class="text-sm text-gray-600">Describe your business idea and get personalized name suggestions
+                    through conversation.</p>
             </div>
-            
+
             <div id="chat-box" class="border border-gray-200 rounded-lg p-4 h-96 overflow-y-auto mb-4 bg-gray-50">
-                <div class="msg bot text-gray-800">Hello! I'm your AI Business Name Generator. Tell me about your business idea, industry, or what kind of name you're looking for, and I'll suggest creative business names for you.</div>
+                <div class="msg bot text-gray-800">Hello! I'm your AI Business Name Generator. Tell me about your
+                    business idea, industry, or what kind of name you're looking for, and I'll suggest creative business
+                    names for you.</div>
             </div>
-            
+
             <div class="flex gap-2">
-                <input type="text" id="user-input" class="flex-1 px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent" placeholder="Describe your business idea..." onkeypress="if(event.key === 'Enter') sendMessage()">
-                <button onclick="sendMessage()" class="bg-purple-600 text-white px-4 py-3 rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition-colors">
+                <input type="text" id="user-input"
+                    class="flex-1 px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    placeholder="Describe your business idea..." onkeypress="if(event.key === 'Enter') sendMessage()">
+                <button onclick="sendMessage()"
+                    class="bg-purple-600 text-white px-4 py-3 rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition-colors">
                     <i data-feather="send" class="w-4 h-4"></i>
                 </button>
             </div>
         </div>
     </main>
 
+    <!-- FAQ Section for SEO -->
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 mb-12">
+        <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Frequently Asked Questions</h2>
+        <div class="space-y-4">
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                <h3 class="font-semibold text-lg mb-2">Is this business name generator free?</h3>
+                <p class="text-gray-600">Yes, our AI Business Name Generator is 100% free to use. You can generate as
+                    many names as you like without any cost or subscription.</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                <h3 class="font-semibold text-lg mb-2">How do I choose the best business name?</h3>
+                <p class="text-gray-600">Look for names that are memorable, easy to spell, and relevant to your
+                    industry. Our tool provides style options like "Modern," "Classic," or "Quirky" to help you find the
+                    perfect fit.</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                <h3 class="font-semibold text-lg mb-2">Can I check domain availability?</h3>
+                <p class="text-gray-600">Yes, our tool automatically checks for .com and .ai domain availability for
+                    every name generated, helping you secure your brand identity immediately.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Tools -->
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 mb-12">
+        <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">More Business Tools</h2>
+        <div class="grid md:grid-cols-2 gap-6">
+            <a href="ai-business-idea-validator.html"
+                class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                <h3 class="font-semibold text-lg mb-2 text-blue-600">AI Business Idea Validator</h3>
+                <p class="text-gray-600">Validate your startup idea with AI analysis of market potential and
+                    competition.</p>
+            </a>
+            <a href="ai-tagline-slogan-creator.html"
+                class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                <h3 class="font-semibold text-lg mb-2 text-blue-600">AI Slogan Generator</h3>
+                <p class="text-gray-600">Create catchy taglines and slogans for your business or marketing campaigns.
+                </p>
+            </a>
+        </div>
+    </section>
+
+    <!-- FAQ Section for SEO -->
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 mb-12">
+        <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Frequently Asked Questions</h2>
+        <div class="space-y-4">
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                <h3 class="font-semibold text-lg mb-2">Is this business name generator free?</h3>
+                <p class="text-gray-600">Yes, our AI Business Name Generator is 100% free to use. You can generate as
+                    many names as you like without any cost or subscription.</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                <h3 class="font-semibold text-lg mb-2">How do I choose the best business name?</h3>
+                <p class="text-gray-600">Look for names that are memorable, easy to spell, and relevant to your
+                    industry. Our tool provides style options like "Modern," "Classic," or "Quirky" to help you find the
+                    perfect fit.</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                <h3 class="font-semibold text-lg mb-2">Can I check domain availability?</h3>
+                <p class="text-gray-600">Yes, our tool automatically checks for .com and .ai domain availability for
+                    every name generated, helping you secure your brand identity immediately.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Tools -->
+    <section class="max-w-4xl mx-auto px-4 sm:px-6 mb-12">
+        <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">More Business Tools</h2>
+        <div class="grid md:grid-cols-2 gap-6">
+            <a href="ai-business-idea-validator.html"
+                class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                <h3 class="font-semibold text-lg mb-2 text-blue-600">AI Business Idea Validator</h3>
+                <p class="text-gray-600">Validate your startup idea with AI analysis of market potential and
+                    competition.</p>
+            </a>
+            <a href="ai-tagline-slogan-creator.html"
+                class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                <h3 class="font-semibold text-lg mb-2 text-blue-600">AI Slogan Generator</h3>
+                <p class="text-gray-600">Create catchy taglines and slogans for your business or marketing campaigns.
+                </p>
+            </a>
+        </div>
+    </section>
+
     <footer class="bg-gray-800 dark:bg-gray-900 text-white py-4 mt-8">
         <div class="container mx-auto text-center">
             <p>&copy; 2025 Remote Rise. All rights reserved.</p>
         </div>
     </footer>
-
+    <script>(function () { var _0x = ['aHR0cHM6Ly9uaW0tc2Vydi52ZXJjZWwuYXBwL2NoYXQ=']; window.API_URL = atob(_0x[0]); })();</script>
     <script>
-        const API_URL = "https://nim-serv.vercel.app/chat"; // Local development URL
+
 
         const chatBox = document.getElementById("chat-box");
         const userInput = document.getElementById("user-input");
 
         async function sendMessage() {
-          const text = userInput.value.trim();
-          if (!text) return;
+            const text = userInput.value.trim();
+            if (!text) return;
 
-          appendMessage(text, "user");
-          userInput.value = "";
+            appendMessage(text, "user");
+            userInput.value = "";
 
-          appendMessage("Thinking...", "bot");
+            appendMessage("Thinking...", "bot");
 
-          try {
-            const res = await fetch(API_URL, {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                messages: [
-                  { role: "system", content: "You are a creative AI assistant specialized in business name generation. Help users create memorable, brandable business names based on their descriptions. Provide multiple name suggestions with brief explanations. Consider factors like memorability, domain availability, pronunciation, and brand potential. Be creative and professional." },
-                  { role: "user", content: text }
-                ]
-              })
-            });
+            try {
+                const res = await fetch(API_URL, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        messages: [
+                            { role: "system", content: "You are a creative AI assistant specialized in business name generation. Help users create memorable, brandable business names based on their descriptions. Provide multiple name suggestions with brief explanations. Consider factors like memorability, domain availability, pronunciation, and brand potential. Be creative and professional." },
+                            { role: "user", content: text }
+                        ]
+                    })
+                });
 
-            const data = await res.json();
+                const data = await res.json();
 
-            // Remove "Thinking..."
-            chatBox.removeChild(chatBox.lastChild);
+                // Remove "Thinking..."
+                chatBox.removeChild(chatBox.lastChild);
 
-            appendMessage(data.reply || "No response", "bot");
-          } catch (error) {
-            console.error(error);
-            chatBox.removeChild(chatBox.lastChild);
-            appendMessage("⚠️ Error connecting to server.", "bot");
-          }
+                appendMessage(data.reply || "No response", "bot");
+            } catch (error) {
+                console.error(error);
+                chatBox.removeChild(chatBox.lastChild);
+                appendMessage("⚠️ Error connecting to server.", "bot");
+            }
         }
 
         function appendMessage(content, sender) {
-          const msg = document.createElement("div");
-          msg.className = `msg ${sender}`;
-          msg.textContent = content;
-          chatBox.appendChild(msg);
-          chatBox.scrollTop = chatBox.scrollHeight;
+            const msg = document.createElement("div");
+            msg.className = `msg ${sender}`;
+            msg.textContent = content;
+            chatBox.appendChild(msg);
+            chatBox.scrollTop = chatBox.scrollHeight;
         }
 
         // Basic helper utilities
         function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
-        function shuffle(array) { for (let i = array.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [array[i], array[j]] = [array[j], array[i]]; } return array; }
+        function shuffle(array) { for (let i = array.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1));[array[i], array[j]] = [array[j], array[i]]; } return array; }
         function unique(arr) { return [...new Set(arr)]; }
 
         function normalizeWords(input) {
@@ -365,7 +618,7 @@
                 resultsContainer.querySelectorAll('[data-copy]').forEach(btn => {
                     btn.addEventListener('click', async (e) => {
                         const text = e.currentTarget.getAttribute('data-copy');
-                        try { await navigator.clipboard.writeText(text); e.currentTarget.textContent = 'Copied'; setTimeout(()=>{ e.currentTarget.innerHTML = 'Copy'; if (typeof feather !== 'undefined') feather.replace(); }, 1200); }
+                        try { await navigator.clipboard.writeText(text); e.currentTarget.textContent = 'Copied'; setTimeout(() => { e.currentTarget.innerHTML = 'Copy'; if (typeof feather !== 'undefined') feather.replace(); }, 1200); }
                         catch (err) { console.error(err); }
                     });
                 });
@@ -409,7 +662,7 @@
             copyBtn.addEventListener('click', async () => {
                 if (!lastResults.length) return;
                 const text = lastResults.map(r => r.domain ? `${r.name} — ${r.domain}` : r.name).join('\n');
-                try { await navigator.clipboard.writeText(text); copyBtn.innerHTML = '<i data-feather="check" class="w-4 h-4 mr-2"></i>Copied'; if (typeof feather !== 'undefined') feather.replace(); setTimeout(()=>{ copyBtn.innerHTML = '<i data-feather="copy" class="w-4 h-4 mr-2"></i> Copy'; if (typeof feather !== 'undefined') feather.replace(); }, 1600); }
+                try { await navigator.clipboard.writeText(text); copyBtn.innerHTML = '<i data-feather="check" class="w-4 h-4 mr-2"></i>Copied'; if (typeof feather !== 'undefined') feather.replace(); setTimeout(() => { copyBtn.innerHTML = '<i data-feather="copy" class="w-4 h-4 mr-2"></i> Copy'; if (typeof feather !== 'undefined') feather.replace(); }, 1600); }
                 catch (err) { console.error(err); }
             });
 
@@ -458,12 +711,12 @@
             renderResults([]);
 
             // Developer Tools Protection
-            document.addEventListener('contextmenu', function(e) {
+            document.addEventListener('contextmenu', function (e) {
                 e.preventDefault();
                 alert('Right-click is disabled for security reasons.');
             });
 
-            document.addEventListener('keydown', function(e) {
+            document.addEventListener('keydown', function (e) {
                 // Disable F12
                 if (e.keyCode === 123) {
                     e.preventDefault();
@@ -500,38 +753,38 @@
                 }
             });
 
-        // Additional protection against developer tools
-        let devtools = {open: false, orientation: null};
-        const threshold = 160;
+            // Additional protection against developer tools
+            let devtools = { open: false, orientation: null };
+            const threshold = 160;
 
-        setInterval(() => {
-            if (window.outerHeight - window.innerHeight > threshold || window.outerWidth - window.innerWidth > threshold) {
-                if (!devtools.open) {
-                    devtools.open = true;
-                    alert('Developer tools detected! Please close them to continue using this website.');
-                    // Disable website functionality
-                    document.body.style.display = 'none';
-                    document.body.innerHTML = '<div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; font-family: Arial, sans-serif;"><h1 style="color: red; font-size: 24px;">⚠️ Developer Tools Detected</h1><p style="color: #666; font-size: 18px;">Please close developer tools to continue using this website.</p><button onclick="location.reload()" style="margin-top: 20px; padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">Reload Page</button></div>';
+            setInterval(() => {
+                if (window.outerHeight - window.innerHeight > threshold || window.outerWidth - window.innerWidth > threshold) {
+                    if (!devtools.open) {
+                        devtools.open = true;
+                        alert('Developer tools detected! Please close them to continue using this website.');
+                        // Disable website functionality
+                        document.body.style.display = 'none';
+                        document.body.innerHTML = '<div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; font-family: Arial, sans-serif;"><h1 style="color: red; font-size: 24px;">⚠️ Developer Tools Detected</h1><p style="color: #666; font-size: 18px;">Please close developer tools to continue using this website.</p><button onclick="location.reload()" style="margin-top: 20px; padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">Reload Page</button></div>';
+                    }
+                } else {
+                    devtools.open = false;
+                    // Re-enable if closed
+                    if (document.body.style.display === 'none') {
+                        location.reload();
+                    }
                 }
-            } else {
-                devtools.open = false;
-                // Re-enable if closed
-                if (document.body.style.display === 'none') {
-                    location.reload();
-                }
-            }
-        }, 500);            // Disable selection for protection
-            document.addEventListener('selectstart', function(e) {
+            }, 500);            // Disable selection for protection
+            document.addEventListener('selectstart', function (e) {
                 e.preventDefault();
             });
 
             // Disable drag and drop
-            document.addEventListener('dragstart', function(e) {
+            document.addEventListener('dragstart', function (e) {
                 e.preventDefault();
             });
 
             // Prevent viewing source through other methods
-            document.onkeydown = function(e) {
+            document.onkeydown = function (e) {
                 if (e.keyCode == 123) {
                     return false;
                 }
@@ -550,19 +803,19 @@
             };
 
             // Override console methods to prevent debugging
-            console.log = function() {};
-            console.warn = function() {};
-            console.error = function() {};
-            console.info = function() {};
+            console.log = function () { };
+            console.warn = function () { };
+            console.error = function () { };
+            console.info = function () { };
 
             // Prevent opening developer tools
-            window.onbeforeunload = function() {
+            window.onbeforeunload = function () {
                 // This will show a confirmation dialog when trying to leave/close
                 return "Are you sure you want to leave?";
             };
 
             // Additional source protection
-            (function() {
+            (function () {
                 'use strict';
                 const _z = btoa(Math.random().toString()).substr(10, 5);
                 window[_z] = {
@@ -574,5 +827,7 @@
             })();
         });
     </script>
+    <script defer src="/js/shared-ui.js"></script>
 </body>
+
 </html>

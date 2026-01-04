@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Content Generator — Daedalus | Free AI Writing Assistant</title>
     <link rel="icon" type="image/png" href="images/letter-d.png">
-    <meta name="description" content="Generate high-quality content using AI. Create blog posts, social media content, product descriptions, and more with our free AI content generator.">
-    <meta name="keywords" content="AI content generator, content writer, blog generator, social media content, product description, AI writing, content creation, copywriting">
+    <meta name="description"
+        content="Generate high-quality content using AI. Create blog posts, social media content, product descriptions, and more with our free AI content generator.">
+    <meta name="keywords"
+        content="AI content generator, content writer, blog generator, social media content, product description, AI writing, content creation, copywriting">
     <meta name="author" content="InfinityForge">
     <meta property="og:title" content="AI Content Generator — Daedalus">
-    <meta property="og:description" content="Generate high-quality content using AI. Create blog posts, social media content, product descriptions, and more.">
+    <meta property="og:description"
+        content="Generate high-quality content using AI. Create blog posts, social media content, product descriptions, and more.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://infiniteforge.tech/ai-content-generator.html">
     <meta property="og:image" content="https://infiniteforge.tech/images/letter-d.png">
@@ -22,39 +26,87 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <link rel="stylesheet" href="/css/responsive-fix.css">
+    <link rel="stylesheet" href="/css/ui-enhancements.css">
     <style>
-        :root { --fluid-font-size: clamp(14px, 2vw, 18px);} 
-        body { font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif; font-size: var(--fluid-font-size); }
-        .gen-input, .gen-output { font-family: inherit; }
-        .generate-btn { background: linear-gradient(135deg,#f59e0b,#d97706); color: white; }
-        .copy-btn { background: linear-gradient(135deg,#10b981,#059669); color: white; }
-        .clear-btn { background: linear-gradient(135deg,#ef4444,#dc2626); color: white; }
-        .result-box { background: linear-gradient(135deg,#f8fafc,#fff); border:1px solid #e5e7eb; padding:1rem; border-radius:0.5rem; }
-        .msg { margin-bottom: 12px; padding: 8px 12px; border-radius: 8px; max-width: 80%; }
-        .msg.bot { background-color: #e5e7eb; color: #374151; margin-right: auto; }
-        .msg.user { background-color: #f59e0b; color: white; margin-left: auto; text-align: right; }
+        :root {
+            --fluid-font-size: clamp(14px, 2vw, 18px);
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+            font-size: var(--fluid-font-size);
+        }
+
+        .gen-input,
+        .gen-output {
+            font-family: inherit;
+        }
+
+        .generate-btn {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+        }
+
+        .copy-btn {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+        }
+
+        .clear-btn {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+        }
+
+        .result-box {
+            background: linear-gradient(135deg, #f8fafc, #fff);
+            border: 1px solid #e5e7eb;
+            padding: 1rem;
+            border-radius: 0.5rem;
+        }
+
+        .msg {
+            margin-bottom: 12px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            max-width: 80%;
+        }
+
+        .msg.bot {
+            background-color: #e5e7eb;
+            color: #374151;
+            margin-right: auto;
+        }
+
+        .msg.user {
+            background-color: #f59e0b;
+            color: white;
+            margin-left: auto;
+            text-align: right;
+        }
     </style>
 </head>
 
-<script>(function(s){s.dataset.zone='10030137',s.src='https://gizokraijaw.net/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+<script>(function (s) { s.dataset.zone = '10030137', s.src = 'https://gizokraijaw.net/vignette.min.js' })([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-FQ082B7887"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-  gtag('config', 'G-FQ082B7887');
+    gtag('config', 'G-FQ082B7887');
 </script>
 
 <body class="bg-gray-50 text-gray-800">
     <noscript>
-        <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; color: #fff; display: flex; align-items: center; justify-content: center; z-index: 999999; font-family: Arial, sans-serif;">
+        <div
+            style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; color: #fff; display: flex; align-items: center; justify-content: center; z-index: 999999; font-family: Arial, sans-serif;">
             <div style="text-align: center; max-width: 600px; padding: 40px;">
                 <h1 style="color: #ff4444; font-size: 32px; margin-bottom: 20px;">⚠️ JavaScript Required</h1>
                 <p style="font-size: 18px; line-height: 1.6; margin-bottom: 30px;">
-                    This website requires JavaScript to function properly. Please enable JavaScript in your browser settings and reload the page to continue.
+                    This website requires JavaScript to function properly. Please enable JavaScript in your browser
+                    settings and reload the page to continue.
                 </p>
                 <div style="font-size: 14px; color: #ccc;">
                     <p>If you continue to see this message, try:</p>
@@ -72,7 +124,8 @@
     <nav class="bg-white/80 backdrop-blur-lg shadow-sm w-full fixed top-0 left-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
-                <a href="index.html" class="text-2xl font-bold text-blue-600" aria-label="InfiniteForge Home">InfiniteForge</a>
+                <a href="index.html" class="text-2xl font-bold text-blue-600"
+                    aria-label="InfiniteForge Home">InfiniteForge</a>
                 <div class="hidden sm:flex items-center space-x-6">
                     <a href="index.html" class="text-gray-700 hover:text-blue-600 font-medium">Home</a>
                     <a href="features.html" class="text-gray-700 hover:text-blue-600 font-medium">Features</a>
@@ -81,7 +134,8 @@
                 <div class="sm:hidden">
                     <button id="mobile-menu-button" class="text-gray-700 hover:text-blue-600 focus:outline-none">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16"></path>
                         </svg>
                     </button>
                 </div>
@@ -97,20 +151,26 @@
     <main class="max-w-4xl mx-auto pt-20 sm:pt-24 pb-12 px-4 sm:px-6" itemscope itemtype="https://schema.org/WebPage">
         <div class="text-center mb-8">
             <h1 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-2">AI Content Generator</h1>
-            <p class="text-gray-600 max-w-2xl mx-auto">Generate high-quality content for blogs, social media, product descriptions, and more using advanced AI.</p>
+            <p class="text-gray-600 max-w-2xl mx-auto">Generate high-quality content for blogs, social media, product
+                descriptions, and more using advanced AI.</p>
 
             <!-- Interface Toggle -->
             <div class="flex justify-center mt-6 mb-4">
                 <div class="bg-gray-100 p-1 rounded-lg">
-                    <button id="form-toggle" class="px-4 py-2 rounded-md text-sm font-medium transition-colors bg-white text-gray-900 shadow-sm">Form Input</button>
-                    <button id="chat-toggle" class="px-4 py-2 rounded-md text-sm font-medium transition-colors text-gray-600 hover:text-gray-900">Chat Interface</button>
+                    <button id="form-toggle"
+                        class="px-4 py-2 rounded-md text-sm font-medium transition-colors bg-white text-gray-900 shadow-sm">Form
+                        Input</button>
+                    <button id="chat-toggle"
+                        class="px-4 py-2 rounded-md text-sm font-medium transition-colors text-gray-600 hover:text-gray-900">Chat
+                        Interface</button>
                 </div>
             </div>
         </div>
 
         <!-- User Counter Section -->
         <div class="flex justify-center mb-8">
-            <div class="inline-flex items-center px-6 py-3 bg-white bg-opacity-10 backdrop-blur-sm rounded-full border border-white border-opacity-20">
+            <div
+                class="inline-flex items-center px-6 py-3 bg-white bg-opacity-10 backdrop-blur-sm rounded-full border border-white border-opacity-20">
                 <i data-feather="users" class="w-5 h-5 text-blue-200 mr-3"></i>
                 <span class="text-white font-medium mr-2">Active Users:</span>
                 <span id="user-counter" class="text-blue-200 font-bold text-lg">--</span>
@@ -126,7 +186,8 @@
                     <div class="space-y-4">
                         <div>
                             <label class="block text-sm font-medium mb-2">Content Type *</label>
-                            <select id="content-type" class="gen-input w-full p-3 rounded-lg border border-gray-200" required>
+                            <select id="content-type" class="gen-input w-full p-3 rounded-lg border border-gray-200"
+                                required>
                                 <option value="">Select Type</option>
                                 <option value="blog">Blog Post</option>
                                 <option value="social">Social Media Post</option>
@@ -141,12 +202,15 @@
 
                         <div>
                             <label class="block text-sm font-medium mb-2">Topic/Keyword *</label>
-                            <input id="topic" type="text" class="gen-input w-full p-3 rounded-lg border border-gray-200" placeholder="e.g., sustainable fashion, AI tools, productivity" required>
+                            <input id="topic" type="text" class="gen-input w-full p-3 rounded-lg border border-gray-200"
+                                placeholder="e.g., sustainable fashion, AI tools, productivity" required>
                         </div>
 
                         <div>
                             <label class="block text-sm font-medium mb-2">Target Audience</label>
-                            <input id="audience" type="text" class="gen-input w-full p-3 rounded-lg border border-gray-200" placeholder="e.g., small business owners, millennials, tech enthusiasts">
+                            <input id="audience" type="text"
+                                class="gen-input w-full p-3 rounded-lg border border-gray-200"
+                                placeholder="e.g., small business owners, millennials, tech enthusiasts">
                         </div>
 
                         <div>
@@ -177,17 +241,22 @@
                     <div class="space-y-4">
                         <div>
                             <label class="block text-sm font-medium mb-2">Additional Details</label>
-                            <textarea id="details" class="gen-input w-full p-3 rounded-lg border border-gray-200 resize-none" rows="4" placeholder="Any specific points to include, product features, benefits, etc."></textarea>
+                            <textarea id="details"
+                                class="gen-input w-full p-3 rounded-lg border border-gray-200 resize-none" rows="4"
+                                placeholder="Any specific points to include, product features, benefits, etc."></textarea>
                         </div>
 
                         <div>
                             <label class="block text-sm font-medium mb-2">Call-to-Action</label>
-                            <input id="cta" type="text" class="gen-input w-full p-3 rounded-lg border border-gray-200" placeholder="e.g., Buy Now, Learn More, Sign Up">
+                            <input id="cta" type="text" class="gen-input w-full p-3 rounded-lg border border-gray-200"
+                                placeholder="e.g., Buy Now, Learn More, Sign Up">
                         </div>
 
                         <div>
                             <label class="block text-sm font-medium mb-2">Keywords to Include</label>
-                            <input id="keywords" type="text" class="gen-input w-full p-3 rounded-lg border border-gray-200" placeholder="Comma-separated keywords for SEO">
+                            <input id="keywords" type="text"
+                                class="gen-input w-full p-3 rounded-lg border border-gray-200"
+                                placeholder="Comma-separated keywords for SEO">
                         </div>
 
                         <div class="flex items-center gap-3">
@@ -198,11 +267,15 @@
                 </div>
 
                 <div class="flex flex-col sm:flex-row gap-3 pt-4 border-t border-gray-200">
-                    <button type="submit" id="generate-btn" class="generate-btn flex-1 py-4 px-6 rounded-lg font-semibold hover:opacity-90 transition-all shadow-md disabled:opacity-50">
+                    <button type="submit" id="generate-btn"
+                        class="generate-btn flex-1 py-4 px-6 rounded-lg font-semibold hover:opacity-90 transition-all shadow-md disabled:opacity-50">
                         <span id="btn-text">Generate Content</span>
-                        <div id="loading-spinner" class="hidden inline-block ml-2 w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                        <div id="loading-spinner"
+                            class="hidden inline-block ml-2 w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin">
+                        </div>
                     </button>
-                    <button type="button" id="clear-btn" class="clear-btn flex-1 py-4 px-6 rounded-lg font-semibold hover:opacity-90 transition-all shadow-md">
+                    <button type="button" id="clear-btn"
+                        class="clear-btn flex-1 py-4 px-6 rounded-lg font-semibold hover:opacity-90 transition-all shadow-md">
                         Clear
                     </button>
                 </div>
@@ -215,7 +288,9 @@
                 <div class="flex items-center justify-between mb-6">
                     <h2 class="text-2xl font-bold text-gray-800">Generated Content</h2>
                     <div class="flex gap-2">
-                        <button id="regenerate-btn" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors" aria-label="Regenerate content">
+                        <button id="regenerate-btn"
+                            class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+                            aria-label="Regenerate content">
                             <i data-feather="refresh-cw" class="w-4 h-4 inline mr-1"></i>
                             Regenerate
                         </button>
@@ -223,7 +298,8 @@
                             <i data-feather="copy" class="w-4 h-4 inline mr-1"></i>
                             Copy
                         </button>
-                        <button id="download-btn" class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors">
+                        <button id="download-btn"
+                            class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors">
                             <i data-feather="download" class="w-4 h-4 inline mr-1"></i>
                             Download
                         </button>
@@ -253,12 +329,18 @@
             </div>
 
             <div id="chat-box" class="border border-gray-200 rounded-lg p-4 h-96 overflow-y-auto mb-4 bg-gray-50">
-                <div class="msg bot text-gray-800">Hello! I'm your AI Content Assistant. Tell me what kind of content you need - a blog post, social media content, product description, or anything else - and I'll help you create it!</div>
+                <div class="msg bot text-gray-800">Hello! I'm your AI Content Assistant. Tell me what kind of content
+                    you need - a blog post, social media content, product description, or anything else - and I'll help
+                    you create it!</div>
             </div>
 
             <div class="flex gap-2">
-                <input type="text" id="user-input" class="flex-1 px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-500" placeholder="Describe your content needs..." onkeypress="if(event.key === 'Enter') sendChatMessage()">
-                <button onclick="sendChatMessage()" class="bg-amber-600 text-white px-6 py-3 rounded-lg hover:bg-amber-700 transition-all shadow-md font-semibold min-w-[50px] flex items-center justify-center">
+                <input type="text" id="user-input"
+                    class="flex-1 px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-500"
+                    placeholder="Describe your content needs..."
+                    onkeypress="if(event.key === 'Enter') sendChatMessage()">
+                <button onclick="sendChatMessage()"
+                    class="bg-amber-600 text-white px-6 py-3 rounded-lg hover:bg-amber-700 transition-all shadow-md font-semibold min-w-[50px] flex items-center justify-center">
                     <i data-feather="send" class="w-5 h-5"></i>
                 </button>
             </div>
@@ -283,7 +365,8 @@
                     <h4 class="font-semibold mb-4">Tools</h4>
                     <ul class="space-y-2 text-sm text-gray-300">
                         <li><a href="features.html" class="hover:text-white transition-colors">All Tools</a></li>
-                        <li><a href="ai-content-generator.html" class="hover:text-white transition-colors">Content Generator</a></li>
+                        <li><a href="ai-content-generator.html" class="hover:text-white transition-colors">Content
+                                Generator</a></li>
                     </ul>
                 </div>
                 <div>
@@ -297,7 +380,8 @@
                 <div>
                     <h4 class="font-semibold mb-4">Follow</h4>
                     <div class="flex space-x-4">
-                        <a href="https://twitter.com" target="_blank" rel="noopener" class="hover:text-blue-400 transition-colors">
+                        <a href="https://twitter.com" target="_blank" rel="noopener"
+                            class="hover:text-blue-400 transition-colors">
                             <i data-feather="twitter" class="w-5 h-5"></i>
                         </a>
                     </div>
@@ -308,7 +392,7 @@
             </div>
         </div>
     </footer>
-
+    <script>(function () { var _0x = ['aHR0cHM6Ly9uaW0tc2Vydi52ZXJjZWwuYXBwL2NoYXQ=']; window.API_URL = atob(_0x[0]); })();</script>
     <script>
         // Initialize Feather Icons when loaded
         function initFeatherIcons() {
@@ -357,7 +441,7 @@
             }
         }
 
-        const API_URL = "https://nim-serv.vercel.app/chat";
+        const apiUrl = window.API_URL;
 
         // Form elements
         const contentForm = document.getElementById('content-form');
@@ -415,7 +499,7 @@
 
         async function generateContent(formData) {
             const lengthMap = { short: '50-100 words', medium: '100-300 words', long: '300-500 words', xlarge: '500+ words' };
-            
+
             const prompt = `Generate a high-quality ${formData.contentType} about "${formData.topic}".
 
 Details:
@@ -430,7 +514,7 @@ ${formData.seo ? '- Optimize for SEO' : ''}
 Create engaging, original, and high-quality content that connects with the audience and achieves the goal. Return only the content without any introduction or explanation.`;
 
             try {
-                const response = await fetch(API_URL, {
+                const response = await fetch(apiUrl, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -459,7 +543,7 @@ Create engaging, original, and high-quality content that connects with the audie
             appendMessage("Thinking...", "bot");
 
             try {
-                const res = await fetch(API_URL, {
+                const res = await fetch(apiUrl, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
@@ -596,12 +680,12 @@ Create engaging, original, and high-quality content that connects with the audie
         });
 
         // Developer Tools Protection
-        document.addEventListener('contextmenu', function(e) {
+        document.addEventListener('contextmenu', function (e) {
             e.preventDefault();
             alert('Right-click is disabled for security reasons.');
         });
 
-        document.addEventListener('keydown', function(e) {
+        document.addEventListener('keydown', function (e) {
             if (e.keyCode === 123) {
                 e.preventDefault();
                 alert('Developer tools are disabled for security reasons.');
@@ -629,7 +713,7 @@ Create engaging, original, and high-quality content that connects with the audie
             }
         });
 
-        let devtools = {open: false};
+        let devtools = { open: false };
         const threshold = 160;
 
         const warningScreen = document.createElement('div');
@@ -654,11 +738,13 @@ Create engaging, original, and high-quality content that connects with the audie
             }
         }, 500);
 
-        document.addEventListener('selectstart', function(e) { e.preventDefault(); });
-        document.addEventListener('dragstart', function(e) { e.preventDefault(); });
-        console.log = function() {};
-        console.warn = function() {};
-        console.error = function() {};
+        document.addEventListener('selectstart', function (e) { e.preventDefault(); });
+        document.addEventListener('dragstart', function (e) { e.preventDefault(); });
+        console.log = function () { };
+        console.warn = function () { };
+        console.error = function () { };
     </script>
+    <script defer src="/js/shared-ui.js"></script>
 </body>
+
 </html>

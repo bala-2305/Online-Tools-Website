@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Hashtag Generator — Generate Social Media Hashtags — InfiniteForge</title>
     <link rel="icon" type="image/png" href="images/letter-d.png">
-    <meta name="description" content="Generate relevant hashtags for social media posts using AI. Create trending hashtags for Instagram, Twitter, TikTok, and more with instant results.">
-    <meta name="keywords" content="AI hashtag generator, social media hashtags, Instagram hashtags, Twitter hashtags, TikTok hashtags, hashtag generator, trending hashtags, social media marketing, content creation, hashtag tool, AI hashtags">
+    <meta name="description"
+        content="Generate relevant hashtags for social media posts using AI. Create trending hashtags for Instagram, Twitter, TikTok, and more with instant results.">
+    <meta name="keywords"
+        content="AI hashtag generator, social media hashtags, Instagram hashtags, Twitter hashtags, TikTok hashtags, hashtag generator, trending hashtags, social media marketing, content creation, hashtag tool, AI hashtags">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     <meta property="og:title" content="AI Hashtag Generator — Generate Social Media Hashtags — InfiniteForge">
-    <meta property="og:description" content="Generate relevant hashtags for social media posts using AI. Create trending hashtags for Instagram, Twitter, TikTok, and more with instant results.">
+    <meta property="og:description"
+        content="Generate relevant hashtags for social media posts using AI. Create trending hashtags for Instagram, Twitter, TikTok, and more with instant results.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://infiniteforge.tech/ai-hashtag-generator.html">
     <meta property="og:image" content="https://infiniteforge.tech/assets/letter-d.png">
@@ -22,7 +26,8 @@
     <meta property="og:locale" content="en_US">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="AI Hashtag Generator — Generate Social Media Hashtags — Daedalus">
-    <meta name="twitter:description" content="Generate relevant hashtags for social media posts using AI. Create trending hashtags for Instagram, Twitter, TikTok, and more with instant results.">
+    <meta name="twitter:description"
+        content="Generate relevant hashtags for social media posts using AI. Create trending hashtags for Instagram, Twitter, TikTok, and more with instant results.">
     <meta name="twitter:image" content="https://infiniteforge.tech/assets/letter-d.png">
     <meta name="twitter:image:alt" content="Daedalus Logo">
     <link rel="canonical" href="https://infiniteforge.tech/ai-hashtag-generator.html">
@@ -63,17 +68,61 @@
             }
         ]
     }</script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script><style>/* Fluid scaling styles */:root {--fluid-font-size: clamp(14px, 2vw, 18px);--fluid-h1: clamp(1.5rem, 5vw, 3rem);--fluid-h2: clamp(1.25rem, 4vw, 2.5rem);--fluid-h3: clamp(1.125rem, 3vw, 2rem);--fluid-p: clamp(0.875rem, 2vw, 1rem);}body {font-size: var(--fluid-font-size);}h1 { font-size: var(--fluid-h1) !important; }h2 { font-size: var(--fluid-h2) !important; }h3 { font-size: var(--fluid-h3) !important; }p { font-size: var(--fluid-p) !important; }@media (max-width: 640px) {.container, .max-w-4xl, .max-w-6xl, .max-w-7xl {max-width: 95vw !important;margin-left: auto;margin-right: auto;}}</style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Fluid scaling styles */
+        :root {
+            --fluid-font-size: clamp(14px, 2vw, 18px);
+            --fluid-h1: clamp(1.5rem, 5vw, 3rem);
+            --fluid-h2: clamp(1.25rem, 4vw, 2.5rem);
+            --fluid-h3: clamp(1.125rem, 3vw, 2rem);
+            --fluid-p: clamp(0.875rem, 2vw, 1rem);
+        }
+
+        body {
+            font-size: var(--fluid-font-size);
+        }
+
+        h1 {
+            font-size: var(--fluid-h1) !important;
+        }
+
+        h2 {
+            font-size: var(--fluid-h2) !important;
+        }
+
+        h3 {
+            font-size: var(--fluid-h3) !important;
+        }
+
+        p {
+            font-size: var(--fluid-p) !important;
+        }
+
+        @media (max-width: 640px) {
+
+            .container,
+            .max-w-4xl,
+            .max-w-6xl,
+            .max-w-7xl {
+                max-width: 95vw !important;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="/css/ui-enhancements.css">
     <script defer src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <script>
         // Fallback for Feather Icons
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             if (typeof feather === 'undefined') {
                 // Load feather icons from alternative CDN if primary fails
                 const script = document.createElement('script');
                 script.src = 'https://unpkg.com/feather-icons@4.29.0/dist/feather.min.js';
-                script.onload = function() {
+                script.onload = function () {
                     if (typeof feather !== 'undefined') {
                         feather.replace();
                     }
@@ -88,7 +137,8 @@
             font-family: 'Poppins', sans-serif;
         }
 
-        .hashtag-input, .hashtag-output {
+        .hashtag-input,
+        .hashtag-output {
             min-height: 120px;
             font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
             font-size: 14px;
@@ -149,19 +199,42 @@
         }
 
         @keyframes loading {
-            0%, 20% { content: ''; }
-            40% { content: '.'; }
-            60% { content: '..'; }
-            80%, 100% { content: '...'; }
+
+            0%,
+            20% {
+                content: '';
+            }
+
+            40% {
+                content: '.';
+            }
+
+            60% {
+                content: '..';
+            }
+
+            80%,
+            100% {
+                content: '...';
+            }
         }
 
         @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
         }
 
         @media (max-width: 768px) {
-            .hashtag-input, .hashtag-output {
+
+            .hashtag-input,
+            .hashtag-output {
                 min-height: 100px;
                 font-size: 12px;
             }
@@ -173,34 +246,39 @@
             }
         }
     </style>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-WQ58J7WX');</script>
-<!-- End Google Tag Manager -->
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-WQ58J7WX');</script>
+    <!-- End Google Tag Manager -->
 </head>
 
-<script>(function(s){s.dataset.zone='10030137',s.src='https://gizokraijaw.net/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+<script>(function (s) { s.dataset.zone = '10030137', s.src = 'https://gizokraijaw.net/vignette.min.js' })([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-FQ082B7887"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-  gtag('config', 'G-FQ082B7887');
+    gtag('config', 'G-FQ082B7887');
 </script>
 
 <body class="bg-gray-50 min-h-screen">
     <noscript>
-        <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; color: #fff; display: flex; align-items: center; justify-content: center; z-index: 999999; font-family: Arial, sans-serif;">
+        <div
+            style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; color: #fff; display: flex; align-items: center; justify-content: center; z-index: 999999; font-family: Arial, sans-serif;">
             <div style="text-align: center; max-width: 600px; padding: 40px;">
                 <h1 style="color: #ff4444; font-size: 32px; margin-bottom: 20px;">⚠️ JavaScript Required</h1>
                 <p style="font-size: 18px; line-height: 1.6; margin-bottom: 30px;">
-                    This website requires JavaScript to function properly. Please enable JavaScript in your browser settings and reload the page to continue.
+                    This website requires JavaScript to function properly. Please enable JavaScript in your browser
+                    settings and reload the page to continue.
                 </p>
                 <div style="font-size: 14px; color: #ccc;">
                     <p>If you continue to see this message, try:</p>
@@ -214,10 +292,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </div>
         </div>
     </noscript>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WQ58J7WX"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WQ58J7WX" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <!-- Navigation -->
     <nav class="bg-white shadow-sm border-b border-gray-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -285,7 +363,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <!-- Topic Input -->
                 <div class="mb-4">
                     <label class="block text-sm font-medium text-gray-700 mb-2">Describe your content or topic</label>
-                    <textarea id="topic-input" class="hashtag-input w-full border border-gray-300 rounded-lg p-4 focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-vertical" placeholder="e.g., A beautiful sunset photo from the beach, healthy smoothie recipe, tech startup launch event, fitness workout motivation..."></textarea>
+                    <textarea id="topic-input"
+                        class="hashtag-input w-full border border-gray-300 rounded-lg p-4 focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-vertical"
+                        placeholder="e.g., A beautiful sunset photo from the beach, healthy smoothie recipe, tech startup launch event, fitness workout motivation..."></textarea>
                 </div>
 
                 <!-- Platform Selection -->
@@ -320,16 +400,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Options</label>
                     <div class="flex flex-wrap gap-4">
                         <label class="flex items-center">
-                            <input type="checkbox" id="include-trending" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                            <input type="checkbox" id="include-trending"
+                                class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
                             <span class="ml-2 text-sm text-gray-700">Include trending hashtags</span>
                         </label>
                         <label class="flex items-center">
-                            <input type="checkbox" id="include-niche" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                            <input type="checkbox" id="include-niche"
+                                class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
                             <span class="ml-2 text-sm text-gray-700">Include niche hashtags</span>
                         </label>
                         <div class="flex items-center gap-2">
                             <label class="text-sm text-gray-700">Number of hashtags:</label>
-                            <select id="hashtag-count" class="border border-gray-300 rounded px-2 py-1 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <select id="hashtag-count"
+                                class="border border-gray-300 rounded px-2 py-1 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                                 <option value="10">10</option>
                                 <option value="15">15</option>
                                 <option value="20">20</option>
@@ -342,13 +425,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
                 <!-- Generate Button -->
                 <div class="flex gap-4">
-                    <button id="generate-btn" class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105">
+                    <button id="generate-btn"
+                        class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105">
                         <span id="generate-text">Generate Hashtags</span>
                         <span id="generate-spinner" class="hidden ml-2">
                             <i data-feather="loader" class="w-5 h-5 animate-spin"></i>
                         </span>
                     </button>
-                    <button id="load-example-btn" class="bg-gray-500 text-white px-6 py-3 rounded-lg hover:bg-gray-600 transition-colors">
+                    <button id="load-example-btn"
+                        class="bg-gray-500 text-white px-6 py-3 rounded-lg hover:bg-gray-600 transition-colors">
                         Load Example
                     </button>
                 </div>
@@ -360,20 +445,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <div class="flex justify-between items-center mb-4">
                         <h3 class="text-xl font-semibold text-gray-900">Generated Hashtags</h3>
                         <div class="flex gap-2">
-                            <button id="copy-hashtags-btn" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors">
+                            <button id="copy-hashtags-btn"
+                                class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors">
                                 Copy All
                             </button>
-                            <button id="select-all-btn" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition-colors">
+                            <button id="select-all-btn"
+                                class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition-colors">
                                 Select All
                             </button>
-                            <button id="clear-selection-btn" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 transition-colors">
+                            <button id="clear-selection-btn"
+                                class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 transition-colors">
                                 Clear Selection
                             </button>
                         </div>
                     </div>
 
                     <!-- Hashtags Display -->
-                    <div id="hashtags-container" class="mb-4 min-h-[100px] p-4 bg-gray-50 rounded-lg border-2 border-dashed border-gray-300">
+                    <div id="hashtags-container"
+                        class="mb-4 min-h-[100px] p-4 bg-gray-50 rounded-lg border-2 border-dashed border-gray-300">
                         <p class="text-gray-500 text-center">Generated hashtags will appear here...</p>
                     </div>
 
@@ -410,7 +499,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <i data-feather="hash" class="w-8 h-8 text-blue-600 mr-3"></i>
                     <h3 class="text-lg font-semibold text-gray-900">AI-Powered</h3>
                 </div>
-                <p class="text-gray-600">Advanced AI algorithms analyze your content and generate highly relevant hashtags for maximum engagement.</p>
+                <p class="text-gray-600">Advanced AI algorithms analyze your content and generate highly relevant
+                    hashtags for maximum engagement.</p>
             </div>
 
             <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
@@ -418,7 +508,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <i data-feather="target" class="w-8 h-8 text-green-600 mr-3"></i>
                     <h3 class="text-lg font-semibold text-gray-900">Platform Optimized</h3>
                 </div>
-                <p class="text-gray-600">Tailored hashtag suggestions for Instagram, Twitter, TikTok, Facebook, and LinkedIn with platform-specific trends.</p>
+                <p class="text-gray-600">Tailored hashtag suggestions for Instagram, Twitter, TikTok, Facebook, and
+                    LinkedIn with platform-specific trends.</p>
             </div>
 
             <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
@@ -426,7 +517,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <i data-feather="trending-up" class="w-8 h-8 text-purple-600 mr-3"></i>
                     <h3 class="text-lg font-semibold text-gray-900">Trending & Niche</h3>
                 </div>
-                <p class="text-gray-600">Mix of trending hashtags for visibility and niche hashtags for targeted audience engagement.</p>
+                <p class="text-gray-600">Mix of trending hashtags for visibility and niche hashtags for targeted
+                    audience engagement.</p>
             </div>
         </div>
 
@@ -436,17 +528,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="grid md:grid-cols-2 gap-6">
                 <div>
                     <h4 class="font-semibold text-gray-900 mb-2">1. Describe Your Content</h4>
-                    <p class="text-gray-600 mb-4">Enter a detailed description of your post, photo, video, or content topic.</p>
+                    <p class="text-gray-600 mb-4">Enter a detailed description of your post, photo, video, or content
+                        topic.</p>
 
                     <h4 class="font-semibold text-gray-900 mb-2">2. Select Platforms</h4>
-                    <p class="text-gray-600 mb-4">Choose target social media platforms for optimized hashtag suggestions.</p>
+                    <p class="text-gray-600 mb-4">Choose target social media platforms for optimized hashtag
+                        suggestions.</p>
                 </div>
                 <div>
                     <h4 class="font-semibold text-gray-900 mb-2">3. Customize Options</h4>
                     <p class="text-gray-600 mb-4">Select trending hashtags, niche tags, and desired quantity.</p>
 
                     <h4 class="font-semibold text-gray-900 mb-2">4. Generate & Use</h4>
-                    <p class="text-gray-600">Click generate, select your favorites, and copy them to your social media post.</p>
+                    <p class="text-gray-600">Click generate, select your favorites, and copy them to your social media
+                        post.</p>
                 </div>
             </div>
         </div>
@@ -470,18 +565,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </p>
             </div>
             <div class="flex gap-2">
-                <button id="decline-cookies" class="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700 transition-colors">
+                <button id="decline-cookies"
+                    class="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700 transition-colors">
                     Decline
                 </button>
-                <button id="accept-cookies" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors">
+                <button id="accept-cookies"
+                    class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors">
                     Accept
                 </button>
             </div>
         </div>
     </div>
 
+    <script>(function () { var _0x = ['aHR0cHM6Ly9uaW0tc2Vydi52ZXJjZWwuYXBwL2NoYXQ=']; window.API_URL = atob(_0x[0]); })();</script>
     <script>
-        const API_URL = "https://nim-rg8p.onrender.com/chat"; // Local development URL
+        const apiUrl = window.API_URL; // Local development URL
 
         // Initialize user counter
         async function initializeUserCounter() {
@@ -499,7 +597,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             }
         }
 
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Initialize Feather Icons
             if (typeof feather !== 'undefined') {
                 feather.replace();
@@ -531,7 +629,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             // Platform selection
             document.querySelectorAll('.platform-badge').forEach(badge => {
-                badge.addEventListener('click', function() {
+                badge.addEventListener('click', function () {
                     const platform = this.dataset.platform;
                     if (this.classList.contains('active')) {
                         if (selectedPlatforms.length > 1) {
@@ -618,7 +716,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             });
 
             // Mobile menu
-            document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            document.getElementById('mobile-menu-button').addEventListener('click', function () {
                 const menu = document.getElementById('mobile-menu');
                 menu.classList.toggle('hidden');
             });
@@ -662,7 +760,7 @@ Requirements:
 Return only the hashtags, nothing else.`;
 
                 try {
-                    const response = await fetch(API_URL, {
+                    const response = await fetch(apiUrl, {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({
@@ -745,9 +843,9 @@ Return only the hashtags, nothing else.`;
             function showStatus(message, type) {
                 const container = document.getElementById('status-container');
                 const className = type === 'success' ? 'bg-green-100 text-green-800 border-green-200' :
-                                 type === 'error' ? 'bg-red-100 text-red-800 border-red-200' :
-                                 type === 'warning' ? 'bg-yellow-100 text-yellow-800 border-yellow-200' :
-                                 'bg-blue-100 text-blue-800 border-blue-200';
+                    type === 'error' ? 'bg-red-100 text-red-800 border-red-200' :
+                        type === 'warning' ? 'bg-yellow-100 text-yellow-800 border-yellow-200' :
+                            'bg-blue-100 text-blue-800 border-blue-200';
 
                 container.innerHTML = `<div class="${className} border px-4 py-3 rounded-lg shadow-lg">
                     <div class="flex items-center">
@@ -772,7 +870,7 @@ Return only the hashtags, nothing else.`;
         });
 
         // Cookie consent functionality
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const cookieConsent = document.getElementById('cookie-consent');
             const acceptCookies = document.getElementById('accept-cookies');
             const declineCookies = document.getElementById('decline-cookies');
@@ -787,7 +885,7 @@ Return only the hashtags, nothing else.`;
                 }, 1000);
             }
 
-            acceptCookies.addEventListener('click', function() {
+            acceptCookies.addEventListener('click', function () {
                 localStorage.setItem('cookie-consent', 'accepted');
                 gtag('consent', 'update', {
                     'analytics_storage': 'granted'
@@ -798,7 +896,7 @@ Return only the hashtags, nothing else.`;
                 }, 300);
             });
 
-            declineCookies.addEventListener('click', function() {
+            declineCookies.addEventListener('click', function () {
                 localStorage.setItem('cookie-consent', 'declined');
                 cookieConsent.classList.add('translate-y-full');
                 setTimeout(() => {
@@ -808,12 +906,12 @@ Return only the hashtags, nothing else.`;
         });
 
         // Developer Tools Protection
-        document.addEventListener('contextmenu', function(e) {
+        document.addEventListener('contextmenu', function (e) {
             e.preventDefault();
             alert('Right-click is disabled for security reasons.');
         });
 
-        document.addEventListener('keydown', function(e) {
+        document.addEventListener('keydown', function (e) {
             // Disable F12
             if (e.keyCode === 123) {
                 e.preventDefault();
@@ -851,7 +949,7 @@ Return only the hashtags, nothing else.`;
         });
 
         // Additional protection against developer tools
-        let devtools = {open: false, orientation: null};
+        let devtools = { open: false, orientation: null };
         const threshold = 160;
 
         setInterval(() => {
@@ -873,17 +971,17 @@ Return only the hashtags, nothing else.`;
         }, 500);
 
         // Disable selection for protection
-        document.addEventListener('selectstart', function(e) {
+        document.addEventListener('selectstart', function (e) {
             e.preventDefault();
         });
 
         // Disable drag and drop
-        document.addEventListener('dragstart', function(e) {
+        document.addEventListener('dragstart', function (e) {
             e.preventDefault();
         });
 
         // Prevent viewing source through other methods
-        document.onkeydown = function(e) {
+        document.onkeydown = function (e) {
             if (e.keyCode == 123) {
                 return false;
             }
@@ -902,19 +1000,19 @@ Return only the hashtags, nothing else.`;
         };
 
         // Override console methods to prevent debugging
-        console.log = function() {};
-        console.warn = function() {};
-        console.error = function() {};
-        console.info = function() {};
+        console.log = function () { };
+        console.warn = function () { };
+        console.error = function () { };
+        console.info = function () { };
 
         // Prevent opening developer tools
-        window.onbeforeunload = function() {
+        window.onbeforeunload = function () {
             // This will show a confirmation dialog when trying to leave/close
             return "Are you sure you want to leave?";
         };
 
         // Additional source protection
-        (function() {
+        (function () {
             'use strict';
             const _z = btoa(Math.random().toString()).substr(10, 5);
             window[_z] = {
@@ -931,5 +1029,8 @@ Return only the hashtags, nothing else.`;
             <p>&copy; 2025 Remote Rise. All rights reserved.</p>
         </div>
     </footer>
+    <script defer src="/js/shared-ui.js"></script>
 </body>
-</html></content>
+
+</html>
+</content>
