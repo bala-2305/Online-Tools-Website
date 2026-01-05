@@ -56,7 +56,7 @@
     <style>
         /* Fluid scaling styles */
         :root {
-            --fluid-font-size: clamp(14px, 2vw, 18px);
+            --fluid-font-size: clamp(14px, 2vw, 16px);
             --fluid-h1: clamp(1.5rem, 5vw, 3rem);
             --fluid-h2: clamp(1.25rem, 4vw, 2.5rem);
             --fluid-h3: clamp(1.125rem, 3vw, 2rem);
@@ -64,31 +64,39 @@
         }
 
         body {
+            font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
             font-size: var(--fluid-font-size);
+            background-color: #f8fafc;
         }
 
-        h1 {
-            font-size: var(--fluid-h1) !important;
+        h1 { font-size: var(--fluid-h1) !important; }
+        h2 { font-size: var(--fluid-h2) !important; }
+        h3 { font-size: var(--fluid-h3) !important; }
+        p { font-size: var(--fluid-p) !important; }
+
+        /* Modern Button Styles */
+        #generate-btn {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.3);
+        }
+        #generate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.4);
+        }
+        #generate-btn:active {
+            transform: translateY(0);
         }
 
-        h2 {
-            font-size: var(--fluid-h2) !important;
-        }
-
-        h3 {
-            font-size: var(--fluid-h3) !important;
-        }
-
-        p {
-            font-size: var(--fluid-p) !important;
+        /* Input Focus Styles */
+        select:focus, textarea:focus {
+            border-color: #2563eb;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         }
 
         @media (max-width: 640px) {
-
-            .container,
-            .max-w-4xl,
-            .max-w-6xl,
-            .max-w-7xl {
+            .container, .max-w-4xl, .max-w-6xl, .max-w-7xl {
                 max-width: 95vw !important;
                 margin-left: auto;
                 margin-right: auto;
@@ -165,11 +173,15 @@
 
         <!-- User Counter Section -->
         <div class="flex justify-center mb-8">
-            <div
-                class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full shadow-lg border border-white border-opacity-20 backdrop-blur-sm">
-                <i data-feather="users" class="w-5 h-5 mr-3"></i>
-                <span class="font-medium mr-2">Active Users:</span>
-                <span id="user-counter" class="font-bold text-lg">--</span>
+            <div class="inline-flex items-center px-4 py-2 bg-white rounded-full shadow-sm border border-blue-100">
+                <div class="flex items-center space-x-2">
+                    <span class="relative flex h-3 w-3">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                    </span>
+                    <span class="text-gray-600 text-sm font-medium">Active Users:</span>
+                    <span id="user-counter" class="text-blue-600 font-bold text-sm">--</span>
+                </div>
             </div>
         </div>
 
@@ -177,7 +189,8 @@
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
                 <!-- Configuration Panel -->
                 <div class="lg:col-span-1 order-2 lg:order-1">
-                    <div class="bg-white p-4 sm:p-6 rounded-xl shadow-md lg:sticky lg:top-24">
+                    <div class="bg-white p-4 sm:p-6 rounded-xl shadow-xl border border-gray-100 relative overflow-hidden lg:sticky lg:top-24">
+                        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"></div>
                         <h3 class="text-lg font-semibold text-gray-800 mb-4">Configuration</h3>
 
                         <!-- Programming Language Selection -->
@@ -266,7 +279,8 @@
                 <div class="lg:col-span-2 order-1 lg:order-2">
                     <div class="space-y-6">
                         <!-- Code Input -->
-                        <div class="bg-white p-4 sm:p-6 rounded-xl shadow-md">
+                        <div class="bg-white p-4 sm:p-6 rounded-xl shadow-xl border border-gray-100 relative overflow-hidden">
+                            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"></div>
                             <div class="flex justify-between items-center mb-4">
                                 <h3 class="text-lg font-semibold text-gray-800">Input Code</h3>
                                 <div class="flex space-x-2">
@@ -286,7 +300,8 @@
                         </div>
 
                         <!-- Code Output -->
-                        <div class="bg-white p-4 sm:p-6 rounded-xl shadow-md">
+                        <div class="bg-white p-4 sm:p-6 rounded-xl shadow-xl border border-gray-100 relative overflow-hidden">
+                            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"></div>
                             <div class="flex justify-between items-center mb-4">
                                 <h3 class="text-lg font-semibold text-gray-800">Commented Code</h3>
                                 <div class="flex space-x-2">
@@ -769,7 +784,10 @@ int main() {
 
                     // Disable generate button
                     generateBtn.disabled = true;
-                    generateBtn.textContent = 'Generating...';
+                    generateBtn.innerHTML = `<svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>Generating...`;
                     generateBtn.classList.add('opacity-50', 'cursor-not-allowed');
 
                     // Disable input

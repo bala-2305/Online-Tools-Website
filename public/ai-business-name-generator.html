@@ -36,12 +36,13 @@
     <link rel="stylesheet" href="/css/ui-enhancements.css">
     <style>
         :root {
-            --fluid-font-size: clamp(14px, 2vw, 18px);
+            --fluid-font-size: clamp(14px, 2vw, 16px);
         }
 
         body {
             font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
             font-size: var(--fluid-font-size);
+            background-color: #f8fafc;
         }
 
         .gen-input,
@@ -50,45 +51,114 @@
         }
 
         .generate-btn {
-            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+            background: linear-gradient(135deg, #8b5cf6, #6d28d9);
             color: white;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 6px -1px rgba(139, 92, 246, 0.3);
+        }
+        .generate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(139, 92, 246, 0.4);
+        }
+        .generate-btn:active {
+            transform: translateY(0);
         }
 
         .copy-btn {
             background: linear-gradient(135deg, #10b981, #059669);
             color: white;
+            transition: all 0.2s;
+        }
+        .copy-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
         }
 
         .clear-btn {
-            background: linear-gradient(135deg, #ef4444, #dc2626);
-            color: white;
+            background: white;
+            color: #ef4444;
+            border: 1px solid #fee2e2;
+            transition: all 0.2s;
+        }
+        .clear-btn:hover {
+            background: #fef2f2;
+            border-color: #fecaca;
         }
 
         .result-chip {
-            background: linear-gradient(135deg, #f8fafc, #fff);
+            background: white;
             border: 1px solid #e5e7eb;
-            padding: 0.5rem 0.75rem;
-            border-radius: 0.5rem;
+            padding: 0.75rem 1rem;
+            border-radius: 0.75rem;
+            transition: all 0.2s ease;
+            animation: slideIn 0.3s ease-out forwards;
+            opacity: 0;
+        }
+        .result-chip:hover {
+            border-color: #8b5cf6;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transform: translateY(-2px);
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .msg {
             margin-bottom: 12px;
-            padding: 8px 12px;
-            border-radius: 8px;
-            max-width: 80%;
+            padding: 10px 16px;
+            border-radius: 12px;
+            max-width: 85%;
+            line-height: 1.5;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
         }
 
         .msg.bot {
-            background-color: #e5e7eb;
-            color: #374151;
+            background-color: #f3f4f6;
+            color: #1f2937;
             margin-right: auto;
+            border-bottom-left-radius: 4px;
         }
 
         .msg.user {
-            background-color: #8b5cf6;
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
             color: white;
             margin-left: auto;
             text-align: right;
+            border-bottom-right-radius: 4px;
+        }
+        
+        .form-input:focus, .form-select:focus {
+            border-color: #8b5cf6;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+        }
+
+        .toggle-container {
+            background: #e2e8f0;
+            padding: 4px;
+            border-radius: 12px;
+            display: inline-flex;
+        }
+        .toggle-btn {
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+        .toggle-btn.active {
+            background: white;
+            color: #7c3aed;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .toggle-btn.inactive {
+            color: #64748b;
+        }
+        .toggle-btn.inactive:hover {
+            color: #334155;
+            background: rgba(255,255,255,0.5);
         }
     </style>
     <!-- Structured Data -->
@@ -233,30 +303,31 @@
             </div>
 
             <!-- Interface Toggle -->
-            <div class="flex justify-center mt-6 mb-4">
-                <div class="bg-gray-100 p-1 rounded-lg">
-                    <button id="form-toggle"
-                        class="px-4 py-2 rounded-md text-sm font-medium transition-colors bg-white text-gray-900 shadow-sm">Form
-                        Input</button>
-                    <button id="chat-toggle"
-                        class="px-4 py-2 rounded-md text-sm font-medium transition-colors text-gray-600 hover:text-gray-900">Chat
-                        Interface</button>
+            <div class="flex justify-center mt-8 mb-6">
+                <div class="toggle-container">
+                    <button id="form-toggle" class="toggle-btn active">Form Input</button>
+                    <button id="chat-toggle" class="toggle-btn inactive">Chat Interface</button>
                 </div>
             </div>
         </div>
 
         <!-- User Counter Section -->
         <div class="flex justify-center mb-8">
-            <div
-                class="inline-flex items-center px-6 py-3 bg-white bg-opacity-10 backdrop-blur-sm rounded-full border border-white border-opacity-20">
-                <i data-feather="users" class="w-5 h-5 text-blue-200 mr-3"></i>
-                <span class="text-white font-medium mr-2">Active Users:</span>
-                <span id="user-counter" class="text-blue-200 font-bold text-lg">--</span>
+            <div class="inline-flex items-center px-4 py-2 bg-white rounded-full shadow-sm border border-blue-100">
+                <div class="flex items-center space-x-2">
+                    <span class="relative flex h-3 w-3">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                    </span>
+                    <span class="text-gray-600 text-sm font-medium">Active Users:</span>
+                    <span id="user-counter" class="text-blue-600 font-bold text-sm">--</span>
+                </div>
             </div>
         </div>
 
-        <div class="bg-white p-6 rounded-2xl shadow-lg">
-            <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-white p-6 rounded-2xl shadow-xl border border-gray-100 relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"></div>
+            <div class="grid md:grid-cols-2 gap-8">
                 <div>
                     <h3 class="text-lg font-semibold mb-3 flex items-center"><i data-feather="layers"
                             class="w-5 h-5 mr-2 text-purple-500"></i>Input</h3>
@@ -324,7 +395,8 @@
         </div>
 
         <!-- Chat Interface -->
-        <div id="chat-interface" class="bg-white p-6 rounded-2xl shadow-lg hidden">
+        <div id="chat-interface" class="bg-white p-6 rounded-2xl shadow-xl border border-gray-100 relative overflow-hidden hidden">
+            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"></div>
             <div class="mb-4">
                 <h3 class="text-lg font-semibold text-gray-900 mb-2">Chat with AI Name Generator</h3>
                 <p class="text-sm text-gray-600">Describe your business idea and get personalized name suggestions
@@ -630,7 +702,12 @@
             async function runGenerate() {
                 console.log('runGenerate called');
                 generateBtn.disabled = true;
-                generateBtn.textContent = 'Generating...';
+                const originalContent = generateBtn.innerHTML;
+                generateBtn.innerHTML = `<svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>Generating...`;
+                
                 const keywords = normalizeWords(keywordsInput.value);
                 const industry = industryInput.value.trim();
                 const style = styleSelect.value;
@@ -643,7 +720,7 @@
                 lastResults = names;
                 renderResults(names);
                 generateBtn.disabled = false;
-                generateBtn.textContent = 'Generate';
+                generateBtn.innerHTML = originalContent;
             }
 
             generateBtn.addEventListener('click', runGenerate);
@@ -677,7 +754,7 @@
             });
 
             // Interface toggle functionality
-            const formInterface = document.querySelector('.bg-white.p-6.rounded-2xl.shadow-lg');
+            const formInterface = document.querySelector('.bg-white.p-6.rounded-2xl.shadow-xl');
             const chatInterface = document.getElementById('chat-interface');
             const formToggle = document.getElementById('form-toggle');
             const chatToggle = document.getElementById('chat-toggle');
@@ -685,19 +762,15 @@
             formToggle.addEventListener('click', () => {
                 formInterface.classList.remove('hidden');
                 chatInterface.classList.add('hidden');
-                formToggle.classList.add('bg-white', 'text-gray-900', 'shadow-sm');
-                formToggle.classList.remove('text-gray-600');
-                chatToggle.classList.remove('bg-white', 'text-gray-900', 'shadow-sm');
-                chatToggle.classList.add('text-gray-600');
+                formToggle.className = 'toggle-btn active';
+                chatToggle.className = 'toggle-btn inactive';
             });
 
             chatToggle.addEventListener('click', () => {
                 formInterface.classList.add('hidden');
                 chatInterface.classList.remove('hidden');
-                chatToggle.classList.add('bg-white', 'text-gray-900', 'shadow-sm');
-                chatToggle.classList.remove('text-gray-600');
-                formToggle.classList.remove('bg-white', 'text-gray-900', 'shadow-sm');
-                formToggle.classList.add('text-gray-600');
+                chatToggle.className = 'toggle-btn active';
+                formToggle.className = 'toggle-btn inactive';
             });
 
             // mobile menu toggle similar to other pages

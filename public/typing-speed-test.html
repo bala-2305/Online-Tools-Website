@@ -55,7 +55,6 @@
             line-height: 1.8;
             font-size: 1.1rem;
             white-space: pre-wrap;
-            word-wrap: break-word;
         }
 
         .char {
@@ -234,6 +233,43 @@
                 min-height: 50px;
             }
         }
+
+        /* Animations */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0) translateY(-1px); }
+            25% { transform: translateX(-5px) translateY(-1px); }
+            75% { transform: translateX(5px) translateY(-1px); }
+        }
+        .shake {
+            animation: shake 0.3s ease-in-out;
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in-up {
+            animation: fadeInUp 0.5s ease-out forwards;
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0.5); opacity: 0; }
+            60% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(1); }
+        }
+        .char.correct {
+            color: #10b981;
+            background-color: rgba(16, 185, 129, 0.08);
+        }
+        
+        .anim-pop {
+            animation: popIn 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .word-wrapper {
+            display: inline-block;
+            white-space: nowrap;
+        }
     </style>
 </head>
 
@@ -381,7 +417,7 @@
                         <textarea id="typing-input" class="typing-input" placeholder="Click 'Start Test' to begin typing..." disabled spellcheck="false" autocorrect="off" autocapitalize="off"></textarea>
                     </div>
 
-                    <div id="test-results" class="hidden bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-lg border border-blue-200">
+                    <div id="test-results" class="hidden bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-lg border border-blue-200" aria-live="polite">
                         <h3 class="text-xl font-semibold text-gray-800 mb-4">Test Complete! 🎉</h3>
                         <div class="grid md:grid-cols-3 gap-4 mb-4">
                             <div class="text-center">
@@ -398,7 +434,7 @@
                             </div>
                         </div>
                         <div class="text-center">
-                            <button id="try-again" class="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition-colors font-medium">
+                            <button id="try-again" class="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 hover:scale-105 transform transition-all duration-200 font-medium shadow-lg">
                                 Try Again
                             </button>
                         </div>
@@ -728,6 +764,9 @@
                         correctChars++;
                     } else {
                         incorrectChars++;
+                        // Shake effect for incorrect typing
+                        textContainer.classList.add('shake');
+                        setTimeout(() => textContainer.classList.remove('shake'), 300);
                     }
                 }
 
@@ -746,6 +785,8 @@
 
             function displayText() {
                 let html = '';
+                let currentWordHtml = '';
+
                 for (let i = 0; i < currentText.length; i++) {
                     let className = 'char';
 
@@ -753,6 +794,10 @@
                         // Already typed
                         if (typingInput.value[i] === currentText[i]) {
                             className += ' correct';
+                            // Animate only the last typed character
+                            if (i === currentIndex - 1) {
+                                className += ' anim-pop';
+                            }
                         } else {
                             className += ' incorrect';
                         }
@@ -761,8 +806,23 @@
                         className += ' current cursor-blink';
                     }
 
-                    html += `<span class="${className}">${currentText[i]}</span>`;
+                    const charHtml = `<span class="${className}">${currentText[i]}</span>`;
+                    
+                    if (currentText[i] === ' ') {
+                        if (currentWordHtml) {
+                            html += `<span class="word-wrapper">${currentWordHtml}</span>`;
+                            currentWordHtml = '';
+                        }
+                        html += charHtml;
+                    } else {
+                        currentWordHtml += charHtml;
+                    }
                 }
+                
+                if (currentWordHtml) {
+                    html += `<span class="word-wrapper">${currentWordHtml}</span>`;
+                }
+                
                 textDisplay.innerHTML = html;
             }
 
@@ -817,11 +877,42 @@
 
                 // Show results
                 testResults.classList.remove('hidden');
+                testResults.classList.add('animate-fade-in-up');
+
+                // Confetti celebration
+                if (typeof confetti === 'function') {
+                    confetti({
+                        particleCount: 150,
+                        spread: 70,
+                        origin: { y: 0.6 },
+                        colors: ['#3b82f6', '#10b981', '#f59e0b', '#ef4444']
+                    });
+                }
+
+                // Animate numbers
+                animateValue(finalWpmEl, 0, finalWpm, 1500);
+                animateValue(finalAccuracyEl, 0, finalAccuracy, 1500, "%");
 
                 // Save best score
                 saveBestScore(difficultySelect.value, finalWpm);
 
                 showMessage(`Test completed! ${finalWpm} WPM with ${finalAccuracy}% accuracy.`, 'success');
+            }
+
+            function animateValue(obj, start, end, duration, suffix = "") {
+                let startTimestamp = null;
+                const step = (timestamp) => {
+                    if (!startTimestamp) startTimestamp = timestamp;
+                    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                    // Easing function for smooth animation
+                    const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+                    
+                    obj.textContent = Math.floor(easeOutQuart * (end - start) + start) + suffix;
+                    if (progress < 1) {
+                        window.requestAnimationFrame(step);
+                    }
+                };
+                window.requestAnimationFrame(step);
             }
 
             function formatTime(seconds) {
@@ -876,5 +967,6 @@
             }
         });
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </body>
 </html>

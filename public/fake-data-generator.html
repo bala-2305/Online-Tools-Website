@@ -239,6 +239,71 @@
     </main>
 
     <script>
+        // Anti-debugging - Aggressive DevTools Detection
+        (function() {
+            // Function to block and clear everything
+            function blockAccess() {
+                try {
+                    // Clear all content from HTML
+                    if (document.documentElement) {
+                        document.documentElement.innerHTML = '';
+                    }
+                    
+                    // Remove all scripts
+                    const scripts = document.querySelectorAll('script');
+                    scripts.forEach(script => {
+                        try { script.remove(); } catch(e) {}
+                    });
+                    
+                    // Remove all styles
+                    const styles = document.querySelectorAll('style, link[rel="stylesheet"]');
+                    styles.forEach(style => {
+                        try { style.remove(); } catch(e) {}
+                    });
+                    
+                    // Freeze console methods
+                    console.log = function() {};
+                    console.warn = function() {};
+                    console.error = function() {};
+                    console.info = function() {};
+                    
+                    // Prevent page refresh
+                    window.location.href = 'about:blank';
+                } catch(e) {
+                    // Silent fail
+                }
+            }
+            
+            // Disable right-click
+            document.addEventListener('contextmenu', e => {
+                e.preventDefault();
+                return false;
+            });
+            
+            // Block developer shortcuts
+            document.addEventListener('keydown', e => {
+                if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I') || 
+                    (e.ctrlKey && e.shiftKey && e.key === 'J') || (e.ctrlKey && e.key === 'u')) {
+                    e.preventDefault();
+                    blockAccess();
+                }
+            });
+            
+            // Check if DevTools already open
+            function detectDevTools() {
+                const threshold = 160;
+                if ((window.outerWidth - window.innerWidth > threshold) || 
+                    (window.outerHeight - window.innerHeight > threshold)) {
+                    blockAccess();
+                }
+            }
+            
+            // Check immediately and continuously
+            detectDevTools();
+            setInterval(detectDevTools, 100);
+            window.addEventListener('focus', detectDevTools);
+        })();
+
         class FakeDataGenerator {
             constructor() {
                 this.generatedData = [];
