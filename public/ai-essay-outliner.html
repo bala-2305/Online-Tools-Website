@@ -196,64 +196,52 @@
         </div>
     </noscript>
     <!-- Navigation -->
-    <nav class="bg-white shadow-lg sticky top-0 z-50">
+    <nav class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
                 <div class="flex items-center">
-                    <a href="/" class="flex items-center">
+                    <a href="/" class="flex items-center group">
                         <div
-                            class="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mr-3">
-                            <span class="text-white font-bold text-sm">IF</span>
+                            class="w-10 h-10 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-xl flex items-center justify-center mr-3 transform group-hover:rotate-12 transition-transform shadow-lg shadow-indigo-200">
+                            <span class="text-white font-bold text-lg">IF</span>
                         </div>
-                        <span class="text-xl font-bold text-gray-900">InfiniteForge</span>
+                        <span class="text-2xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600">InfiniteForge</span>
                     </a>
                 </div>
 
-                <!-- Desktop Navigation -->
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="/" class="text-gray-700 hover:text-blue-600 transition-colors">Home</a>
-                    <a href="/features.html" class="text-gray-700 hover:text-blue-600 transition-colors">Tools</a>
-                    <a href="/about.html" class="text-gray-700 hover:text-blue-600 transition-colors">About</a>
-                    <a href="/contact.html" class="text-gray-700 hover:text-blue-600 transition-colors">Contact</a>
+                <div class="flex items-center space-x-4 md:space-x-8">
+                    <a href="/" class="text-gray-600 hover:text-indigo-600 font-medium transition-colors">Home</a>
+                    <a href="/features.html" class="text-gray-600 hover:text-indigo-600 font-medium transition-colors">Tools</a>
+                    <a href="/about.html" class="hidden sm:block text-gray-600 hover:text-indigo-600 font-medium transition-colors">About</a>
+                    <a href="/contact.html" class="hidden sm:block text-gray-600 hover:text-indigo-600 font-medium transition-colors">Contact</a>
                 </div>
-
-                <!-- Mobile menu button -->
-                <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-button" class="text-gray-700 hover:text-blue-600">
-                        <i data-feather="menu" class="w-6 h-6"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Mobile Navigation -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200">
-            <div class="px-2 pt-2 pb-3 space-y-1">
-                <a href="/" class="block px-3 py-2 text-gray-700 hover:text-blue-600 transition-colors">Home</a>
-                <a href="/features.html"
-                    class="block px-3 py-2 text-gray-700 hover:text-blue-600 transition-colors">Tools</a>
-                <a href="/about.html"
-                    class="block px-3 py-2 text-gray-700 hover:text-blue-600 transition-colors">About</a>
-                <a href="/contact.html"
-                    class="block px-3 py-2 text-gray-700 hover:text-blue-600 transition-colors">Contact</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="gradient-bg py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div class="flex items-center justify-center mb-4">
-                <i data-feather="file-text" class="w-12 h-12 text-white mr-4"></i>
-                <h1 class="text-4xl md:text-5xl font-bold text-white">AI Essay Outliner</h1>
+    <section class="gradient-bg py-20 relative overflow-hidden">
+        <div class="absolute inset-0 bg-grid-white/[0.05] bg-[size:20px_20px]"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <div class="inline-flex items-center justify-center p-3 bg-white/10 backdrop-blur-xl rounded-2xl mb-6 mb-4 animate-bounce">
+                <i data-feather="file-text" class="w-8 h-8 text-white"></i>
             </div>
-            <p class="text-xl text-white/90 max-w-3xl mx-auto mb-8">
+            <h1 class="text-5xl md:text-6xl font-extrabold text-white mb-6 tracking-tight">
+                AI Essay <span class="text-indigo-200">Outliner</span>
+            </h1>
+            <p class="text-xl text-indigo-100 max-w-3xl mx-auto mb-10 leading-relaxed">
                 Generate comprehensive, structured essay outlines with AI. Perfect for academic writing, research
                 papers, and organized content creation.
             </p>
-            <div class="flex items-center justify-center text-white/80 text-sm">
-                <i data-feather="users" class="w-4 h-4 mr-2"></i>
-                <span id="user-counter">Loading...</span> users have used this tool
+            <div class="flex items-center justify-center space-x-4">
+                <div class="flex items-center bg-white/10 backdrop-blur-md px-4 py-2 rounded-full text-white text-sm border border-white/20">
+                    <i data-feather="users" class="w-4 h-4 mr-2"></i>
+                    <span id="user-counter" class="font-bold mr-1">10,000+</span> users
+                </div>
+                <div class="flex items-center bg-white/10 backdrop-blur-md px-4 py-2 rounded-full text-white text-sm border border-white/20">
+                    <i data-feather="star" class="w-4 h-4 mr-2 text-yellow-300"></i>
+                    <span class="font-bold">4.9/5</span> rating
+                </div>
             </div>
         </div>
     </section>
@@ -357,15 +345,15 @@
                     <!-- Action Buttons -->
                     <div class="space-y-3">
                         <button id="generate-btn"
-                            class="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white py-3 px-4 rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-200 font-medium">
-                            <i data-feather="zap" class="w-4 h-4 mr-2 inline"></i>
+                            class="w-full btn-primary text-white py-4 px-6 rounded-xl transition-all duration-300 font-bold flex items-center justify-center text-lg shadow-lg">
+                            <i data-feather="zap" class="w-5 h-5 mr-2"></i>
                             Generate Outline
                         </button>
 
                         <button id="clear-btn"
-                            class="w-full bg-gray-200 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-300 transition-colors">
-                            <i data-feather="trash-2" class="w-4 h-4 mr-2 inline"></i>
-                            Clear All
+                            class="w-full bg-gray-100 text-gray-600 py-3 px-4 rounded-xl hover:bg-gray-200 transition-colors font-medium flex items-center justify-center">
+                            <i data-feather="rotate-ccw" class="w-4 h-4 mr-2"></i>
+                            Reset Form
                         </button>
                     </div>
                 </div>
@@ -373,68 +361,133 @@
 
             <!-- Results Panel -->
             <div class="lg:col-span-2">
-                <div class="bg-white rounded-xl shadow-lg p-6">
-                    <div class="flex items-center justify-between mb-6">
-                        <h3 class="text-xl font-semibold text-gray-800 flex items-center">
-                            <i data-feather="list" class="w-5 h-5 mr-2 text-green-500"></i>
-                            Essay Outline
-                        </h3>
+                <div class="bg-white rounded-2xl shadow-xl p-8 border border-gray-100 min-h-[600px] flex flex-col relative overflow-hidden">
+                    <div class="flex items-center justify-between mb-8 border-b border-gray-100 pb-6">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center mr-4">
+                                <i data-feather="list" class="w-6 h-6 text-indigo-600"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900">Generated Outline</h3>
+                        </div>
 
                         <!-- Quick Actions -->
-                        <div class="flex space-x-2" id="quick-actions" style="display: none;">
+                        <div class="flex space-x-3" id="quick-actions" style="display: none;">
                             <button id="copy-outline-btn"
-                                class="bg-green-100 text-green-700 px-3 py-1 rounded-lg hover:bg-green-200 transition-colors text-sm">
-                                <i data-feather="copy" class="w-4 h-4 mr-1 inline"></i>
+                                class="flex items-center px-4 py-2 bg-indigo-50 text-indigo-600 rounded-lg hover:bg-indigo-100 transition-colors font-semibold shadow-sm">
+                                <i data-feather="copy" class="w-4 h-4 mr-2"></i>
                                 Copy
                             </button>
                             <button id="download-outline-btn"
-                                class="bg-blue-100 text-blue-700 px-3 py-1 rounded-lg hover:bg-blue-200 transition-colors text-sm">
-                                <i data-feather="download" class="w-4 h-4 mr-1 inline"></i>
-                                Download
+                                class="flex items-center px-4 py-2 bg-purple-50 text-purple-600 rounded-lg hover:bg-purple-100 transition-colors font-semibold shadow-sm">
+                                <i data-feather="download" class="w-4 h-4 mr-2"></i>
+                                Save
                             </button>
                         </div>
                     </div>
 
                     <!-- Loading Overlay -->
                     <div id="loading-overlay"
-                        class="hidden absolute inset-0 bg-white bg-opacity-75 flex items-center justify-center rounded-xl z-10">
+                        class="hidden absolute inset-0 bg-white/90 backdrop-blur-sm flex items-center justify-center rounded-2xl z-20">
                         <div class="text-center">
-                            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4">
+                            <div class="relative w-20 h-20 mx-auto mb-6">
+                                <div class="absolute inset-0 border-4 border-indigo-100 rounded-full"></div>
+                                <div class="absolute inset-0 border-4 border-indigo-600 rounded-full border-t-transparent animate-spin"></div>
                             </div>
-                            <p class="text-gray-600">Generating your essay outline...</p>
+                            <h4 class="text-xl font-bold text-gray-900 mb-2">Architecting Ideas...</h4>
+                            <p class="text-gray-500">Our AI is structuring your essay outline</p>
                         </div>
                     </div>
 
                     <!-- Results Content -->
-                    <div id="results-content" class="min-h-96">
-                        <div class="text-center text-gray-500 py-16">
-                            <i data-feather="file-text" class="w-16 h-16 mx-auto mb-4 text-gray-300"></i>
-                            <h4 class="text-lg font-medium text-gray-700 mb-2">Ready to Create Your Outline</h4>
-                            <p class="text-sm">Enter your essay topic in the configuration panel and click "Generate
-                                Outline" to get started.</p>
+                    <div id="results-content" class="flex-grow">
+                        <div class="flex flex-col items-center justify-center h-full text-center py-20 px-10">
+                            <div class="w-24 h-24 bg-gray-50 rounded-full flex items-center justify-center mb-6">
+                                <i data-feather="edit-3" class="w-12 h-12 text-gray-300"></i>
+                            </div>
+                            <h4 class="text-2xl font-bold text-gray-800 mb-3">Ready to Start?</h4>
+                            <p class="text-gray-500 max-w-sm">Provide your topic and criteria in the sidebar to generate a professional essay outline.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
+        <!-- Recommended Tools -->
+        <div class="mt-20">
+            <div class="flex items-center justify-between mb-10">
+                <h2 class="text-3xl font-extrabold text-gray-900">Recommended <span class="text-indigo-600">AI Tools</span></h2>
+                <a href="features.html" class="text-indigo-600 font-semibold hover:text-indigo-800 flex items-center">
+                    Browse All <i data-feather="arrow-right" class="w-4 h-4 ml-1"></i>
+                </a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Tool 1: Content Generator -->
+                <a href="ai-content-generator.html" class="tool-card bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition-all">
+                    <div class="w-12 h-12 bg-indigo-100 rounded-xl flex items-center justify-center mb-6">
+                        <i data-feather="feather" class="w-6 h-6 text-indigo-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">AI Writing Pad</h3>
+                    <p class="text-gray-600 text-sm mb-4">Transform ideas into polished articles instantly.</p>
+                    <div class="flex items-center text-indigo-600 font-bold text-sm">
+                        Try Now <i data-feather="chevron-right" class="w-4 h-4 ml-1"></i>
+                    </div>
+                </a>
+
+                <!-- Tool 2: Story Writer -->
+                <a href="ai-story-script-writer.html" class="tool-card bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition-all">
+                    <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mb-6">
+                        <i data-feather="book-open" class="w-6 h-6 text-purple-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Story Craft</h3>
+                    <p class="text-gray-600 text-sm mb-4">Generate compelling stories and scripts with AI.</p>
+                    <div class="flex items-center text-purple-600 font-bold text-sm">
+                        Try Now <i data-feather="chevron-right" class="w-4 h-4 ml-1"></i>
+                    </div>
+                </a>
+
+                <!-- Tool 3: Hashtags -->
+                <a href="ai-hashtag-generator.html" class="tool-card bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition-all">
+                    <div class="w-12 h-12 bg-pink-100 rounded-xl flex items-center justify-center mb-6">
+                        <i data-feather="hash" class="w-6 h-6 text-pink-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Social Spark</h3>
+                    <p class="text-gray-600 text-sm mb-4">Viral-ready hashtags for all social platforms.</p>
+                    <div class="flex items-center text-pink-600 font-bold text-sm">
+                        Try Now <i data-feather="chevron-right" class="w-4 h-4 ml-1"></i>
+                    </div>
+                </a>
+
+                <!-- Tool 4: Study Buddy -->
+                <a href="ai-learning-assistant.html" class="tool-card bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition-all">
+                    <div class="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center mb-6">
+                        <i data-feather="award" class="w-6 h-6 text-emerald-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Study Buddy</h3>
+                    <p class="text-gray-600 text-sm mb-4">Your personal AI tutor for 24/7 learning support.</p>
+                    <div class="flex items-center text-emerald-600 font-bold text-sm">
+                        Try Now <i data-feather="chevron-right" class="w-4 h-4 ml-1"></i>
+                    </div>
+                </a>
+            </div>
+        </div>
+
         <!-- Stats Section -->
-        <div class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div class="bg-white rounded-lg shadow p-4 text-center">
-                <div class="text-2xl font-bold text-blue-600" id="sections-count">0</div>
-                <div class="text-sm text-gray-600">Sections</div>
+        <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div class="bg-indigo-600 rounded-2xl p-6 text-center text-white">
+                <div class="text-4xl font-black mb-1" id="sections-count">0</div>
+                <div class="text-indigo-100 text-sm font-bold uppercase tracking-wider">Sections</div>
             </div>
-            <div class="bg-white rounded-lg shadow p-4 text-center">
-                <div class="text-2xl font-bold text-green-600" id="subsections-count">0</div>
-                <div class="text-sm text-gray-600">Subsections</div>
+            <div class="bg-purple-600 rounded-2xl p-6 text-center text-white">
+                <div class="text-4xl font-black mb-1" id="subsections-count">0</div>
+                <div class="text-purple-100 text-sm font-bold uppercase tracking-wider">Subsections</div>
             </div>
-            <div class="bg-white rounded-lg shadow p-4 text-center">
-                <div class="text-2xl font-bold text-purple-600" id="key-points-count">0</div>
-                <div class="text-sm text-gray-600">Key Points</div>
+            <div class="bg-blue-600 rounded-2xl p-6 text-center text-white">
+                <div class="text-4xl font-black mb-1" id="key-points-count">0</div>
+                <div class="text-blue-100 text-sm font-bold uppercase tracking-wider">Key Points</div>
             </div>
-            <div class="bg-white rounded-lg shadow p-4 text-center">
-                <div class="text-2xl font-bold text-orange-600" id="word-count">0</div>
-                <div class="text-sm text-gray-600">Est. Words</div>
+            <div class="bg-indigo-900 rounded-2xl p-6 text-center text-white">
+                <div class="text-4xl font-black mb-1" id="word-count">0</div>
+                <div class="text-indigo-100 text-sm font-bold uppercase tracking-wider">Est. Words</div>
             </div>
         </div>
     </main>
@@ -1073,161 +1126,47 @@ Ensure the response is valid JSON only, no additional text or formatting. Create
 
             // Initialize AI Essay Outliner
             new AIEssayOutliner();
-
-            // Mobile menu toggle
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-
-            if (mobileMenuButton && mobileMenu) {
-                mobileMenuButton.addEventListener('click', () => {
-                    mobileMenu.classList.toggle('hidden');
-                });
-
-                // Close mobile menu when a link is clicked
-                const mobileMenuLinks = mobileMenu.querySelectorAll('a');
-                mobileMenuLinks.forEach(link => {
-                    link.addEventListener('click', () => {
-                        mobileMenu.classList.add('hidden');
-                    });
-                });
-
-                // Close mobile menu on scroll
-                window.addEventListener('scroll', () => {
-                    if (!mobileMenu.classList.contains('hidden')) {
-                        mobileMenu.classList.add('hidden');
-                    }
-                });
-            }
         });
-
-        // Developer Tools Protection
-        document.addEventListener('contextmenu', function (e) {
-            e.preventDefault();
-            alert('Right-click is disabled for security reasons.');
-        });
-
-        document.addEventListener('keydown', function (e) {
-            // Disable F12
-            if (e.keyCode === 123) {
-                e.preventDefault();
-                alert('Developer tools are disabled for security reasons.');
-                return false;
-            }
-
-            // Disable Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C
-            if (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) {
-                e.preventDefault();
-                alert('Developer tools are disabled for security reasons.');
-                return false;
-            }
-
-            // Disable Ctrl+U (view source)
-            if (e.ctrlKey && e.keyCode === 85) {
-                e.preventDefault();
-                alert('View source is disabled for security reasons.');
-                return false;
-            }
-
-            // Disable Ctrl+Shift+K (Firefox developer tools)
-            if (e.ctrlKey && e.shiftKey && e.keyCode === 75) {
-                e.preventDefault();
-                alert('Developer tools are disabled for security reasons.');
-                return false;
-            }
-
-            // Disable Ctrl+S (save page)
-            if (e.ctrlKey && e.keyCode === 83) {
-                e.preventDefault();
-                alert('Saving page is disabled for security reasons.');
-                return false;
-            }
-        });
-
-        // Additional protection against developer tools
-        let devtools = { open: false, orientation: null };
-        const threshold = 160;
-
-        setInterval(() => {
-            if (window.outerHeight - window.innerHeight > threshold || window.outerWidth - window.innerWidth > threshold) {
-                if (!devtools.open) {
-                    devtools.open = true;
-                    alert('Developer tools detected! Please close them to continue using this website.');
-                    // Disable website functionality
-                    document.body.style.display = 'none';
-                    document.body.innerHTML = '<div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; font-family: Arial, sans-serif;"><h1 style="color: red; font-size: 24px;">⚠️ Developer Tools Detected</h1><p style="color: #666; font-size: 18px;">Please close developer tools to continue using this website.</p><button onclick="location.reload()" style="margin-top: 20px; padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">Reload Page</button></div>';
-                }
-            } else {
-                devtools.open = false;
-                // Re-enable if closed
-                if (document.body.style.display === 'none') {
-                    location.reload();
-                }
-            }
-        }, 500);
-
-        // Disable selection for protection
-        document.addEventListener('selectstart', function (e) {
-            e.preventDefault();
-        });
-
-        // Disable drag and drop
-        document.addEventListener('dragstart', function (e) {
-            e.preventDefault();
-        });
-
-        // Prevent viewing source through other methods
-        document.onkeydown = function (e) {
-            if (e.keyCode == 123) {
-                return false;
-            }
-            if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
-                return false;
-            }
-            if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
-                return false;
-            }
-            if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {
-                return false;
-            }
-            if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
-                return false;
-            }
-        };
-
-        // Override console methods to prevent debugging
-        console.log = function () { };
-        console.warn = function () { };
-        console.error = function () { };
-        console.info = function () { };
-
-        // Prevent opening developer tools
-        window.onbeforeunload = function () {
-            // This will show a confirmation dialog when trying to leave/close
-            return "Are you sure you want to leave?";
-        };
-
-        // Additional source protection
-        (function () {
-            'use strict';
-            const _z = btoa(Math.random().toString()).substr(10, 5);
-            window[_z] = {
-                open: window.open,
-                alert: window.alert,
-                confirm: window.confirm,
-                prompt: window.prompt
-            };
-        })();
     </script>
 
     <style>
-        .gradient-bg {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --secondary: #ec4899;
         }
 
-        .glass-effect {
+        .gradient-bg {
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%) !important;
+            color: white !important;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+            opacity: 0.9;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .tool-card {
+            transition: all 0.3s ease;
+            border: 1px solid #e5e7eb;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            border-color: #6366f1;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
         }
 
         /* Loading spinner animation */
@@ -1244,11 +1183,30 @@ Ensure the response is valid JSON only, no additional text or formatting. Create
         /* Disabled button styles */
         button:disabled {
             pointer-events: none;
+            opacity: 0.7;
         }
 
         /* Loading overlay styles */
         #loading-overlay {
             backdrop-filter: blur(1px);
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #c7d2fe;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #818cf8;
         }
     </style>
     <script defer src="/js/shared-ui.js"></script>

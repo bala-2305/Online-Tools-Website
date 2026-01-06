@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -30,58 +30,95 @@
     <style>
         :root {
             --fluid-font-size: clamp(14px, 2vw, 18px);
+            --primary-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+            --primary-color: #6366f1;
+            --secondary-color: #10b981;
         }
 
         body {
             font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
             font-size: var(--fluid-font-size);
+            background-color: #f8fafc;
         }
 
-        .gen-input,
-        .gen-output {
-            font-family: inherit;
+        .gen-input {
+            transition: all 0.2s ease;
+            border: 1px solid #e2e8f0;
         }
 
-        .generate-btn {
-            background: linear-gradient(135deg, #f59e0b, #d97706);
+        .gen-input:focus {
+            outline: none;
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        .btn-primary {
+            background: var(--primary-gradient);
             color: white;
+            transition: all 0.3s ease;
         }
 
-        .copy-btn {
-            background: linear-gradient(135deg, #10b981, #059669);
-            color: white;
-        }
-
-        .clear-btn {
-            background: linear-gradient(135deg, #ef4444, #dc2626);
-            color: white;
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.3);
+            opacity: 0.9;
         }
 
         .result-box {
-            background: linear-gradient(135deg, #f8fafc, #fff);
-            border: 1px solid #e5e7eb;
-            padding: 1rem;
-            border-radius: 0.5rem;
+            background: white;
+            border: 1px solid #e2e8f0;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
         }
 
         .msg {
-            margin-bottom: 12px;
-            padding: 8px 12px;
-            border-radius: 8px;
-            max-width: 80%;
+            margin-bottom: 1rem;
+            padding: 0.75rem 1rem;
+            border-radius: 1rem;
+            max-width: 85%;
+            line-height: 1.5;
         }
 
         .msg.bot {
-            background-color: #e5e7eb;
-            color: #374151;
+            background-color: #f1f5f9;
+            color: #1e293b;
             margin-right: auto;
+            border-bottom-left-radius: 0.25rem;
         }
 
         .msg.user {
-            background-color: #f59e0b;
+            background: var(--primary-gradient);
             color: white;
             margin-left: auto;
             text-align: right;
+            border-bottom-right-radius: 0.25rem;
+        }
+
+        .nav-link {
+            position: relative;
+            font-weight: 500;
+            color: #475569;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover {
+            color: #6366f1;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #6366f1;
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
         }
     </style>
 </head>
@@ -121,72 +158,64 @@
         </div>
     </noscript>
 
-    <nav class="bg-white/80 backdrop-blur-lg shadow-sm w-full fixed top-0 left-0 z-50">
+    <nav class="bg-white border-b border-gray-100 w-full fixed top-0 left-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
-                <a href="index.html" class="text-2xl font-bold text-blue-600"
-                    aria-label="InfiniteForge Home">InfiniteForge</a>
-                <div class="hidden sm:flex items-center space-x-6">
-                    <a href="index.html" class="text-gray-700 hover:text-blue-600 font-medium">Home</a>
-                    <a href="features.html" class="text-gray-700 hover:text-blue-600 font-medium">Features</a>
-                    <a href="about.html" class="text-gray-700 hover:text-blue-600 font-medium">About</a>
-                </div>
-                <div class="sm:hidden">
-                    <button id="mobile-menu-button" class="text-gray-700 hover:text-blue-600 focus:outline-none">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
-                    </button>
+                <a href="index.html" class="flex items-center">
+                    <span class="text-2xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600">InfiniteForge</span>
+                </a>
+                <div class="flex items-center space-x-8">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="features.html" class="nav-link">Features</a>
+                    <a href="about.html" class="nav-link">About</a>
                 </div>
             </div>
         </div>
-        <div id="mobile-menu" class="hidden">
-            <a href="index.html" class="block py-2 px-4 text-sm text-gray-700 hover:bg-blue-50">Home</a>
-            <a href="features.html" class="block py-2 px-4 text-sm text-gray-700 hover:bg-blue-50">Features</a>
-            <a href="about.html" class="block py-2 px-4 text-sm text-gray-700 hover:bg-blue-50">About</a>
-        </div>
     </nav>
 
-    <main class="max-w-4xl mx-auto pt-20 sm:pt-24 pb-12 px-4 sm:px-6" itemscope itemtype="https://schema.org/WebPage">
-        <div class="text-center mb-8">
-            <h1 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-2">AI Content Generator</h1>
-            <p class="text-gray-600 max-w-2xl mx-auto">Generate high-quality content for blogs, social media, product
-                descriptions, and more using advanced AI.</p>
+    <main class="max-w-5xl mx-auto pt-28 pb-16 px-4 sm:px-6" itemscope itemtype="https://schema.org/WebPage">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl sm:text-5xl font-black text-gray-900 mb-4 tracking-tight">AI Content Generator</h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">Elevate your writing with artificial intelligence. Create blogs, social posts, and professional copy in seconds.</p>
 
             <!-- Interface Toggle -->
-            <div class="flex justify-center mt-6 mb-4">
-                <div class="bg-gray-100 p-1 rounded-lg">
+            <div class="flex justify-center mt-10 mb-6">
+                <div class="bg-gray-200 p-1.5 rounded-xl inline-flex shadow-inner">
                     <button id="form-toggle"
-                        class="px-4 py-2 rounded-md text-sm font-medium transition-colors bg-white text-gray-900 shadow-sm">Form
+                        class="px-6 py-2.5 rounded-lg text-sm font-bold transition-all bg-white text-indigo-600 shadow-sm">Form
                         Input</button>
                     <button id="chat-toggle"
-                        class="px-4 py-2 rounded-md text-sm font-medium transition-colors text-gray-600 hover:text-gray-900">Chat
+                        class="px-6 py-2.5 rounded-lg text-sm font-bold transition-all text-gray-600 hover:text-gray-900 hover:bg-gray-100/50">Chat
                         Interface</button>
                 </div>
             </div>
         </div>
 
         <!-- User Counter Section -->
-        <div class="flex justify-center mb-8">
+        <div class="flex justify-center mb-12">
             <div
-                class="inline-flex items-center px-6 py-3 bg-white bg-opacity-10 backdrop-blur-sm rounded-full border border-white border-opacity-20">
-                <i data-feather="users" class="w-5 h-5 text-blue-200 mr-3"></i>
-                <span class="text-white font-medium mr-2">Active Users:</span>
-                <span id="user-counter" class="text-blue-200 font-bold text-lg">--</span>
+                class="inline-flex items-center px-6 py-2.5 bg-white rounded-full border border-gray-100 shadow-sm">
+                <i data-feather="users" class="w-4 h-4 text-indigo-500 mr-2.5"></i>
+                <span class="text-gray-600 text-sm font-medium mr-2">Trusted by builders:</span>
+                <span id="user-counter" class="text-indigo-600 font-bold text-base">--</span>
             </div>
         </div>
 
         <!-- Form Interface -->
-        <div class="bg-white p-6 rounded-2xl shadow-lg">
-            <h2 class="text-2xl font-bold text-gray-800 mb-6">Generate Content</h2>
-            <form id="content-form" class="space-y-6">
-                <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-white p-6 sm:p-10 rounded-3xl shadow-xl shadow-gray-200/50 border border-gray-100 mb-12">
+            <h2 class="text-2xl font-bold text-gray-900 mb-8 flex items-center">
+                <span class="w-8 h-8 rounded-lg bg-indigo-100 text-indigo-600 flex items-center justify-center mr-3">
+                    <i data-feather="edit-3" class="w-4 h-4"></i>
+                </span>
+                Generate Content
+            </h2>
+            <form id="content-form" class="space-y-8">
+                <div class="grid md:grid-cols-2 gap-8">
                     <!-- Left Column -->
-                    <div class="space-y-4">
+                    <div class="space-y-5">
                         <div>
-                            <label class="block text-sm font-medium mb-2">Content Type *</label>
-                            <select id="content-type" class="gen-input w-full p-3 rounded-lg border border-gray-200"
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Content Type *</label>
+                            <select id="content-type" class="gen-input w-full p-3.5 rounded-xl bg-gray-50 border-transparent focus:bg-white"
                                 required>
                                 <option value="">Select Type</option>
                                 <option value="blog">Blog Post</option>
@@ -201,155 +230,188 @@
                         </div>
 
                         <div>
-                            <label class="block text-sm font-medium mb-2">Topic/Keyword *</label>
-                            <input id="topic" type="text" class="gen-input w-full p-3 rounded-lg border border-gray-200"
-                                placeholder="e.g., sustainable fashion, AI tools, productivity" required>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Topic/Keyword *</label>
+                            <input id="topic" type="text" class="gen-input w-full p-3.5 rounded-xl bg-gray-50 border-transparent focus:bg-white"
+                                placeholder="e.g., sustainable fashion, AI tools" required>
                         </div>
 
                         <div>
-                            <label class="block text-sm font-medium mb-2">Target Audience</label>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Target Audience</label>
                             <input id="audience" type="text"
-                                class="gen-input w-full p-3 rounded-lg border border-gray-200"
-                                placeholder="e.g., small business owners, millennials, tech enthusiasts">
+                                class="gen-input w-full p-3.5 rounded-xl bg-gray-50 border-transparent focus:bg-white"
+                                placeholder="e.g., small business owners">
                         </div>
 
-                        <div>
-                            <label class="block text-sm font-medium mb-2">Tone</label>
-                            <select id="tone" class="gen-input w-full p-3 rounded-lg border border-gray-200">
-                                <option value="professional">Professional</option>
-                                <option value="casual">Casual</option>
-                                <option value="friendly">Friendly</option>
-                                <option value="formal">Formal</option>
-                                <option value="humorous">Humorous</option>
-                                <option value="persuasive">Persuasive</option>
-                                <option value="informative">Informative</option>
-                            </select>
-                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Tone</label>
+                                <select id="tone" class="gen-input w-full p-3.5 rounded-xl bg-gray-50 border-transparent focus:bg-white">
+                                    <option value="professional">Professional</option>
+                                    <option value="casual" selected>Casual</option>
+                                    <option value="friendly">Friendly</option>
+                                    <option value="formal">Formal</option>
+                                    <option value="humorous">Humorous</option>
+                                    <option value="persuasive">Persuasive</option>
+                                    <option value="informative">Informative</option>
+                                </select>
+                            </div>
 
-                        <div>
-                            <label class="block text-sm font-medium mb-2">Length</label>
-                            <select id="length" class="gen-input w-full p-3 rounded-lg border border-gray-200">
-                                <option value="short">Short (50-100 words)</option>
-                                <option value="medium" selected>Medium (100-300 words)</option>
-                                <option value="long">Long (300-500 words)</option>
-                                <option value="xlarge">Extra Long (500+ words)</option>
-                            </select>
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-700 mb-2">Length</label>
+                                <select id="length" class="gen-input w-full p-3.5 rounded-xl bg-gray-50 border-transparent focus:bg-white">
+                                    <option value="short">Short</option>
+                                    <option value="medium" selected>Medium</option>
+                                    <option value="long">Long</option>
+                                    <option value="xlarge">Extra Long</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Right Column -->
-                    <div class="space-y-4">
+                    <div class="space-y-5">
                         <div>
-                            <label class="block text-sm font-medium mb-2">Additional Details</label>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Additional Details</label>
                             <textarea id="details"
-                                class="gen-input w-full p-3 rounded-lg border border-gray-200 resize-none" rows="4"
-                                placeholder="Any specific points to include, product features, benefits, etc."></textarea>
+                                class="gen-input w-full p-3.5 rounded-xl bg-gray-50 border-transparent focus:bg-white resize-none" rows="4"
+                                placeholder="Specific points to include, benefits, etc."></textarea>
                         </div>
 
                         <div>
-                            <label class="block text-sm font-medium mb-2">Call-to-Action</label>
-                            <input id="cta" type="text" class="gen-input w-full p-3 rounded-lg border border-gray-200"
-                                placeholder="e.g., Buy Now, Learn More, Sign Up">
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">Call-to-Action</label>
+                            <input id="cta" type="text" class="gen-input w-full p-3.5 rounded-xl bg-gray-50 border-transparent focus:bg-white"
+                                placeholder="e.g., Learn More, Sign Up">
                         </div>
 
                         <div>
-                            <label class="block text-sm font-medium mb-2">Keywords to Include</label>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">SEO Keywords</label>
                             <input id="keywords" type="text"
-                                class="gen-input w-full p-3 rounded-lg border border-gray-200"
-                                placeholder="Comma-separated keywords for SEO">
+                                class="gen-input w-full p-3.5 rounded-xl bg-gray-50 border-transparent focus:bg-white"
+                                placeholder="Comma-separated keywords">
                         </div>
 
-                        <div class="flex items-center gap-3">
-                            <input id="seo" type="checkbox" class="h-4 w-4" checked>
-                            <label for="seo" class="text-sm">Optimize for SEO</label>
-                        </div>
+                        <label class="flex items-center gap-3 cursor-pointer group">
+                            <input id="seo" type="checkbox" class="h-5 w-5 rounded-md border-gray-300 text-indigo-600 focus:ring-indigo-500 transition-all" checked>
+                            <span class="text-sm font-medium text-gray-700 group-hover:text-indigo-600 transition-colors">Optimize for SEO</span>
+                        </label>
                     </div>
                 </div>
 
-                <div class="flex flex-col sm:flex-row gap-3 pt-4 border-t border-gray-200">
+                <div class="flex flex-col sm:flex-row gap-4 pt-6">
                     <button type="submit" id="generate-btn"
-                        class="generate-btn flex-1 py-4 px-6 rounded-lg font-semibold hover:opacity-90 transition-all shadow-md disabled:opacity-50">
-                        <span id="btn-text">Generate Content</span>
+                        class="btn-primary flex-1 py-4 px-8 rounded-2xl font-bold flex items-center justify-center disabled:opacity-50">
+                        <span id="btn-text" class="mr-2">Generate Content</span>
                         <div id="loading-spinner"
-                            class="hidden inline-block ml-2 w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin">
+                            class="hidden w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin">
                         </div>
                     </button>
                     <button type="button" id="clear-btn"
-                        class="clear-btn flex-1 py-4 px-6 rounded-lg font-semibold hover:opacity-90 transition-all shadow-md">
-                        Clear
+                        class="px-8 py-4 rounded-2xl font-bold text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-all bg-gray-50">
+                        Clear All
                     </button>
                 </div>
             </form>
         </div>
 
         <!-- Results Section -->
-        <div id="results-section" class="hidden mt-8 space-y-6">
-            <div class="bg-white rounded-2xl shadow-lg p-6 sm:p-8">
-                <div class="flex items-center justify-between mb-6">
-                    <h2 class="text-2xl font-bold text-gray-800">Generated Content</h2>
-                    <div class="flex gap-2">
+        <div id="results-section" class="hidden mb-12 scroll-mt-24">
+            <div class="bg-white rounded-3xl shadow-xl shadow-gray-200/50 p-6 sm:p-10 border border-gray-100">
+                <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
+                    <h2 class="text-2xl font-bold text-gray-900">Your Generated Content</h2>
+                    <div class="flex gap-3">
                         <button id="regenerate-btn"
-                            class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
-                            aria-label="Regenerate content">
-                            <i data-feather="refresh-cw" class="w-4 h-4 inline mr-1"></i>
-                            Regenerate
+                            class="p-2.5 bg-gray-50 text-gray-600 rounded-xl hover:bg-indigo-50 hover:text-indigo-600 transition-all"
+                            title="Regenerate">
+                            <i data-feather="refresh-cw" class="w-5 h-5"></i>
                         </button>
-                        <button id="copy-btn" class="copy-btn px-4 py-2 rounded-lg hover:opacity-90 transition-all">
-                            <i data-feather="copy" class="w-4 h-4 inline mr-1"></i>
+                        <button id="copy-btn" class="flex items-center px-5 py-2.5 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition-all font-bold text-sm">
+                            <i data-feather="copy" class="w-4 h-4 mr-2"></i>
                             Copy
                         </button>
-                        <button id="download-btn"
-                            class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors">
-                            <i data-feather="download" class="w-4 h-4 inline mr-1"></i>
+                        <button id="download-btn" class="flex items-center px-5 py-2.5 bg-emerald-500 text-white rounded-xl hover:bg-emerald-600 transition-all font-bold text-sm">
+                            <i data-feather="download" class="w-4 h-4 mr-2"></i>
                             Download
                         </button>
                     </div>
                 </div>
 
-                <div id="content-output" class="result-box text-gray-700 whitespace-pre-wrap leading-relaxed"></div>
+                <div id="content-output" class="result-box bg-slate-50 border-slate-100 text-slate-800 whitespace-pre-wrap leading-relaxed min-h-[200px]"></div>
 
-                <div class="mt-6 flex flex-wrap gap-2">
-                    <span class="inline-block bg-gray-100 px-3 py-1 rounded-full text-sm text-gray-700">
-                        <i data-feather="file-text" class="w-4 h-4 inline mr-1"></i>
-                        <span id="word-count">0</span> words
-                    </span>
-                    <span class="inline-block bg-gray-100 px-3 py-1 rounded-full text-sm text-gray-700">
-                        <i data-feather="clock" class="w-4 h-4 inline mr-1"></i>
-                        <span id="reading-time">0</span> min read
-                    </span>
+                <div class="mt-8 flex flex-wrap gap-4">
+                    <div class="flex items-center px-4 py-2 bg-slate-100 rounded-xl text-slate-600 text-sm font-medium">
+                        <i data-feather="file-text" class="w-4 h-4 mr-2 opacity-50"></i>
+                        <span id="word-count" class="font-bold text-slate-900 mr-1">0</span> words
+                    </div>
+                    <div class="flex items-center px-4 py-2 bg-slate-100 rounded-xl text-slate-600 text-sm font-medium">
+                        <i data-feather="clock" class="w-4 h-4 mr-2 opacity-50"></i>
+                        <span id="reading-time" class="font-bold text-slate-900 mr-1">0</span> min read
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- Chat Interface -->
-        <div id="chat-interface" class="bg-white p-6 rounded-2xl shadow-lg hidden">
-            <div class="mb-4">
-                <h3 class="text-lg font-semibold text-gray-900 mb-2">Chat with AI Content Assistant</h3>
-                <p class="text-sm text-gray-600">Describe what content you need and get personalized suggestions.</p>
-            </div>
+        <div id="chat-interface" class="hidden mb-12">
+            <div class="bg-white p-6 sm:p-10 rounded-3xl shadow-xl shadow-gray-200/50 border border-gray-100">
+                <div class="mb-8">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">AI Writing Assistant</h3>
+                    <p class="text-gray-500">Collaborate with AI to refine your ideas or brainstorm new content.</p>
+                </div>
 
-            <div id="chat-box" class="border border-gray-200 rounded-lg p-4 h-96 overflow-y-auto mb-4 bg-gray-50">
-                <div class="msg bot text-gray-800">Hello! I'm your AI Content Assistant. Tell me what kind of content
-                    you need - a blog post, social media content, product description, or anything else - and I'll help
-                    you create it!</div>
-            </div>
+                <div id="chat-box" class="border border-gray-100 rounded-2xl p-6 h-[450px] overflow-y-auto mb-6 bg-slate-50/50 custom-scrollbar">
+                    <div class="msg bot">Hello! I'm your AI Writing Assistant. What can I help you create today?</div>
+                </div>
 
-            <div class="flex gap-2">
-                <input type="text" id="user-input"
-                    class="flex-1 px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-500"
-                    placeholder="Describe your content needs..."
-                    onkeypress="if(event.key === 'Enter') sendChatMessage()">
-                <button onclick="sendChatMessage()"
-                    class="bg-amber-600 text-white px-6 py-3 rounded-lg hover:bg-amber-700 transition-all shadow-md font-semibold min-w-[50px] flex items-center justify-center">
-                    <i data-feather="send" class="w-5 h-5"></i>
-                </button>
+                <div class="flex gap-3">
+                    <input type="text" id="user-input"
+                        class="flex-1 px-5 py-4 bg-gray-50 border-transparent rounded-2xl shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all"
+                        placeholder="e.g., Write a catchy headline for a new productivity app..."
+                        onkeypress="if(event.key === 'Enter') sendChatMessage()">
+                    <button onclick="sendChatMessage()"
+                        class="bg-indigo-600 text-white p-4 rounded-2xl hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-200 flex items-center justify-center">
+                        <i data-feather="send" class="w-6 h-6"></i>
+                    </button>
+                </div>
             </div>
         </div>
 
-        <div id="error-message" class="hidden mt-6 bg-red-50 border border-red-200 rounded-lg p-4">
+        <!-- Recommended Tools -->
+        <div class="mt-20 border-t border-gray-200 pt-16">
+            <h2 class="text-2xl font-bold text-gray-900 mb-8 px-4">Recommended AI Tools</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
+                <a href="ai-hashtag-generator.html" class="p-6 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:border-indigo-100 transition-all group">
+                    <div class="w-12 h-12 rounded-xl bg-orange-100 text-orange-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <i data-feather="hash" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-900 mb-2">Hashtag Generator</h3>
+                    <p class="text-sm text-gray-500">Generate viral hashtags for Instagram and TikTok.</p>
+                </a>
+                <a href="ai-story-script-writer.html" class="p-6 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:border-indigo-100 transition-all group">
+                    <div class="w-12 h-12 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <i data-feather="book-open" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-900 mb-2">Story Writer</h3>
+                    <p class="text-sm text-gray-500">Draft creative stories and video scripts with AI.</p>
+                </a>
+                <a href="ai-paraphrasing-tool.html" class="p-6 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:border-indigo-100 transition-all group">
+                    <div class="w-12 h-12 rounded-xl bg-green-100 text-green-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                        <i data-feather="refresh-cw" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-900 mb-2">Paraphraser</h3>
+                    <p class="text-sm text-gray-500">Rewrite content while maintaining the original meaning.</p>
+                </a>
+            </div>
+        </div>
+
+        <div id="error-message" class="hidden mt-8 bg-rose-50 border border-rose-100 rounded-2xl p-5 shadow-sm">
             <div class="flex items-center">
-                <i data-feather="alert-circle" class="w-5 h-5 text-red-500 mr-2"></i>
-                <span id="error-text" class="text-red-700"></span>
+                <div class="w-10 h-10 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center mr-4">
+                    <i data-feather="alert-circle" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-rose-900 text-sm">Something went wrong</h4>
+                    <span id="error-text" class="text-rose-700 text-sm"></span>
+                </div>
             </div>
         </div>
     </main>
@@ -640,30 +702,38 @@ Create engaging, original, and high-quality content that connects with the audie
         });
 
         // Interface toggle
-        const formInterface = document.querySelector('.bg-white.p-6.rounded-2xl.shadow-lg');
+        const formInterface = document.getElementById('content-form').parentElement;
         const chatInterface = document.getElementById('chat-interface');
         const formToggle = document.getElementById('form-toggle');
         const chatToggle = document.getElementById('chat-toggle');
 
+        function updateToggleStyles() {
+            if (formInterface.classList.contains('hidden')) {
+                chatToggle.classList.add('bg-white', 'text-indigo-600', 'shadow-sm');
+                chatToggle.classList.remove('text-gray-600');
+                formToggle.classList.remove('bg-white', 'text-indigo-600', 'shadow-sm');
+                formToggle.classList.add('text-gray-600');
+            } else {
+                formToggle.classList.add('bg-white', 'text-indigo-600', 'shadow-sm');
+                formToggle.classList.remove('text-gray-600');
+                chatToggle.classList.remove('bg-white', 'text-indigo-600', 'shadow-sm');
+                chatToggle.classList.add('text-gray-600');
+            }
+        }
+
         formToggle.addEventListener('click', () => {
             formInterface.classList.remove('hidden');
             chatInterface.classList.add('hidden');
-            formToggle.classList.add('bg-white', 'text-gray-900', 'shadow-sm');
-            formToggle.classList.remove('text-gray-600');
-            chatToggle.classList.remove('bg-white', 'text-gray-900', 'shadow-sm');
-            chatToggle.classList.add('text-gray-600');
+            updateToggleStyles();
         });
 
         chatToggle.addEventListener('click', () => {
             formInterface.classList.add('hidden');
             chatInterface.classList.remove('hidden');
-            chatToggle.classList.add('bg-white', 'text-gray-900', 'shadow-sm');
-            chatToggle.classList.remove('text-gray-600');
-            formToggle.classList.remove('bg-white', 'text-gray-900', 'shadow-sm');
-            formToggle.classList.add('text-gray-600');
+            updateToggleStyles();
         });
 
-        // Mobile menu
+        // Simplified Mobile Menu
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
         if (mobileMenuButton && mobileMenu) {
@@ -671,78 +741,6 @@ Create engaging, original, and high-quality content that connects with the audie
                 mobileMenu.classList.toggle('hidden');
             });
         }
-
-        // Close mobile menu on scroll
-        window.addEventListener('scroll', () => {
-            if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
-                mobileMenu.classList.add('hidden');
-            }
-        });
-
-        // Developer Tools Protection
-        document.addEventListener('contextmenu', function (e) {
-            e.preventDefault();
-            alert('Right-click is disabled for security reasons.');
-        });
-
-        document.addEventListener('keydown', function (e) {
-            if (e.keyCode === 123) {
-                e.preventDefault();
-                alert('Developer tools are disabled for security reasons.');
-                return false;
-            }
-            if (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) {
-                e.preventDefault();
-                alert('Developer tools are disabled for security reasons.');
-                return false;
-            }
-            if (e.ctrlKey && e.keyCode === 85) {
-                e.preventDefault();
-                alert('View source is disabled for security reasons.');
-                return false;
-            }
-            if (e.ctrlKey && e.shiftKey && e.keyCode === 75) {
-                e.preventDefault();
-                alert('Developer tools are disabled for security reasons.');
-                return false;
-            }
-            if (e.ctrlKey && e.keyCode === 83) {
-                e.preventDefault();
-                alert('Saving page is disabled for security reasons.');
-                return false;
-            }
-        });
-
-        let devtools = { open: false };
-        const threshold = 160;
-
-        const warningScreen = document.createElement('div');
-        warningScreen.id = 'devtools-warning';
-        warningScreen.innerHTML = `<div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 999999; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif;"><div style="background: white; padding: 40px; border-radius: 10px; text-align: center; max-width: 500px; margin: 20px;"><h2 style="color: #dc2626; margin-bottom: 20px; font-size: 24px;">⚠️ Developer Tools Detected!</h2><p style="color: #374151; margin-bottom: 30px; line-height: 1.6;">Please close your developer tools to continue using this website. This site is protected against inspection for security reasons.</p><button onclick="location.reload()" style="background: #dc2626; color: white; border: none; padding: 12px 24px; border-radius: 5px; cursor: pointer; font-size: 16px; font-weight: bold;">Reload Page</button></div></div>`;
-        warningScreen.style.display = 'none';
-        document.body.appendChild(warningScreen);
-
-        setInterval(() => {
-            if (window.outerHeight - window.innerHeight > threshold || window.outerWidth - window.innerWidth > threshold) {
-                if (!devtools.open) {
-                    devtools.open = true;
-                    document.body.style.display = 'none';
-                    warningScreen.style.display = 'block';
-                }
-            } else {
-                if (devtools.open) {
-                    devtools.open = false;
-                    document.body.style.display = 'block';
-                    warningScreen.style.display = 'none';
-                }
-            }
-        }, 500);
-
-        document.addEventListener('selectstart', function (e) { e.preventDefault(); });
-        document.addEventListener('dragstart', function (e) { e.preventDefault(); });
-        console.log = function () { };
-        console.warn = function () { };
-        console.error = function () { };
     </script>
     <script defer src="/js/shared-ui.js"></script>
 </body>

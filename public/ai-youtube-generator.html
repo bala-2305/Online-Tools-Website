@@ -124,55 +124,54 @@
             </div>
         </div>
     </noscript>
-    <nav class="bg-white/80 backdrop-blur-lg shadow-sm w-full fixed top-0 left-0 z-50">
+    <nav class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <a href="index.html" class="text-2xl font-bold text-blue-600"
-                    aria-label="InfiniteForge Home">InfiniteForge</a>
-                <div class="hidden sm:flex items-center space-x-6">
-                    <a href="index.html" class="text-gray-700 hover:text-blue-600 font-medium">Home</a>
-                    <a href="features.html" class="text-gray-700 hover:text-blue-600 font-medium">Features</a>
-                    <a href="about.html" class="text-gray-700 hover:text-blue-600 font-medium">About</a>
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center group">
+                        <div class="w-10 h-10 bg-gradient-to-br from-red-600 to-pink-600 rounded-xl flex items-center justify-center mr-3 transform group-hover:rotate-12 transition-transform shadow-lg shadow-red-200">
+                            <span class="text-white font-bold text-lg">IF</span>
+                        </div>
+                        <span class="text-2xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-red-600 to-pink-600">InfiniteForge</span>
+                    </a>
                 </div>
-                <div class="sm:hidden">
-                    <button id="mobile-menu-button" class="text-gray-700 hover:text-blue-600 focus:outline-none">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
-                    </button>
+                <div class="flex items-center space-x-4 md:space-x-8">
+                    <a href="/" class="text-gray-600 hover:text-red-600 font-medium transition-colors">Home</a>
+                    <a href="features.html" class="text-gray-600 hover:text-red-600 font-medium transition-colors">Tools</a>
+                    <a href="about.html" class="hidden sm:block text-gray-600 hover:text-red-600 font-medium transition-colors">About</a>
                 </div>
             </div>
-        </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden">
-            <a href="index.html" class="block py-2 px-4 text-sm text-gray-700 hover:bg-blue-50">Home</a>
-            <a href="features.html" class="block py-2 px-4 text-sm text-gray-700 hover:bg-blue-50">Features</a>
-            <a href="about.html" class="block py-2 px-4 text-sm text-gray-700 hover:bg-blue-50">About</a>
         </div>
     </nav>
 
-    <main class="max-w-7xl mx-auto pt-20 sm:pt-24 pb-8 sm:pb-12 px-4 sm:px-6 lg:px-8" itemscope
-        itemtype="https://schema.org/WebPage">
-        <div class="text-center mb-12">
-            <h1 class="text-4xl sm:text-5xl font-bold text-gray-800 mb-4" itemprop="headline">AI YouTube Title &
-                Description Generator</h1>
-            <p class="text-xl text-gray-600 max-w-3xl mx-auto" itemprop="description">
-                Generate engaging YouTube titles and descriptions using AI. Create SEO-optimized content that drives
-                views and engagement for your videos.
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden bg-gradient-to-br from-red-600 via-pink-600 to-rose-600 py-20 sm:py-28 mt-16">
+        <div class="absolute inset-0 bg-grid-white/[0.05] bg-[size:20px_20px]"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <div class="inline-flex items-center justify-center p-3 bg-white/10 backdrop-blur-xl rounded-2xl mb-6 animate-bounce">
+                <i data-feather="youtube" class="w-8 h-8 text-white"></i>
+            </div>
+            <h1 class="text-5xl md:text-6xl font-extrabold text-white mb-6 tracking-tight">
+                YouTube <span class="text-red-100">Content</span> Generator
+            </h1>
+            <p class="text-xl text-red-100 max-w-3xl mx-auto mb-10 leading-relaxed">
+                Generate engaging titles, descriptions, and SEO-optimized tags with AI. Boost your video's visibility and engagement instantly.
             </p>
-        </div>
-
-        <!-- User Counter -->
-        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-8 max-w-md mx-auto">
             <div class="flex items-center justify-center space-x-4">
-                <div class="flex items-center space-x-2">
-                    <i data-feather="users" class="w-5 h-5 text-blue-600"></i>
-                    <span class="text-gray-700 font-medium">Active Users:</span>
+                <div class="flex items-center bg-white/10 backdrop-blur-md px-4 py-2 rounded-full text-white text-sm border border-white/20">
+                    <i data-feather="users" class="w-4 h-4 mr-2"></i>
+                    <span id="user-counter" class="font-bold mr-1">10,000+</span> creators
                 </div>
-                <div class="text-2xl font-bold text-blue-600" id="user-counter">Loading...</div>
+                <div class="flex items-center bg-white/10 backdrop-blur-md px-4 py-2 rounded-full text-white text-sm border border-white/20">
+                    <i data-feather="award" class="w-4 h-4 mr-2 text-yellow-300"></i>
+                    <span class="font-bold">Trending</span> tool
+                </div>
             </div>
         </div>
+    </section>
+
+    <main class="max-w-7xl mx-auto pb-8 sm:pb-12 px-4 sm:px-6 lg:px-8" itemscope
+        itemtype="https://schema.org/WebPage">
 
         <div class="max-w-6xl mx-auto">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
@@ -249,7 +248,8 @@
 
                         <!-- Generate Button -->
                         <button id="generate-btn"
-                            class="w-full bg-red-600 text-white px-4 py-3 rounded-md hover:bg-red-700 transition-colors font-medium text-sm sm:text-base mb-4 sm:mb-0">
+                            class="w-full bg-gradient-to-r from-red-600 to-pink-600 text-white px-4 py-4 rounded-xl hover:from-red-700 hover:to-pink-700 transition-all duration-300 font-bold text-sm sm:text-base mb-4 sm:mb-0 shadow-lg shadow-red-600/30 flex items-center justify-center">
+                            <i data-feather="zap" class="w-5 h-5 mr-2"></i>
                             Generate Content
                         </button>
 
@@ -334,23 +334,73 @@
                 </div>
             </div>
 
-            <!-- Statistics -->
+        <!-- Recommended Tools -->
+        <div class="mt-20">
+            <div class="flex items-center justify-between mb-10">
+                <h2 class="text-3xl font-extrabold text-gray-900">Recommended <span class="text-red-600">AI Tools</span></h2>
+                <a href="features.html" class="text-red-600 font-semibold hover:text-red-800 flex items-center">
+                    Browse All <i data-feather="arrow-right" class="w-4 h-4 ml-1"></i>
+                </a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+                <a href="ai-content-generator.html" class="tool-card bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition-all border border-gray-100">
+                    <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center mb-6">
+                        <i data-feather="feather" class="w-6 h-6 text-blue-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">AI Writing Pad</h3>
+                    <p class="text-gray-600 text-sm mb-4">Transform ideas into polished articles instantly.</p>
+                    <div class="flex items-center text-blue-600 font-bold text-sm">
+                        Try Now <i data-feather="chevron-right" class="w-4 h-4 ml-1"></i>
+                    </div>
+                </a>
+                <a href="ai-essay-outliner.html" class="tool-card bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition-all border border-gray-100">
+                    <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mb-6">
+                        <i data-feather="file-text" class="w-6 h-6 text-purple-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Essay Outliner</h3>
+                    <p class="text-gray-600 text-sm mb-4">Generate structured essay outlines for academic writing.</p>
+                    <div class="flex items-center text-purple-600 font-bold text-sm">
+                        Try Now <i data-feather="chevron-right" class="w-4 h-4 ml-1"></i>
+                    </div>
+                </a>
+                <a href="ai-hashtag-generator.html" class="tool-card bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition-all border border-gray-100">
+                    <div class="w-12 h-12 bg-pink-100 rounded-xl flex items-center justify-center mb-6">
+                        <i data-feather="hash" class="w-6 h-6 text-pink-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Social Spark</h3>
+                    <p class="text-gray-600 text-sm mb-4">Viral-ready hashtags for all social platforms.</p>
+                    <div class="flex items-center text-pink-600 font-bold text-sm">
+                        Try Now <i data-feather="chevron-right" class="w-4 h-4 ml-1"></i>
+                    </div>
+                </a>
+                <a href="ai-learning-assistant.html" class="tool-card bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition-all border border-gray-100">
+                    <div class="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center mb-6">
+                        <i data-feather="award" class="w-6 h-6 text-emerald-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Study Buddy</h3>
+                    <p class="text-gray-600 text-sm mb-4">Your personal AI tutor for 24/7 learning support.</p>
+                    <div class="flex items-center text-emerald-600 font-bold text-sm">
+                        Try Now <i data-feather="chevron-right" class="w-4 h-4 ml-1"></i>
+                    </div>
+                </a>
+            </div>
+        </div>
             <div class="mt-6 lg:mt-8 grid grid-cols-1 sm:grid-cols-4 gap-4 lg:gap-6">
-                <div class="bg-white p-4 sm:p-6 rounded-xl shadow-md text-center">
-                    <div class="text-xl sm:text-2xl font-bold text-red-600 mb-2" id="title-count">0</div>
-                    <div class="text-sm sm:text-base text-gray-600">Titles Generated</div>
+                <div class="bg-red-600 rounded-2xl p-6 text-center text-white">
+                    <div class="text-4xl font-black mb-1" id="title-count">0</div>
+                    <div class="text-red-100 text-sm font-bold uppercase tracking-wider">Titles Generated</div>
                 </div>
-                <div class="bg-white p-4 sm:p-6 rounded-xl shadow-md text-center">
-                    <div class="text-xl sm:text-2xl font-bold text-blue-600 mb-2" id="description-words">0</div>
-                    <div class="text-sm sm:text-base text-gray-600">Description Words</div>
+                <div class="bg-pink-600 rounded-2xl p-6 text-center text-white">
+                    <div class="text-4xl font-black mb-1" id="description-words">0</div>
+                    <div class="text-pink-100 text-sm font-bold uppercase tracking-wider">Description Words</div>
                 </div>
-                <div class="bg-white p-4 sm:p-6 rounded-xl shadow-md text-center">
-                    <div class="text-xl sm:text-2xl font-bold text-green-600 mb-2" id="tags-count">0</div>
-                    <div class="text-sm sm:text-base text-gray-600">Tags Suggested</div>
+                <div class="bg-rose-600 rounded-2xl p-6 text-center text-white">
+                    <div class="text-4xl font-black mb-1" id="tags-count">0</div>
+                    <div class="text-rose-100 text-sm font-bold uppercase tracking-wider">Tags Suggested</div>
                 </div>
-                <div class="bg-white p-4 sm:p-6 rounded-xl shadow-md text-center">
-                    <div class="text-xl sm:text-2xl font-bold text-purple-600 mb-2" id="seo-score">0%</div>
-                    <div class="text-sm sm:text-base text-gray-600">SEO Score</div>
+                <div class="bg-red-700 rounded-2xl p-6 text-center text-white">
+                    <div class="text-4xl font-black mb-1" id="seo-score">0%</div>
+                    <div class="text-red-100 text-sm font-bold uppercase tracking-wider">SEO Score</div>
                 </div>
             </div>
 
@@ -972,157 +1022,24 @@ Ensure the response is valid JSON only, no additional text or formatting. Make t
 
             // Initialize AI YouTube Generator
             new AIYouTubeGenerator();
-
-            // Mobile menu toggle
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-
-            if (mobileMenuButton && mobileMenu) {
-                mobileMenuButton.addEventListener('click', () => {
-                    mobileMenu.classList.toggle('hidden');
-                });
-
-                // Close mobile menu when a link is clicked
-                const mobileMenuLinks = mobileMenu.querySelectorAll('a');
-                mobileMenuLinks.forEach(link => {
-                    link.addEventListener('click', () => {
-                        mobileMenu.classList.add('hidden');
-                    });
-                });
-
-                // Close mobile menu on scroll
-                window.addEventListener('scroll', () => {
-                    if (!mobileMenu.classList.contains('hidden')) {
-                        mobileMenu.classList.add('hidden');
-                    }
-                });
-            }
         });
-
-        // Developer Tools Protection
-        document.addEventListener('contextmenu', function (e) {
-            e.preventDefault();
-            alert('Right-click is disabled for security reasons.');
-        });
-
-        document.addEventListener('keydown', function (e) {
-            // Disable F12
-            if (e.keyCode === 123) {
-                e.preventDefault();
-                alert('Developer tools are disabled for security reasons.');
-                return false;
-            }
-
-            // Disable Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C
-            if (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) {
-                e.preventDefault();
-                alert('Developer tools are disabled for security reasons.');
-                return false;
-            }
-
-            // Disable Ctrl+U (view source)
-            if (e.ctrlKey && e.keyCode === 85) {
-                e.preventDefault();
-                alert('View source is disabled for security reasons.');
-                return false;
-            }
-
-            // Disable Ctrl+Shift+K (Firefox developer tools)
-            if (e.ctrlKey && e.shiftKey && e.keyCode === 75) {
-                e.preventDefault();
-                alert('Developer tools are disabled for security reasons.');
-                return false;
-            }
-
-            // Disable Ctrl+S (save page)
-            if (e.ctrlKey && e.keyCode === 83) {
-                e.preventDefault();
-                alert('Saving page is disabled for security reasons.');
-                return false;
-            }
-        });
-
-        // Additional protection against developer tools
-        let devtools = { open: false, orientation: null };
-        const threshold = 160;
-
-        setInterval(() => {
-            if (window.outerHeight - window.innerHeight > threshold || window.outerWidth - window.innerWidth > threshold) {
-                if (!devtools.open) {
-                    devtools.open = true;
-                    alert('Developer tools detected! Please close them to continue using this website.');
-                    // Disable website functionality
-                    document.body.style.display = 'none';
-                    document.body.innerHTML = '<div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; font-family: Arial, sans-serif;"><h1 style="color: red; font-size: 24px;">⚠️ Developer Tools Detected</h1><p style="color: #666; font-size: 18px;">Please close developer tools to continue using this website.</p><button onclick="location.reload()" style="margin-top: 20px; padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">Reload Page</button></div>';
-                }
-            } else {
-                devtools.open = false;
-                // Re-enable if closed
-                if (document.body.style.display === 'none') {
-                    location.reload();
-                }
-            }
-        }, 500);
-
-        // Disable selection for protection
-        document.addEventListener('selectstart', function (e) {
-            e.preventDefault();
-        });
-
-        // Disable drag and drop
-        document.addEventListener('dragstart', function (e) {
-            e.preventDefault();
-        });
-
-        // Prevent viewing source through other methods
-        document.onkeydown = function (e) {
-            if (e.keyCode == 123) {
-                return false;
-            }
-            if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
-                return false;
-            }
-            if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
-                return false;
-            }
-            if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {
-                return false;
-            }
-            if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
-                return false;
-            }
-        };
-
-        // Override console methods to prevent debugging
-        console.log = function () { };
-        console.warn = function () { };
-        console.error = function () { };
-        console.info = function () { };
-
-        // Prevent opening developer tools
-        window.onbeforeunload = function () {
-            // This will show a confirmation dialog when trying to leave/close
-            return "Are you sure you want to leave?";
-        };
-
-        // Additional source protection
-        (function () {
-            'use strict';
-            const _z = btoa(Math.random().toString()).substr(10, 5);
-            window[_z] = {
-                open: window.open,
-                alert: window.alert,
-                confirm: window.confirm,
-                prompt: window.prompt
-            };
-        })();
     </script>
 
     <style>
-        .json-active {
-            background-color: white;
-            color: #2563eb;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        :root {
+            --primary: #dc2626;
+            --primary-hover: #b91c1c;
+            --secondary: #ec4899;
+        }
+
+        .tool-card {
+            transition: all 0.3s ease;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            border-color: #dc2626;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
         }
 
         /* Loading spinner animation */
@@ -1139,6 +1056,7 @@ Ensure the response is valid JSON only, no additional text or formatting. Make t
         /* Disabled button styles */
         button:disabled {
             pointer-events: none;
+            opacity: 0.7;
         }
 
         /* Loading overlay styles */
