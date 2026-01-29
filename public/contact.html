@@ -84,6 +84,36 @@
                 transform: translateY(0);
             }
         }
+
+        .animate-slide-up {
+            animation: slideUp 0.3s ease-out;
+        }
+
+        .animate-slide-down {
+            animation: slideDown 0.3s ease-in;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translate(-50%, 100%);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, 0);
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 1;
+                transform: translate(-50%, 0);
+            }
+            to {
+                opacity: 0;
+                transform: translate(-50%, 100%);
+            }
+        }
     </style>
     <!-- Enhanced Structured Data -->
         <script type="application/ld+json">{
@@ -214,7 +244,7 @@
             }
         ]
     }</script>
-</head><!-- Google tag (gtag.js) -->
+</head>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-FQ082B7887"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -258,20 +288,20 @@
                     <a href="contact.html" class="text-gray-700 hover:text-blue-600 font-medium">Contact</a>
                 </div>
                 <div class="sm:hidden">
-                    <button id="mobile-menu-button" class="text-gray-700 hover:text-blue-600 focus:outline-none">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
+                    <button id="mobile-menu-button" class="text-gray-700 hover:text-blue-600 focus:outline-none p-2">
+                        <i data-feather="menu" class="w-6 h-6"></i>
                     </button>
                 </div>
             </div>
         </div>
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden">
-            <a href="index.html" class="block py-2 px-4 text-sm text-blue-600 font-medium hover:bg-blue-50">Home</a>
-            <a href="features.html" class="block py-2 px-4 text-sm text-gray-700 hover:bg-blue-50">Features</a>
-            <a href="about.html" class="block py-2 px-4 text-sm text-gray-700 hover:bg-blue-50">About</a>
-            <a href="contact.html" class="block py-2 px-4 text-sm text-gray-700 hover:bg-blue-50">Contact</a>
+        <div id="mobile-menu" class="hidden sm:hidden bg-white border-t border-gray-200 shadow-lg">
+            <div class="px-4 py-2 space-y-1">
+                <a href="index.html" class="block py-3 px-4 text-sm text-blue-600 font-medium hover:bg-blue-50 rounded-lg transition-colors">Home</a>
+                <a href="features.html" class="block py-3 px-4 text-sm text-gray-700 hover:bg-blue-50 rounded-lg transition-colors">Features</a>
+                <a href="about.html" class="block py-3 px-4 text-sm text-gray-700 hover:bg-blue-50 rounded-lg transition-colors">About</a>
+                <a href="contact.html" class="block py-3 px-4 text-sm text-gray-700 hover:bg-blue-50 rounded-lg transition-colors">Contact</a>
+            </div>
         </div>
     </nav>
     <main class="w-full max-w-4xl mx-auto pt-20 px-4" itemscope itemtype="https://schema.org/ContactPage">
@@ -291,7 +321,7 @@
 
         <div class="text-center mb-10">
             <h1 class="text-4xl sm:text-5xl font-bold text-gray-800 mb-3" itemprop="headline">
-                <span class="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">Contact</span> Us
+                <span class="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">Contact Us</span>
             </h1>
             <p class="text-lg text-gray-600 max-w-2xl mx-auto" itemprop="description">
                 Have questions, feedback, or need support? We'd love to hear from you. Get in touch with the Daedalus team.
@@ -300,51 +330,60 @@
 
         <div class="grid md:grid-cols-2 gap-8 mb-12 floating-animation" data-aos="fade-up">
             <!-- Contact Information -->
-            <div class="bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-blue-200">
+            <div class="bg-white rounded-2xl shadow-xl p-6 md:p-8 hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-blue-200">
                 <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
                     <i data-feather="mail" class="w-6 h-6 mr-3 text-blue-500"></i>
                     Get In Touch
                 </h2>
 
                 <div class="space-y-6">
-                    <div class="flex items-start space-x-4 p-4 rounded-lg hover:bg-blue-50 transition-all duration-300 hover:scale-105 cursor-pointer">
-                        <div class="flex-shrink-0 w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center hover:bg-blue-100 transition-colors duration-300">
-                            <i data-feather="mail" class="w-6 h-6 text-blue-500"></i>
+                    <div class="group flex items-start space-x-4 p-4 rounded-xl hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 transition-all duration-300 hover:scale-[1.02] cursor-pointer border border-transparent hover:border-blue-200">
+                        <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center shadow-md group-hover:shadow-lg transition-all duration-300">
+                            <i data-feather="mail" class="w-6 h-6 text-white"></i>
                         </div>
-                        <div>
-                            <h3 class="text-lg font-semibold text-gray-800">Email Support</h3>
-                            <p class="text-gray-600 mb-1">For general inquiries and support</p>
-                            <a href="mailto:hmahibala@gmail.com" class="text-blue-600 hover:underline">hmahibala@gmail.com</a>
-                        </div>
-                    </div>
-
-                    <div class="flex items-start space-x-4 p-4 rounded-lg hover:bg-blue-50 transition-all duration-300 hover:scale-105 cursor-pointer">
-                        <div class="flex-shrink-0 w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center hover:bg-blue-100 transition-colors duration-300">
-                            <i data-feather="briefcase" class="w-6 h-6 text-blue-500"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-semibold text-gray-800">Business Inquiries</h3>
-                            <p class="text-gray-600 mb-1">Partnerships and business opportunities</p>
-                            <a href="mailto:hmahibala@gmail.com" class="text-blue-600 hover:underline">hmahibala@gmail.com</a>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-semibold text-gray-800 mb-1">Email Support</h3>
+                            <p class="text-gray-600 mb-2">For general inquiries and support</p>
+                            <a href="mailto:hmahibala@gmail.com" class="text-blue-600 hover:text-blue-700 font-medium hover:underline transition-colors inline-flex items-center">
+                                hmahibala@gmail.com
+                                <i data-feather="external-link" class="w-4 h-4 ml-1"></i>
+                            </a>
                         </div>
                     </div>
 
-                    <div class="flex items-start space-x-4 p-4 rounded-lg hover:bg-blue-50 transition-all duration-300 hover:scale-105 cursor-pointer">
-                        <div class="flex-shrink-0 w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center hover:bg-blue-100 transition-colors duration-300">
-                            <i data-feather="message-circle" class="w-6 h-6 text-blue-500"></i>
+                    <div class="group flex items-start space-x-4 p-4 rounded-xl hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50 transition-all duration-300 hover:scale-[1.02] cursor-pointer border border-transparent hover:border-purple-200">
+                        <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center shadow-md group-hover:shadow-lg transition-all duration-300">
+                            <i data-feather="briefcase" class="w-6 h-6 text-white"></i>
                         </div>
-                        <div>
-                            <h3 class="text-lg font-semibold text-gray-800">Social Media</h3>
-                            <p class="text-gray-600 mb-2">Follow us and send us a message</p>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-semibold text-gray-800 mb-1">Business Inquiries</h3>
+                            <p class="text-gray-600 mb-2">Partnerships and business opportunities</p>
+                            <a href="mailto:hmahibala@gmail.com" class="text-purple-600 hover:text-purple-700 font-medium hover:underline transition-colors inline-flex items-center">
+                                hmahibala@gmail.com
+                                <i data-feather="external-link" class="w-4 h-4 ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="group flex items-start space-x-4 p-4 rounded-xl hover:bg-gradient-to-r hover:from-green-50 hover:to-teal-50 transition-all duration-300 hover:scale-[1.02] cursor-pointer border border-transparent hover:border-green-200">
+                        <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center shadow-md group-hover:shadow-lg transition-all duration-300">
+                            <i data-feather="message-circle" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-lg font-semibold text-gray-800 mb-1">Social Media</h3>
+                            <p class="text-gray-600 mb-3">Follow us and send us a message</p>
                             <div class="flex space-x-4">
-                                <a href="https://x.com/HMahibala42802" class="text-blue-400 hover:text-blue-600 transition-colors">
+                                <a href="https://x.com/HMahibala42802" class="w-10 h-10 bg-blue-400 hover:bg-blue-500 text-white rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-md hover:shadow-lg" title="Twitter">
                                     <i data-feather="twitter" class="w-5 h-5"></i>
                                 </a>
-                                <a href="https://www.linkedin.com/in/mahibala-h" class="text-blue-700 hover:text-blue-900 transition-colors">
+                                <a href="https://www.linkedin.com/in/mahibala-h" class="w-10 h-10 bg-blue-700 hover:bg-blue-800 text-white rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-md hover:shadow-lg" title="LinkedIn">
                                     <i data-feather="linkedin" class="w-5 h-5"></i>
                                 </a>
-                                <a href="https://www.youtube.com/@echo14-w3y" class="text-red-600 hover:text-red-800 transition-colors">
+                                <a href="https://www.youtube.com/@echo14-w3y" class="w-10 h-10 bg-red-600 hover:bg-red-700 text-white rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-md hover:shadow-lg" title="YouTube">
                                     <i data-feather="youtube" class="w-5 h-5"></i>
+                                </a>
+                                <a href="https://www.instagram.com/ig_balah?igsh=dXo4ank3OWxiaXVy" class="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-md hover:shadow-lg" title="Instagram">
+                                    <i data-feather="instagram" class="w-5 h-5"></i>
                                 </a>
                             </div>
                         </div>
@@ -353,35 +392,39 @@
             </div>
 
             <!-- Contact Form -->
-            <div class="bg-white rounded-2xl shadow-xl p-8 hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-blue-200">
+            <div class="bg-white rounded-2xl shadow-xl p-6 md:p-8 hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-blue-200">
                 <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
                     <i data-feather="send" class="w-6 h-6 mr-3 text-blue-500"></i>
                     Send a Message
                 </h2>
 
-                <form id="contactForm" action="https://formsubmit.co/hmahibala@gmail.com" method="POST" class="space-y-6">
+                <form id="contactForm" action="https://formsubmit.co/hmahibala@gmail.com" method="POST" class="space-y-5">
                     <!-- FormSubmit.co Configuration -->
                     <input type="hidden" name="_captcha" value="false">
                     <input type="hidden" name="_next" value="https://infiniteforge.tech/contact.html?success=true">
                     <input type="hidden" name="_subject" value="New Contact Form Submission - Daedalus">
                     <input type="text" name="_honey" style="display:none">
 
-                    <div>
-                        <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Name</label>
-                        <input type="text" id="name" name="name" required
-                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors">
+                    <div class="grid md:grid-cols-2 gap-5">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Name *</label>
+                            <input type="text" id="name" name="name" required
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white"
+                                placeholder="Your full name">
+                        </div>
+
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email *</label>
+                            <input type="email" id="email" name="email" required
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white"
+                                placeholder="your.email@example.com">
+                        </div>
                     </div>
 
                     <div>
-                        <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                        <input type="email" id="email" name="email" required
-                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors">
-                    </div>
-
-                    <div>
-                        <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">Subject</label>
+                        <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">Subject *</label>
                         <select id="subject" name="subject" required
-                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors">
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white">
                             <option value="">Select a subject</option>
                             <option value="support">Technical Support</option>
                             <option value="feedback">Feedback</option>
@@ -393,16 +436,16 @@
                     </div>
 
                     <div>
-                        <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message</label>
-                        <textarea id="message" name="message" rows="5" required
-                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors resize-vertical"
+                        <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message *</label>
+                        <textarea id="message" name="message" rows="6" required
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 resize-vertical bg-gray-50 focus:bg-white"
                             placeholder="Tell us how we can help you..."></textarea>
                     </div>
 
                     <button type="submit"
-                        class="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-300 shadow-md flex items-center justify-center">
+                        class="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg hover:scale-[1.02] flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed">
                         <i data-feather="send" class="w-5 h-5 mr-2"></i>
-                        Send Message
+                        <span id="submit-text">Send Message</span>
                     </button>
                 </form>
             </div>
@@ -467,53 +510,66 @@
         </div>
 
         <!-- Social Sharing Section -->
-        <div class="bg-white rounded-xl shadow-lg p-8 mb-8 floating-animation" data-aos="fade-up" data-aos-delay="400">
-            <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Share Our Contact Page</h2>
+        <div class="bg-white rounded-xl shadow-lg p-6 md:p-8 mb-8 floating-animation" data-aos="fade-up" data-aos-delay="400">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4 text-center flex items-center justify-center">
+                <i data-feather="share-2" class="w-6 h-6 mr-3 text-blue-500"></i>
+                Share Our Contact Page
+            </h2>
             <p class="text-gray-600 text-center mb-6">Help others find us by sharing our contact information</p>
-            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <a href="https://twitter.com/intent/tweet?text=Contact%20Daedalus%20-%20Free%20Online%20Tools&url=https://infiniteforge.tech/contact.html&via=DaedalusTools"
                    target="_blank" rel="noopener noreferrer"
-                   class="bg-blue-400 hover:bg-blue-500 text-white px-6 py-3 rounded-lg transition-all duration-300 flex items-center space-x-2 shadow-md hover:shadow-lg hover:scale-105">
-                    <i data-feather="twitter" class="w-5 h-5"></i>
-                    <span>Share on Twitter</span>
+                   class="bg-gradient-to-r from-blue-400 to-blue-500 hover:from-blue-500 hover:to-blue-600 text-white px-4 py-3 rounded-lg transition-all duration-300 flex flex-col items-center space-y-2 shadow-md hover:shadow-lg hover:scale-105 group">
+                    <i data-feather="twitter" class="w-5 h-5 group-hover:scale-110 transition-transform"></i>
+                    <span class="text-sm font-medium">Twitter</span>
                 </a>
                 <a href="https://www.facebook.com/sharer/sharer.php?u=https://infiniteforge.tech/contact.html"
                    target="_blank" rel="noopener noreferrer"
-                   class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-all duration-300 flex items-center space-x-2 shadow-md hover:shadow-lg hover:scale-105">
-                    <i data-feather="facebook" class="w-5 h-5"></i>
-                    <span>Share on Facebook</span>
+                   class="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-4 py-3 rounded-lg transition-all duration-300 flex flex-col items-center space-y-2 shadow-md hover:shadow-lg hover:scale-105 group">
+                    <i data-feather="facebook" class="w-5 h-5 group-hover:scale-110 transition-transform"></i>
+                    <span class="text-sm font-medium">Facebook</span>
                 </a>
                 <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://infiniteforge.tech/contact.html"
                    target="_blank" rel="noopener noreferrer"
-                   class="bg-blue-700 hover:bg-blue-800 text-white px-6 py-3 rounded-lg transition-all duration-300 flex items-center space-x-2 shadow-md hover:shadow-lg hover:scale-105">
-                    <i data-feather="linkedin" class="w-5 h-5"></i>
-                    <span>Share on LinkedIn</span>
+                   class="bg-gradient-to-r from-blue-700 to-blue-800 hover:from-blue-800 hover:to-blue-900 text-white px-4 py-3 rounded-lg transition-all duration-300 flex flex-col items-center space-y-2 shadow-md hover:shadow-lg hover:scale-105 group">
+                    <i data-feather="linkedin" class="w-5 h-5 group-hover:scale-110 transition-transform"></i>
+                    <span class="text-sm font-medium">LinkedIn</span>
                 </a>
                 <a href="https://wa.me/?text=Check%20out%20Daedalus%20contact%20page:%20https://infiniteforge.tech/contact.html"
                    target="_blank" rel="noopener noreferrer"
-                   class="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg transition-all duration-300 flex items-center space-x-2 shadow-md hover:shadow-lg hover:scale-105">
-                    <i data-feather="message-circle" class="w-5 h-5"></i>
-                    <span>Share on WhatsApp</span>
+                   class="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-4 py-3 rounded-lg transition-all duration-300 flex flex-col items-center space-y-2 shadow-md hover:shadow-lg hover:scale-105 group">
+                    <i data-feather="message-circle" class="w-5 h-5 group-hover:scale-110 transition-transform"></i>
+                    <span class="text-sm font-medium">WhatsApp</span>
                 </a>
             </div>
         </div>
 
         <!-- Newsletter Signup Section -->
-        <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-8 mb-8 floating-animation" data-aos="fade-up" data-aos-delay="500">
+        <div class="bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 rounded-xl p-6 md:p-8 mb-8 floating-animation border border-blue-100" data-aos="fade-up" data-aos-delay="500">
             <div class="text-center">
+                <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                    <i data-feather="mail" class="w-8 h-8 text-white"></i>
+                </div>
                 <h2 class="text-3xl font-bold text-gray-800 mb-4">Stay Updated</h2>
-                <p class="text-gray-600 mb-6 max-w-2xl mx-auto">
+                <p class="text-gray-600 mb-6 max-w-2xl mx-auto text-lg">
                     Subscribe to our newsletter for the latest tool updates, tips, and exclusive offers.
                 </p>
-                <form class="max-w-md mx-auto flex gap-3">
-                    <input type="email" placeholder="Enter your email"
-                           class="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors">
-                    <button type="submit"
-                            class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg transition-all duration-300 font-medium shadow-md hover:shadow-lg hover:scale-105">
-                        Subscribe
-                    </button>
+                <form class="max-w-lg mx-auto">
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <input type="email" placeholder="Enter your email address"
+                               class="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-white/80 backdrop-blur-sm shadow-sm"
+                               required>
+                        <button type="submit"
+                                class="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-6 py-3 rounded-lg transition-all duration-300 font-medium shadow-md hover:shadow-lg hover:scale-105 whitespace-nowrap">
+                            <i data-feather="send" class="w-4 h-4 mr-2 inline"></i>
+                            Subscribe
+                        </button>
+                    </div>
                 </form>
-                <p class="text-sm text-gray-500 mt-3">No spam, unsubscribe at any time.</p>
+                <p class="text-sm text-gray-500 mt-4 flex items-center justify-center">
+                    <i data-feather="shield" class="w-4 h-4 mr-1"></i>
+                    No spam, unsubscribe at any time.
+                </p>
             </div>
         </div>
     </main>
@@ -564,7 +620,7 @@
             // Check for form submission success
             const urlParams = new URLSearchParams(window.location.search);
             if (urlParams.get('success') === 'true') {
-                showToast('Thank you for your message! We\'ll get back to you soon.');
+                showToast('Thank you for your message! We\'ll get back to you soon.', 'success');
                 // Clean up the URL
                 window.history.replaceState({}, document.title, window.location.pathname);
             }
@@ -618,33 +674,67 @@
 
             // Contact form handling
             const contactForm = document.getElementById('contactForm');
+            const submitText = document.getElementById('submit-text');
+
             contactForm.addEventListener('submit', function(e) {
                 // Show loading state
                 const submitButton = this.querySelector('button[type="submit"]');
-                const originalText = submitButton.innerHTML;
-                submitButton.innerHTML = '<i data-feather="loader" class="w-5 h-5 mr-2 animate-spin"></i>Sending...';
+                const originalHTML = submitButton.innerHTML;
+                submitButton.innerHTML = '<i data-feather="loader" class="w-5 h-5 mr-2 animate-spin"></i><span id="submit-text">Sending...</span>';
                 submitButton.disabled = true;
+                submitButton.classList.add('cursor-not-allowed');
 
                 // Re-initialize feather icons for the loader
                 feather.replace();
 
                 // Let the form submit to FormSubmit.co
                 // The _next parameter will redirect back with success=true
+
+                // Reset form after a delay (in case of error)
+                setTimeout(() => {
+                    if (!window.location.search.includes('success=true')) {
+                        submitButton.innerHTML = originalHTML;
+                        submitButton.disabled = false;
+                        submitButton.classList.remove('cursor-not-allowed');
+                        feather.replace();
+                    }
+                }, 10000); // Reset after 10 seconds if no redirect
             });
 
             // Toast notification system
-            function showToast(message) {
-                let toast = document.getElementById('toast');
-                if (!toast) {
-                    toast = document.createElement('div');
-                    toast.id = 'toast';
-                    toast.className = 'fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg flex items-center z-50';
-                    document.body.appendChild(toast);
-                }
-                toast.textContent = message;
-                toast.classList.remove('hidden');
+            function showToast(message, type = 'success') {
+                // Remove existing toasts
+                const existingToasts = document.querySelectorAll('.toast-notification');
+                existingToasts.forEach(toast => toast.remove());
+
+                const toast = document.createElement('div');
+                toast.className = `toast-notification fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50 flex items-center space-x-3 px-6 py-4 rounded-lg shadow-xl border-l-4 animate-slide-up ${
+                    type === 'success'
+                        ? 'bg-green-50 border-green-500 text-green-800'
+                        : type === 'error'
+                        ? 'bg-red-50 border-red-500 text-red-800'
+                        : 'bg-blue-50 border-blue-500 text-blue-800'
+                }`;
+
+                const iconName = type === 'success' ? 'check-circle' : type === 'error' ? 'x-circle' : 'info';
+
+                toast.innerHTML = `
+                    <i data-feather="${iconName}" class="w-5 h-5 flex-shrink-0"></i>
+                    <span class="font-medium">${message}</span>
+                    <button class="ml-auto text-gray-400 hover:text-gray-600 transition-colors" onclick="this.parentElement.remove()">
+                        <i data-feather="x" class="w-4 h-4"></i>
+                    </button>
+                `;
+
+                document.body.appendChild(toast);
+                feather.replace();
+
+                // Auto remove after 5 seconds
                 setTimeout(() => {
-                    toast.classList.add('hidden');
+                    if (toast.parentElement) {
+                        toast.classList.add('animate-slide-down');
+                        setTimeout(() => toast.remove(), 300);
+                    }
                 }, 5000);
             }
         });

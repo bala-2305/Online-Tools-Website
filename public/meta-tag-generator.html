@@ -721,6 +721,23 @@
                 tabContents: document.querySelectorAll('.tab-content')
             };
 
+            // Tab switching functionality
+            DOM.tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const tabName = button.dataset.tab;
+                    
+                    // Remove active class from all buttons
+                    DOM.tabButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    button.classList.add('active');
+                    
+                    // Hide all tab contents
+                    DOM.tabContents.forEach(content => content.classList.add('hidden'));
+                    // Show selected tab content
+                    document.getElementById(tabName + '-tab').classList.remove('hidden');
+                });
+            });
+
             // Optimized meta tag generation with template literals and better structure
             function generateMetaTags() {
                 try {
@@ -820,16 +837,16 @@ ${data.image ? `<meta name="twitter:image" content="${escapeHtml(data.image)}">\
                     // Comments
                     .replace(/(<!--.*?-->)/g, '<span class="text-gray-500">$1</span>')
                     // Meta tag names
-                    .replace(/(&lt;meta\s+)(name|property|content)/g, '$1<span class="text-blue-600">$2</span>')
+                    .replace(/(<meta\s+)(name|property|content)/g, '$1<span class="text-blue-600">$2</span>')
                     // Link tag names
-                    .replace(/(&lt;link\s+)(rel|href)/g, '$1<span class="text-blue-600">$2</span>')
+                    .replace(/(<link\s+)(rel|href)/g, '$1<span class="text-blue-600">$2</span>')
                     // Attribute values
                     .replace(/(content|href)="([^"]*)"/g, '$1="<span class="text-green-600">$2</span>"')
                     // Property values
                     .replace(/(property|name)="([^"]*)"/g, '$1="<span class="text-purple-600">$2</span>"')
                     // Tag brackets
-                    .replace(/(&lt;\/?)/g, '<span class="text-gray-700">$1</span>')
-                    .replace(/\/?&gt;/g, '<span class="text-gray-700">&gt;</span>');
+                    .replace(/(<\/?)/g, '<span class="text-gray-700">$1</span>')
+                    .replace(/(\/?>)/g, '<span class="text-gray-700">$1</span>');
             }
 
             // Optimized copy functionality with modern clipboard API
@@ -885,6 +902,23 @@ ${code}
                 return div.innerHTML;
             }
 
+            // Message display function
+            function showMessage(message, type = 'info') {
+                DOM.message.textContent = message;
+                DOM.message.className = 'mt-4 text-center text-sm';
+                if (type === 'error') {
+                    DOM.message.classList.add('text-red-600');
+                } else if (type === 'success') {
+                    DOM.message.classList.add('text-green-600');
+                } else {
+                    DOM.message.classList.add('text-gray-600');
+                }
+                // Auto-hide after 5 seconds
+                setTimeout(() => {
+                    DOM.message.textContent = '';
+                }, 5000);
+            }
+
             // Debounced input validation for better UX
             let validationTimeout;
             function debounceValidation() {
@@ -924,6 +958,9 @@ ${code}
             [DOM.siteTitle, DOM.siteDescription, DOM.siteUrl].forEach(input => {
                 input.addEventListener('input', debounceValidation);
             });
+
+            // Generate button event listener
+            DOM.generateBtn.addEventListener('click', generateMetaTags);
 
             // Initialize validation on page load
             validateInputs();

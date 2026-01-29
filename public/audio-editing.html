@@ -465,6 +465,8 @@
     let fadeOutApplied = false;
     let trimStart = 0;
     let trimEnd = 0;
+    let playbackStartTime = 0;
+    let playbackStartPosition = 0;
 
     // DOM elements
     const uploadBtn = document.getElementById("upload-btn");
@@ -583,7 +585,10 @@
     });
 
     pauseBtn.addEventListener("click", () => {
-      if (audioSource) {
+      if (audioSource && isPlaying) {
+        const context = initAudioContext();
+        const elapsed = context.currentTime - playbackStartTime;
+        currentTime = playbackStartPosition + elapsed;
         audioSource.stop();
         isPlaying = false;
         updatePlayButtons();
@@ -613,17 +618,19 @@
         applyFadeEffects(gainNode);
       }
 
-      audioSource.start(0, currentTime);
+      const playbackStartPosition = currentTime;
+      const startTime = context.currentTime;
+      playbackStartTime = startTime;
+      audioSource.start(0, playbackStartPosition);
       isPlaying = true;
       updatePlayButtons();
 
       // Update timeline
-      const startTime = context.currentTime;
       function updateTimeline() {
         if (isPlaying) {
           const elapsed = context.currentTime - startTime;
-          currentTime = elapsed + currentTime;
-          updateTimelineUI(currentTime);
+          const currentPosition = playbackStartPosition + elapsed;
+          updateTimelineUI(currentPosition);
           requestAnimationFrame(updateTimeline);
         }
       }
@@ -631,6 +638,7 @@
 
       audioSource.onended = () => {
         isPlaying = false;
+        currentTime = playbackStartPosition + (context.currentTime - startTime);
         updatePlayButtons();
       };
     }
@@ -673,8 +681,18 @@
       const rect = timeline.getBoundingClientRect();
       const clickX = e.clientX - rect.left;
       const percentage = clickX / rect.width;
-      currentTime = percentage * audioBuffer.duration;
+      const newTime = percentage * audioBuffer.duration;
+
+      currentTime = newTime;
       updateTimelineUI(currentTime);
+
+      // If currently playing, restart from new position
+      if (isPlaying && audioSource) {
+        audioSource.stop();
+        isPlaying = false;
+        updatePlayButtons();
+        setTimeout(() => playAudio(), 50); // Small delay to ensure stop completes
+      }
     });
 
     function updateTimelineUI(time) {
@@ -827,6 +845,8 @@
 
     function resetAudioState() {
       currentTime = 0;
+      playbackStartTime = 0;
+      playbackStartPosition = 0;
       isPlaying = false;
       fadeInApplied = false;
       fadeOutApplied = false;

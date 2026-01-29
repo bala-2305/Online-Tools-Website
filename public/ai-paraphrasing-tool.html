@@ -54,45 +54,152 @@
         rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Fluid scaling styles */
         :root {
-            --fluid-font-size: clamp(14px, 2vw, 18px);
-            --fluid-h1: clamp(1.5rem, 5vw, 3rem);
-            --fluid-h2: clamp(1.25rem, 4vw, 2.5rem);
-            --fluid-h3: clamp(1.125rem, 3vw, 2rem);
-            --fluid-p: clamp(0.875rem, 2vw, 1rem);
+            --fluid-font-size: clamp(14px, 2vw, 16px);
         }
 
         body {
+            font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
             font-size: var(--fluid-font-size);
+            background-color: #f8fafc;
         }
 
-        h1 {
-            font-size: var(--fluid-h1) !important;
+        .gen-input,
+        .gen-output {
+            font-family: inherit;
         }
 
-        h2 {
-            font-size: var(--fluid-h2) !important;
+        .generate-btn {
+            background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+            color: white;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 6px -1px rgba(139, 92, 246, 0.3);
+        }
+        .generate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(139, 92, 246, 0.4);
+        }
+        .generate-btn:active {
+            transform: translateY(0);
         }
 
-        h3 {
-            font-size: var(--fluid-h3) !important;
+        .copy-btn {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            transition: all 0.2s;
+        }
+        .copy-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
         }
 
-        p {
-            font-size: var(--fluid-p) !important;
+        .clear-btn {
+            background: white;
+            color: #ef4444;
+            border: 1px solid #fee2e2;
+            transition: all 0.2s;
+        }
+        .clear-btn:hover {
+            background: #fef2f2;
+            border-color: #fecaca;
         }
 
-        @media (max-width: 640px) {
+        .result-chip {
+            background: white;
+            border: 1px solid #e5e7eb;
+            padding: 0.75rem 1rem;
+            border-radius: 0.75rem;
+            transition: all 0.2s ease;
+            animation: slideIn 0.3s ease-out forwards;
+            opacity: 0;
+        }
+        .result-chip:hover {
+            border-color: #8b5cf6;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transform: translateY(-2px);
+        }
 
-            .container,
-            .max-w-4xl,
-            .max-w-6xl,
-            .max-w-7xl {
-                max-width: 95vw !important;
-                margin-left: auto;
-                margin-right: auto;
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .msg {
+            margin-bottom: 12px;
+            padding: 10px 16px;
+            border-radius: 12px;
+            max-width: 85%;
+            line-height: 1.5;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
+
+        .msg.bot {
+            background-color: #f3f4f6;
+            color: #1f2937;
+            margin-right: auto;
+            border-bottom-left-radius: 4px;
+        }
+
+        .msg.user {
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+            color: white;
+            margin-left: auto;
+            text-align: right;
+            border-bottom-right-radius: 4px;
+        }
+        
+        .form-input:focus, .form-select:focus {
+            border-color: #8b5cf6;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+        }
+
+        .toggle-container {
+            background: #e2e8f0;
+            padding: 4px;
+            border-radius: 12px;
+            display: inline-flex;
+        }
+        .toggle-btn {
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+        .toggle-btn.active {
+            background: white;
+            color: #7c3aed;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .toggle-btn.inactive {
+            color: #64748b;
+        }
+        .toggle-btn.inactive:hover {
+            color: #334155;
+            background: rgba(255,255,255,0.5);
+        }
+
+        /* Loading spinner animation */
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
             }
+        }
+
+        .animate-spin {
+            animation: spin 1s linear infinite;
+        }
+
+        /* Disabled button styles */
+        button:disabled {
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        /* Loading overlay styles */
+        #loading-overlay {
+            backdrop-filter: blur(1px);
         }
     </style>
     <script defer src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
@@ -154,220 +261,202 @@
 
     <main class="max-w-7xl mx-auto pt-20 sm:pt-24 pb-8 sm:pb-12 px-4 sm:px-6 lg:px-8" itemscope
         itemtype="https://schema.org/WebPage">
-        <div class="text-center mb-12">
-            <h1 class="text-4xl sm:text-5xl font-bold text-gray-800 mb-4" itemprop="headline">AI Paraphrasing Tool</h1>
-            <p class="text-xl text-gray-600 max-w-3xl mx-auto" itemprop="description">
-                Rephrase and rewrite your text using AI. Choose from different styles to transform your content while
-                maintaining meaning.
+        <div class="text-center mb-6">
+            <h1 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-2" itemprop="headline">AI Paraphrasing Tool</h1>
+            <p class="text-gray-600 max-w-2xl mx-auto" itemprop="description">
+                Rephrase and rewrite your text using AI. Choose from different styles to transform your content while maintaining meaning.
             </p>
+
+            <!-- Interface Toggle -->
+            <div class="flex justify-center mt-8 mb-6">
+                <div class="toggle-container">
+                    <button id="form-toggle" class="toggle-btn active">Form Input</button>
+                    <button id="chat-toggle" class="toggle-btn inactive">Chat Interface</button>
+                </div>
+            </div>
         </div>
 
-        <!-- User Counter -->
-        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-8 max-w-md mx-auto">
-            <div class="flex items-center justify-center space-x-4">
+        <!-- User Counter Section -->
+        <div class="flex justify-center mb-8">
+            <div class="inline-flex items-center px-4 py-2 bg-white rounded-full shadow-sm border border-blue-100">
                 <div class="flex items-center space-x-2">
-                    <i data-feather="users" class="w-5 h-5 text-blue-600"></i>
-                    <span class="text-gray-700 font-medium">Active Users:</span>
+                    <span class="relative flex h-3 w-3">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                    </span>
+                    <span class="text-gray-600 text-sm font-medium">Active Users:</span>
+                    <span id="user-counter" class="text-blue-600 font-bold text-sm">Loading...</span>
                 </div>
-                <div class="text-2xl font-bold text-blue-600" id="user-counter">Loading...</div>
             </div>
         </div>
 
-        <div class="max-w-6xl mx-auto">
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
-                <!-- Configuration Panel -->
-                <div class="lg:col-span-1 order-2 lg:order-1">
-                    <div class="bg-white p-4 sm:p-6 rounded-xl shadow-md lg:sticky lg:top-24">
-                        <h3 class="text-lg font-semibold text-gray-800 mb-4">Configuration</h3>
-
-                        <!-- Paraphrasing Style -->
-                        <div class="mb-4 sm:mb-6">
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Paraphrasing Style</label>
-                            <select id="style-select"
-                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base">
-                                <option value="standard">Standard</option>
-                                <option value="formal">Formal</option>
-                                <option value="casual">Casual</option>
-                                <option value="academic">Academic</option>
-                                <option value="creative">Creative</option>
-                                <option value="simple">Simple</option>
-                            </select>
+        <div id="form-interface" class="bg-white p-6 rounded-2xl shadow-xl border border-gray-100 relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"></div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Input Section -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-3 flex items-center">
+                        <i data-feather="edit-3" class="w-5 h-5 mr-2 text-purple-500"></i>Input Text
+                    </h3>
+                    <div class="space-y-4">
+                        <textarea id="text-input" placeholder="Enter the text you want to paraphrase..."
+                            class="w-full h-64 px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm resize-none"
+                            spellcheck="true"></textarea>
+                        
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-sm font-medium mb-1">Style</label>
+                                <select id="style-select" class="form-select w-full p-3 rounded-lg border border-gray-200">
+                                    <option value="standard">Standard</option>
+                                    <option value="formal">Formal</option>
+                                    <option value="casual">Casual</option>
+                                    <option value="academic">Academic</option>
+                                    <option value="creative">Creative</option>
+                                    <option value="simple">Simple</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-1">Tone</label>
+                                <select id="tone-select" class="form-select w-full p-3 rounded-lg border border-gray-200">
+                                    <option value="neutral">Neutral</option>
+                                    <option value="professional">Professional</option>
+                                    <option value="friendly">Friendly</option>
+                                    <option value="persuasive">Persuasive</option>
+                                    <option value="authoritative">Authoritative</option>
+                                </select>
+                            </div>
                         </div>
 
-                        <!-- Tone Adjustment -->
-                        <div class="mb-4 sm:mb-6">
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Tone</label>
-                            <select id="tone-select"
-                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base">
-                                <option value="neutral">Neutral</option>
-                                <option value="professional">Professional</option>
-                                <option value="friendly">Friendly</option>
-                                <option value="persuasive">Persuasive</option>
-                                <option value="authoritative">Authoritative</option>
-                            </select>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-sm font-medium mb-1">Length</label>
+                                <select id="length-select" class="form-select w-full p-3 rounded-lg border border-gray-200">
+                                    <option value="similar">Similar</option>
+                                    <option value="shorter">Shorter</option>
+                                    <option value="longer">Longer</option>
+                                </select>
+                            </div>
+                            <div class="flex items-center pt-6">
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="checkbox" id="preserve-keywords" class="form-checkbox h-4 w-4 text-purple-600 rounded" checked>
+                                    <span class="ml-2 text-sm text-gray-700">Preserve keywords</span>
+                                </label>
+                            </div>
                         </div>
 
-                        <!-- Length Preference -->
-                        <div class="mb-4 sm:mb-6">
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Length</label>
-                            <select id="length-select"
-                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base">
-                                <option value="similar">Similar Length</option>
-                                <option value="shorter">Shorter</option>
-                                <option value="longer">Longer</option>
-                            </select>
+                        <div class="flex gap-3">
+                            <button id="generate-btn" class="generate-btn px-5 py-3 rounded-lg font-medium flex-1">Paraphrase</button>
+                            <button id="clear-btn" class="clear-btn px-4 py-3 rounded-lg font-medium">Clear</button>
                         </div>
+                    </div>
+                </div>
 
-                        <!-- Preserve Keywords -->
-                        <div class="mb-4 sm:mb-6">
-                            <label class="flex items-center">
-                                <input type="checkbox" id="preserve-keywords"
-                                    class="form-checkbox h-4 w-4 text-blue-600" checked>
-                                <span class="ml-2 text-sm text-gray-700">Preserve key terms</span>
-                            </label>
+                <!-- Output Section -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-3 flex items-center">
+                        <i data-feather="check-circle" class="w-5 h-5 mr-2 text-green-500"></i>Paraphrased Result
+                    </h3>
+                    <div id="output-container" class="relative">
+                        <div id="text-output"
+                            class="w-full h-64 px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm whitespace-pre-wrap overflow-y-auto">
                         </div>
+                        <div id="loading-overlay"
+                            class="absolute inset-0 bg-white/90 flex flex-col items-center justify-center rounded-lg hidden z-10">
+                            <div class="animate-spin rounded-full h-10 w-10 border-b-2 border-purple-600 mb-3"></div>
+                            <p class="text-sm font-medium text-gray-600">Rephrasing...</p>
+                        </div>
+                    </div>
 
-                        <!-- Generate Button -->
-                        <button id="generate-btn"
-                            class="w-full bg-blue-600 text-white px-4 py-3 rounded-md hover:bg-blue-700 transition-colors font-medium text-sm sm:text-base mb-4 sm:mb-0">
-                            Paraphrase Text
+                    <div class="mt-4 grid grid-cols-2 gap-3">
+                        <button id="copy-btn" class="copy-btn px-4 py-2 rounded-lg font-medium flex items-center justify-center">
+                            <i data-feather="copy" class="w-4 h-4 mr-2"></i> Copy result
                         </button>
-
-                        <!-- Quick Actions -->
-                        <div class="pt-4 sm:pt-6 border-t border-gray-200">
-                            <h4 class="text-sm font-medium text-gray-700 mb-3">Quick Actions</h4>
-                            <div class="grid grid-cols-2 gap-2 sm:space-y-2 sm:grid-cols-1">
-                                <button id="copy-result-btn"
-                                    class="text-left px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded-md transition-colors">
-                                    Copy Result
-                                </button>
-                                <button id="clear-input-btn"
-                                    class="text-left px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded-md transition-colors">
-                                    Clear Input
-                                </button>
-                                <button id="load-sample-btn"
-                                    class="text-left px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded-md transition-colors">
-                                    Load Sample
-                                </button>
-                                <button id="download-result-btn"
-                                    class="text-left px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 rounded-md transition-colors">
-                                    Download
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Text Input/Output Panel -->
-                <div class="lg:col-span-2 order-1 lg:order-2">
-                    <div class="space-y-6">
-                        <!-- Text Input -->
-                        <div class="bg-white p-4 sm:p-6 rounded-xl shadow-md">
-                            <div class="flex justify-between items-center mb-4">
-                                <h3 class="text-lg font-semibold text-gray-800">Input Text</h3>
-                                <div class="flex space-x-2">
-                                    <button id="paste-btn"
-                                        class="px-3 py-1 text-sm bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 transition-colors">
-                                        Paste
-                                    </button>
-                                    <button id="clear-input-btn-main"
-                                        class="px-3 py-1 text-sm bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 transition-colors">
-                                        Clear
-                                    </button>
-                                </div>
-                            </div>
-                            <textarea id="text-input" placeholder="Enter the text you want to paraphrase..."
-                                class="w-full h-64 px-3 py-2 bg-gray-50 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm resize-none"
-                                spellcheck="true"></textarea>
-                        </div>
-
-                        <!-- Text Output -->
-                        <div class="bg-white p-4 sm:p-6 rounded-xl shadow-md">
-                            <div class="flex justify-between items-center mb-4">
-                                <h3 class="text-lg font-semibold text-gray-800">Paraphrased Text</h3>
-                                <div class="flex space-x-2">
-                                    <button id="copy-output-btn"
-                                        class="px-3 py-1 text-sm bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 transition-colors">
-                                        Copy
-                                    </button>
-                                    <button id="compare-btn"
-                                        class="px-3 py-1 text-sm bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 transition-colors">
-                                        Compare
-                                    </button>
-                                </div>
-                            </div>
-                            <div id="output-container" class="relative">
-                                <div id="text-output"
-                                    class="w-full min-h-64 px-3 py-2 bg-gray-50 border border-gray-300 rounded-md text-sm whitespace-pre-wrap">
-                                </div>
-                                <div id="loading-overlay"
-                                    class="absolute inset-0 bg-white bg-opacity-90 flex items-center justify-center rounded-md hidden">
-                                    <div class="flex flex-col items-center space-y-3">
-                                        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-                                        <p class="text-sm text-gray-600">Paraphrasing text...</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <button id="compare-btn" class="px-4 py-2 rounded-lg border border-gray-200 font-medium flex items-center justify-center hover:bg-gray-50 transition-colors">
+                            <i data-feather="repeat" class="w-4 h-4 mr-2"></i> Compare
+                        </button>
                     </div>
                 </div>
             </div>
 
-            <!-- Statistics -->
-            <div class="mt-6 lg:mt-8 grid grid-cols-1 sm:grid-cols-4 gap-4 lg:gap-6">
-                <div class="bg-white p-4 sm:p-6 rounded-xl shadow-md text-center">
-                    <div class="text-xl sm:text-2xl font-bold text-blue-600 mb-2" id="input-words">0</div>
-                    <div class="text-sm sm:text-base text-gray-600">Input Words</div>
-                </div>
-                <div class="bg-white p-4 sm:p-6 rounded-xl shadow-md text-center">
-                    <div class="text-xl sm:text-2xl font-bold text-green-600 mb-2" id="output-words">0</div>
-                    <div class="text-sm sm:text-base text-gray-600">Output Words</div>
-                </div>
-                <div class="bg-white p-4 sm:p-6 rounded-xl shadow-md text-center">
-                    <div class="text-xl sm:text-2xl font-bold text-purple-600 mb-2" id="similarity-score">0%</div>
-                    <div class="text-sm sm:text-base text-gray-600">Similarity</div>
-                </div>
-                <div class="bg-white p-4 sm:p-6 rounded-xl shadow-md text-center">
-                    <div class="text-xl sm:text-2xl font-bold text-orange-600 mb-2" id="processing-time">0ms</div>
-                    <div class="text-sm sm:text-base text-gray-600">Processing Time</div>
-                </div>
-            </div>
-
-            <!-- Comparison Modal -->
-            <div id="comparison-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
-                <div class="flex items-center justify-center min-h-screen p-4">
-                    <div class="bg-white rounded-lg max-w-4xl w-full max-h-screen overflow-y-auto">
-                        <div class="p-6">
-                            <div class="flex justify-between items-center mb-4">
-                                <h3 class="text-lg font-semibold text-gray-800">Text Comparison</h3>
-                                <button id="close-comparison" class="text-gray-500 hover:text-gray-700">
-                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M6 18L18 6M6 6l12 12"></path>
-                                    </svg>
-                                </button>
-                            </div>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div>
-                                    <h4 class="font-medium text-gray-700 mb-2">Original Text</h4>
-                                    <div id="original-text"
-                                        class="p-3 bg-red-50 border border-red-200 rounded-md text-sm max-h-64 overflow-y-auto">
-                                    </div>
-                                </div>
-                                <div>
-                                    <h4 class="font-medium text-gray-700 mb-2">Paraphrased Text</h4>
-                                    <div id="paraphrased-text"
-                                        class="p-3 bg-green-50 border border-green-200 rounded-md text-sm max-h-64 overflow-y-auto">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+            <!-- Statistics Grid -->
+            <div class="mt-8 pt-8 border-t border-gray-100">
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                    <div class="text-center">
+                        <div class="text-xl font-bold text-purple-600" id="input-words">0</div>
+                        <div class="text-xs text-gray-500 uppercase tracking-wider font-semibold">Input Words</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-xl font-bold text-green-600" id="output-words">0</div>
+                        <div class="text-xs text-gray-500 uppercase tracking-wider font-semibold">Output Words</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-xl font-bold text-blue-600" id="similarity-score">0%</div>
+                        <div class="text-xs text-gray-500 uppercase tracking-wider font-semibold">Similarity</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-xl font-bold text-orange-600" id="processing-time">0ms</div>
+                        <div class="text-xs text-gray-500 uppercase tracking-wider font-semibold">Processing</div>
                     </div>
                 </div>
             </div>
-
-            <div id="message" class="mt-4 text-center text-sm text-gray-600 px-4"></div>
         </div>
+
+        <!-- Chat Interface (Hidden by default) -->
+        <div id="chat-interface" class="bg-white p-6 rounded-2xl shadow-xl border border-gray-100 relative overflow-hidden hidden">
+            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"></div>
+            <div class="mb-4">
+                <h3 class="text-lg font-semibold text-gray-900 mb-1">Chat with AI Rephraser</h3>
+                <p class="text-sm text-gray-600">Paste your text and tell the AI how you want it rewritten, or ask for variations.</p>
+            </div>
+
+            <div id="chat-box" class="border border-gray-100 rounded-xl p-4 h-96 overflow-y-auto mb-4 bg-gray-50 shadow-inner">
+                <div class="msg bot flex items-start gap-3">
+                    <div class="bg-purple-100 p-2 rounded-lg">
+                        <i data-feather="cpu" class="w-4 h-4 text-purple-600"></i>
+                    </div>
+                    <div>Hello! I'm your AI Paraphrasing Assistant. You can paste some text here and ask me to rephrase it in any style you like. How can I help you today?</div>
+                </div>
+            </div>
+
+            <div class="flex gap-2 items-center bg-gray-50 p-2 rounded-xl border border-gray-200">
+                <input type="text" id="user-input"
+                    class="flex-1 px-4 py-3 bg-transparent border-none focus:ring-0 text-sm"
+                    placeholder="E.g., Paraphrase this text to be more professional: [paste text]"
+                    onkeypress="if(event.key === 'Enter') AI_TOOL.sendMessage()">
+                <button onclick="AI_TOOL.sendMessage()"
+                    class="bg-purple-600 text-white p-3 rounded-lg hover:bg-purple-700 transition-colors shadow-lg shadow-purple-200">
+                    <i data-feather="send" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Comparison Modal remains the same but restyled if needed -->
+        <div id="comparison-modal" class="fixed inset-0 bg-gray-900/50 backdrop-blur-sm hidden z-[60]">
+            <div class="flex items-center justify-center min-h-screen p-4">
+                <div class="bg-white rounded-2xl max-w-4xl w-full shadow-2xl overflow-hidden opacity-0 translate-y-4 transition-all duration-300 transform" id="modal-content">
+                    <div class="p-6 border-b border-gray-100 flex justify-between items-center bg-gray-50/50">
+                        <h3 class="text-lg font-bold text-gray-800 flex items-center">
+                            <i data-feather="columns" class="w-5 h-5 mr-2 text-blue-500"></i>Side-by-Side Comparison
+                        </h3>
+                        <button id="close-comparison" class="p-2 hover:bg-gray-200 rounded-full transition-colors">
+                            <i data-feather="x" class="w-5 h-5 text-gray-500"></i>
+                        </button>
+                    </div>
+                    <div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-6 bg-white">
+                        <div>
+                            <h4 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Original</h4>
+                            <div id="original-text" class="p-4 bg-red-50/50 border border-red-100 rounded-xl text-sm leading-relaxed text-gray-700 max-h-80 overflow-y-auto shadow-inner"></div>
+                        </div>
+                        <div>
+                            <h4 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Paraphrased</h4>
+                            <div id="paraphrased-text" class="p-4 bg-green-50/50 border border-green-100 rounded-xl text-sm leading-relaxed text-gray-700 max-h-80 overflow-y-auto shadow-inner"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="message" class="fixed bottom-8 left-1/2 -translate-x-1/2 px-6 py-3 rounded-full shadow-2xl z-50 transform translate-y-20 transition-all duration-500 flex items-center gap-2"></div>
     </main>
     <script>(function () { var _0x = ['aHR0cHM6Ly9uaW0tc2Vydi52ZXJjZWwuYXBwL2NoYXQ=']; window.API_URL = atob(_0x[0]); })();</script>
     <script>

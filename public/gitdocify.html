@@ -547,7 +547,7 @@
                 // Generate documentation sections
                 generatedDocs = {
                     overview: await generateOverview(repoData, readme),
-                    api: await generateAPIReference(repoData, languages),
+                    api: await generateAPIReference(repoData, languages, readme),
                     setup: await generateSetupGuide(repoData, languages),
                     usage: await generateUsageExamples(repoData, languages),
                     contributing: await generateContributingGuide(repoData)
@@ -593,7 +593,7 @@
             
                     
                         **README Content**
-                        ${readme && readme.status === 'fulfilled' ? readme.value.substring(0, 1000) + (readme.value.length > 1000 ? '...' : '') : 'No README content available.'}
+                        ${readme && readme.status === 'fulfilled' ? (readme.value.length > 1500 ? readme.value.substring(0, 1500) + '...' : readme.value) : 'No README content available.'}
                     
                 `;
 
@@ -627,7 +627,7 @@
                     <div>
                         <h4 class="text-lg font-semibold text-gray-800 mb-2">README Content</h4>
                         <div class="bg-gray-50 p-4 rounded-lg">
-                            <pre class="text-sm text-gray-700 whitespace-pre-wrap">${readme.value.substring(0, 1000)}${readme.value.length > 1000 ? '...' : ''}</pre>
+                            <pre class="text-sm text-gray-700 whitespace-pre-wrap">${readme.value.length > 1500 ? readme.value.substring(0, 1500) + '...' : readme.value}</pre>
                         </div>
                     </div>
                     ` : ''}
@@ -637,7 +637,28 @@
             return { markdown, html };
         }
 
-        async function generateAPIReference(repoData, languages) {
+        function extractAPIFromReadme(readme) {
+            const lines = readme.split('\n');
+            let inAPI = false;
+            let apiText = '';
+            for (let line of lines) {
+                if (line.toLowerCase().includes('api reference') || line.toLowerCase().includes('## api')) {
+                    inAPI = true;
+                } else if ((line.startsWith('## ') || line.startsWith('### ')) && inAPI && !line.toLowerCase().includes('api')) {
+                    break;
+                } else if (inAPI && (line.toLowerCase().includes('contributing') || line.toLowerCase().includes('support') || line.toLowerCase().includes('license'))) {
+                    break;
+                }
+                if (inAPI) {
+                    apiText += line + '\n';
+                }
+            }
+            return apiText.trim() || 'API documentation not explicitly found in README. Please check the repository for API docs or documentation files.';
+        }
+
+        async function generateAPIReference(repoData, languages, readme) {
+            const apiContent = readme && readme.status === 'fulfilled' ? extractAPIFromReadme(readme.value) : 'No API documentation found in README.';
+            
             const markdown = `## API Reference
 
                     
@@ -647,8 +668,7 @@
                 
                 
                     **API Structure**
-                    This section would contain detailed API documentation extracted from your codebase. For a complete analysis, consider adding JSDoc comments or similar documentation standards to your code.
-
+                    ${apiContent}
                     
                         
                             
@@ -670,8 +690,10 @@
                     ` : ''}
                     <div>
                         <h4 class="text-lg font-semibold text-gray-800 mb-2">API Structure</h4>
-                        <p class="text-gray-600 mb-4">This section would contain detailed API documentation extracted from your codebase. For a complete analysis, consider adding JSDoc comments or similar documentation standards to your code.</p>
-                        <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <pre class="text-sm text-gray-700 whitespace-pre-wrap">${apiContent}</pre>
+                        </div>
+                        <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mt-4">
                             <div class="flex items-center mb-2">
                                 <i data-feather="alert-triangle" class="w-5 h-5 text-yellow-600 mr-2"></i>
                                 <span class="font-medium text-yellow-800">Note</span>
@@ -712,27 +734,27 @@ ${languages.status === 'fulfilled' && languages.value.Python ? 'pip install -r r
                 
 
                 
-                    **Quick Start**
+**Quick Start**
                     
 # Run the application
 ${languages.status === 'fulfilled' && languages.value.JavaScript ? 'npm start' : 'python main.py'}
                     
-                `;
+`;
 
-            const html = `
-                <div class="space-y-6">
-                    <div>
-                        <h4 class="text-lg font-semibold text-gray-800 mb-2">Prerequisites</h4>
-                        <ul class="list-disc list-inside space-y-1 text-gray-600">
-                            <li>Git (for cloning the repository)</li>
-                            <li>Node.js ${languages.status === 'fulfilled' && languages.value.JavaScript ? '(for JavaScript projects)' : ''}</li>
-                            <li>Python ${languages.status === 'fulfilled' && languages.value.Python ? '(for Python projects)' : ''}</li>
-                            <li>Package manager (npm, yarn, pip, etc.)</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 class="text-lg font-semibold text-gray-800 mb-2">Installation Steps</h4>
-                        <div class="code-block">
+const html = `
+<div class="space-y-6">
+<div>
+    <h4 class="text-lg font-semibold text-gray-800 mb-2">Prerequisites</h4>
+    <ul class="list-disc list-inside space-y-1 text-gray-600">
+        <li>Git (for cloning the repository)</li>
+        <li>Node.js ${languages.status === 'fulfilled' && languages.value.JavaScript ? '(for JavaScript projects)' : ''}</li>
+        <li>Python ${languages.status === 'fulfilled' && languages.value.Python ? '(for Python projects)' : ''}</li>
+        <li>Package manager (npm, yarn, pip, etc.)</li>
+    </ul>
+</div>
+<div>
+<h4 class="text-lg font-semibold text-gray-800 mb-2">Installation Steps</h4>
+<div class="code-block">
 # Clone the repository
 git clone https://github.com/${repoData.owner.login}/${repoData.name}.git
 cd ${repoData.name}
@@ -756,6 +778,82 @@ ${languages.status === 'fulfilled' && languages.value.JavaScript ? 'npm start' :
         }
 
         async function generateUsageExamples(repoData, languages) {
+            const isJavaScript = languages.status === 'fulfilled' && languages.value && 'JavaScript' in languages.value;
+            const isReact = repoData.name.toLowerCase().includes('react');
+            
+            let basicExample, advancedExample;
+            
+            if (isJavaScript && isReact) {
+                basicExample = `import React from 'react';
+import ReactDOM from 'react-dom/client';
+
+function App() {
+  return (
+    <div>
+      <h1>Hello, React!</h1>
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);`;
+                
+                advancedExample = `import React, { useState, useEffect } from 'react';
+
+function Counter() {
+  const [count, setCount] = useState(0);
+  
+  useEffect(() => {
+    document.title = \`Count: \${count}\`;
+  }, [count]);
+  
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
+    </div>
+  );
+}
+
+export default Counter;`;
+            } else if (isJavaScript) {
+                basicExample = `import ${repoData.name.replace(/-/g, '_')} from '${repoData.name}';
+
+// Basic usage
+const instance = new ${repoData.name.replace(/-/g, '_').replace(/./, c => c.toUpperCase())}();
+instance.doSomething();`;
+                
+                advancedExample = `import ${repoData.name.replace(/-/g, '_')} from '${repoData.name}';
+
+// Advanced configuration
+const config = {
+    option1: 'value1',
+    option2: 'value2'
+};
+
+const advancedInstance = new ${repoData.name.replace(/-/g, '_').replace(/./, c => c.toUpperCase())}(config);
+advancedInstance.performAdvancedTask();`;
+            } else {
+                basicExample = `// Example usage (adapt based on your project type)
+import ${repoData.name.replace(/-/g, '_')} from '${repoData.name}';
+
+// Initialize
+const instance = new ${repoData.name.replace(/-/g, '_').replace(/./, c => c.toUpperCase())}();
+
+// Use the library
+instance.doSomething();`;
+                
+                advancedExample = `// Advanced configuration
+const config = {
+    option1: 'value1',
+    option2: 'value2'
+};
+
+const advancedInstance = new ${repoData.name.replace(/-/g, '_').replace(/./, c => c.toUpperCase())}(config);`;
+            }
+            
             const markdown = `## Usage Examples
 
                 
@@ -763,14 +861,7 @@ ${languages.status === 'fulfilled' && languages.value.JavaScript ? 'npm start' :
                     Here are some common usage patterns for ${repoData.name}:
 
                     
-// Example usage (adapt based on your project type)
-import ${repoData.name.replace(/-/g, '_')} from '${repoData.name}';
-
-// Initialize
-const instance = new ${repoData.name.replace(/-/g, '_').replace(/./, c => c.toUpperCase())}();
-
-// Use the library
-instance.doSomething();
+${basicExample}
                     
                 
 
@@ -779,13 +870,7 @@ instance.doSomething();
                     More complex usage scenarios:
 
                     
-// Advanced configuration
-const config = {
-    option1: 'value1',
-    option2: 'value2'
-};
-
-const advancedInstance = new ${repoData.name.replace(/-/g, '_').replace(/./, c => c.toUpperCase())}(config);
+${advancedExample}
                     
                 `;
 
@@ -795,27 +880,14 @@ const advancedInstance = new ${repoData.name.replace(/-/g, '_').replace(/./, c =
                         <h4 class="text-lg font-semibold text-gray-800 mb-2">Basic Usage</h4>
                         <p class="text-gray-600 mb-4">Here are some common usage patterns for ${repoData.name}:</p>
                         <div class="code-block">
-// Example usage (adapt based on your project type)
-import ${repoData.name.replace(/-/g, '_')} from '${repoData.name}';
-
-// Initialize
-const instance = new ${repoData.name.replace(/-/g, '_').replace(/./, c => c.toUpperCase())}();
-
-// Use the library
-instance.doSomething();
+${basicExample}
                         </div>
                     </div>
                     <div>
                         <h4 class="text-lg font-semibold text-gray-800 mb-2">Advanced Examples</h4>
                         <p class="text-gray-600 mb-4">More complex usage scenarios:</p>
                         <div class="code-block">
-// Advanced configuration
-const config = {
-    option1: 'value1',
-    option2: 'value2'
-};
-
-const advancedInstance = new ${repoData.name.replace(/-/g, '_').replace(/./, c => c.toUpperCase())}(config);
+${advancedExample}
                         </div>
                     </div>
                 </div>

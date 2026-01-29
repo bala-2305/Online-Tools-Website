@@ -377,7 +377,7 @@
             </div>
 
             <!-- Suggested Questions -->
-            <div class="mt-6 grid sm:grid-cols-2 gap-4">
+            <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 <button
                     class="suggested-question p-3 bg-white border border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50 transition-colors text-left">
                     <div class="font-medium text-gray-800">Summarize the main points</div>
@@ -397,6 +397,16 @@
                     class="suggested-question p-3 bg-white border border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50 transition-colors text-left">
                     <div class="font-medium text-gray-800">What are the recommendations?</div>
                     <div class="text-sm text-gray-500">Find suggested actions or next steps</div>
+                </button>
+                <button
+                    class="suggested-question p-3 bg-white border border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50 transition-colors text-left">
+                    <div class="font-medium text-gray-800">List the main topics</div>
+                    <div class="text-sm text-gray-500">Get an outline of the document structure</div>
+                </button>
+                <button
+                    class="suggested-question p-3 bg-white border border-gray-200 rounded-lg hover:border-blue-300 hover:bg-blue-50 transition-colors text-left">
+                    <div class="font-medium text-gray-800">What are the conclusions?</div>
+                    <div class="text-sm text-gray-500">Summarize the final thoughts and outcomes</div>
                 </button>
             </div>
         </div>
@@ -470,10 +480,9 @@
 
     <script>(function () { var _0x = ['aHR0cHM6Ly9uaW0tc2Vydi52ZXJjZWwuYXBwL2NoYXQ=']; window.API_URL = atob(_0x[0]); })();</script>
     <script>
-        // Initialize PDF.js
+        
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
-        // Initialize user counter
         async function initializeUserCounter() {
             const counterElement = document.getElementById('user-counter');
             if (!counterElement) return;
@@ -492,9 +501,8 @@
         class PDFChatBot {
             constructor() {
                 this.pdfText = '';
-                this.pdfPages = [];
+                this.pageData = [];
                 this.isProcessing = false;
-
                 this.initializeElements();
                 this.bindEvents();
             }
@@ -577,6 +585,10 @@
                 this.showProcessingStatus();
                 this.pdfTitle.textContent = file.name;
 
+                // Show file info
+                const fileSizeMB = (file.size / (1024 * 1024)).toFixed(2);
+                this.pdfPages.textContent = `Processing ${fileSizeMB}MB PDF...`;
+
                 try {
                     await this.processPDF(file);
                     this.showChatInterface();
@@ -594,13 +606,14 @@
                 const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
 
                 this.pdfText = '';
-                this.pdfPages = [];
+                this.pageData = [];
 
                 const totalPages = pdf.numPages;
                 this.pdfPages.textContent = `${totalPages} pages loaded`;
 
                 for (let pageNum = 1; pageNum <= totalPages; pageNum++) {
                     this.updateProgress((pageNum / totalPages) * 100);
+                    this.pdfPages.textContent = `Processing page ${pageNum} of ${totalPages}...`;
 
                     const page = await pdf.getPage(pageNum);
                     const textContent = await page.getTextContent();
@@ -611,7 +624,7 @@
                         .replace(/\s+/g, ' ')
                         .trim();
 
-                    this.pdfPages.push({
+                    this.pageData.push({
                         pageNumber: pageNum,
                         text: pageText
                     });
@@ -624,6 +637,7 @@
                 this.wordCount.textContent = wordCount.toLocaleString();
 
                 this.updateProgress(100);
+                this.pdfPages.textContent = `${totalPages} pages loaded`;
             }
 
             sendMessage() {
@@ -807,7 +821,7 @@
                 this.uploadSection.classList.remove('hidden');
                 this.pdfFileInput.value = '';
                 this.pdfText = '';
-                this.pdfPages = [];
+                this.pageData = [];
                 this.chatMessages.innerHTML = `
                     <div class="chat-message flex items-start space-x-3">
                         <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">

@@ -197,7 +197,7 @@
             padding: 24px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             min-height: 600px;
-            max-height: 800px;
+            max-height: 1200px;
             overflow-y: auto;
             overflow-x: hidden;
             scrollbar-width: thin;
@@ -358,6 +358,102 @@
             border: 1px solid #f59e0b;
         }
 
+        /* Modern UI Enhancements */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .decorative-blob {
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        .blob-blue {
+            background: #3b82f6;
+            top: -100px;
+            right: -100px;
+        }
+
+        .blob-purple {
+            background: #8b5cf6;
+            bottom: -100px;
+            left: -100px;
+        }
+
+        .color-strip {
+            height: 4px;
+            width: 100%;
+            border-radius: 2px;
+            margin-bottom: 24px;
+        }
+
+        .strip-blue { background: linear-gradient(90deg, #3b82f6, transparent); }
+        .strip-green { background: linear-gradient(90deg, #10b981, transparent); }
+        .strip-purple { background: linear-gradient(90deg, #8b5cf6, transparent); }
+        .strip-orange { background: linear-gradient(90deg, #f59e0b, transparent); }
+
+        .learning-type-card {
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px 16px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-align: center;
+            position: relative;
+            background: white;
+            overflow: hidden;
+        }
+
+        .learning-type-card:hover {
+            border-color: #3b82f6;
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.1);
+        }
+
+        .learning-type-card.selected {
+            border-color: #3b82f6;
+            background: #f0f7ff;
+            box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.2);
+        }
+
+        .learning-type-card.selected::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: #3b82f6;
+        }
+
+        .learning-type-card i {
+            transition: transform 0.3s ease;
+        }
+
+        .learning-type-card:hover i {
+            transform: scale(1.1);
+        }
+
+        /* Float animation for the logo */
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .floating-icon {
+            animation: floating 3s ease-in-out infinite;
+        }
+
         /* Social Share Styles */
         .social-share-section {
             background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(79, 70, 229, 0.05) 100%);
@@ -463,6 +559,10 @@
 <script>(function (s) { s.dataset.zone = '10030137', s.src = 'https://gizokraijaw.net/vignette.min.js' })([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
 
 <body class="bg-gray-50 min-h-screen font-['Poppins']">
+    <!-- Decorative Background Blobs -->
+    <div class="decorative-blob blob-blue"></div>
+    <div class="decorative-blob blob-purple"></div>
+
     <noscript>
         <div
             style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; color: #fff; display: flex; align-items: center; justify-content: center; z-index: 999999; font-family: Arial, sans-serif;">
@@ -529,17 +629,16 @@
             </div>
             <div class="relative z-10">
                 <div class="flex justify-center items-center mb-6">
-                    <div class="bg-gradient-to-br from-blue-500 to-indigo-600 p-4 rounded-2xl shadow-lg">
+                    <div class="bg-gradient-to-br from-blue-500 to-indigo-600 p-4 rounded-2xl shadow-lg floating-icon">
                         <img src="images/letter-d.png" alt="Daedalus Logo" class="w-16 h-16">
                     </div>
                 </div>
                 <h1
-                    class="text-4xl sm:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mb-4">
+                    class="text-4xl sm:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 mb-6 transition-all duration-300">
                     AI Learning Assistant
                 </h1>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                    Get personalized learning support with AI. Generate study guides, explanations, practice questions,
-                    and learning materials tailored to your needs.
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-light">
+                    Transform your learning experience with intelligent, personalized support. Generate comprehensive study guides, clear explanations, and targeted practice in seconds.
                 </p>
             </div>
         </div>
@@ -557,8 +656,12 @@
 
         <div class="grid lg:grid-cols-2 gap-8 mb-8">
             <!-- Input Form -->
-            <div class="tool-card">
-                <h2 class="text-2xl font-semibold text-gray-800 mb-6">What do you need help with?</h2>
+            <div class="tool-card glass-card">
+                <div class="color-strip strip-blue"></div>
+                <h2 class="text-2xl font-semibold text-gray-800 mb-6 flex items-center">
+                    <i data-feather="settings" class="w-6 h-6 mr-3 text-blue-600"></i>
+                    What do you need help with?
+                </h2>
 
                 <form id="learning-form" class="space-y-6">
                     <div>
@@ -592,22 +695,26 @@
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">What type of help do you
                             need?</label>
-                        <div class="grid grid-cols-2 gap-3">
-                            <div class="learning-type-card" data-type="explanation">
-                                <i data-feather="help-circle" class="w-6 h-6 mx-auto mb-2 text-blue-600"></i>
-                                <span class="text-sm font-medium">Explanation</span>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="learning-type-card group" data-type="explanation">
+                                <i data-feather="help-circle" class="w-8 h-8 mx-auto mb-3 text-blue-600 group-hover:scale-110 transition-transform"></i>
+                                <span class="text-sm font-semibold text-gray-700 block">Explanation</span>
+                                <p class="text-[10px] text-gray-500 mt-1">Deep dives into concepts</p>
                             </div>
-                            <div class="learning-type-card" data-type="study-guide">
-                                <i data-feather="book" class="w-6 h-6 mx-auto mb-2 text-green-600"></i>
-                                <span class="text-sm font-medium">Study Guide</span>
+                            <div class="learning-type-card group" data-type="study-guide">
+                                <i data-feather="book" class="w-8 h-8 mx-auto mb-3 text-green-600 group-hover:scale-110 transition-transform"></i>
+                                <span class="text-sm font-semibold text-gray-700 block">Study Guide</span>
+                                <p class="text-[10px] text-gray-500 mt-1">Structured key points</p>
                             </div>
-                            <div class="learning-type-card" data-type="practice-questions">
-                                <i data-feather="edit" class="w-6 h-6 mx-auto mb-2 text-purple-600"></i>
-                                <span class="text-sm font-medium">Practice Questions</span>
+                            <div class="learning-type-card group" data-type="practice-questions">
+                                <i data-feather="edit" class="w-8 h-8 mx-auto mb-3 text-purple-600 group-hover:scale-110 transition-transform"></i>
+                                <span class="text-sm font-semibold text-gray-700 block">Practice Questions</span>
+                                <p class="text-[10px] text-gray-500 mt-1">Test your knowledge</p>
                             </div>
-                            <div class="learning-type-card" data-type="examples">
-                                <i data-feather="code" class="w-6 h-6 mx-auto mb-2 text-orange-600"></i>
-                                <span class="text-sm font-medium">Examples</span>
+                            <div class="learning-type-card group" data-type="examples">
+                                <i data-feather="code" class="w-8 h-8 mx-auto mb-3 text-orange-600 group-hover:scale-110 transition-transform"></i>
+                                <span class="text-sm font-semibold text-gray-700 block">Examples</span>
+                                <p class="text-[10px] text-gray-500 mt-1">Real-world use cases</p>
                             </div>
                         </div>
                         <input type="hidden" id="learning-type" required>
@@ -644,9 +751,13 @@
             </div>
 
             <!-- Preview -->
-            <div class="tool-card">
+            <div class="tool-card glass-card">
+                <div class="color-strip strip-purple"></div>
                 <div class="flex justify-between items-center mb-6">
-                    <h2 class="text-2xl font-semibold text-gray-800">Your Learning Materials</h2>
+                    <h2 class="text-2xl font-semibold text-gray-800 flex items-center">
+                        <i data-feather="layout" class="w-6 h-6 mr-3 text-purple-600"></i>
+                        Your Learning Materials
+                    </h2>
                     <div class="flex space-x-2">
                         <button id="copy-btn"
                             class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors text-sm hidden">
@@ -686,33 +797,34 @@
         </div>
 
         <!-- Features Section -->
-        <section class="bg-white rounded-2xl shadow-lg p-8 mb-8">
-            <h2 class="text-2xl font-semibold text-gray-800 mb-6 text-center">Why Use Our AI Learning Assistant?</h2>
-            <div class="grid md:grid-cols-3 gap-6">
-                <div class="text-center">
-                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <section class="bg-white rounded-2xl shadow-lg p-8 mb-8 glass-card">
+            <div class="color-strip strip-green mx-auto mb-6" style="width: 100px; height: 6px;"></div>
+            <h2 class="text-2xl font-semibold text-gray-800 mb-8 text-center">Why Use Our AI Learning Assistant?</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center group">
+                    <div class="w-20 h-20 bg-blue-50 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-blue-100 transition-colors duration-300">
+                        <svg class="w-10 h-10 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                         </svg>
                     </div>
-                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Personalized Learning</h3>
-                    <p class="text-gray-600">Get explanations and materials tailored to your learning style and level.
+                    <h3 class="text-lg font-bold text-gray-800 mb-3">Personalized Learning</h3>
+                    <p class="text-gray-600 leading-relaxed">Get explanations and materials tailored to your learning style and level.
                     </p>
                 </div>
-                <div class="text-center">
-                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="text-center group">
+                    <div class="w-20 h-20 bg-green-50 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-green-100 transition-colors duration-300">
+                        <svg class="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <circle cx="12" cy="12" r="10"></circle>
                             <polyline points="12,6 12,12 16,14"></polyline>
                         </svg>
                     </div>
-                    <h3 class="text-lg font-semibold text-gray-800 mb-2">24/7 Availability</h3>
-                    <p class="text-gray-600">Access help anytime, anywhere. No scheduling or waiting required.</p>
+                    <h3 class="text-lg font-bold text-gray-800 mb-3">24/7 Availability</h3>
+                    <p class="text-gray-600 leading-relaxed">Access help anytime, anywhere. No scheduling or waiting required.</p>
                 </div>
-                <div class="text-center">
-                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="text-center group">
+                    <div class="w-20 h-20 bg-purple-50 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-purple-100 transition-colors duration-300">
+                        <svg class="w-10 h-10 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <circle cx="12" cy="12" r="10"></circle>
                             <circle cx="12" cy="12" r="4"></circle>
                             <line x1="4.93" y1="4.93" x2="9.17" y2="9.17"></line>
@@ -722,25 +834,26 @@
                             <line x1="4.93" y1="19.07" x2="9.17" y2="14.83"></line>
                         </svg>
                     </div>
-                    <h3 class="text-lg font-semibold text-gray-800 mb-2">Multiple Subjects</h3>
-                    <p class="text-gray-600">Comprehensive coverage across all major academic subjects and topics.</p>
+                    <h3 class="text-lg font-bold text-gray-800 mb-3">Multiple Subjects</h3>
+                    <p class="text-gray-600 leading-relaxed">Comprehensive coverage across all major academic subjects and topics.</p>
                 </div>
             </div>
         </section>
 
         <!-- Social Share Section -->
-        <section class="social-share-section my-12">
+        <section class="social-share-section my-16 glass-card border-none shadow-xl">
             <div class="relative z-10">
-                <div class="flex items-center justify-center mb-6">
-                    <div class="bg-gradient-to-br from-blue-500 to-indigo-600 p-3 rounded-xl shadow-lg">
+                <div class="flex items-center justify-center mb-8">
+                    <div class="bg-gradient-to-br from-blue-500 to-indigo-600 p-4 rounded-2xl shadow-lg floating-icon">
                         <img src="images/letter-d.png" alt="Daedalus Logo" class="w-10 h-10">
                     </div>
                 </div>
-                <h2 class="text-2xl font-bold text-gray-800 mb-3">Share Daedalus AI Learning Assistant</h2>
-                <p class="text-gray-600 mb-8 max-w-2xl mx-auto">Help others discover the power of AI-assisted learning.
-                    Share this tool with students, teachers, and anyone eager to learn!</p>
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">Spread the Knowledge</h2>
+                <p class="text-lg text-gray-600 mb-10 max-w-2xl mx-auto font-light">
+                    Knowledge grows when shared. Help fellow students and lifelong learners discover the power of AI-assisted education by sharing Daedalus!
+                </p>
 
-                <div class="flex flex-wrap justify-center gap-4">
+                <div class="flex flex-wrap justify-center gap-6">
                     <button onclick="shareOnTwitter()" class="social-share-button share-twitter shadow-lg">
                         <svg fill="currentColor" viewBox="0 0 24 24">
                             <path
@@ -873,7 +986,7 @@ RESPONSE FORMAT:
 - NO preamble, NO markdown formatting, NO code fences
 - Return ONLY pure HTML content that can be directly inserted into a webpage
 - The entire response should be valid HTML
-- Make sure content spans 800-1500+ words for comprehensive coverage
+- IMPORTANT: Ensure the response is COMPLETE and detailed. If the topic is complex, provide a long, thorough explanation but do not cut off mid-sentence.
 
 Additional requirements:
 1. Provide 2-3 detailed examples for each major concept with full HTML markup
@@ -884,13 +997,13 @@ Additional requirements:
 6. Break down complex topics into digestible chunks with proper headers
 7. Use analogies and comparisons with HTML formatting
 8. Include review questions with answers
-9. Ensure the response is COMPLETE and not truncated
+9. CRITICAL: Ensure the response ends naturally and is not truncated.
 10. Start immediately with content - do not wrap in any code blocks or markdown`;
 
             try {
-                // Create AbortController for timeout - increased to 60 seconds for longer responses
+                // Create AbortController for timeout - increased to 180 seconds for very long responses
                 const controller = new AbortController();
-                const timeoutId = setTimeout(() => controller.abort(), 60000); // 60 second timeout
+                const timeoutId = setTimeout(() => controller.abort(), 180000); // 180 second timeout
 
                 const response = await fetch(apiUrl, {
                     method: "POST",
@@ -902,7 +1015,9 @@ Additional requirements:
                         messages: [
                             { role: "system", content: "You are a helpful AI assistant that provides complete, comprehensive learning materials. IMPORTANT: Always respond with ONLY raw HTML content. NEVER use markdown formatting, code fences (```), or any markdown syntax. Your entire response should be pure HTML starting directly with tags like <h2>, <p>, <ul>, etc." },
                             { role: "user", content: prompt }
-                        ]
+                        ],
+                        max_tokens: 4000,
+                        temperature: 0.7
                     }),
                     signal: controller.signal
                 });
@@ -938,7 +1053,7 @@ Additional requirements:
             } catch (error) {
                 console.error("Error:", error);
                 if (error.name === 'AbortError') {
-                    console.error("Request timed out after 60 seconds");
+                    console.error("Request timed out after 180 seconds");
                     // Show timeout-specific error
                     hideLoading();
                     DOM.previewContainer.innerHTML = `
@@ -948,7 +1063,7 @@ Additional requirements:
                                 <path d="M12 6v6l4 2"></path>
                             </svg>
                             <p class="text-lg text-yellow-600">Request timed out</p>
-                            <p class="text-sm text-gray-500 mt-2">The AI took too long to respond. This can happen during peak usage.</p>
+                            <p class="text-sm text-gray-500 mt-2">The AI took too long to generate the comprehensive materials. Please try a more specific topic or try again.</p>
                             <div class="mt-4 space-x-2">
                                 <button onclick="handleGenerate()" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
                                     Try Again
@@ -971,9 +1086,9 @@ Additional requirements:
                 <div class="text-center py-12">
                     <div class="loading-spinner mb-4"></div>
                     <p class="text-lg text-gray-600">AI is creating your personalized learning materials...</p>
-                    <p class="text-sm text-gray-500 mt-2">This typically takes 20-60 seconds. Please wait patiently for the complete response...</p>
+                    <p class="text-sm text-gray-500 mt-2">This may take up to 2-3 minutes for comprehensive content. Please wait patiently...</p>
                     <div class="mt-4 w-full bg-gray-200 rounded-full h-2 max-w-xs mx-auto">
-                        <div class="bg-blue-600 h-2 rounded-full animate-pulse" style="width: 60%"></div>
+                        <div class="bg-blue-600 h-2 rounded-full animate-pulse" style="width: 75%"></div>
                     </div>
                 </div>
             `;

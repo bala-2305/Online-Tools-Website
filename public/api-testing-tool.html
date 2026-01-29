@@ -174,21 +174,124 @@
             }
         }
 
-        @media (max-width: 480px) {
-            .container {
-                padding-left: 1rem;
-                padding-right: 1rem;
-            }
+        .dark-mode {
+            background-color: #1f2937;
+            color: #f9fafb;
+        }
 
-            .method-buttons button {
-                padding: 0.5rem;
-                font-size: 0.75rem;
-            }
+        .dark-mode .bg-white {
+            background-color: #374151;
+            color: #f9fafb;
+        }
 
-            .response-tabs button {
-                padding: 0.5rem 0.75rem;
-                font-size: 0.7rem;
-            }
+        .dark-mode .text-gray-800 {
+            color: #f9fafb;
+        }
+
+        .dark-mode .text-gray-600 {
+            color: #d1d5db;
+        }
+
+        .dark-mode .text-gray-700 {
+            color: #d1d5db;
+        }
+
+        .dark-mode .border-gray-300 {
+            border-color: #4b5563;
+        }
+
+        .dark-mode .bg-gray-50 {
+            background-color: #111827;
+        }
+
+        .dark-mode .bg-gray-100 {
+            background-color: #374151;
+        }
+
+        .dark-mode .text-gray-500 {
+            color: #9ca3af;
+        }
+
+        .dark-mode .response-container {
+            background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+            border-color: #4b5563;
+        }
+
+        .dark-mode .tab-inactive {
+            background: #4b5563;
+            color: #9ca3af;
+        }
+
+        .dark-mode .tab-inactive:hover {
+            background: #6b7280;
+        }
+
+        .syntax-highlight {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 16px;
+            border-radius: 8px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 14px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+
+        .syntax-highlight .string { color: #10b981; }
+        .syntax-highlight .number { color: #f59e0b; }
+        .syntax-highlight .boolean { color: #ef4444; }
+        .syntax-highlight .null { color: #8b5cf6; }
+        .syntax-highlight .key { color: #3b82f6; }
+
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: #374151;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 10px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -100px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 12px;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .request-saved {
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
         }
     </style>
 </head>
@@ -210,12 +313,18 @@
             <div class="flex justify-between items-center h-16">
                 <a href="index.html" class="text-2xl font-bold text-blue-600" aria-label="Daedalus Home">Daedalus</a>
                 <div class="hidden sm:flex items-center space-x-6">
+                    <button id="dark-mode-toggle" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" title="Toggle Dark Mode">
+                        <i data-feather="moon" class="w-5 h-5"></i>
+                    </button>
                     <a href="index.html" class="text-gray-700 hover:text-blue-600 font-medium">Home</a>
                     <a href="features.html" class="text-gray-700 hover:text-blue-600 font-medium">Features</a>
                     <a href="about.html" class="text-gray-700 hover:text-blue-600 font-medium">About</a>
                 </div>
-                <div class="sm:hidden">
-                    <button id="mobile-menu-button" class="text-gray-700 hover:text-blue-600 focus:outline-none">
+                <div class="sm:hidden flex items-center space-x-2">
+                    <button id="dark-mode-toggle-mobile" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" title="Toggle Dark Mode">
+                        <i data-feather="moon" class="w-5 h-5"></i>
+                    </button>
+                    <button id="mobile-menu-button" class="text-gray-700 hover:text-blue-600 focus:outline-none p-2 rounded-lg hover:bg-gray-100 transition-colors">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                         </svg>
@@ -299,6 +408,17 @@
                         <p class="text-sm text-gray-500 text-center">No requests yet</p>
                     </div>
                 </div>
+
+                <!-- Saved Requests -->
+                <div class="bg-white p-6 rounded-xl shadow-md mt-6">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+                        <i data-feather="bookmark" class="w-5 h-5 mr-2 text-blue-500"></i>
+                        Saved Requests
+                    </h3>
+                    <div id="saved-requests" class="space-y-2 max-h-64 overflow-y-auto">
+                        <p class="text-sm text-gray-500 text-center">No saved requests</p>
+                    </div>
+                </div>
             </div>
 
             <!-- Request/Response -->
@@ -311,15 +431,28 @@
                             Request Body
                         </h3>
                         <div class="flex flex-col sm:flex-row gap-2">
-                            <button id="format-json" class="px-3 py-1 text-sm bg-gray-100 hover:bg-gray-200 rounded-md transition-colors w-full sm:w-auto">Format JSON</button>
-                            <button id="clear-body" class="px-3 py-1 text-sm bg-red-100 hover:bg-red-200 text-red-600 rounded-md transition-colors w-full sm:w-auto">Clear</button>
+                            <button id="syntax-highlight" class="px-3 py-1 text-sm bg-purple-100 hover:bg-purple-200 text-purple-600 rounded-md transition-colors tooltip" title="Toggle Syntax Highlighting">
+                                <i data-feather="code" class="w-4 h-4 mr-1 inline"></i>
+                                Highlight
+                            </button>
+                            <button id="format-json" class="px-3 py-1 text-sm bg-gray-100 hover:bg-gray-200 rounded-md transition-colors tooltip" title="Format JSON">
+                                <i data-feather="align-left" class="w-4 h-4 mr-1 inline"></i>
+                                Format
+                            </button>
+                            <button id="clear-body" class="px-3 py-1 text-sm bg-red-100 hover:bg-red-200 text-red-600 rounded-md transition-colors tooltip" title="Clear Body">
+                                <i data-feather="trash-2" class="w-4 h-4 mr-1 inline"></i>
+                                Clear
+                            </button>
                         </div>
                     </div>
-                    <textarea id="request-body" class="request-body w-full h-32 sm:h-40 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 font-mono text-sm resize-vertical" placeholder='{
+                    <div id="request-body-container" class="relative">
+                        <textarea id="request-body" class="request-body w-full h-32 sm:h-40 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 font-mono text-sm resize-vertical" placeholder='{
   "key": "value",
   "number": 123,
   "array": [1, 2, 3]
 }'></textarea>
+                        <div id="syntax-preview" class="syntax-highlight absolute top-0 left-0 w-full h-32 sm:h-40 px-3 py-2 pointer-events-none opacity-0 transition-opacity duration-300 overflow-hidden hidden"></div>
+                    </div>
                 </div>
 
                 <!-- Response -->
@@ -340,6 +473,14 @@
                         <button id="tab-body" class="tab-active px-3 sm:px-4 py-2 rounded-t-md text-xs sm:text-sm font-medium transition-all">Body</button>
                         <button id="tab-headers" class="tab-inactive px-3 sm:px-4 py-2 rounded-t-md text-xs sm:text-sm font-medium transition-all">Headers</button>
                         <button id="tab-cookies" class="tab-inactive px-3 sm:px-4 py-2 rounded-t-md text-xs sm:text-sm font-medium transition-all">Cookies</button>
+                        <div class="ml-auto flex gap-2">
+                            <button id="copy-response" class="px-3 py-2 bg-gray-100 hover:bg-gray-200 rounded-md text-xs sm:text-sm font-medium transition-colors tooltip" title="Copy Response">
+                                <i data-feather="copy" class="w-4 h-4"></i>
+                            </button>
+                            <button id="save-request" class="px-3 py-2 bg-blue-100 hover:bg-blue-200 text-blue-600 rounded-md text-xs sm:text-sm font-medium transition-colors tooltip" title="Save Request">
+                                <i data-feather="save" class="w-4 h-4"></i>
+                            </button>
+                        </div>
                     </div>
 
                     <!-- Response Content -->
@@ -372,8 +513,15 @@
                     <p><strong>📋 Select Method:</strong> Choose HTTP method (GET, POST, PUT, DELETE)</p>
                     <p><strong>📝 Add Headers:</strong> Include authentication tokens, content types, etc.</p>
                     <p><strong>📄 Request Body:</strong> Add JSON data for POST/PUT requests</p>
-                    <p><strong>🚀 Send Request:</strong> Click "Send Request" to test your API</p>
-                    <p><strong>👀 View Response:</strong> Check status, headers, and response body</p>
+                    <p><strong>🚀 Send Request:</strong> Click "Send Request" or press <kbd class="bg-gray-200 px-1 rounded">Ctrl+Enter</kbd></p>
+                    <p><strong>⌨️ Keyboard Shortcuts:</strong></p>
+                    <ul class="ml-4 space-y-1">
+                        <li><kbd class="bg-gray-200 px-1 rounded">Ctrl+Enter</kbd> - Send request</li>
+                        <li><kbd class="bg-gray-200 px-1 rounded">Ctrl+Shift+F</kbd> - Format JSON</li>
+                        <li><kbd class="bg-gray-200 px-1 rounded">Ctrl+Shift+H</kbd> - Toggle syntax highlighting</li>
+                        <li><kbd class="bg-gray-200 px-1 rounded">Ctrl+Shift+C</kbd> - Clear body</li>
+                        <li><kbd class="bg-gray-200 px-1 rounded">Ctrl+Shift+S</kbd> - Save request</li>
+                    </ul>
                 </div>
             </div>
 
@@ -479,6 +627,8 @@
             const sendText = document.getElementById('send-text');
             const loadingSpinner = document.getElementById('loading-spinner');
             const requestBodyTextarea = document.getElementById('request-body');
+            const requestBodyContainer = document.getElementById('request-body-container');
+            const syntaxPreview = document.getElementById('syntax-preview');
             const responseStatus = document.getElementById('response-status');
             const responseTime = document.getElementById('response-time');
             const responseBody = document.getElementById('response-body');
@@ -487,15 +637,114 @@
             const tabBody = document.getElementById('tab-body');
             const tabHeaders = document.getElementById('tab-headers');
             const tabCookies = document.getElementById('tab-cookies');
+            const copyResponseBtn = document.getElementById('copy-response');
+            const saveRequestBtn = document.getElementById('save-request');
             const addHeaderBtn = document.getElementById('add-header');
             const headersContainer = document.getElementById('headers-container');
             const formatJsonBtn = document.getElementById('format-json');
+            const syntaxHighlightBtn = document.getElementById('syntax-highlight');
             const clearBodyBtn = document.getElementById('clear-body');
             const requestHistory = document.getElementById('request-history');
+            const savedRequestsContainer = document.getElementById('saved-requests');
+            const darkModeToggle = document.getElementById('dark-mode-toggle');
+            const darkModeToggleMobile = document.getElementById('dark-mode-toggle-mobile');
 
             // State
             let currentMethod = 'GET';
             let requestHistoryData = [];
+            let isDarkMode = localStorage.getItem('apiTester_darkMode') === 'true';
+            let syntaxHighlightEnabled = false;
+            let savedRequests = JSON.parse(localStorage.getItem('apiTester_savedRequests') || '[]');
+
+            // Initialize dark mode
+            if (isDarkMode) {
+                document.body.classList.add('dark-mode');
+                updateDarkModeIcons();
+            }
+
+            // Dark mode toggle
+            function updateDarkModeIcons() {
+                const icons = document.querySelectorAll('#dark-mode-toggle i, #dark-mode-toggle-mobile i');
+                icons.forEach(icon => {
+                    icon.setAttribute('data-feather', isDarkMode ? 'sun' : 'moon');
+                });
+                feather.replace();
+            }
+
+            [darkModeToggle, darkModeToggleMobile].forEach(btn => {
+                if (btn) {
+                    btn.addEventListener('click', () => {
+                        isDarkMode = !isDarkMode;
+                        document.body.classList.toggle('dark-mode', isDarkMode);
+                        localStorage.setItem('apiTester_darkMode', isDarkMode);
+                        updateDarkModeIcons();
+
+                        gtag('event', 'dark_mode_toggled', {
+                            event_category: 'ui_interaction',
+                            event_label: isDarkMode ? 'enabled' : 'disabled',
+                            page_title: 'API Testing Tool'
+                        });
+                    });
+                }
+            });
+
+            // Notification system
+            function showNotification(message, type = 'info') {
+                // Remove existing notifications
+                const existingNotifications = document.querySelectorAll('.notification');
+                existingNotifications.forEach(notification => notification.remove());
+
+                const notification = document.createElement('div');
+                notification.className = `notification fixed top-20 right-4 z-50 p-4 rounded-lg shadow-lg fade-in ${type === 'success' ? 'bg-green-500 text-white' : type === 'error' ? 'bg-red-500 text-white' : 'bg-blue-500 text-white'}`;
+                notification.innerHTML = `
+                    <div class="flex items-center">
+                        <i data-feather="${type === 'success' ? 'check-circle' : type === 'error' ? 'x-circle' : 'info'}" class="w-5 h-5 mr-2"></i>
+                        <span>${message}</span>
+                    </div>
+                `;
+
+                document.body.appendChild(notification);
+                feather.replace();
+
+                setTimeout(() => {
+                    notification.remove();
+                }, 3000);
+            }
+
+            // Keyboard shortcuts
+            document.addEventListener('keydown', (e) => {
+                // Ctrl/Cmd + Enter to send request
+                if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+                    e.preventDefault();
+                    if (!sendRequestBtn.disabled) {
+                        sendRequestBtn.click();
+                    }
+                }
+
+                // Ctrl/Cmd + Shift + F to format JSON
+                if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'F') {
+                    e.preventDefault();
+                    formatJsonBtn.click();
+                }
+
+                // Ctrl/Cmd + Shift + H to toggle syntax highlighting
+                if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'H') {
+                    e.preventDefault();
+                    syntaxHighlightBtn.click();
+                }
+
+                // Ctrl/Cmd + Shift + C to clear body
+                if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'C') {
+                    e.preventDefault();
+                    clearBodyBtn.click();
+                }
+
+                // Ctrl/Cmd + Shift + S to save request
+                if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'S') {
+                    e.preventDefault();
+                    saveRequestBtn.click();
+                }
+            });
 
             // Method selection
             methodButtons.forEach(button => {
@@ -549,11 +798,72 @@
             }
             attachRemoveListeners();
 
+            // Syntax highlighting
+            function highlightJSON(jsonString) {
+                try {
+                    const parsed = JSON.parse(jsonString);
+                    const highlighted = JSON.stringify(parsed, null, 2)
+                        .replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+                            let cls = 'number';
+                            if (/^"/.test(match)) {
+                                if (/:$/.test(match)) {
+                                    cls = 'key';
+                                } else {
+                                    cls = 'string';
+                                }
+                            } else if (/true|false/.test(match)) {
+                                cls = 'boolean';
+                            } else if (/null/.test(match)) {
+                                cls = 'null';
+                            }
+                            return `<span class="${cls}">${match}</span>`;
+                        });
+                    return highlighted;
+                } catch (e) {
+                    return jsonString;
+                }
+            }
+
+            function updateSyntaxHighlighting() {
+                if (syntaxHighlightEnabled) {
+                    const highlighted = highlightJSON(requestBodyTextarea.value);
+                    syntaxPreview.innerHTML = highlighted;
+                    syntaxPreview.classList.remove('hidden');
+                    syntaxPreview.style.opacity = '1';
+                    requestBodyTextarea.style.opacity = '0';
+                } else {
+                    syntaxPreview.classList.add('hidden');
+                    syntaxPreview.style.opacity = '0';
+                    requestBodyTextarea.style.opacity = '1';
+                }
+            }
+
+            syntaxHighlightBtn.addEventListener('click', () => {
+                syntaxHighlightEnabled = !syntaxHighlightEnabled;
+                syntaxHighlightBtn.classList.toggle('bg-purple-200', syntaxHighlightEnabled);
+                updateSyntaxHighlighting();
+
+                gtag('event', 'syntax_highlight_toggled', {
+                    event_category: 'ui_interaction',
+                    event_label: syntaxHighlightEnabled ? 'enabled' : 'disabled',
+                    page_title: 'API Testing Tool'
+                });
+            });
+
+            requestBodyTextarea.addEventListener('input', () => {
+                if (syntaxHighlightEnabled) {
+                    updateSyntaxHighlighting();
+                }
+            });
+
             // Format JSON
             formatJsonBtn.addEventListener('click', function() {
                 try {
                     const parsed = JSON.parse(requestBodyTextarea.value);
                     requestBodyTextarea.value = JSON.stringify(parsed, null, 2);
+                    if (syntaxHighlightEnabled) {
+                        updateSyntaxHighlighting();
+                    }
 
                     // Track JSON formatting
                     gtag('event', 'json_formatted', {
@@ -562,7 +872,7 @@
                         page_title: 'API Testing Tool'
                     });
                 } catch (e) {
-                    alert('Invalid JSON format');
+                    showNotification('Invalid JSON format', 'error');
                 }
             });
 
@@ -628,6 +938,70 @@
                     event_label: 'cookies',
                     page_title: 'API Testing Tool'
                 });
+            });
+
+            // Copy response
+            copyResponseBtn.addEventListener('click', async () => {
+                const activeTab = document.querySelector('.tab-active');
+                let content = '';
+
+                if (activeTab.id === 'tab-body') {
+                    content = responseBody.textContent;
+                } else if (activeTab.id === 'tab-headers') {
+                    content = responseHeaders.textContent;
+                } else if (activeTab.id === 'tab-cookies') {
+                    content = responseCookies.textContent;
+                }
+
+                try {
+                    await navigator.clipboard.writeText(content);
+                    showNotification('Response copied to clipboard!', 'success');
+
+                    gtag('event', 'response_copied', {
+                        event_category: 'ui_interaction',
+                        event_label: activeTab.id.replace('tab-', ''),
+                        page_title: 'API Testing Tool'
+                    });
+                } catch (err) {
+                    showNotification('Failed to copy response', 'error');
+                }
+            });
+
+            // Save request
+            saveRequestBtn.addEventListener('click', () => {
+                const request = {
+                    url: apiUrlInput.value,
+                    method: currentMethod,
+                    headers: [],
+                    body: requestBodyTextarea.value,
+                    timestamp: new Date().toISOString()
+                };
+
+                // Collect headers
+                document.querySelectorAll('.header-row').forEach(row => {
+                    const inputs = row.querySelectorAll('input');
+                    const key = inputs[0].value.trim();
+                    const value = inputs[1].value.trim();
+                    if (key && value) {
+                        request.headers.push({ key, value });
+                    }
+                });
+
+                savedRequests.unshift(request);
+                if (savedRequests.length > 10) {
+                    savedRequests = savedRequests.slice(0, 10);
+                }
+
+                localStorage.setItem('apiTester_savedRequests', JSON.stringify(savedRequests));
+                showNotification('Request saved!', 'success');
+
+                gtag('event', 'request_saved', {
+                    event_category: 'ui_interaction',
+                    event_label: currentMethod,
+                    page_title: 'API Testing Tool'
+                });
+
+                updateSavedRequestsDisplay();
             });
 
             // Send request
@@ -790,6 +1164,28 @@
                 `).join('');
             }
 
+            // Update saved requests display
+            function updateSavedRequestsDisplay() {
+                if (savedRequests.length === 0) {
+                    savedRequestsContainer.innerHTML = '<p class="text-sm text-gray-500 text-center">No saved requests</p>';
+                    return;
+                }
+
+                savedRequestsContainer.innerHTML = savedRequests.map((request, index) => `
+                    <div class="p-2 bg-blue-50 rounded text-sm cursor-pointer hover:bg-blue-100 transition-colors group" onclick="loadSavedRequest(${index})">
+                        <div class="flex justify-between items-center">
+                            <span class="font-medium text-blue-600">${request.method}</span>
+                            <button class="opacity-0 group-hover:opacity-100 text-red-500 hover:text-red-700" onclick="deleteSavedRequest(event, ${index})">
+                                <i data-feather="trash-2" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                        <div class="text-gray-600 truncate">${request.url}</div>
+                        <div class="text-xs text-gray-400">${new Date(request.timestamp).toLocaleString()}</div>
+                    </div>
+                `).join('');
+                feather.replace();
+            }
+
             // Load from history
             window.loadFromHistory = function(url, method) {
                 apiUrlInput.value = url;
@@ -808,6 +1204,64 @@
                     event_label: method,
                     page_title: 'API Testing Tool'
                 });
+            };
+
+            // Load saved request
+            window.loadSavedRequest = function(index) {
+                const request = savedRequests[index];
+                apiUrlInput.value = request.url;
+                requestBodyTextarea.value = request.body;
+
+                // Reset method selection
+                methodButtons.forEach(btn => {
+                    btn.classList.remove('ring-2', 'ring-blue-500', 'scale-105');
+                    if (btn.textContent === request.method) {
+                        btn.classList.add('ring-2', 'ring-blue-500', 'scale-105');
+                        currentMethod = request.method;
+                    }
+                });
+
+                // Clear existing headers
+                document.querySelectorAll('.header-row').forEach(row => {
+                    if (row.querySelectorAll('input')[0].value !== 'Content-Type') {
+                        row.remove();
+                    }
+                });
+
+                // Load headers
+                request.headers.forEach(header => {
+                    if (header.key !== 'Content-Type') {
+                        const headerRow = document.createElement('div');
+                        headerRow.className = 'header-row flex flex-col sm:flex-row gap-2 mb-2';
+                        headerRow.innerHTML = `
+                            <input type="text" class="flex-1 px-2 py-1 border border-gray-300 rounded text-sm w-full sm:w-auto" placeholder="Key" value="${header.key}">
+                            <input type="text" class="flex-1 px-2 py-1 border border-gray-300 rounded text-sm w-full sm:w-auto" placeholder="Value" value="${header.value}">
+                            <button class="remove-header text-red-500 hover:text-red-700 px-2 self-end sm:self-auto">
+                                <i data-feather="x" class="w-4 h-4"></i>
+                            </button>
+                        `;
+                        headersContainer.appendChild(headerRow);
+                        feather.replace();
+                        attachRemoveListeners();
+                    }
+                });
+
+                showNotification('Request loaded!', 'success');
+
+                gtag('event', 'saved_request_loaded', {
+                    event_category: 'api_testing',
+                    event_label: request.method,
+                    page_title: 'API Testing Tool'
+                });
+            };
+
+            // Delete saved request
+            window.deleteSavedRequest = function(event, index) {
+                event.stopPropagation();
+                savedRequests.splice(index, 1);
+                localStorage.setItem('apiTester_savedRequests', JSON.stringify(savedRequests));
+                updateSavedRequestsDisplay();
+                showNotification('Request deleted!', 'success');
             };
 
             // Load sample API
@@ -832,6 +1286,9 @@
                     page_title: 'API Testing Tool'
                 });
             };
+
+            // Initialize saved requests display
+            updateSavedRequestsDisplay();
         });
     </script>
 
