@@ -1,8 +1,5 @@
-﻿# infiniteforge.tech
-
 <div align="center">
-
-# 🛠️ Daedalus - Free Online Tools Suite
+#Free Online Tools Suite
 
 [![Website](https://img.shields.io/badge/Website-infiniteforge.tech-blue?style=for-the-badge&logo=firefox)](https://infiniteforge.tech)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge&logo=open-source-initiative)](LICENSE)
